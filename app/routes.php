@@ -13,5 +13,9 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+    return View::make('hello');
 });
+
+Route::get('login', 'UserController@create');
+Route::post('logout', 'UserController@destroy');
+Route::resource('user', 'UserController');
