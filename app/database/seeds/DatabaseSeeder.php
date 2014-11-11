@@ -12,7 +12,10 @@ class DatabaseSeeder extends Seeder {
         Eloquent::unguard();
 
         $this->call('UserTableSeeder');
+<<<<<<< HEAD
         $this->call('PatientTableSeeder');
+=======
+>>>>>>> auth
     }
 
 }
