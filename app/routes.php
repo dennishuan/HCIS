@@ -11,7 +11,42 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {
-	return View::make('hello');
-});
+    $patients = DB::table('patients')->paginate(20);
+
+    return View::make('home', ['patients' => $patients]);
+}]);
+
+Route::get('login', ['as' => 'login.create', function()
+{
+    //If auth go back.
+    if(Auth::check()){
+        return Redirect::intended();
+    }
+    return View::make('login');
+}]);
+
+Route::post('login', ['as' => 'login.store', function()
+{
+    //Get input, then try to auth the user.
+    $input = Input::all();
+
+    $attemp = Auth::attempt([
+        'username' => $input['username'],
+        'password' => $input['password']
+    ], true);
+
+    if($attemp){
+        return Redirect::intended()->with('flash_message', 'You have been logged in!');
+    }else{
+        return Redirect::to('login')->with('flash_message', 'Invalid credentials')->withInput();
+    }
+}]);
+
+Route::post('logout', ['as' => 'login.destroy', 'before' => 'auth', function()
+{
+    Auth::logout();
+
+    return Redirect::intended()->with('flash_message', 'You have been logged out!');
+}]);
