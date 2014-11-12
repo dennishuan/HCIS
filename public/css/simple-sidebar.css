@@ -22,7 +22,14 @@
 	height: 100%;
 	margin-left: -250px;
 	overflow-y: auto;
-	background: #000;
+	background: rgba(254,254,254,1);
+	background: -moz-linear-gradient(left, rgba(254,254,254,1) 0%, rgba(219,219,219,1) 92%, rgba(226,226,226,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(254,254,254,1)), color-stop(92%, rgba(219,219,219,1)), color-stop(100%, rgba(226,226,226,1)));
+	background: -webkit-linear-gradient(left, rgba(254,254,254,1) 0%, rgba(219,219,219,1) 92%, rgba(226,226,226,1) 100%);
+	background: -o-linear-gradient(left, rgba(254,254,254,1) 0%, rgba(219,219,219,1) 92%, rgba(226,226,226,1) 100%);
+	background: -ms-linear-gradient(left, rgba(254,254,254,1) 0%, rgba(219,219,219,1) 92%, rgba(226,226,226,1) 100%);
+	background: linear-gradient(to right, rgba(254,254,254,1) 0%, rgba(219,219,219,1) 92%, rgba(226,226,226,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2', GradientType=1 );
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -59,7 +66,7 @@
 }
 .sidebar-nav li a:hover {
 	text-decoration: none;
-	color: #fff;
+	color: #3366FF;
 	background: rgba(255,255,255,0.2);
 }
 .sidebar-nav li a:active,
@@ -75,7 +82,7 @@
 	color: #999999;
 }
 .sidebar-nav > .sidebar-brand a:hover {
-	color: #fff;
+	color: #3366FF;
 	background: none;
 }
 @media(min-width:768px){

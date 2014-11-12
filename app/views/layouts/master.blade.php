@@ -10,6 +10,8 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
+	
+	<!-- Banner -->
 		<header role="banner">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<nav class="navbar navbar-default" role="navigation">
@@ -55,6 +57,7 @@
 				</nav>
 			</div>
 		</header>
+		<!-- /banner -->
 		
 		
 		<!-- Sidebar -->
@@ -93,19 +96,9 @@
 		<!-- End div/sidebar-wrapper -->	
 
 		<!-- Main content -->
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="container">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Search Patient</h3>
-					</div>
-					<div class="panel-body">
-						Panel content2
-						@yield('content')
-					</div>
-				</div> <!-- end div/container-->
-			</div>
-		</div> <!-- End div/panel2 -->
+		<!-- NOTE: Make sure to enclose this in an IF statement depending on authorization -->
+		@yield('content')
+		<!-- END HOME -->
 
 		{{ HTML::script('js/jquery.min.js') }}
 		{{ HTML::script('js/bootstrap.min.js') }}
