@@ -14,9 +14,10 @@ class CreatePatientsTable extends Migration {
     {
         Schema::create('patients', function(Blueprint $table)
         {
+            // Default index laravel uses.
             $table->increments('id');
 
-            $table->string('personal_health_number', 10)->unique();
+            $table->string('phn', 10)->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->boolean('sex');
@@ -26,6 +27,7 @@ class CreatePatientsTable extends Migration {
             $table->string('phone', 20);
             $table->string('family_doctor');
 
+            // Default timestamps
             $table->timestamps();
         });
     }

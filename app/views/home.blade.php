@@ -22,7 +22,7 @@
 
         @foreach($patients as $patient)
         <tr>
-            <td>{{ $patient->personal_health_number }}</td>
+            <td>{{ $patient->phn }}</td>
             <td>{{ $patient->first_name }}</td>
             <td>{{ $patient->last_name }}</td>
             <td>{{ $patient->sex }}</td>

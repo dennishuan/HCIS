@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration {
     {
         Schema::create('users', function(Blueprint $table)
         {
-            // Default id
+            // Default index laravel uses.
             $table->increments('id');
 
             $table->string('username')->unique();
