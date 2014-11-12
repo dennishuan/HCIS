@@ -13,7 +13,6 @@
             <th>Postal Code</th>
             <th>Phone</th>
             <th>Family Doctor</th>
-
         </tr>
     </thead>
 
