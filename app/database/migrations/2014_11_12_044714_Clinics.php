@@ -14,8 +14,8 @@ class Clinics extends Migration {
     {
         Schema::create('Clinics', function(Blueprint $table)
         {
-            $table->increments('patient_id')->unique();
-            $table->string('phn', 10)->unique();
+            $table->string('patient_phn')->unsigned();
+            $table->foreign('patient_phn', 10)->references('phn')->on('patients')->onDelete->('cascade');
             $table->string('doctor_first_name'); 
             $table->string('doctor_last_name'); 
             $table->date('appt_date');
@@ -35,6 +35,7 @@ class Clinics extends Migration {
     public function down()
     {
         Schema::drop('Clinics');
+        
     }
 
 }

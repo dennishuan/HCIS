@@ -14,11 +14,10 @@ class Hospitals extends Migration {
     {
         Schema::create('Hospitals', function(Blueprint $table)
         {
-            $table->increments('patient_id')->unique();
-            $table->string('phn', 10)->unique();
+            $table->string('patient_phn')->unsigned();
+            $table->foreign('patient_phn', 10)->references('phn')->on('patients')->onDelete->('cascade');
             $table->string('hospital_id', 3); 
             $table->string('hospital_name');
-            $table->string('hospital_abbrev');
             $table->date('reg_date');
             $table->time('reg_time');
             $table->date('admit_date');
