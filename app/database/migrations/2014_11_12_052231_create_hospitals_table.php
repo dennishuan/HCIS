@@ -27,7 +27,7 @@ class CreateHospitalsTable extends Migration {
             $table->string('priority', 1);
             $table->text('stated_compl');
             $table->string('year', 4);
-            $table->string('chief_compl_code', 50);
+            $table->string('chief_compl_code', 24);
             $table->string('chief_compl');
             $table->string('arrival_mode', 16);
             $table->string('name');

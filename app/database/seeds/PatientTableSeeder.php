@@ -8,13 +8,13 @@ class PatientTableSeeder extends Seeder {
 
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('en_CA');
 
         foreach(range(1, 100) as $index)
         {
             Patient::create([
 
-                'phn' => $faker->unique()->numberBetween(1000000000, 9999999999),
+                'phn' => $faker->unique()->numerify('##########'),
                 'name' => $faker->name,
                 'sex' => $faker->boolean,
                 'date_of_birth' => $faker->date,

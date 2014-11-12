@@ -6,18 +6,18 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('en_CA');
 
-        User::create([
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
-            'type' => 'admin',
-            'email' => 'admin@example.com',
-            'name' => $faker->name,
-            'workplace' => $faker->company,
-            'work_phone'=> $faker->phoneNumber,
-            'cellphone' => $faker->phoneNumber
-        ]);
+//        User::create([
+//            'username' => 'admin',
+//            'password' => Hash::make('admin'),
+//            'type' => 'admin',
+//            'email' => 'admin@example.com',
+//            'name' => $faker->name,
+//            'workplace' => $faker->company,
+//            'work_phone'=> $faker->phoneNumber,
+//            'cellphone' => $faker->phoneNumber
+//        ]);
 
         foreach(range(1, 10) as $index)
         {
