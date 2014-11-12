@@ -12,7 +12,7 @@ class Hospitals extends Migration {
      */
     public function up()
     {
-        Schema::create('hospitals', function(Blueprint $table)
+        Schema::create('Hospitals', function(Blueprint $table)
         {
             $table->increments('patient_id')->unique();
             $table->string('phn', 10)->unique();
@@ -39,7 +39,7 @@ class Hospitals extends Migration {
      */
     public function down()
     {
-        Schema::drop('hospitals');
+        Schema::drop('Hospitals');
     }
 
 }
