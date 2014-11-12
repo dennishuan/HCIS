@@ -6,8 +6,7 @@
     <thead>
         <tr>
             <th>Personal Health  Number</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Full Name</th>
             <th>Sex</th>
             <th>Date of Birth</th>
             <th>Address</th>
@@ -23,8 +22,7 @@
         @foreach($patients as $patient)
         <tr>
             <td>{{ $patient->phn }}</td>
-            <td>{{ $patient->first_name }}</td>
-            <td>{{ $patient->last_name }}</td>
+            <td>{{ $patient->name }}</td>
             <td>{{ $patient->sex }}</td>
             <td>{{ $patient->date_of_birth }}</td>
             <td>{{ $patient->address }}</td>

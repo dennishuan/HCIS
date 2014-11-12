@@ -10,6 +10,6 @@ class Patient extends Eloquent{
 
 
     //Enable mass assignment for the fields.
-    protected $fillable = ['phn', 'first_name', 'last_name' , 'sex', 'date_of_birth', 'address', 'postal_code', 'phone', 'family_doctor'];
+    protected $fillable = ['phn', 'name', 'sex', 'date_of_birth', 'address', 'postal_code', 'phone', 'family_doctor'];
 
 }
