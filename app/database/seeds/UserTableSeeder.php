@@ -13,8 +13,7 @@ class UserTableSeeder extends Seeder {
             'password' => Hash::make('admin'),
             'type' => 'admin',
             'email' => 'admin@example.com',
-            'first_name' => $faker->firstname,
-            'last_name' => $faker->lastname,
+            'name' => $faker->name,
             'workplace' => $faker->company,
             'work_phone'=> $faker->phoneNumber,
             'cellphone' => $faker->phoneNumber
