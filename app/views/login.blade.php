@@ -17,4 +17,8 @@
             {{ Form::submit('login') }}
         </ul>
     {{ Form::close() }}
+    
+    <p>username: admin</p>
+    
+    <p>password: admin</p>
 @stop
