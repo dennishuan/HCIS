@@ -22,6 +22,6 @@ Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']
 
 Route::post('login', ['as' => 'login.store', 'uses' => 'LoginController@store']);
 
-Route::post('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
+Route::get('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
 Route::resource('patient', 'PatientController');
