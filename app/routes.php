@@ -11,6 +11,8 @@
 |
 */
 
+Route::resource('patient', 'PatientController');
+
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {
     $patients = DB::table('patients')->paginate(20);
