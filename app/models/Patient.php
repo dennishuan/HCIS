@@ -13,17 +13,22 @@ class Patient extends Eloquent{
     public static $rules = [
         'phn' => 'required',
         'name' => 'required',
+        'preferred_name' => 'required',
         'sex' => 'required',
         'date_of_birth' => 'required',
         'address' => 'required',
         'postal_code' => 'required',
-        'phone' => 'required',
-        'family_doctor' => 'required'
+        'permanent_resident' => 'required',
+        'medical_history' => 'required',
+        'preferred_language' => 'required',
+        'other_language' => 'required',
+        'ethnic_background' => 'required',
     ];
 
 
+
     //Enable mass assignment for the fields.
-    protected $fillable = ['phn', 'name', 'sex', 'date_of_birth', 'address', 'postal_code', 'phone', 'family_doctor'];
+    protected $fillable = ['phn', 'name', 'preferred_name', 'sex', 'date_of_birth', 'address', 'postal_code', 'home_phone', 'work_phone', 'mobile_phone', 'email', 'emergency_name', 'emergency_phone', 'emergency_relationship', 'allergies', 'permanent_resident', 'medical_history', 'preferred_language', 'other_language', 'ethnic_background', 'family_doctor'];
 
 
     public function isValid()

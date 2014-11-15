@@ -15,7 +15,6 @@ class HospitalTableSeeder extends Seeder {
         foreach($patients as $patient)
         {
             Hospital::create([
-
                 'phn' => $patient->phn,
                 'hospital_abbrev' => $faker->lexify('??????'),
                 'hospital_name' => $faker->company,
@@ -37,7 +36,6 @@ class HospitalTableSeeder extends Seeder {
                 'postal_code' => $patient->postal_code,
                 'notes' => $faker->text,
                 'family_doctor' => $patient->family_doctor
-
             ]);
         }
     }

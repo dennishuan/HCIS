@@ -22,7 +22,6 @@ class UserTableSeeder extends Seeder {
         foreach(range(1, 10) as $index)
         {
             $type = ['admin', 'doctor', 'nurse'];
-
             User::create([
                 'username' => $faker->unique()->userName,
                 'password' => Hash::make($faker->password),

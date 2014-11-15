@@ -31,7 +31,7 @@ class PatientController extends \BaseController {
     {
         //Show a list of all the patient
 
-        $patients = $this->patient->paginate(10);
+        $patients = $this->patient->paginate(25);
 
         return View::make('patient.index', ['patients' => $patients]);
     }

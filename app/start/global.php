@@ -1,5 +1,29 @@
 <?php
 
+/**
+ * Generate a querystring url for the application.
+ *
+ * Assumes that you want a URL with a querystring rather than route params
+ * (which is what the default url() helper does)
+ *
+ * @param  string  $path
+ * @param  mixed   $qs
+ * @param  bool    $secure
+ * @return string
+ */
+function qs_url($path = null, $qs = array(), $secure = null)
+{
+    $url = app('url')->to($path, $secure);
+    if (count($qs)){
+
+        foreach($qs as $key => $value){
+            $qs[$key] = sprintf('%s=%s',$key, urlencode($value));
+        }
+        $url = sprintf('%s?%s', $url, implode('&', $qs));
+    }
+    return $url;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
@@ -13,10 +37,10 @@
 
 ClassLoader::addDirectories(array(
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
+    app_path().'/commands',
+    app_path().'/controllers',
+    app_path().'/models',
+    app_path().'/database/seeds',
 
 ));
 
@@ -48,7 +72,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    Log::error($exception);
 });
 
 /*
@@ -64,7 +88,7 @@ App::error(function(Exception $exception, $code)
 
 App::down(function()
 {
-	return Response::make("Be right back!", 503);
+    return Response::make("Be right back!", 503);
 });
 
 /*

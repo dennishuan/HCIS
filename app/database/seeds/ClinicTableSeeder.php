@@ -13,7 +13,6 @@ class ClinicTableSeeder extends Seeder {
         foreach($patients as $patient)
         {
             Clinic::create([
-
                 'phn' => $patient->phn,
                 'doctor' => $faker->name,
                 'clinic_phone' => $faker->phoneNumber,
@@ -28,7 +27,6 @@ class ClinicTableSeeder extends Seeder {
                 'address' => $patient->address,
                 'postal_code' => $patient->postal_code,
                 'notes' => $faker->text,
-
             ]);
         }
     }
