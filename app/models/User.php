@@ -25,6 +25,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
     //Enable mass assignment for the fields.
-    protected $fillable = ['username', 'password', 'email', 'name', 'workplace', 'work_phone', 'cellphone'];
+    protected $fillable = ['username', 'password', 'email', 'name', 'phone'];
 
 }

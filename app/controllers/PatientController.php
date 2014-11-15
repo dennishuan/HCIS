@@ -29,13 +29,19 @@ class PatientController extends \BaseController {
     */
     public function index()
     {
+        //If the URL includes query string 'search'
+        //and store the corresponding value in $keyword
         if($keyword = Input::get('search')){
-            $patients = $this->patient->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(25);
+            //Search for the keyword in database
+            //Then paginate the result
+            //Note paginate replace function such as all() or get()
+            $patients = $this->patient->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
+            //Return the $patient for view to paginate.
             return View::make('patient.index', ['patients' => $patients]);
         }else{
             //Show a list of all the patient
-            $patients = $this->patient->paginate(25);
+            $patients = $this->patient->paginate(20);
 
             return View::make('patient.index', ['patients' => $patients]);
         }
@@ -64,9 +70,10 @@ class PatientController extends \BaseController {
         //Redirect back to the index after storing.
         $input = Input::all();
 
+        //Validation
         if( ! $this->patient->fill($input)->isValid())
         {
-            // For Json API
+            //For Json API
             if(Request::isJson()){
                 return Response::make($this->patient->errors, 400, ['Location'=>route('patient.index')]);
             }
@@ -76,7 +83,7 @@ class PatientController extends \BaseController {
 
         $this->patient->save();
 
-        // For Json API
+        //For Json API
         if(Request::isJson()){
             return Response::make('Patient stored', 201, ['Location'=>route('patient.show', ['patient' => $this->patient->id])]);
         }
@@ -96,7 +103,7 @@ class PatientController extends \BaseController {
         //
         $patient = $this->patient->findOrFail($id);
 
-        // JSON API
+        //JSON API
         if (Request::wantsJson())
         {
             return $patient->toJson();
@@ -129,14 +136,14 @@ class PatientController extends \BaseController {
     */
     public function update($id)
     {
-        //
+        //Get input then update
         $input = Input::all();
 
         $patient = $this->patient->findOrFail($id);
 
         if(! $patient->fill($input)->isValid())
         {
-            // For Json API
+            //For Json API
             if(Request::isJson()){
                 return Response::make($this->patient->errors, 400, ['Location'=>route('patient.index')]);
             }
@@ -146,7 +153,7 @@ class PatientController extends \BaseController {
 
         $patient->save();
 
-        // For Json API
+        //For Json API
         if(Request::isJson()){
             return Response::make('Patient edited', 202, ['Location'=>route('patient.show', ['patient' => $id])]);
         }

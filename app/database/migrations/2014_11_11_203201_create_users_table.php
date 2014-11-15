@@ -20,11 +20,9 @@ class CreateUsersTable extends Migration {
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('type', ['admin', 'doctor', 'nurse']);
-            $table->string('email');
             $table->string('name');
-            $table->string('workplace');
-            $table->string('work_phone', 20);
-            $table->string('cellphone', 20);
+            $table->string('email');
+            $table->string('phone', 15);
 
             // For remember me option.
             $table->string('remember_token');
