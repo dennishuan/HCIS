@@ -3,11 +3,11 @@
 @section('content')
     <h1>Patient Table {{ link_to_route('login.destroy', 'Logout', [], ['class' => 'btn btn-default pull-right']) }}</h1>
 
-    <form class="form-search">
-        <input type="text" class="input-medium search-query">
-        <button type="submit" class="btn">Search</button>
+    {{Form::open(['route'=>'patient.search'])}}
+        {{Form::text('keyword', null, ['placeholder' => 'search by keyword'])}}
+        {{Form::submit('Search', ['class' => 'btn'])}}
         {{ link_to_route('patient.create', 'Create', [], ['class' => 'btn btn-info']) }}
-    </form>
+    {{Form::close()}}
 
     <table class="table table-hover table-condensed">
         <thead>
@@ -17,6 +17,7 @@
                 <th>Preferred Name</th>
                 <th>Sex</th>
                 <th>Date of Birth</th>
+                <th>action</th>
             </tr>
         </thead>
 
@@ -28,6 +29,7 @@
                 <td>{{ $patient->preferred_name }}</td>
                 <td>{{ $patient->sex }}</td>
                 <td>{{ $patient->date_of_birth }}</td>
+                <td>{{ link_to_route('patient.show', 'Details', [$patient->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -35,4 +37,5 @@
     <div>
         {{ $patients->appends(Request::except('page'))->links() }}
     </div>
+
 @stop

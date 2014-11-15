@@ -13,9 +13,9 @@
 
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {
-	$patients = DB::table('patients')->paginate(20);
+    $patients = DB::table('patients')->paginate(20);
 
-	return View::make('home', ['patients' => $patients]);
+    return View::make('home', ['patients' => $patients]);
 }]);
 
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);
@@ -24,4 +24,5 @@ Route::post('login', ['as' => 'login.store', 'uses' => 'LoginController@store'])
 
 Route::get('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
+Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
 Route::resource('patient', 'PatientController');

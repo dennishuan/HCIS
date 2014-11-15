@@ -168,5 +168,14 @@ class PatientController extends \BaseController {
         return Redirect::route('patient.index');
     }
 
+    public function search(){
+
+        $keyword = Input::get('keyword');
+
+        $patients = $this->patient->where('name', 'LIKE', '%'.$keyword.'%')->paginate(25);
+
+        return View::make('patient.index', ['patients' => $patients]);
+    }
+
 
 }
