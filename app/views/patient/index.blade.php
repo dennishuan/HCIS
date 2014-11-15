@@ -4,7 +4,7 @@
 
     <!--Search bar-->
     {{Form::open(['route'=>'patient.search'])}}
-        {{Form::text('keyword', null, ['placeholder' => 'Personal Health Number', 'size' => '25'])}}
+        {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
         {{ link_to_route('patient.create', 'Create', [], ['class' => 'btn btn-info']) }}
     {{Form::close()}}

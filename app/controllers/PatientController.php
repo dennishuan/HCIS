@@ -37,12 +37,12 @@ class PatientController extends \BaseController {
             $patients = $this->patient->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $patient for view to paginate.
-            return View::make('patient.index', ['patients' => $patients]);
+            return View::make('patient.index', ['patients' => $patients, 'keyword' => $keyword]);
         }else{
             //Show a list of all the patient
             $patients = $this->patient->paginate(20);
 
-            return View::make('patient.index', ['patients' => $patients]);
+            return View::make('patient.index', ['patients' => $patients, 'keyword' => null]);
         }
     }
 
