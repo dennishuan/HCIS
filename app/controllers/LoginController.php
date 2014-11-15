@@ -35,9 +35,9 @@ class LoginController extends \BaseController {
         ], true);
 
         if($attemp){
-            return Redirect::intended()->with('flash_message', 'You have been logged in!');
+            return Redirect::intended()->with('flash_message_success', 'You have been logged in!');
         }else{
-            return Redirect::to('login')->with('flash_message', 'Invalid credentials')->withInput();
+            return Redirect::to('login')->with('flash_message_danger', 'Invalid credentials')->withInput();
         }
     }
 
@@ -52,7 +52,7 @@ class LoginController extends \BaseController {
     {
         Auth::logout();
 
-        return Redirect::to('login')->with('flash_message', 'You have been logged out!');
+        return Redirect::to('login')->with('flash_message_info', 'You have been logged out!');
     }
 
 }
