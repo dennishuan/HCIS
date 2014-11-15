@@ -29,11 +29,16 @@ class PatientController extends \BaseController {
     */
     public function index()
     {
-        //Show a list of all the patient
+        if($keyword = Input::get('search')){
+            $patients = $this->patient->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(25);
 
-        $patients = $this->patient->paginate(25);
+            return View::make('patient.index', ['patients' => $patients]);
+        }else{
+            //Show a list of all the patient
+            $patients = $this->patient->paginate(25);
 
-        return View::make('patient.index', ['patients' => $patients]);
+            return View::make('patient.index', ['patients' => $patients]);
+        }
     }
 
 
@@ -169,12 +174,23 @@ class PatientController extends \BaseController {
     }
 
     public function search(){
-
+        //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        $patients = $this->patient->where('name', 'LIKE', '%'.$keyword.'%')->paginate(25);
+        /**
+        * qs_url() is a custom function.
+        * qs_url($path = null, $qs = array(), $secure = null)
+        * $path is a string of URL path
+        * $qs is a array of strings of querys
+        * $secure is boolean on whether to use https or http
+        * qs_url(user, ['email' => 'sample@example.com', 'search' => 'something'])
+        * will result in
+        * /user?email=sample@example.com&search=something
+        */
+        $url = qs_url('patient', ['search' => $keyword]);
 
-        return View::make('patient.index', ['patients' => $patients]);
+        // Redirect to /patient/?search={$keyword}
+        return Redirect::to($url);
     }
 
 

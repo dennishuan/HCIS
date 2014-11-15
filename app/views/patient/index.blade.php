@@ -4,7 +4,7 @@
     <h1>Patient Table {{ link_to_route('login.destroy', 'Logout', [], ['class' => 'btn btn-default pull-right']) }}</h1>
 
     {{Form::open(['route'=>'patient.search'])}}
-        {{Form::text('keyword', null, ['placeholder' => 'search by keyword'])}}
+        {{Form::text('keyword', null, ['placeholder' => 'Personal Health Number', 'size' => '25'])}}
         {{Form::submit('Search', ['class' => 'btn'])}}
         {{ link_to_route('patient.create', 'Create', [], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
