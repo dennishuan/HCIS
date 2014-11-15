@@ -8,6 +8,13 @@ class Facility extends \Eloquent {
     */
     protected $table = 'facilities';
 
-
     protected $fillable = [];
+
+
+        public function users()
+    {
+        return $this->belongsToMany('users', 'facilities_users');
+    }
+
+
 }
