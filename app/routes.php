@@ -13,16 +13,22 @@
 
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {
-    $patients = DB::table('patients')->paginate(20);
-
-    return View::make('home', ['patients' => $patients]);
+    return View::make('home');
 }]);
 
+
+//Login
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);
+Route::post('login', ['before' => 'csrf', 'as' => 'login.store', 'uses' => 'LoginController@store']);
+Route::delete('logout', ['before' => 'csrf', 'as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
-Route::post('login', ['as' => 'login.store', 'uses' => 'LoginController@store']);
 
-Route::get('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
+//Patient
+Route::group(['before' => 'auth'], function(){
+    Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
+    Route::resource('patient', 'PatientController');
+});
 
-Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
-Route::resource('patient', 'PatientController');
+
+//User
+Route::resource('user', 'UserController');

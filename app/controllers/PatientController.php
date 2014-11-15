@@ -14,7 +14,6 @@ class PatientController extends \BaseController {
     protected $patient;
 
 
-
     public function __construct(Patient $patient)
     {
         //Store the model at the time of construct.

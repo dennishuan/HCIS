@@ -37,7 +37,6 @@ class UserTableSeeder extends Seeder {
             'phone' => $faker->numerify('##########')
         ]);
 
-
         foreach(range(1, 30) as $index)
         {
 

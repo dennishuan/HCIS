@@ -10,13 +10,15 @@ class PatientTableSeeder extends Seeder {
     {
         $faker = Faker::create('en_CA');
 
+        $sex = ['female', 'male'];
+
         foreach(range(1, 100) as $index)
         {
             Patient::create([
                 'phn' => $faker->unique()->numerify('##########'),
                 'name' => $faker->name,
                 'preferred_name' => $faker->name,
-                'sex' => $faker->boolean,
+                'sex' => $faker->randomElement($sex),
                 'date_of_birth' => $faker->date,
                 'address' => $faker->address,
                 'postal_code' => strtoupper ($faker->bothify('#?##?#')),

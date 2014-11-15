@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration {
             $table->string('phn', 10)->unique(); // string = varchar
             $table->string('name', 255); // full name as stated in care card
             $table->string('preferred_name', 255); // preferred name
-            $table->boolean('sex'); // male = 1, o/w female
+            $table->enum('sex', ['female', 'male']); // male = 1, o/w female
             $table->date('date_of_birth');
             $table->string('address', 255); // full address
             $table->string('postal_code', 6); // no spaces

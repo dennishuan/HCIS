@@ -34,4 +34,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
 
+    public function isAdmin()
+    {
+        return ($this->attributes['type'] === 'admin');
+    }
+
+        public function isDoctor()
+    {
+        return ($this->attributes['type'] === 'doctor');
+    }
+
+        public function isNurse()
+    {
+        return ($this->attributes['type'] === 'nurse');
+    }
+
+
 }

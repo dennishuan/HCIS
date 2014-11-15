@@ -1,8 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-    <!-- Logout button-->
-    <h1>Patient Table {{ link_to_route('login.destroy', 'Logout', [], ['class' => 'btn btn-default pull-right']) }}</h1>
 
     <!--Search bar-->
     {{Form::open(['route'=>'patient.search'])}}
@@ -15,7 +13,7 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Personal Health  Number</th>
+                <th>Personal Health Number</th>
                 <th>Full Name</th>
                 <th>Preferred Name</th>
                 <th>Sex</th>

@@ -1,5 +1,26 @@
 <?php
 
+Route::filter('admin', function()
+{
+    if (! Auth::user()->isAdmin()){
+        return Response::make('Unauthorized', 401);
+    }
+});
+
+Route::filter('doctor', function()
+{
+    if (! Auth::user()->isDoctor()){
+        return Response::make('Unauthorized', 401);
+    }
+});
+
+Route::filter('nurse', function()
+{
+    if (! Auth::user()->isNurse()){
+        return Response::make('Unauthorized', 401);
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
@@ -13,13 +34,13 @@
 
 App::before(function($request)
 {
-	//
+    //
 });
 
 
 App::after(function($request, $response)
 {
-	//
+    //
 });
 
 /*
@@ -35,23 +56,23 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest())
-	{
-		if (Request::ajax())
-		{
-			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			return Redirect::guest('login');
-		}
-	}
+    if (Auth::guest())
+    {
+        if (Request::ajax())
+        {
+            return Response::make('Unauthorized', 401);
+        }
+        else
+        {
+            return Redirect::guest('login');
+        }
+    }
 });
 
 
 Route::filter('auth.basic', function()
 {
-	return Auth::basic();
+    return Auth::basic();
 });
 
 /*
@@ -67,7 +88,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+    if (Auth::check()) return Redirect::to('/');
 });
 
 /*
@@ -83,8 +104,8 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() != Input::get('_token'))
-	{
-		throw new Illuminate\Session\TokenMismatchException;
-	}
+    if (Session::token() != Input::get('_token'))
+    {
+        throw new Illuminate\Session\TokenMismatchException;
+    }
 });

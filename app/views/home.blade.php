@@ -1,7 +1,7 @@
-@extends('layouts/default')
+@extends('layouts/master')
 
 @section('content')
 
-{{ link_to_route('patient.index', 'Patient') }}
+Welcome to Home page.
 
 @stop
