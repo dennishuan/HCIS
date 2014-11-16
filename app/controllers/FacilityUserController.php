@@ -11,14 +11,12 @@ class FacilityUserController extends \BaseController {
 
 
     protected $facility;
-    protected $user;
 
 
-    public function __construct(Facility $facility, User $user)
+    public function __construct(Facility $facility)
     {
         //Store the model at the time of construct.
         $this->facility = $facility;
-        $this->user = $user;
     }
 
 
@@ -27,7 +25,7 @@ class FacilityUserController extends \BaseController {
     *
     * @return Response
     */
-    public function index($facility_id)
+    public function index($id)
     {
         //If the URL includes query string 'search'
         //and store the corresponding value in $keyword
@@ -35,15 +33,15 @@ class FacilityUserController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $users = $this->user->where('facility_id', $facility_id)->where('notes', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $users = $this->facility->findOrFail($id)->user->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $facility for view to paginate.
-            return View::make('facility.user.index', ['facility_id' => $facility_id, 'users' => $users, 'keyword' => $keyword]);
+            return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => $keyword]);
         }else{
             //Show a list of all the facility
-            $users = $this->user->where('facility_id', $facility_id)->paginate(20);
+            $users = $this->facility->findOrFail($id)->user->where('facility_id', $facility_id)->paginate(20);
 
-            return View::make('facility.user.index', ['facility_id' => $facility_id, 'users' => $users, 'keyword' => null]);
+            return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => null]);
         }
     }
 
