@@ -5,62 +5,26 @@
     <h1>User:</h1>
 
     <dl>
-        <dt>Personal Health Number:</dt>
-        <dd><div>{{ $user->phn }}</div></dd>
+        <dt>Username:</dt>
+        <dd><div>{{ $user->username }}</div></dd>
+		
+		<!-- Admin shouldn't see password--
+        <dt>Password:</dt>
+        <dd><div>{{ $user->password }}</div></dd>
+		-->
 
-        <dt>Full Name:</dt>
+        <dt>Type:</dt>
+        <dd><div>{{ $user->type }}</div></dd>
+
+        <dt>Name:</dt>
         <dd><div>{{ $user->name }}</div></dd>
 
-        <dt>Preferred Name:</dt>
-        <dd><div>{{ $user->preferred_name }}</div></dd>
+        <dt>Email:</dt>
+        <dd><div>{{ $user->email }}</div></dd>
+		
+        <dt>Phone Number:</dt>
+        <dd><div>{{ $user->phone }}</div></dd>
 
-        <dt>Sex:</dt>
-        <dd><div>{{ $user->sex }}</div></dd>
-
-        <dt>Date of Birth:</dt>
-        <dd><div>{{ $user->date_of_birth }}</div></dd>
-
-        <dt>Address:</dt>
-        <dd><div>{{ $user->address }}</div></dd>
-
-        <dt>Postal Code:</dt>
-        <dd><div>{{ $user->postal_code }}</div></dd>
-
-        <dt>Home Phone:</dt>
-        <dd><div>{{ $user->home_phone }}</div></dd>
-
-        <dt>Work Phone:</dt>
-        <dd><div>{{ $user->work_phone }}</div></dd>
-
-        <dt>Mobile Phone:</dt>
-        <dd><div>{{ $user->mobile_phone }}</div></dd>
-
-        <dt>Emergency Contact Name:</dt>
-        <dd><div>{{ $user->emergency_name }}</div></dd>
-
-        <dt>Emergency Contact Phone Number:</dt>
-        <dd><div>{{ $user->emergency_phone }}</div></dd>
-
-        <dt>Emergency Contact Relationship:</dt>
-        <dd><div>{{ $user->emergency_relationship }}</div></dd>
-
-        <dt>Allergies:</dt>
-        <dd><div>{{ $user->allergies }}</div></dd>
-
-        <dt>Permanent Resident:</dt>
-        <dd><div>{{ $user->permanent_resident }}</div></dd>
-
-        <dt>Preferred Language:</dt>
-        <dd><div>{{ $user->preferred_language }}</div></dd>
-
-        <dt>Other Language:</dt>
-        <dd><div>{{ $user->other_language }}</div></dd>
-
-        <dt>Ethnic Background:</dt>
-        <dd><div>{{ $user->ethnic_background }}</div></dd>
-
-        <dt>Family Doctor:</dt>
-        <dd><div>{{ $user->family_doctor }}</div></dd>
     </dl>
 
     <nav>
