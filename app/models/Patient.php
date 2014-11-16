@@ -19,10 +19,8 @@ class Patient extends Eloquent{
         'address' => 'required',
         'postal_code' => 'required',
         'permanent_resident' => 'required',
-        'medical_history' => 'required',
         'preferred_language' => 'required',
-        'other_language' => 'required',
-        'ethnic_background' => 'required',
+        'ethnic_background' => 'required'
     ];
 
 
