@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
     <h1> Edit Facility</h1>

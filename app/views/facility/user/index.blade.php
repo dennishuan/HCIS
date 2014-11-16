@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
@@ -26,6 +26,7 @@
             @foreach($users as $user)
 
                 <td>{{ $user->username }}</td>
+                <td>{{ $user->type }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->phone }}</td>

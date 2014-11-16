@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
     <h1> Create New Facility</h1>

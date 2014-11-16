@@ -1,9 +1,9 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
     <!--Do you mean by create new records?-->
-    <h1> Create New Patient</h1> 
+    <h1> Create New Patient</h1>
 
     {{ Form::open(['route' => 'record.store']) }}
 
