@@ -13,7 +13,12 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>notes</th>
+                <th>Subjective</th>
+                <th>Objective</th>
+                <th>Assessment</th>
+                <th>Prescription</th>
+                <th>Remarks</th>
+                <th>Plan</th>
                 <th>Full Name</th>
                 <th>Preferred Name</th>
                 <th>Sex</th>
@@ -25,7 +30,12 @@
         <tbody>
             @foreach($records as $record)
             <tr>
-                <td>{{ $record->notes }}</td>
+                <td>{{ $record->subjective }}</td>
+                <td>{{ $record->objective }}</td>
+                <td>{{ $record->assessment }}</td>
+                <td>{{ $record->prescription }}</td>
+                <td>{{ $record->remarks }}</td>
+                <td>{{ $record->plan }}</td>
                 <td>{{ $record->name }}</td>
                 <td>{{ $record->preferred_name }}</td>
                 <td>{{ $record->sex }}</td>

@@ -1,14 +1,46 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1> Create New Patient</h1>
+
+    <!--Do you mean by create new records?-->
+    <h1> Create New Patient</h1> 
 
     {{ Form::open(['route' => 'record.store']) }}
 
         <div>
-            <dt>{{ Form::label('notes', 'notes: ') }}</dt>
-            <dd><div>{{ Form::text('notes' ) }}
-                {{ $errors->first('notes') }}</div></dd>
+            <dt>{{ Form::label('subjective', 'Subjective: ') }}</dt>
+            <dd><div>{{ Form::text('subjective' ) }}
+                {{ $errors->first('subjective') }}</div></dd>
+        </div>
+
+        <div>
+            <dt>{{ Form::label('objective', 'Objective: ') }}</dt>
+            <dd><div>{{ Form::text('objective' ) }}
+                {{ $errors->first('objective') }}</div></dd>
+        </div>
+
+        <div>
+            <dt>{{ Form::label('assessment', 'Assessment: ') }}</dt>
+            <dd><div>{{ Form::text('Assessment' ) }}
+                {{ $errors->first('assessment') }}</div></dd>
+        </div>
+
+        <div>
+            <dt>{{ Form::label('prescription', 'Prescription: ') }}</dt>
+            <dd><div>{{ Form::text('Assessment' ) }}
+                {{ $errors->first('assessment') }}</div></dd>
+        </div>
+
+        <div>
+            <dt>{{ Form::label('remarks', 'Remarks: ') }}</dt>
+            <dd><div>{{ Form::text('remarks' ) }}
+                {{ $errors->first('remarks') }}</div></dd>
+        </div>
+
+        <div>
+            <dt>{{ Form::label('plan', 'Plan: ') }}</dt>
+            <dd><div>{{ Form::text('objective' ) }}
+                {{ $errors->first('objective') }}</div></dd>
         </div>
 
         <div>
