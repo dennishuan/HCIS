@@ -25,14 +25,19 @@ class UserController extends \BaseController {
     public function index()
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $users = $this->user->where('username', 'LIKE', '%'.$keyword.'%')->paginate(20);
+        $input = Input::all();
+
+        if(array_key_exists('search', $input) && $input['search'] === 'true'){
+            // get the rest of query string.
+            $qs = array_except($input, ['search']);
+
+            $users = $this->user->search($qs)->paginate(20);
 
             //Return the $user for view to paginate.
+            $keyword = null;
+            if(array_key_exists('keyword', $qs)){
+                $keyword = $qs['keyword'];
+            }
             return View::make('user.index', ['users' => $users, 'keyword' => $keyword]);
         }else{
             //Show a list of all the user
@@ -179,7 +184,7 @@ class UserController extends \BaseController {
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        $url = qs_url('user', ['search' => $keyword]);
+        $url = qs_url('user', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /user/?search={$keyword}
         return Redirect::to($url);

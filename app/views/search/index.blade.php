@@ -59,12 +59,13 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
-            <select class="form-control">
+            <select class="form-control" name="type">
+              <option value="">All</option>
               @if (Auth::user() != null && Auth::user()->isAdmin())
-              <option>admin</option>
+              <option value="admin">Admin</option>
               @endif
-              <option>doctor</option>
-              <option>nurse</option>
+              <option value="doctor">Doctor</option>
+              <option value="nurse">Nurse</option>
             </select>
           </div>
 
@@ -80,11 +81,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 
 
 @stop

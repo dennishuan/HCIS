@@ -37,20 +37,16 @@
               <li>{{ link_to_route('record.index', 'Record') }}</li>
               <li>{{ link_to_route('patient.index', 'Patient') }}</li>
               <li>{{ link_to_route('facility.index', 'Facility') }}</li>
-              @if (Auth::user() != null && Auth::user()->isAdmin())
               <li>{{ link_to_route('user.index', 'User') }}</li>
-              @endif
+              <li>{{ link_to_route('search.index', 'Search') }}</li>
 
+              @if (Auth::user() != null && Auth::user()->isAdmin())
+              @endif
 
             </ul>
 
-            <!--Search Bar-->
-            {{Form::open(['route'=>'patient.search', 'class' => "navbar-form navbar-left"])}}
-            <div class="form-group">
-              {{Form::text('keyword', null, ['placeholder' => 'Search for Record by PHN',  'class' => 'form-control', 'size' => '25'])}}
-            </div>
-            {{Form::submit('Search', ['class' => 'btn btn-default'])}}
-            {{Form::close()}}
+            <!--Tool Bar-->
+            @yield('navbar')
 
             <!--navbar right-->
             <ul class="nav navbar-nav navbar-right">

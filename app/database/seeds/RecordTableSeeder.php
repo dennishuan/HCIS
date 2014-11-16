@@ -19,7 +19,7 @@ class RecordTableSeeder extends Seeder {
             $facility = Facility::orderByRaw("RAND()")->first();
 
 
-            if($facility->type == 'Clinic'){
+            if($facility->type === 'clinic'){
                 Record::create([
                     'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
                     'facility_id' => $facility->id,

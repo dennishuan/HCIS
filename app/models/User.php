@@ -36,6 +36,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
 
 
+    public function search($qs){
+        // Init result then start to filter it down.
+        $result = $this;
+
+        if(array_key_exists('keyword', $qs)){
+            $result = $result->where('username', 'LIKE', '%'.$qs['keyword'].'%');
+        }
+        if(array_key_exists('username', $qs)){
+            $result = $result->where('username', 'LIKE', '%'.$qs['username'].'%');
+        }
+        if(array_key_exists('email', $qs)){
+            $result = $result->where('email', 'LIKE', '%'.$qs['email'].'%');
+        }
+        if(array_key_exists('name', $qs)){
+            $result = $result->where('name', 'LIKE', '%'.$qs['name'].'%');
+        }
+        if(array_key_exists('phone', $qs)){
+            $result = $result->where('phone', 'LIKE', '%'.$qs['phone'].'%');
+        }
+
+        return $result;
+    }
+
+
     public function isValid()
     {
         //Valid the input.
