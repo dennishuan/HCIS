@@ -13,22 +13,22 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>id</th>
-                <th>id</th>
-                <th>user_id</th>
-                <th>notes</th>
+                <th>Username</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
                 <th>action</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach($users as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->user_id }}</td>
-                <td>{{ $user->notes }}</td>
 
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->phone }}</td>
                 <td>{{ link_to_route('facility.user.show', 'Details', [$id, $user->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach

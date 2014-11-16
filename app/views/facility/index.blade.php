@@ -27,10 +27,11 @@
             @foreach($facilities as $facility)
             <tr>
                 <td>{{ $facility->abbrev }}</td>
-                <td>{{ $facility->name> }}</td>
+                <td>{{ $facility->name }}</td>
                 <td>{{ $facility->type }}</td>
                 <td>{{ $facility->phone }}</td>
                 <td>{{ $facility->address }}</td>
+                <td>{{ $facility->postal_code }}</td>
                 <td>{{ link_to_route('facility.show', 'Details', [$facility->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
