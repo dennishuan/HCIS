@@ -7,11 +7,17 @@ class Record extends \Eloquent {
     * @var string
     */
     protected $table = 'records';
-
-    protected $fillable = ['notes'];
+    
+    protected $fillable = ['stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'remarks', 'plan'];
 
     public static $rules = [
-        'notes' => 'required'
+        'stated_compl' => 'required',
+        'subjective' => 'required',
+        'objective' => 'required',
+        'assessment' => 'required',
+        'prescription' => 'required',
+        'remarks' => 'required',
+        'plan' => 'required'
     ];
 
 
