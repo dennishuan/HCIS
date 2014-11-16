@@ -19,8 +19,8 @@
 
         <div>
             <dt>{{ Form::label('type', 'Type: ') }}</dt>
-            <dd><div>{{ Form::input('enum', 'Type') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
+            <dd><div>{{ Form::text('Type') }}
+                {{ $errors->first('type') }}</div></dd>
        </div>
 
         <div>

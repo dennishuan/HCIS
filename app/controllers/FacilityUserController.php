@@ -35,7 +35,7 @@ class FacilityUserController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $users = $this->facility->findOrFail($id)->user()->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $users = $this->facility->findOrFail($id)->user()->where('username', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $facility for view to paginate.
             return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => $keyword]);

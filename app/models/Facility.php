@@ -8,10 +8,11 @@ class Facility extends \Eloquent {
     */
     protected $table = 'facilities';
 
-    protected $fillable = ['name', 'phone', 'fax', 'address', 'postal_code'];
+    protected $fillable = ['abbrev', 'name', 'phone', 'fax', 'address', 'postal_code'];
 
 
     public static $rules = [
+        'abbrev' => 'required',
         'name' => 'required',
         'phone' => 'required',
         'fax' => 'required',
@@ -41,7 +42,7 @@ class Facility extends \Eloquent {
         return $this->belongsToMany('User', 'facilities_users');
     }
 
-        public function record()
+    public function record()
     {
         return $this->hasMany('Record');
     }

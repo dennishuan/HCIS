@@ -30,7 +30,7 @@ class UserController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $users = $this->user->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $users = $this->user->where('username', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $user for view to paginate.
             return View::make('user.index', ['users' => $users, 'keyword' => $keyword]);

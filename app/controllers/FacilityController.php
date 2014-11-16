@@ -33,7 +33,7 @@ class FacilityController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $facilities = $this->facility->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $facilities = $this->facility->where('name', 'LIKE', '%'.$keyword.'%')->orWhere('abbrev', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $facility for view to paginate.
             return View::make('facility.index', ['facilities' => $facilities, 'keyword' => $keyword]);

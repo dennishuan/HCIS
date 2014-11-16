@@ -4,7 +4,7 @@
 
     <!--Search bar-->
     {{Form::open(['route'=>['facility.user.search', $id]])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Notes', 'size' => '25']) }}
+        {{Form::text('keyword', $keyword, ['placeholder' => 'Username', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
         {{ link_to_route('facility.user.create', 'Create', [$id], ['class' => 'btn btn-info']) }}
     {{Form::close()}}

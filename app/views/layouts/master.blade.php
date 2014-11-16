@@ -8,7 +8,10 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
     <meta charset="utf-8">
-    <style>body { padding-top: 70px; }</style>
+    <style>
+      body { padding-top: 70px; }
+      .buffer { margin-top:20px; }
+    </style>
   </head>
 
 

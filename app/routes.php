@@ -15,6 +15,10 @@ Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
     return View::make('home');
 }]);
 
+//Search
+Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
+Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
+
 
 //login
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);
