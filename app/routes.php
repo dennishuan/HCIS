@@ -17,18 +17,46 @@ Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 }]);
 
 
-//Login
+//login
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);
 Route::post('login', ['before' => 'csrf', 'as' => 'login.store', 'uses' => 'LoginController@store']);
 Route::delete('logout', ['before' => 'csrf', 'as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
 
-//Patient
+//patient
 Route::group(['before' => 'auth'], function(){
     Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
     Route::resource('patient', 'PatientController');
 });
 
+//patient/record
+Route::group(['before' => 'auth'], function(){
 
-//User
-Route::resource('user', 'UserController');
+    Route::resource('patient.record', 'PatientRecordController');
+});
+
+
+//facility
+Route::group(['before' => 'auth'], function(){
+
+    Route::resource('facility', 'FacilityController');
+});
+
+
+//facility/user
+Route::group(['before' => 'auth'], function(){
+
+    Route::resource('facility.user', 'FacilityUserController');
+});
+
+
+//user
+Route::group(['before' => 'auth'], function(){
+
+    Route::resource('user', 'UserController');
+});
+
+
+
+
+

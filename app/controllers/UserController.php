@@ -1,5 +1,12 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+App::error(function(ModelNotFoundException $e)
+{
+    return Response::make('Not Found', 404);
+});
+
 class UserController extends \BaseController {
 
 
@@ -10,7 +17,6 @@ class UserController extends \BaseController {
     {
         $this->user = $user;
     }
-
 
     /**
     * Display a listing of the resource.
