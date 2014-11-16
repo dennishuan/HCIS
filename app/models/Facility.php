@@ -8,11 +8,15 @@ class Facility extends \Eloquent {
     */
     protected $table = 'facilities';
 
-    protected $fillable = ['facility_name'];
+    protected $fillable = ['facility_name', 'phone', 'fax', 'address', 'postal_code'];
 
 
     public static $rules = [
-        'facility_name' => 'required'
+        'facility_name' => 'required',
+        'phone' => 'required',
+        'fax' => 'required',
+        'address' => 'required',
+        'postal_code' => 'required'
     ];
 
 
