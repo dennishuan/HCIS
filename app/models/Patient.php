@@ -42,5 +42,4 @@ class Patient extends Eloquent{
 
         return false;
     }
-
 }

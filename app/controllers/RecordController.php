@@ -34,7 +34,8 @@ class RecordController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $records = $this->record->where('notes', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $records = $this->record->where('subjective', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            // Need to add objective and assessment. not sure how that will look.
 
             //Return the $record for view to paginate.
             return View::make('record.index', ['records' => $records, 'keyword' => $keyword]);
