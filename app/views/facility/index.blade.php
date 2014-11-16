@@ -13,11 +13,12 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>facility_name</th>
-                <th>Full Name</th>
-                <th>Preferred Name</th>
-                <th>Sex</th>
-                <th>Date of Birth</th>
+                <th>Facility Abrev.</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Phone</th>
+                <th>Address</th>
+				<th>Postal Code</th>
                 <th>action</th>
             </tr>
         </thead>
@@ -25,11 +26,11 @@
         <tbody>
             @foreach($facilities as $facility)
             <tr>
-                <td>{{ $facility->facility_name }}</td>
-                <td>{{ $facility->name }}</td>
-                <td>{{ $facility->preferred_name }}</td>
-                <td>{{ $facility->sex }}</td>
-                <td>{{ $facility->date_of_birth }}</td>
+                <td>{{ $facility->facility_abbrev }}</td>
+                <td>{{ $facility-facility_name> }}</td>
+                <td>{{ $facility->facilitytype }}</td>
+                <td>{{ $facility->phone }}</td>
+                <td>{{ $facility->address }}</td>
                 <td>{{ link_to_route('facility.show', 'Details', [$facility->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
