@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-App::error(function(ModelNotFoundException $e)
-{
+App::error(function(ModelNotFoundException $e){
     return Response::make('Not Found', 404);
 });
 
@@ -31,15 +30,15 @@ class UserController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $users = $this->user->where('username', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $users = $this->user->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $user for view to paginate.
-            return View::make('user.index', ['users' => $users]);
+            return View::make('user.index', ['users' => $users, 'keyword' => $keyword]);
         }else{
             //Show a list of all the user
             $users = $this->user->paginate(20);
 
-            return View::make('user.index', ['users' => $users]);
+            return View::make('user.index', ['users' => $users, 'keyword' => null]);
         }
     }
 

@@ -17,15 +17,15 @@ class CreateFacilitiesUsersTable extends Migration {
             // Many to Many relation bewteen failities and doctors
             // Facilities can have many doctors.
             // Doctors can work at many facilities.
-            $table->integer('facilities_id')->unsigned();
-            $table->integer('users_id')->unsigned();
+            $table->integer('facility_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             // Primary key
-            $table->primary(['facilities_id', 'users_id']);
+            $table->primary(['facility_id', 'user_id']);
 
             // Foreign key
-            $table->foreign('facilities_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

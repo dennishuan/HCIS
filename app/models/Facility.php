@@ -8,10 +8,31 @@ class Facility extends \Eloquent {
     */
     protected $table = 'facilities';
 
-    protected $fillable = [];
+    protected $fillable = ['facility_name'];
 
 
-        public function users()
+    public static $rules = [
+        'facility_name' => 'required'
+    ];
+
+
+    public function isValid()
+    {
+        //Valid the input.
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if($validation->passes())
+        {
+            return true;
+        }
+
+        $this->errors = $validation->messages();
+
+        return false;
+    }
+
+
+    public function users()
     {
         return $this->belongsToMany('users', 'facilities_users');
     }

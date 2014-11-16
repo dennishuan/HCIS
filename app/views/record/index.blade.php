@@ -3,17 +3,17 @@
 @section('content')
 
     <!--Search bar-->
-    {{Form::open(['route'=>'facility.search'])}}
+    {{Form::open(['route'=>'record.search'])}}
         {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('facility.create', 'Create', [], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('record.create', 'Create', [], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
 
     <!--Table-->
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>facility_name</th>
+                <th>notes</th>
                 <th>Full Name</th>
                 <th>Preferred Name</th>
                 <th>Sex</th>
@@ -23,14 +23,14 @@
         </thead>
 
         <tbody>
-            @foreach($facilities as $facility)
+            @foreach($records as $record)
             <tr>
-                <td>{{ $facility->facility_name }}</td>
-                <td>{{ $facility->name }}</td>
-                <td>{{ $facility->preferred_name }}</td>
-                <td>{{ $facility->sex }}</td>
-                <td>{{ $facility->date_of_birth }}</td>
-                <td>{{ link_to_route('facility.show', 'Details', [$facility->id], ['class' => 'btn btn-info']) }}</td>
+                <td>{{ $record->notes }}</td>
+                <td>{{ $record->name }}</td>
+                <td>{{ $record->preferred_name }}</td>
+                <td>{{ $record->sex }}</td>
+                <td>{{ $record->date_of_birth }}</td>
+                <td>{{ link_to_route('record.show', 'Details', [$record->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -43,7 +43,7 @@
             Just copy the whole thing and change the variable if you do
             not understand what I am talking about.
         ----------------------------------------------------------------->
-        {{ $facilities->appends(Request::except('page'))->links() }}
+        {{ $records->appends(Request::except('page'))->links() }}
     </div>
 
 @stop

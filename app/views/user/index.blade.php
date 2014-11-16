@@ -3,10 +3,10 @@
 @section('content')
 
     <!--Search bar-->
-    {{Form::open(['route'=>'patient.search'])}}
+    {{Form::open(['route'=>'user.search'])}}
         {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('patient.create', 'Create', [], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('user.create', 'Create', [], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
 
     <!--Table-->
@@ -23,14 +23,14 @@
         </thead>
 
         <tbody>
-            @foreach($patients as $patient)
+            @foreach($users as $user)
             <tr>
-                <td>{{ $patient->phn }}</td>
-                <td>{{ $patient->name }}</td>
-                <td>{{ $patient->preferred_name }}</td>
-                <td>{{ $patient->sex }}</td>
-                <td>{{ $patient->date_of_birth }}</td>
-                <td>{{ link_to_route('patient.show', 'Details', [$patient->id], ['class' => 'btn btn-info']) }}</td>
+                <td>{{ $user->phn }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->preferred_name }}</td>
+                <td>{{ $user->sex }}</td>
+                <td>{{ $user->date_of_birth }}</td>
+                <td>{{ link_to_route('user.show', 'Details', [$user->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -43,7 +43,7 @@
             Just copy the whole thing and change the variable if you do
             not understand what I am talking about.
         ----------------------------------------------------------------->
-        {{ $patients->appends(Request::except('page'))->links() }}
+        {{ $users->appends(Request::except('page'))->links() }}
     </div>
 
 @stop

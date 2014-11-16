@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <h1>Record:</h1>
+    <h1>Patient:</h1>
 
     <dl>
-        <dt>Notes</dt>
+        <dt>notes:</dt>
         <dd><div>{{ $record->notes }}</div></dd>
 
         <dt>Full Name:</dt>
@@ -64,11 +64,11 @@
     </dl>
 
     <nav>
-        {{ link_to_route('patient.record.index', 'Index', [$patient_id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('record.index', 'Index', [], ['class' => 'btn btn-info']) }}
         |
-        {{ link_to_route('patient.record.edit', 'Edit', [$patient_id, $record->id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('record.edit', 'Edit', [$record->id], ['class' => 'btn btn-info']) }}
         |
-        {{ Form::open(['route' => ['patient.record.destroy', $patient_id, $record->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+        {{ Form::open(['route' => ['record.destroy', $record->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
         {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
         {{ Form::close() }}
     </nav>

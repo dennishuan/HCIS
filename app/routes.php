@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
-{
+Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
     return View::make('home');
 }]);
 
@@ -31,28 +30,33 @@ Route::group(['before' => 'auth'], function(){
 
 //patient/record
 Route::group(['before' => 'auth'], function(){
-
+    Route::post('patient/{patient}/record/search', ['as' => 'patient.record.search', 'uses' => 'PatientRecordController@search']);
     Route::resource('patient.record', 'PatientRecordController');
 });
 
+//record
+Route::group(['before' => 'auth'], function(){
+    Route::post('record/search', ['as' => 'record.search', 'uses' => 'RecordController@search']);
+    Route::resource('record', 'RecordController');
+});
 
 //facility
 Route::group(['before' => 'auth'], function(){
-
+    Route::post('facility/search', ['as' => 'facility.search', 'uses' => 'FacilityController@search']);
     Route::resource('facility', 'FacilityController');
 });
 
 
 //facility/user
 Route::group(['before' => 'auth'], function(){
-
+    Route::post('facility/{facility}/user/search', ['as' => 'facility.user.search', 'uses' => 'FacilityUserController@search']);
     Route::resource('facility.user', 'FacilityUserController');
 });
 
 
 //user
 Route::group(['before' => 'auth'], function(){
-
+    Route::post('user/search', ['as' => 'user.search', 'uses' => 'UserController@search']);
     Route::resource('user', 'UserController');
 });
 

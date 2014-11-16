@@ -1,14 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1> Create New Patient</h1>
+    <h1> Create New Facility</h1>
 
-    {{ Form::open(['route' => 'patient.store']) }}
+    {{ Form::open(['route' => 'facility.store']) }}
 
         <div>
-            <dt>{{ Form::label('phn', 'Personal Health Number: ') }}</dt>
-            <dd><div>{{ Form::text('phn' ) }}
-                {{ $errors->first('phn') }}</div></dd>
+            <dt>{{ Form::label('facility_name', 'facility_name: ') }}</dt>
+            <dd><div>{{ Form::text('facility_name' ) }}
+                {{ $errors->first('facility_name') }}</div></dd>
         </div>
 
         <div>
@@ -121,7 +121,7 @@
         </div>
 
         <div>
-            {{ Form::submit('Create Patient', ['class' => 'btn btn-info'])}}
+            {{ Form::submit('Create Facility', ['class' => 'btn btn-info'])}}
         </div>
 
     {{ Form::close() }}

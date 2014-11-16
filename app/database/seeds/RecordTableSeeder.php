@@ -17,9 +17,9 @@ class RecordTableSeeder extends Seeder {
         foreach(range(1, 300) as $index)
         {
             Record::create([
-                'patients_id' => Patient::orderByRaw("RAND()")->first()->id,
-                'facilities_id' => Facility::orderByRaw("RAND()")->first()->id,
-                'users_id' => User::orderByRaw("RAND()")->first()->id,
+                'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
+                'facility_id' => Facility::orderByRaw("RAND()")->first()->id,
+                'user_id' => User::orderByRaw("RAND()")->first()->id,
 
                 'reg_date' => $faker->date,
                 'reg_time' => $faker->time,

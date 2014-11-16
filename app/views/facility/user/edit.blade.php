@@ -1,14 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1> Edit Patient</h1>
+    <h1> Edit User</h1>
 
-    {{ Form::model($patient, ['method'=>'PUT', 'route'=>['patient.update', $patient->id]]) }}
+    {{ Form::model($user, ['method'=>'PUT', 'route'=>['facility.user.update', $facility_id, $user->id]]) }}
 
         <div>
-            <dt>{{ Form::label('phn', 'Personal Health Number: ') }}</dt>
-            <dd><div>{{ Form::text('phn' ) }}
-                {{ $errors->first('phn') }}</div></dd>
+            <dt>{{ Form::label('notes', 'Notes: ') }}</dt>
+            <dd><div>{{ Form::text('notes' ) }}
+                {{ $errors->first('notes') }}</div></dd>
         </div>
 
         <div>
@@ -121,7 +121,7 @@
         </div>
 
         <div>
-            {{ Form::submit('Edit Contact', ['class' => 'btn btn-info'])}}
+            {{ Form::submit('Edit User', ['class' => 'btn btn-info'])}}
         </div>
 
     {{ Form::close() }}

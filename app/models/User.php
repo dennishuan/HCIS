@@ -27,6 +27,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     //Enable mass assignment for the fields.
     protected $fillable = ['username', 'password', 'email', 'name', 'phone'];
 
+    public static $rules = [
+        'username' => 'required',
+        'password' => 'required',
+        'email' => 'required',
+        'name' => 'required',
+        'phone' => 'required',
+    ];
+
 
     public function facilities()
     {
@@ -39,15 +47,31 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return ($this->attributes['type'] === 'admin');
     }
 
-        public function isDoctor()
+    public function isDoctor()
     {
         return ($this->attributes['type'] === 'doctor');
     }
 
-        public function isNurse()
+    public function isNurse()
     {
         return ($this->attributes['type'] === 'nurse');
     }
 
+
+
+    public function isValid()
+    {
+        //Valid the input.
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if($validation->passes())
+        {
+            return true;
+        }
+
+        $this->errors = $validation->messages();
+
+        return false;
+    }
 
 }

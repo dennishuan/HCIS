@@ -1,14 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1> Create New User</h1>
+    <h1> Edit Patient</h1>
 
-    {{ Form::open(['route' => 'user.store']) }}
+    {{ Form::model($record, ['method'=>'PUT', 'route'=>['record.update', $record->id]]) }}
 
         <div>
-            <dt>{{ Form::label('phn', 'Personal Health Number: ') }}</dt>
-            <dd><div>{{ Form::text('phn' ) }}
-                {{ $errors->first('phn') }}</div></dd>
+            <dt>{{ Form::label('notes', 'notes: ') }}</dt>
+            <dd><div>{{ Form::text('notes' ) }}
+                {{ $errors->first('notes') }}</div></dd>
         </div>
 
         <div>
@@ -121,7 +121,7 @@
         </div>
 
         <div>
-            {{ Form::submit('Create User', ['class' => 'btn btn-info'])}}
+            {{ Form::submit('Edit Contact', ['class' => 'btn btn-info'])}}
         </div>
 
     {{ Form::close() }}

@@ -17,9 +17,9 @@ class CreateRecordsTable extends Migration {
             // Default index laravel uses.
             $table->increments('id');
 
-            $table->integer('patients_id')->unsigned();
-            $table->integer('facilities_id')->unsigned();
-            $table->integer('users_id')->unsigned(); // ReferencingDoctor
+            $table->integer('patient_id')->unsigned();
+            $table->integer('facility_id')->unsigned();
+            $table->integer('user_id')->unsigned(); // ReferencingDoctor
 
             // Data about the records
             $table->date('reg_date');
@@ -38,9 +38,9 @@ class CreateRecordsTable extends Migration {
             $table->timestamps();
 
             // Foreign Key
-            $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('facilities_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

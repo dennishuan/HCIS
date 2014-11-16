@@ -7,17 +7,16 @@ App::error(function(ModelNotFoundException $e)
     return Response::make('Not Found', 404);
 });
 
-class PatientRecordController extends \BaseController {
+
+class RecordController extends \BaseController {
 
 
-    protected $patient;
     protected $record;
 
 
-    public function __construct(Patient $patient, Record $record)
+    public function __construct(Record $record)
     {
         //Store the model at the time of construct.
-        $this->patient = $patient;
         $this->record = $record;
     }
 
@@ -27,7 +26,7 @@ class PatientRecordController extends \BaseController {
     *
     * @return Response
     */
-    public function index($patient_id)
+    public function index()
     {
         //If the URL includes query string 'search'
         //and store the corresponding value in $keyword
@@ -35,15 +34,15 @@ class PatientRecordController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $records = $this->record->where('patient_id', $patient_id)->where('notes', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $records = $this->record->where('notes', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
-            //Return the $patient for view to paginate.
-            return View::make('patient.record.index', ['patient_id' => $patient_id, 'records' => $records, 'keyword' => $keyword]);
+            //Return the $record for view to paginate.
+            return View::make('record.index', ['records' => $records, 'keyword' => $keyword]);
         }else{
-            //Show a list of all the patient
-            $records = $this->record->where('patient_id', $patient_id)->paginate(20);
+            //Show a list of all the record
+            $records = $this->record->paginate(20);
 
-            return View::make('patient.record.index', ['patient_id' => $patient_id, 'records' => $records, 'keyword' => null]);
+            return View::make('record.index', ['records' => $records, 'keyword' => null]);
         }
     }
 
@@ -53,10 +52,10 @@ class PatientRecordController extends \BaseController {
     *
     * @return Response
     */
-    public function create($patient_id)
+    public function create()
     {
-        //Show a form to create new patient.
-        return View::make('patient.record.create', ['patient_id' => $patient_id]);
+        //Show a form to create new record.
+        return View::make('record.create');
     }
 
 
@@ -65,7 +64,7 @@ class PatientRecordController extends \BaseController {
     *
     * @return Response
     */
-    public function store($patient_id)
+    public function store()
     {
         //Redirect back to the index after storing.
         $input = Input::all();
@@ -75,7 +74,7 @@ class PatientRecordController extends \BaseController {
         {
             //For Json API
             if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('patient.record.index', ['patient_id' => $patient_id])]);
+                return Response::make($this->record->errors, 400, ['Location'=>route('record.index')]);
             }
 
             return Redirect::back()->withInput()->withErrors($this->record->errors);
@@ -85,10 +84,10 @@ class PatientRecordController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('Record stored', 201, ['Location'=>route('patient.record.show', ['patient_id' => $patient_id, 'record' => $this->record->id])]);
+            return Response::make('Record stored', 201, ['Location'=>route('record.show', ['record' => $this->record->id])]);
         }
 
-        return Redirect::route('patient.record.index', ['patient_id' => $patient_id]);
+        return Redirect::route('record.index');
     }
 
 
@@ -98,7 +97,7 @@ class PatientRecordController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function show($patient_id, $id)
+    public function show($id)
     {
         //
         $record = $this->record->findOrFail($id);
@@ -109,7 +108,7 @@ class PatientRecordController extends \BaseController {
             return $record->toJson();
         }
 
-        return View::make('patient.record.show', ['patient_id' => $patient_id, 'record' => $record]);
+        return View::make('record.show', ['record' => $record]);
     }
 
 
@@ -119,12 +118,12 @@ class PatientRecordController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function edit($patient_id, $id)
+    public function edit($id)
     {
         //
         $record = $this->record->findOrFail($id);
 
-        return View::make('patient.record.edit', ['patient_id' => $patient_id, 'record'=>$record]);
+        return View::make('record.edit', ['record'=>$record]);
     }
 
 
@@ -134,7 +133,7 @@ class PatientRecordController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function update($patient_id, $id)
+    public function update($id)
     {
         //Get input then update
         $input = Input::all();
@@ -145,7 +144,7 @@ class PatientRecordController extends \BaseController {
         {
             //For Json API
             if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('patient.record.index', ['patient_id' => $patient_id])]);
+                return Response::make($this->record->errors, 400, ['Location'=>route('record.index')]);
             }
 
             return Redirect::back()->withInput()->withErrors($record->errors);
@@ -155,10 +154,10 @@ class PatientRecordController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('Record edited', 202, ['Location'=>route('patient.record.show', ['patient_id' => $patient_id, 'record' => $id])]);
+            return Response::make('Record edited', 202, ['Location'=>route('record.show', ['record' => $id])]);
         }
 
-        return Redirect::route('patient.record.show', ['patient_id' => $patient_id, 'record' => $id]);
+        return Redirect::route('record.show', $id);
     }
 
 
@@ -168,19 +167,19 @@ class PatientRecordController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function destroy($patient_id, $id)
+    public function destroy($id)
     {
         //
         $record = $this->record->findOrFail($id)->delete();
 
         if(Request::isJson()){
-            return Response::make('Patient deleted', 202, ['Location'=>route('patient.record.index', ['patient_id' => $patient_id])]);
+            return Response::make('Record deleted', 202, ['Location'=>route('record.index')]);
         }
 
-        return Redirect::route('patient.record.index', ['patient_id' => $patient_id]);
+        return Redirect::route('record.index');
     }
 
-    public function search($patient_id){
+    public function search(){
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
@@ -194,10 +193,11 @@ class PatientRecordController extends \BaseController {
         * will result in
         * /user?email=sample@example.com&search=something
         */
-        $url = qs_url(route('patient.record.index', $patient_id), ['search' => $keyword]);
+        $url = qs_url('record', ['search' => $keyword]);
 
-        // Redirect to /patient/?search={$keyword}
+        // Redirect to /record/?search={$keyword}
         return Redirect::to($url);
     }
+
 
 }

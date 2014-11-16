@@ -3,34 +3,33 @@
 @section('content')
 
     <!--Search bar-->
-    {{Form::open(['route'=>'patient.search'])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size' => '25']) }}
+    {{Form::open(['route'=>['patient.record.search', $patient_id]])}}
+        {{Form::text('keyword', $keyword, ['placeholder' => 'Notes', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('patient.create', 'Create', [], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('patient.record.create', 'Create', [$patient_id], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
 
     <!--Table-->
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Personal Health Number</th>
-                <th>Full Name</th>
-                <th>Preferred Name</th>
-                <th>Sex</th>
-                <th>Date of Birth</th>
+                <th>patient_id</th>
+                <th>facility_id</th>
+                <th>user_id</th>
+                <th>notes</th>
                 <th>action</th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach($patients as $patient)
+            @foreach($records as $record)
             <tr>
-                <td>{{ $patient->phn }}</td>
-                <td>{{ $patient->name }}</td>
-                <td>{{ $patient->preferred_name }}</td>
-                <td>{{ $patient->sex }}</td>
-                <td>{{ $patient->date_of_birth }}</td>
-                <td>{{ link_to_route('patient.show', 'Details', [$patient->id], ['class' => 'btn btn-info']) }}</td>
+                <td>{{ $record->patient_id }}</td>
+                <td>{{ $record->facility_id }}</td>
+                <td>{{ $record->user_id }}</td>
+                <td>{{ $record->notes }}</td>
+
+                <td>{{ link_to_route('patient.record.show', 'Details', [$patient_id, $record->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -43,7 +42,7 @@
             Just copy the whole thing and change the variable if you do
             not understand what I am talking about.
         ----------------------------------------------------------------->
-        {{ $patients->appends(Request::except('page'))->links() }}
+        {{ $records->appends(Request::except('page'))->links() }}
     </div>
 
 @stop

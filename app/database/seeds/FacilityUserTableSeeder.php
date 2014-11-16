@@ -9,8 +9,8 @@ class FacilityUserTableSeeder extends Seeder {
         foreach($users as $user)
         {
             DB::table('facilities_users')->insert([
-                'facilities_id' => Facility::orderByRaw("RAND()")->first()->id,
-                'users_id' => $user->id,
+                'facility_id' => Facility::orderByRaw("RAND()")->first()->id,
+                'user_id' => $user->id,
             ]);
         }
     }
