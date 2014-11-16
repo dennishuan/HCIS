@@ -16,23 +16,52 @@ class RecordTableSeeder extends Seeder {
 
         foreach(range(1, 300) as $index)
         {
-            Record::create([
-                'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
-                'facility_id' => Facility::orderByRaw("RAND()")->first()->id,
-                'user_id' => User::orderByRaw("RAND()")->first()->id,
+            $facility = Facility::orderByRaw("RAND()")->first();
 
-                'reg_date' => $faker->date,
-                'reg_time' => $faker->time,
-                'admit_date' => $faker->date,
-                'admit_time' => $faker->time,
-                'priority' => $faker->randomElement($priority),
-                'stated_compl' => $faker->text,
-                'year' => $faker->year,
-                'chief_compl_code' => $faker->word,
-                'chief_compl' => $faker->sentence,
-                'arrival_mode' => $faker->word,
-                'notes' => $faker->text
-            ]);
+
+            if($facility->type == 'Clinic'){
+                Record::create([
+                    'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
+                    'facility_id' => $facility->id,
+                    'user_id' => User::orderByRaw("RAND()")->first()->id,
+
+                    'priority' => '6',
+                    'reg_datetime' => $faker->datetime,
+                    'admit_datetime' => $faker->datetime,
+                    'stated_compl' => $faker->text,
+                    'chief_compl_code' => $faker->word,
+                    'chief_compl' => $faker->sentence,
+                    'arrival_mode' => $faker->word,
+                    'subjective' => $faker->text,
+                    'objective' => $faker->text,
+                    'assessment' => $faker->text,
+                    'prescription' => $faker->text,
+                    'remarks' => $faker->text,
+                    'plan' => $faker->text
+                ]);
+            }else{
+                Record::create([
+                    'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
+                    'facility_id' => $facility->id,
+                    'user_id' => User::orderByRaw("RAND()")->first()->id,
+
+                    'priority' => $faker->randomElement($priority),
+                    'reg_datetime' => $faker->datetime,
+                    'admit_datetime' => $faker->datetime,
+                    'stated_compl' => $faker->text,
+                    'chief_compl_code' => $faker->word,
+                    'chief_compl' => $faker->sentence,
+                    'arrival_mode' => $faker->word,
+                    'subjective' => $faker->text,
+                    'objective' => $faker->text,
+                    'assessment' => $faker->text,
+                    'prescription' => $faker->text,
+                    'remarks' => $faker->text,
+                    'plan' => $faker->text
+                ]);
+
+            }
+
         }
     }
 

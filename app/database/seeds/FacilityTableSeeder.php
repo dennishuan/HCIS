@@ -13,9 +13,9 @@ class FacilityTableSeeder extends Seeder {
         foreach(range(1, 8) as $index)
         {
             Facility::create([
-                'facility_abbrev' => $faker->lexify('??????'),
-                'facility_name' => $faker->company,
-                'facilitytype' => $faker->randomElement($type),
+                'abbrev' => $faker->lexify('??????'),
+                'name' => $faker->company,
+                'type' => $faker->randomElement($type),
                 'phone' => $faker->numerify('##########x####'),
                 'address' => $faker->address,
                 'postal_code' => strtoupper ($faker->bothify('#?##?#'))
