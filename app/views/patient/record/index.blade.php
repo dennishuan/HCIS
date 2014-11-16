@@ -16,7 +16,12 @@
                 <th>patient_id</th>
                 <th>facility_id</th>
                 <th>user_id</th>
-                <th>notes</th>
+                <th>subjective</th>
+                <th>objective</th>
+                <th>assessment</th>
+                <th>prescription</th>
+                <th>remarks</th>
+                <th>plan</th>
                 <th>action</th>
             </tr>
         </thead>
