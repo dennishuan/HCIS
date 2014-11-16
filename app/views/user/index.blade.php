@@ -13,23 +13,22 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Personal Health Number</th>
-                <th>Full Name</th>
-                <th>Preferred Name</th>
-                <th>Sex</th>
-                <th>Date of Birth</th>
+                <th>Username</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
                 <th>action</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach($users as $user)
-            <tr>
-                <td>{{ $user->phn }}</td>
+
+                <td>{{ $user->username }}</td>
                 <td>{{ $user->name }}</td>
-                <td>{{ $user->preferred_name }}</td>
-                <td>{{ $user->sex }}</td>
-                <td>{{ $user->date_of_birth }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->phone }}</td>
                 <td>{{ link_to_route('user.show', 'Details', [$user->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
@@ -47,3 +46,5 @@
     </div>
 
 @stop
+
+
