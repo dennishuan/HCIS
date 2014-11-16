@@ -19,21 +19,23 @@ class CreateRecordsTable extends Migration {
 
             $table->integer('patient_id')->unsigned();
             $table->integer('facility_id')->unsigned();
-            $table->integer('user_id')->unsigned(); // ReferencingDoctor
+            $table->integer('user_id')->unsigned(); // Referencing Doctor or nurse
 
             // Data about the records
-            $table->date('reg_date');
-            $table->time('reg_time');
-            $table->date('admit_date');
-            $table->time('admit_time');
-            $table->enum('priority', ['1','2','3','4','5']);
-            $table->text('stated_compl');
-            $table->string('year', 4);
-            $table->string('chief_compl_code', 24);
-            $table->string('chief_compl');
-            $table->string('arrival_mode', 16);
-            $table->text('notes')->nullable();
-
+            $table->enum('priority', ['1','2','3','4','5','6']); // 1 to 5 for hospital; default 6 for clinics
+            $table->dateTime('reg_datetime'); // Registration/Appointment/Check-in
+            $table->dateTime('admit_datetime'); // Admittance to ED/Doctor's assessment in clinic
+            $table->text('stated_compl'); // Patient's stated complaint
+            $table->string('chief_compl'); // Category of illness
+            $table->string('chief_compl_code', 24); // Code of chief complaints
+            $table->string('arrival_mode', 16)->nullable();  
+            $table->text('subjective'); // Subject of the patient's visit
+            $table->text('objective');  // Objective of the patient's visit
+            $table->text('assessment'); // Doctor/Nurse's assessment/examination
+            $table->text('prescription')->nullabe(); // prescription medication
+            $table->text('remarks')->nullable(); // Button to click and add remarks
+            $table->text('plan')->nullable();    // Doctor/nurse's treatment plan
+            
             // Default timestamps
             $table->timestamps();
 
@@ -41,7 +43,6 @@ class CreateRecordsTable extends Migration {
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 
