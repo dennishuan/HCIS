@@ -38,17 +38,17 @@ class Record extends \Eloquent {
 
     public function user()
     {
-        return $this->hasOne('User');
+        return $this->belongsTo('User');
     }
 
     public function facility()
     {
-        return $this->hasOne('Facility');
+        return $this->belongsTo('Facility');
     }
 
     public function patient()
     {
-        return $this->hasOne('Patient');
+        return $this->belongsTo('Patient');
     }
 
 

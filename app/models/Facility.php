@@ -36,10 +36,13 @@ class Facility extends \Eloquent {
     }
 
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('users', 'facilities_users');
+        return $this->belongsToMany('User', 'facilities_users');
     }
 
-
+        public function record()
+    {
+        return $this->hasMany('Record');
+    }
 }

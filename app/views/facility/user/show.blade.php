@@ -64,11 +64,11 @@
     </dl>
 
     <nav>
-        {{ link_to_route('facility.user.index', 'Index', [$facility_id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('facility.user.index', 'Index', [$id], ['class' => 'btn btn-info']) }}
         |
-        {{ link_to_route('facility.user.edit', 'Edit', [$facility_id, $user->id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('facility.user.edit', 'Edit', [$id, $user->id], ['class' => 'btn btn-info']) }}
         |
-        {{ Form::open(['route' => ['facility.user.destroy', $facility_id, $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+        {{ Form::open(['route' => ['facility.user.destroy', $id, $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
         {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
         {{ Form::close() }}
     </nav>

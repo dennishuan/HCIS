@@ -11,12 +11,14 @@ class FacilityUserController extends \BaseController {
 
 
     protected $facility;
+    protected $user;
 
 
-    public function __construct(Facility $facility)
+    public function __construct(Facility $facility, User $user)
     {
         //Store the model at the time of construct.
         $this->facility = $facility;
+        $this->user = $user;
     }
 
 
@@ -33,13 +35,13 @@ class FacilityUserController extends \BaseController {
             //Search for the keyword in database
             //Then paginate the result
             //Note paginate replace function such as all() or get()
-            $users = $this->facility->findOrFail($id)->user->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
+            $users = $this->facility->findOrFail($id)->user()->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
 
             //Return the $facility for view to paginate.
             return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => $keyword]);
         }else{
             //Show a list of all the facility
-            $users = $this->facility->findOrFail($id)->user->where('facility_id', $facility_id)->paginate(20);
+            $users = $this->facility->findOrFail($id)->user()->paginate(20);
 
             return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => null]);
         }
@@ -51,10 +53,10 @@ class FacilityUserController extends \BaseController {
     *
     * @return Response
     */
-    public function create($facility_id)
+    public function create($id)
     {
         //Show a form to create new facility.
-        return View::make('facility.user.create', ['facility_id' => $facility_id]);
+        return View::make('facility.user.create');
     }
 
 
@@ -63,7 +65,7 @@ class FacilityUserController extends \BaseController {
     *
     * @return Response
     */
-    public function store($facility_id)
+    public function store($id)
     {
         //Redirect back to the index after storing.
         $input = Input::all();
@@ -73,7 +75,7 @@ class FacilityUserController extends \BaseController {
         {
             //For Json API
             if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['facility_id' => $facility_id])]);
+                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['id' => $id])]);
             }
 
             return Redirect::back()->withInput()->withErrors($this->user->errors);
@@ -83,10 +85,10 @@ class FacilityUserController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('User stored', 201, ['Location'=>route('facility.user.show', ['facility_id' => $facility_id, 'user' => $this->user->id])]);
+            return Response::make('User stored', 201, ['Location'=>route('facility.user.show', ['id' => $id, 'user_id' => $this->user->id])]);
         }
 
-        return Redirect::route('facility.user.index', ['facility_id' => $facility_id]);
+        return Redirect::route('facility.user.index', ['id' => $id]);
     }
 
 
@@ -96,10 +98,9 @@ class FacilityUserController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function show($facility_id, $id)
+    public function show($id, $user_id)
     {
-        //
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->findOrFail($user_id);
 
         //JSON API
         if (Request::wantsJson())
@@ -107,7 +108,7 @@ class FacilityUserController extends \BaseController {
             return $user->toJson();
         }
 
-        return View::make('facility.user.show', ['facility_id' => $facility_id, 'user' => $user]);
+        return View::make('facility.user.show', ['id' => $id, 'user' => $user]);
     }
 
 
@@ -117,12 +118,12 @@ class FacilityUserController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function edit($facility_id, $id)
+    public function edit($id, $user_id)
     {
         //
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->findOrFail($user_id);
 
-        return View::make('facility.user.edit', ['facility_id' => $facility_id, 'user'=>$user]);
+        return View::make('facility.user.edit', ['id' => $id, 'user'=>$user]);
     }
 
 
@@ -132,18 +133,18 @@ class FacilityUserController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function update($facility_id, $id)
+    public function update($id, $user_id)
     {
         //Get input then update
         $input = Input::all();
 
-        $user = $this->user->findOrFail($id);
+        $user = $this->user->findOrFail($user_id);
 
         if(! $user->fill($input)->isValid())
         {
             //For Json API
             if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['facility_id' => $facility_id])]);
+                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['id' => $id])]);
             }
 
             return Redirect::back()->withInput()->withErrors($user->errors);
@@ -153,10 +154,10 @@ class FacilityUserController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('User edited', 202, ['Location'=>route('facility.user.show', ['facility_id' => $facility_id, 'user' => $id])]);
+            return Response::make('User edited', 202, ['Location'=>route('facility.user.show', ['id' => $id, 'user' => $id])]);
         }
 
-        return Redirect::route('facility.user.show', ['facility_id' => $facility_id, 'user' => $id]);
+        return Redirect::route('facility.user.show', ['id' => $id, 'user_id' => $user_id]);
     }
 
 
@@ -166,19 +167,19 @@ class FacilityUserController extends \BaseController {
     * @param  int  $id
     * @return Response
     */
-    public function destroy($facility_id, $id)
+    public function destroy($id, $user_id)
     {
         //
-        $user = $this->user->findOrFail($id)->delete();
+        $user = $this->user->findOrFail($user_id)->delete();
 
         if(Request::isJson()){
-            return Response::make('Facility deleted', 202, ['Location'=>route('facility.user.index', ['facility_id' => $facility_id])]);
+            return Response::make('Facility deleted', 202, ['Location'=>route('facility.user.index', ['id' => $id])]);
         }
 
-        return Redirect::route('facility.user.index', ['facility_id' => $facility_id]);
+        return Redirect::route('facility.user.index', ['id' => $id]);
     }
 
-    public function search($facility_id){
+    public function search($id){
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
@@ -192,10 +193,9 @@ class FacilityUserController extends \BaseController {
         * will result in
         * /user?email=sample@example.com&search=something
         */
-        $url = qs_url(route('facility.user.index', $facility_id), ['search' => $keyword]);
+        $url = qs_url(route('facility.user.index', $id), ['search' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
         return Redirect::to($url);
     }
-
 }

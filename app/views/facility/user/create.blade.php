@@ -3,7 +3,7 @@
 @section('content')
     <h1> Create New User</h1>
 
-    {{ Form::open(['route' => ['facility.user.store', $facility_id]]) }}
+    {{ Form::open(['route' => ['facility.user.store', $id]]) }}
 
         <div>
             <dt>{{ Form::label('notes', 'Notes: ') }}</dt>

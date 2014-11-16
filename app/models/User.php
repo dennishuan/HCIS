@@ -36,10 +36,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
 
 
-    public function facilities()
+    public function isValid()
     {
-        return $this->belongsToMany('facilities', 'facilities_users');
+        //Valid the input.
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if($validation->passes())
+        {
+            return true;
+        }
+
+        $this->errors = $validation->messages();
+
+        return false;
     }
+
+
+    public function facility()
+    {
+        return $this->belongsToMany('Facility', 'facilities_users');
+    }
+
+    public function record()
+    {
+        return $this->hasMany('Record');
+    }
+
 
 
     public function isAdmin()
@@ -55,23 +77,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function isNurse()
     {
         return ($this->attributes['type'] === 'nurse');
-    }
-
-
-
-    public function isValid()
-    {
-        //Valid the input.
-        $validation = Validator::make($this->attributes, static::$rules);
-
-        if($validation->passes())
-        {
-            return true;
-        }
-
-        $this->errors = $validation->messages();
-
-        return false;
     }
 
 }

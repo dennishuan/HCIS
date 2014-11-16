@@ -3,18 +3,18 @@
 @section('content')
 
     <!--Search bar-->
-    {{Form::open(['route'=>['facility.user.search', $facility_id]])}}
+    {{Form::open(['route'=>['facility.user.search', $id]])}}
         {{Form::text('keyword', $keyword, ['placeholder' => 'Notes', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('facility.user.create', 'Create', [$facility_id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('facility.user.create', 'Create', [$id], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
 
     <!--Table-->
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>facility_id</th>
-                <th>facility_id</th>
+                <th>id</th>
+                <th>id</th>
                 <th>user_id</th>
                 <th>notes</th>
                 <th>action</th>
@@ -24,12 +24,12 @@
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td>{{ $user->facility_id }}</td>
-                <td>{{ $user->facility_id }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->id }}</td>
                 <td>{{ $user->user_id }}</td>
                 <td>{{ $user->notes }}</td>
 
-                <td>{{ link_to_route('facility.user.show', 'Details', [$facility_id, $user->id], ['class' => 'btn btn-info']) }}</td>
+                <td>{{ link_to_route('facility.user.show', 'Details', [$id, $user->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>

@@ -42,4 +42,9 @@ class Patient extends Eloquent{
 
         return false;
     }
+
+    public function record()
+    {
+        return $this->hasMany('Record');
+    }
 }

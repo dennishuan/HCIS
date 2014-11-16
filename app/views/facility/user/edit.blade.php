@@ -3,7 +3,7 @@
 @section('content')
     <h1> Edit User</h1>
 
-    {{ Form::model($user, ['method'=>'PUT', 'route'=>['facility.user.update', $facility_id, $user->id]]) }}
+    {{ Form::model($user, ['method'=>'PUT', 'route'=>['facility.user.update', $id, $user->id]]) }}
 
         <div>
             <dt>{{ Form::label('notes', 'Notes: ') }}</dt>
