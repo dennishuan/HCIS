@@ -1,5 +1,18 @@
 @extends('layouts.master')
 
+@section('navbar')
+
+{{Form::open(['route'=>'user.search', 'class' => "navbar-form navbar-left form-inline"])}}
+<div class="form-group">
+{{Form::text('keyword', null, ['placeholder' => 'Search for Username',  'class' => 'form-control', 'size' => '25'])}}
+  </div>
+{{Form::submit('Search', ['class' => 'btn btn-default'])}}
+{{ link_to_route('user.create', 'new User', [], ['class' => 'btn btn-info']) }}
+
+{{Form::close()}}
+
+@stop
+
 @section('content')
     <h1> Create New User</h1>
 

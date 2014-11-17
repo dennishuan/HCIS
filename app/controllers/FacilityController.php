@@ -2,8 +2,7 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-App::error(function(ModelNotFoundException $e)
-{
+App::error(function(ModelNotFoundException $e){
     return Response::make('Not Found', 404);
 });
 
@@ -15,10 +14,8 @@ class FacilityController extends \BaseController {
 
     public function __construct(Facility $facility)
     {
-        //Store the model at the time of construct.
         $this->facility = $facility;
     }
-
 
     /**
     * Display a listing of the resource.
@@ -28,14 +25,19 @@ class FacilityController extends \BaseController {
     public function index()
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $facilities = $this->facility->where('name', 'LIKE', '%'.$keyword.'%')->orWhere('abbrev', 'LIKE', '%'.$keyword.'%')->paginate(20);
+        $input = Input::all();
+
+        if(array_key_exists('search', $input) && $input['search'] === 'true'){
+            // get the rest of query string.
+            $qs = array_except($input, ['search']);
+
+            $facilities = $this->facility->search($qs)->paginate(20);
 
             //Return the $facility for view to paginate.
+            $keyword = null;
+            if(array_key_exists('keyword', $qs)){
+                $keyword = $qs['keyword'];
+            }
             return View::make('facility.index', ['facilities' => $facilities, 'keyword' => $keyword]);
         }else{
             //Show a list of all the facility
@@ -83,7 +85,7 @@ class FacilityController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('Facility stored', 201, ['Location'=>route('facility.show', ['facility' => $this->facility->id])]);
+            return Response::make('facility stored', 201, ['Location'=>route('facility.show', ['facility' => $this->facility->id])]);
         }
 
         return Redirect::route('facility.index');
@@ -153,7 +155,7 @@ class FacilityController extends \BaseController {
 
         //For Json API
         if(Request::isJson()){
-            return Response::make('Facility edited', 202, ['Location'=>route('facility.show', ['facility' => $id])]);
+            return Response::make('facility edited', 202, ['Location'=>route('facility.show', ['facility' => $id])]);
         }
 
         return Redirect::route('facility.show', $id);
@@ -172,7 +174,7 @@ class FacilityController extends \BaseController {
         $facility = $this->facility->findOrFail($id)->delete();
 
         if(Request::isJson()){
-            return Response::make('Facility deleted', 202, ['Location'=>route('facility.index')]);
+            return Response::make('facility deleted', 202, ['Location'=>route('facility.index')]);
         }
 
         return Redirect::route('facility.index');
@@ -182,17 +184,7 @@ class FacilityController extends \BaseController {
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        /**
-        * qs_url() is a custom function.
-        * qs_url($path = null, $qs = array(), $secure = null)
-        * $path is a string of URL path
-        * $qs is a array of strings of querys
-        * $secure is boolean on whether to use https or http
-        * qs_url(user, ['email' => 'sample@example.com', 'search' => 'something'])
-        * will result in
-        * /user?email=sample@example.com&search=something
-        */
-        $url = qs_url('facility', ['search' => $keyword]);
+        $url = qs_url('facility', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
         return Redirect::to($url);

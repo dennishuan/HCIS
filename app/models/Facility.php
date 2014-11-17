@@ -20,6 +20,38 @@ class Facility extends \Eloquent {
         'postal_code' => 'required'
     ];
 
+    public function search($qs){
+        // Init result then start to filter it down.
+        $result = $this;
+
+        if(array_key_exists('keyword', $qs)){
+            $result = $result->where('abbrev', 'LIKE', '%'.$qs['keyword'].'%')->orwhere('name', 'LIKE', '%'.$qs['keyword'].'%');
+        }
+        if(array_key_exists('name', $qs)){
+            $result = $result->where('name', 'LIKE', '%'.$qs['username'].'%');
+        }
+        if(array_key_exists('abbrev', $qs)){
+            $result = $result->where('abbrev', 'LIKE', '%'.$qs['username'].'%');
+        }
+        if(array_key_exists('type', $qs)){
+            $result = $result->where('type', 'LIKE', '%'.$qs['phone'].'%');
+        }
+        if(array_key_exists('phone', $qs)){
+            $result = $result->where('phone', 'LIKE', '%'.$qs['email'].'%');
+        }
+        if(array_key_exists('fax', $qs)){
+            $result = $result->where('fax', 'LIKE', '%'.$qs['name'].'%');
+        }
+        if(array_key_exists('address', $qs)){
+            $result = $result->where('address', 'LIKE', '%'.$qs['phone'].'%');
+        }
+        if(array_key_exists('postal_code', $qs)){
+            $result = $result->where('postal_code', 'LIKE', '%'.$qs['phone'].'%');
+        }
+
+        return $result;
+    }
+
 
     public function isValid()
     {
