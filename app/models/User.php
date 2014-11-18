@@ -36,9 +36,54 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     ];
 
 
-    public function facilities()
+    public function search($qs){
+        // Init result then start to filter it down.
+        $result = $this;
+
+        if(array_key_exists('keyword', $qs)){
+            $result = $result->where('username', 'LIKE', '%'.$qs['keyword'].'%');
+        }
+        if(array_key_exists('username', $qs)){
+            $result = $result->where('username', 'LIKE', '%'.$qs['username'].'%');
+        }
+        if(array_key_exists('email', $qs)){
+            $result = $result->where('email', 'LIKE', '%'.$qs['email'].'%');
+        }
+        if(array_key_exists('name', $qs)){
+            $result = $result->where('name', 'LIKE', '%'.$qs['name'].'%');
+        }
+        if(array_key_exists('phone', $qs)){
+            $result = $result->where('phone', 'LIKE', '%'.$qs['phone'].'%');
+        }
+
+        return $result;
+    }
+
+
+    public function isValid()
     {
-        return $this->belongsToMany('facilities', 'facilities_users');
+        //Valid the input.
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if($validation->passes())
+        {
+            return true;
+        }
+
+        $this->errors = $validation->messages();
+
+        return false;
+    }
+
+
+    public function facility()
+    {
+        return $this->belongsToMany('Facility', 'facilities_users');
+    }
+
+    public function record()
+    {
+        return $this->hasMany('Record');
     }
 
 
@@ -55,23 +100,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function isNurse()
     {
         return ($this->attributes['type'] === 'nurse');
-    }
-
-
-
-    public function isValid()
-    {
-        //Valid the input.
-        $validation = Validator::make($this->attributes, static::$rules);
-
-        if($validation->passes())
-        {
-            return true;
-        }
-
-        $this->errors = $validation->messages();
-
-        return false;
     }
 
 }

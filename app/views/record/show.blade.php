@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
@@ -7,19 +7,19 @@
     <dl>
         <dt>Subjective:</dt>
         <dd><div>{{ $record->subjective }}</div></dd>
-        
+
         <dt>Objective:</dt>
         <dd><div>{{ $record->objective }}</div></dd>
-        
+
         <dt>Assessment:</dt>
         <dd><div>{{ $record->assessment }}</div></dd>
-        
+
         <dt>Prescription:</dt>
         <dd><div>{{ $record->prescription }}</div></dd>
-        
+
         <dt>Remarks:</dt>
         <dd><div>{{ $record->remarks }}</div></dd>
-        
+
         <dt>Plan:</dt>
         <dd><div>{{ $record->plan }}</div></dd>
 

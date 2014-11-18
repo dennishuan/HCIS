@@ -1,35 +1,36 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
     <!--Search bar-->
-    {{Form::open(['route'=>['facility.user.search', $facility_id]])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Notes', 'size' => '25']) }}
+    {{Form::open(['route'=>['facility.user.search', $id]])}}
+        {{Form::text('keyword', $keyword, ['placeholder' => 'Username', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('facility.user.create', 'Create', [$facility_id], ['class' => 'btn btn-info']) }}
+        {{ link_to_route('facility.user.create', 'Create', [$id], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
 
     <!--Table-->
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>facility_id</th>
-                <th>facility_id</th>
-                <th>user_id</th>
-                <th>notes</th>
+                <th>Username</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
                 <th>action</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach($users as $user)
-            <tr>
-                <td>{{ $user->facility_id }}</td>
-                <td>{{ $user->facility_id }}</td>
-                <td>{{ $user->user_id }}</td>
-                <td>{{ $user->notes }}</td>
 
-                <td>{{ link_to_route('facility.user.show', 'Details', [$facility_id, $user->id], ['class' => 'btn btn-info']) }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->type }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->phone }}</td>
+                <td>{{ link_to_route('facility.user.show', 'Details', [$id, $user->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach
         </tbody>

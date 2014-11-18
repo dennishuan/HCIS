@@ -40,7 +40,7 @@ class PatientController extends \BaseController {
             return View::make('patient.index', ['patients' => $patients, 'keyword' => $keyword]);
         }else{
             //Show a list of all the patient
-            $patients = $this->patient->paginate(20);
+            $patients = $this->patient->paginate(50);
 
             return View::make('patient.index', ['patients' => $patients, 'keyword' => null]);
         }

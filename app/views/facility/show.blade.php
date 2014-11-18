@@ -1,18 +1,18 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
     <h1>Facility:</h1>
 
     <dl>
-        <dt>Facility Abbrev.: </dt>
-        <dd><div>{{ $facility->facility_abbrev }}</div></dd>
+        <dt>Abbrev.: </dt>
+        <dd><div>{{ $facility->abbrev }}</div></dd>
 
         <dt>Name: </dt>
-        <dd><div>{{ $facility->facility_name }}</div></dd>
+        <dd><div>{{ $facility->name }}</div></dd>
 
-        <dt>Facility Type: </dt>
-        <dd><div>{{ $facility->facilitytype }}</div></dd>
+        <dt>Type: </dt>
+        <dd><div>{{ $facility->type }}</div></dd>
 
         <dt>Phone: </dt>
         <dd><div>{{ $facility->phone }}</div></dd>

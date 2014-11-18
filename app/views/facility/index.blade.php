@@ -1,10 +1,10 @@
-@extends('layouts.default')
+@extends('layouts.master')
 
 @section('content')
 
     <!--Search bar-->
     {{Form::open(['route'=>'facility.search'])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size' => '25']) }}
+        {{Form::text('keyword', $keyword, ['placeholder' => 'Name or Abbrev.', 'size' => '25']) }}
         {{Form::submit('Search', ['class' => 'btn'])}}
         {{ link_to_route('facility.create', 'Create', [], ['class' => 'btn btn-info']) }}
     {{Form::close()}}
@@ -13,12 +13,12 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Facility Abrev.</th>
+                <th>Abbrev.</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Phone</th>
                 <th>Address</th>
-				<th>Postal Code</th>
+                <th>Postal Code</th>
                 <th>action</th>
             </tr>
         </thead>
@@ -26,11 +26,12 @@
         <tbody>
             @foreach($facilities as $facility)
             <tr>
-                <td>{{ $facility->facility_abbrev }}</td>
-                <td>{{ $facility-facility_name> }}</td>
-                <td>{{ $facility->facilitytype }}</td>
+                <td>{{ $facility->abbrev }}</td>
+                <td>{{ $facility->name }}</td>
+                <td>{{ $facility->type }}</td>
                 <td>{{ $facility->phone }}</td>
                 <td>{{ $facility->address }}</td>
+                <td>{{ $facility->postal_code }}</td>
                 <td>{{ link_to_route('facility.show', 'Details', [$facility->id], ['class' => 'btn btn-info']) }}</td>
             </tr>
             @endforeach

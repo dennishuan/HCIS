@@ -1,4 +1,17 @@
-@extends('layouts.default')
+@extends('layouts.master')
+
+@section('navbar')
+
+{{Form::open(['route'=>'user.search', 'class' => "navbar-form navbar-left form-inline"])}}
+<div class="form-group">
+{{Form::text('keyword', null, ['placeholder' => 'Search for Username',  'class' => 'form-control', 'size' => '25'])}}
+  </div>
+{{Form::submit('Search', ['class' => 'btn btn-default'])}}
+{{ link_to_route('user.create', 'new User', [], ['class' => 'btn btn-info']) }}
+
+{{Form::close()}}
+
+@stop
 
 @section('content')
 
@@ -7,11 +20,11 @@
     <dl>
         <dt>Username:</dt>
         <dd><div>{{ $user->username }}</div></dd>
-		
-		<!-- Admin shouldn't see password--
+
+        <!-- Admin shouldn't see password--
         <dt>Password:</dt>
         <dd><div>{{ $user->password }}</div></dd>
-		-->
+        -->
 
         <dt>Type:</dt>
         <dd><div>{{ $user->type }}</div></dd>
@@ -21,7 +34,7 @@
 
         <dt>Email:</dt>
         <dd><div>{{ $user->email }}</div></dd>
-		
+
         <dt>Phone Number:</dt>
         <dd><div>{{ $user->phone }}</div></dd>
 
@@ -38,3 +51,5 @@
     </nav>
 
 @stop
+
+

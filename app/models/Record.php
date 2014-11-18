@@ -7,7 +7,7 @@ class Record extends \Eloquent {
     * @var string
     */
     protected $table = 'records';
-    
+
     protected $fillable = ['stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'remarks', 'plan'];
 
     public static $rules = [
@@ -34,6 +34,21 @@ class Record extends \Eloquent {
         $this->errors = $validation->messages();
 
         return false;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
+    public function facility()
+    {
+        return $this->belongsTo('Facility');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo('Patient');
     }
 
 

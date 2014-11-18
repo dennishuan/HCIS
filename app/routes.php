@@ -11,9 +11,18 @@
 |
 */
 
+//Listen to what SQL statement is being executed
+//Event::listen('illuminate.query', function($sql){
+//    var_dump($sql);
+//});
+
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
     return View::make('home');
 }]);
+
+//Search
+Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
+Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
 
 
 //login

@@ -1,4 +1,17 @@
-@extends('layouts.default')
+@extends('layouts.master')
+
+@section('navbar')
+
+{{Form::open(['route'=>'user.search', 'class' => "navbar-form navbar-left form-inline"])}}
+<div class="form-group">
+{{Form::text('keyword', null, ['placeholder' => 'Search for Username',  'class' => 'form-control', 'size' => '25'])}}
+  </div>
+{{Form::submit('Search', ['class' => 'btn btn-default'])}}
+{{ link_to_route('user.create', 'new User', [], ['class' => 'btn btn-info']) }}
+
+{{Form::close()}}
+
+@stop
 
 @section('content')
     <h1> Create New User</h1>
@@ -19,8 +32,8 @@
 
         <div>
             <dt>{{ Form::label('type', 'Type: ') }}</dt>
-            <dd><div>{{ Form::input('enum', 'Type') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
+            <dd><div>{{ Form::text('Type') }}
+                {{ $errors->first('type') }}</div></dd>
        </div>
 
         <div>
@@ -28,14 +41,14 @@
             <dd><div>{{ Form::text('name' ) }}
                 {{ $errors->first('name') }}</div></dd>
         </div>
-		
-		<div>
+
+        <div>
             <dt>{{ Form::label('email', 'Email: ') }}</dt>
             <dd><div>{{ Form::text('email' ) }}
                 {{ $errors->first('email') }}</div></dd>
         </div>
-		
-		<div>
+
+        <div>
             <dt>{{ Form::label('phone', 'Phone Number: ') }}</dt>
             <dd><div>{{ Form::text('phone' ) }}
                 {{ $errors->first('phone') }}</div></dd>
@@ -47,3 +60,4 @@
 
     {{ Form::close() }}
 @stop
+
