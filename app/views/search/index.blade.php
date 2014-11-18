@@ -384,6 +384,4 @@
 	
   </div> <!-- End div/tab content -->
 </div>
-
-
 @stop

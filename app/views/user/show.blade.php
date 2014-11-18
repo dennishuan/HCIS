@@ -14,42 +14,60 @@
 @stop
 
 @section('content')
-
-    <h1>User:</h1>
-
-    <dl>
-        <dt>Username:</dt>
-        <dd><div>{{ $user->username }}</div></dd>
-
-        <!-- Admin shouldn't see password--
-        <dt>Password:</dt>
-        <dd><div>{{ $user->password }}</div></dd>
-        -->
-
-        <dt>Type:</dt>
-        <dd><div>{{ $user->type }}</div></dd>
-
-        <dt>Name:</dt>
-        <dd><div>{{ $user->name }}</div></dd>
-
-        <dt>Email:</dt>
-        <dd><div>{{ $user->email }}</div></dd>
-
-        <dt>Phone Number:</dt>
-        <dd><div>{{ $user->phone }}</div></dd>
-
-    </dl>
-
-    <nav>
-        {{ link_to_route('user.index', 'Index', [], ['class' => 'btn btn-info']) }}
-        |
-        {{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
-        |
-        {{ Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-        {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-        {{ Form::close() }}
-    </nav>
-
+	<div id="User" class="tab-pane fade in active container">
+		<h3>User</h3>
+		<div class="row">
+			{{Form::open}}
+			
+			<!-- Left side of form -->
+				<div class="col col-md-6 col-lg-6">
+					<fieldset disabled>
+						<div class="input-group">
+							<span class="input-group-addon">Username:</span>
+							{{ Form::text('username', $user->username }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Name:</span>
+							{{ Form::text('name', $user->name }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Phone Number:</span>
+							{{ Form::text('phone', $user->phone }}
+						</div>
+					</fieldset>
+					
+					<div class="input-group buffer">
+						<nav>
+							{{ link_to_route('user.index', 'Index', [], ['class' => 'btn btn-info']) }}
+							|
+							{{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
+							|
+							{{ Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+								{{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+							{{ Form::close() }}
+						</nav>
+					</div>
+				</div>
+				
+				<!-- Right side of form -->
+				<div class="col col-md-6 col-lg-6">
+					<fieldset disabled>
+						<div class="input-group">
+							<span class="input-group-addon">Type:</span>
+							{{ Form::text('type', $user->type }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Email:</span>
+							{{ Form::text('email', $user->email }}
+						</div>
+					</fieldset>
+				</div>
+			{{Form::close}}
+		</div>
+	</div>
 @stop
 
 

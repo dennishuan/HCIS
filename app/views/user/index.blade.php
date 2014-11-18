@@ -18,6 +18,7 @@
 
 <!--Search bar-->
 
+
 <!--Table-->
 <table class="table table-hover table-condensed">
   <thead>
