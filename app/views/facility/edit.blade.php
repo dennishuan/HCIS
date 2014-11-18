@@ -2,7 +2,7 @@
 
 @section('content')
 	<div id="Facility" class="tab-pane fade in active container">
-		<h1>Create Facility</h1>
+		<h1>Edit Facility</h1>
 		<div class="row">
 			{{ Form::model($facility, ['method'=>'PUT', 'route'=>['facility.update', $facility->id]])}}
 			
@@ -26,7 +26,10 @@
 						{{ Form::text('phone'}}
 						{{ $errors->first('phone')}}
 					</div>
-					{{ Form::submit('Create Facility', ['class' => 'btn btn-info'])}}
+					
+					<div class="input-group buffer">
+						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+					</div>
 				</div>
 				
 				<!-- Right side of form -->

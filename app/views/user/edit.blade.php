@@ -15,7 +15,7 @@
 
 @section('content')
 	<div id="User" class="tab-pane fade in active container">
-		<h1>Create User</h1>
+		<h1>Edit User</h1>
 		<div class="row">
 			{{ Form::model($user, ['method'=>'PUT', 'route'=>['user.update', $user->id]]) }}
 			
@@ -38,7 +38,10 @@
 						{{ Form::text('phone'}}
 						{{ $errors->first('phone')}}
 					</div>
-					{{ Form::submit('Create User', ['class' => 'btn btn-info'])}}
+					
+					<div class="input-group buffer">
+						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+					</div>
 				</div>
 				
 				<!-- Right side of form -->
