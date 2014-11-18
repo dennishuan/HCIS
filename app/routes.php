@@ -66,6 +66,7 @@ Route::group(['before' => 'auth'], function(){
 
 //user
 Route::group(['before' => 'auth'], function(){
+    Route::post('user/ajax', ['as' => 'user.search', 'uses' => 'UserController@ajax']);
     Route::post('user/search', ['as' => 'user.search', 'uses' => 'UserController@search']);
     Route::resource('user', 'UserController');
 });

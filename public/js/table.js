@@ -1,25 +1,51 @@
 $(function () {
   console.log( "loaded" );
+  $('#table').bootstrapTable()
+//  .on('all.bs.table', function (e, name, args) {
+//    console.log('Event:', name, ', data:', args);
+//  })
+  .on('click-row.bs.table', function (e, row, $element) {
+    var path = $(location).attr('pathname');
 
-  var $table = $('#table');
+    window.location.href = path + '/' + row.id;
+  });
 
+  $('#create').click(function () {
+    var path = $(location).attr('pathname') + '/create';
 
+    window.location.href = path;
+  });
 
-  $('#edit').click(function () {
+  $('#show').click(function (){
+    var path = $(location).attr('pathname');
 
+    var input = $('#table').bootstrapTable('getSelections');
+
+    for(i in input){
+      window.open(path + '/' + input[i].id);
+    }
+  });
+
+  $('#edit').click(function (){
+    var path = $(location).attr('pathname');
+
+    var input = $('#table').bootstrapTable('getSelections');
+
+    for(i in input){
+      window.open(path + '/' + input[i].id + '/edit');
+    }
   });
 
   $('#delete').click(function () {
     var path = $(location).attr('pathname');
-    $.ajax({
-      type: 'post',
-      data: .serialize(),
-      success: function () {
-        $('#table').bootstrapTable('refresh', {silent: true});
-      },
-      error: function(){
-        $('.alert-danger').text('An error occurred');
-      }
+    var path = path + '/ajax';
+
+    var input = $('#table').bootstrapTable('getSelections');
+
+    $.post(path, { action: 'delete', input: input}, function (data) {
+
+      console.log( data );
+      $('#table').bootstrapTable('refresh', {silent: true});
     });
   });
 });

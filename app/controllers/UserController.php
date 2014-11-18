@@ -195,9 +195,15 @@ class UserController extends \BaseController {
         return Redirect::to($url);
     }
 
-    public function massDelete(){
+    public function ajax(){
+        $input = Input::all();
 
-
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $users){
+                $this->destroy($users['id']);
+            }
+        }
 
     }
 
