@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration {
             $table->string('phone', 15);
  
             // For remember me option.
-            $table->string('remember_token');
+            $table->string('remember_token')->nullable();
 
             // Default timestamps
             $table->timestamps();
