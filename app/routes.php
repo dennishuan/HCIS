@@ -26,6 +26,11 @@ Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']
 Route::post('login', ['before' => 'csrf', 'as' => 'login.store', 'uses' => 'LoginController@store']);
 Route::delete('logout', ['before' => 'csrf', 'as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
+//Search
+Route::group(['before' => 'auth'], function(){
+    Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
+    Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
+});
 
 /*******************************
 *   Require Auth
@@ -56,6 +61,7 @@ Route::group(['before' => 'auth'], function(){
   Route::resource('facility.user', 'FacilityUserController');
 
   //user
+  Route::post('user/ajax', ['as' => 'user.search', 'uses' => 'UserController@ajax']);
   Route::post('user/search', ['as' => 'user.search', 'uses' => 'UserController@search']);
   Route::resource('user', 'UserController');
 });

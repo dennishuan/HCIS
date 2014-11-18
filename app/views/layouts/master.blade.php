@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
+    {{ HTML::style('css/bootstrap-table.css') }}
     <meta charset="utf-8">
     <style>
       body { padding-top: 70px; }
@@ -76,25 +77,25 @@
         @if (Session::get('flash_message_success'))
         <div class="alert alert-success fade in" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          {{ Session::get('flash_message_success') }}
+          <span id="flash_message_sucess">{{ Session::get('flash_message_success') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_info'))
         <div class="alert alert-info fade in" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          {{ Session::get('flash_message_info') }}
+          <span id="flash_message_info">{{ Session::get('flash_message_info') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_warning'))
         <div class="alert alert-warning fade in" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          {{ Session::get('flash_message_warning') }}
+          <span id="flash_message_warning">{{ Session::get('flash_message_warning') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_danger'))
         <div class="alert alert-danger fade in" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          {{ Session::get('flash_message_danger') }}
+          <span id="flash_message_danger">{{ Session::get('flash_message_danger') }}</span>
         </div>
         @endif
 
@@ -107,6 +108,8 @@
 
     {{ HTML::script('js/jquery.min.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('js/bootstrap-table.js') }}
+    {{ HTML::script('js/table.js') }}
 
     <script>
       //Auto close alert after a set time.
