@@ -4,8 +4,8 @@
 
 {{Form::open(['route'=>'user.search', 'class' => "navbar-form navbar-left form-inline"])}}
 <div class="form-group">
-{{Form::text('keyword', null, ['placeholder' => 'Search for Username',  'class' => 'form-control', 'size' => '25'])}}
-  </div>
+    {{Form::text('keyword', null, ['placeholder' => 'Search for Username',  'class' => 'form-control', 'size' => '25'])}}
+</div>
 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
 {{ link_to_route('user.create', 'new User', [], ['class' => 'btn btn-info']) }}
 
@@ -16,44 +16,29 @@
 
 @section('content')
 
-<!--Search bar-->
+<!--Button-->
+<div id="toolbar" class="btn-group btn-default">
+    <button class="btn btn-default" id="edit">
+        <i class="glyphicon glyphicon-edit"></i> <span>Edit</span>
+    </button>
+    <button class="btn btn-default" id="delete">
+        <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+    </button>
+</div>
 
 <!--Table-->
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone Number</th>
-      <th>action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    @foreach($users as $user)
-
-    <td>{{ $user->username }}</td>
-    <td>{{ $user->type }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>{{ $user->phone }}</td>
-    <td>{{ link_to_route('user.show', 'Details', [$user->id], ['class' => 'btn btn-info']) }}</td>
-  </tr>
-@endforeach
-</tbody>
+<table id="table" data-toggle="table" data-url="user" data-search="true" data-pagination="true" data-show-refresh="true" data-show-columns="true" data-click-to-select="true" data-toolbar="#toolbar">
+    <thead>
+        <tr>
+            <th data-field="state" data-checkbox="true"></th>
+            <th data-field="username">Username</th>
+            <th data-field="type">Type</th>
+            <th data-field="name">Name</th>
+            <th data-field="email">Email</th>
+            <th data-field="phone">Phone Number</th>
+        </tr>
+    </thead>
 </table>
-<div>
-  <!-- Pagination bar -->
-  <!---------------------------------------------------------------
-appends() to maintian other part of the query string
-Else the links() will not include the rest of query string.
-Just copy the whole thing and change the variable if you do
-not understand what I am talking about.
------------------------------------------------------------------>
-  {{ $users->appends(Request::except('page'))->links() }}
-</div>
 
 @stop
 
