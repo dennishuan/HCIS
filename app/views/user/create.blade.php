@@ -24,16 +24,19 @@
 					<div class="input-group">
 						<span class="input-group-addon">Username:</span>
 						{{ Form::text('username'}}
+						{{ $errors->first('username')}}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Name:</span>
 						{{ Form::text('name'}}
+						{{ $errors->first('name')}}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Phone Number:</span>
 						{{ Form::text('phone'}}
+						{{ $errors->first('phone')}}
 					</div>
 					{{ Form::submit('Create User', ['class' => 'btn btn-info'])}}
 				</div>
@@ -43,17 +46,20 @@
 					<div class="input-group">
 						<span class="input-group-addon">Password:</span>
 						{{ Form::password('password'}}
+						{{ $errors->first('password')}}
 					</div>
 					
 					<!--NOTE: Type is text not dropdown menu, fix if need be-->
 					<div class="input-group buffer">
 						<span class="input-group-addon">Type:</span>
 						{{ Form::text('type'}}
+						{{ $errors->first('type')}}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Email:</span>
 						{{ Form::text('email'}}
+						{{ $errors->first('email')}}
 					</div>
 				</div>
 			{{Form::close}}
