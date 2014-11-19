@@ -134,7 +134,7 @@
         columns: [],
         data: [],
         method: 'get',
-        url: undefined,
+        url: $(location).attr('pathname') + $(location).attr('search'), //MODIFIED
         cache: true,
         contentType: 'application/json',
         dataType: 'json',

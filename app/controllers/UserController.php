@@ -31,24 +31,24 @@ class UserController extends \BaseController {
             // get the rest of query string.
             $qs = array_except($input, ['search']);
 
-            $users = $this->user->search($qs)->paginate(20);
-
-            //Return the $user for view to paginate.
-            $keyword = null;
-            if(array_key_exists('keyword', $qs)){
-                $keyword = $qs['keyword'];
-            }
-            return View::make('user.index', ['users' => $users, 'keyword' => $keyword]);
-        }else{
-            //Show a list of all the user
-            $users = $this->user->paginate(20);
+            $users = $this->user->search($qs);
 
             if (Request::wantsJson())
             {
-                return $this->user->all()->toJson();
+                return $users->get()->toJson();
             }
 
-            return View::make('user.index', ['users' => $users, 'keyword' => null]);
+            return View::make('user.index');
+        }else{
+            //Show a list of all the user
+            $users = $this->user;
+
+            if (Request::wantsJson())
+            {
+                return $users->get()->toJson();
+            }
+
+            return View::make('user.index');
         }
     }
 

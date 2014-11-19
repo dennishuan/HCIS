@@ -8,6 +8,7 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
     {{ HTML::style('css/bootstrap-table.css') }}
+    {{ HTML::style('css/bootstrap-table-filter.css') }}
     <meta charset="utf-8">
     <style>
       body { padding-top: 70px; }
@@ -109,6 +110,9 @@
     {{ HTML::script('js/jquery.min.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('js/bootstrap-table.js') }}
+    {{ HTML::script('js/bootstrap-table-filter.js') }}
+    {{ HTML::script('js/list.min.js') }}
+
     {{ HTML::script('js/table.js') }}
 
     <script>

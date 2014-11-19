@@ -46,6 +46,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         if(array_key_exists('username', $qs)){
             $result = $result->where('username', 'LIKE', '%'.$qs['username'].'%');
         }
+        if(array_key_exists('type', $qs)){
+            $result = $result->where('type', 'LIKE', '%'.$qs['type'].'%');
+        }
         if(array_key_exists('email', $qs)){
             $result = $result->where('email', 'LIKE', '%'.$qs['email'].'%');
         }
