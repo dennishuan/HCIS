@@ -19,7 +19,7 @@
 
         <div>
             <dt>{{ Form::label('type', 'Facility Type: ') }}</dt>
-            <dd><div>{{ Form::input('enum', 'type') }}
+            <dd><div>{{ Form::select('type', array(' ' => ' ', 'hospital' => 'hospital', 'clinic' => 'clinic'), ' ') }}
                 {{ $errors->first('type') }}</div></dd>
         </div>
 

@@ -25,7 +25,7 @@
 
         <div>
             <dt>{{ Form::label('sex', 'Sex: ') }}</dt>
-            <dd><div>{{ Form::text('sex' ) }}
+            <dd><div>{{ Form::select('sex', array(' ' => ' ', 'male' => 'male', 'female' => 'female'), $patient->sex) }}
                 {{ $errors->first('sex') }}</div></dd>
         </div>
 
@@ -65,6 +65,12 @@
             <dd><div>{{ Form::text('mobile_phone' ) }}
                 {{ $errors->first('mobile_phone') }}</div></dd>
         </div>
+        
+        <div>
+            <dt>{{ Form::label('email', 'Email: ') }}</dt>
+            <dd><div>{{ Form::text('email' ) }}
+                {{ $errors->first('email') }}</div></dd>
+        </div>
 
         <div>
             <dt>{{ Form::label('emergency_name', 'Emergency Contact Name: ') }}</dt>
@@ -92,7 +98,7 @@
 
         <div>
             <dt>{{ Form::label('permanent_resident', 'Permanent Resident: ') }}</dt>
-            <dd><div>{{ Form::text('permanent_resident' ) }}
+            <dd><div>{{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'), $patient->permanent_resident ) }}
                 {{ $errors->first('permanent_resident') }}</div></dd>
         </div>
 

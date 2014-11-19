@@ -31,8 +31,14 @@
        </div>
 
         <div>
+            <dt>{{ Form::label('password_confirmation', 'Confirm Password: ') }}</dt>
+            <dd><div>{{ Form::password('password_confirmation') }}
+                {{ $errors->first('password') }}</div></dd>
+       </div>
+
+        <div>
             <dt>{{ Form::label('type', 'Type: ') }}</dt>
-            <dd><div>{{ Form::text('Type') }}
+            <dd><div>{{ Form::select('Type', array(' ' => ' ', 'admin' => 'admin', 'doctor' => 'doctor', 'nurse' => 'nurse'), ' ') }}
                 {{ $errors->first('type') }}</div></dd>
        </div>
 

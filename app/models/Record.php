@@ -8,16 +8,19 @@ class Record extends \Eloquent {
     */
     protected $table = 'records';
 
-    protected $fillable = ['stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'remarks', 'plan'];
+    protected $fillable = ['priority', 'reg_datetime', 'admit_datetime', 'stated_compl', 'chief_compl', 'chief_compl_code', 'subjective', 'objective', 'assessment'];
 
     public static $rules = [
+        'priority' => 'required|in:1,2,3,4,5,6',
+        'reg_datetime' => 'required|date|timezone',
+        'admit_datetime' => 'required|date|timezone',
+        'chief_compl' => 'required',
+        'chief_compl_code' => 'required',
         'stated_compl' => 'required',
         'subjective' => 'required',
         'objective' => 'required',
         'assessment' => 'required',
-        'prescription' => 'required',
-        'remarks' => 'required',
-        'plan' => 'required'
+        
     ];
 
 
