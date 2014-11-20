@@ -31,8 +31,8 @@
 						<span class="input-group-addon">Sex:</span>
 						<select class="form-control" name="sex">
 							<option value="">All</option>
-							<option value="male">Male</option>
 							<option value="female">Female</option>
+							<option value="male">Male</option>
 						</select>
 					</div>
 					
@@ -250,8 +250,8 @@
 						<span class="input-group-addon">Sex:</span>
 						<select class="form-control" name="sex">
 							<option value="">All</option>
-							<option value="male">Male</option>
 							<option value="female">Female</option>
+							<option value="male">Male</option>
 						</select>
 					</div>
 				
