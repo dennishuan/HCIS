@@ -1,5 +1,5 @@
 $(function () {
-  console.log( "loaded" );
+  console.log( "Table loaded" );
 
   $('#table').bootstrapTable()
   //      .on('all.bs.table', function (e, name, args) {

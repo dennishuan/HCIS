@@ -38,19 +38,16 @@
           <div class="collapse navbar-collapse">
             <!--navbar left--->
             <ul class="nav navbar-nav">
-              <li>{{ link_to_route('record.index', 'Record') }}</li>
-              <li>{{ link_to_route('patient.index', 'Patient') }}</li>
-              <li>{{ link_to_route('facility.index', 'Facility') }}</li>
-              <li>{{ link_to_route('user.index', 'User') }}</li>
-              <li>{{ link_to_route('search.index', 'Search') }}</li>
+              <li id="masterRecordTab">{{ link_to_route('record.index', 'Record') }}</li>
+              <li id="masterPatientTab">{{ link_to_route('patient.index', 'Patient') }}</li>
+              <li id="masterUserTab">{{ link_to_route('user.index', 'User') }}</li>
+              <li id="masterFacilityTab">{{ link_to_route('facility.index', 'Facility') }}</li>
+              <li id="masterSearchTab">{{ link_to_route('search.index', 'Search') }}</li>
 
               @if (Auth::user() != null && Auth::user()->isAdmin())
               @endif
 
             </ul>
-
-            <!--Tool Bar-->
-            @yield('navbar')
 
             <!--navbar right-->
             <ul class="nav navbar-nav navbar-right">
@@ -114,6 +111,7 @@
     {{ HTML::script('js/bootstrap-table.js') }}
 
     {{ HTML::script('js/table.js') }}
+    {{ HTML::script('js/active.js') }}
   </body>
 </html>
 
