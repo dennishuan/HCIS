@@ -77,6 +77,7 @@ class FacilityUserController extends \BaseController {
         $input = Input::all();
 
         //Validation
+
         if( ! $this->user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
@@ -158,11 +159,13 @@ class FacilityUserController extends \BaseController {
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
+
         $url = qs_url(route('facility.user.index', $id), ['search' => 'true', 'search' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
         return Redirect::to($url);
     }
+
 
     public function ajax(){
         $input = Input::all();

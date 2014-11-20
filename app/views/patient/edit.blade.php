@@ -1,128 +1,135 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1> Edit Patient</h1>
-
-    {{ Form::model($patient, ['method'=>'PUT', 'route'=>['patient.update', $patient->id]]) }}
-
-        <div>
-            <dt>{{ Form::label('phn', 'Personal Health Number: ') }}</dt>
-            <dd><div>{{ Form::text('phn' ) }}
-                {{ $errors->first('phn') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('name', 'Full Name: ') }}</dt>
-            <dd><div>{{ Form::input('text', 'name') }}
-                {{ $errors->first('name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('preferred_name', 'Preferred Name: ') }}</dt>
-            <dd><div>{{ Form::input('text', 'preferred_name') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('sex', 'Sex: ') }}</dt>
-            <dd><div>{{ Form::text('sex' ) }}
-                {{ $errors->first('sex') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('date_of_birth', 'Date of Birth: ') }}</dt>
-            <dd><div>{{ Form::text('date_of_birth' ) }}
-                {{ $errors->first('date_of_birth') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('address', 'Address: ') }}</dt>
-            <dd><div>{{ Form::text('address' ) }}
-                {{ $errors->first('address') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('postal_code', 'Postal Code: ') }}</dt>
-            <dd><div>{{ Form::text('postal_code' ) }}
-                {{ $errors->first('postal_code') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('home_phone', 'Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('home_phone' ) }}
-                {{ $errors->first('home_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('work_phone', 'Work phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('work_phone' ) }}
-                {{ $errors->first('work_phone') }}</div></dd>
-        </div>
-
-
-        <div>
-            <dt>{{ Form::label('mobile_phone', 'Mobile Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('mobile_phone' ) }}
-                {{ $errors->first('mobile_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_name', 'Emergency Contact Name: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_name' ) }}
-                {{ $errors->first('emergency_name') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_phone', 'Emergency Contact Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_phone' ) }}
-                {{ $errors->first('emergency_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_relationship', 'Emergency Contact Relationship: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_relationship' ) }}
-                {{ $errors->first('emergency_relationship') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('allergies', 'Allergies: ') }}</dt>
-            <dd><div>{{ Form::text('allergies' ) }}
-                {{ $errors->first('allergies') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('permanent_resident', 'Permanent Resident: ') }}</dt>
-            <dd><div>{{ Form::text('permanent_resident' ) }}
-                {{ $errors->first('permanent_resident') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('preferred_language', 'Preferred Language: ') }}</dt>
-            <dd><div>{{ Form::text('preferred_language' ) }}
-                {{ $errors->first('preferred_language') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('other_language', 'Other Language: ') }}</dt>
-            <dd><div>{{ Form::text('other_language' ) }}
-                {{ $errors->first('other_language') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('ethnic_background', 'Ethnic Background: ') }}</dt>
-            <dd><div>{{ Form::text('ethnic_background' ) }}
-                {{ $errors->first('ethnic_background') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('family_doctor', 'Family Doctor: ') }}</dt>
-            <dd><div>{{ Form::text('family_doctor' ) }}
-                {{ $errors->first('family_doctor') }}</div></dd>
-        </div>
-
-        <div>
-            {{ Form::submit('Edit Contact', ['class' => 'btn btn-info'])}}
-        </div>
-
-    {{ Form::close() }}
+	<div id="Patient" class="tab-pane fade in active container">
+		<h1>Edit Patient</h1>
+		<div class="row">
+			{{ Form::model($patient, ['method'=>'PUT', 'route'=>['patient.update', $patient->id]]) }}
+			
+			<!-- Left side of form -->
+				<div class="col col-md-6 col-lg-6">
+					<div class="input-group">
+						<span class="input-group-addon">Personal Health Number:</span>
+						{{ Form::text('phn'}}
+						{{ $errors->first('phn') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Preferred Name:</span>
+						{{ Form::text('preferred_name'}}
+						{{ $errors->first('preferred_name') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Postal Code:</span>
+						{{ Form::text('postal_code'}}
+						{{ $errors->first('postal_code') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Date of Birth:</span>
+						{{ Form::text('date_of_birth'}}
+						{{ $errors->first('date_of_birth') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Work Phone Number:</span>
+						{{ Form::text('work_phone'}}
+						{{ $errors->first('work_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contact Name:</span>
+						{{ Form::text('emergency_name'}}
+						{{ $errors->first('emergency_name') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contact Relationship:</span>
+						{{ Form::text('emergency_relationship'}}
+						{{ $errors->first('emergency_relationship') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Permanent Resident:</span>
+						{{ Form::text('permanent_resident'}}
+						{{ $errors->first('permanent_resident') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Other Language:</span>
+						{{ Form::text('other_language'}}
+						{{ $errors->first('other_language') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Family Doctor:</span>
+						{{ Form::text('family_doctor'}}
+						{{ $errors->first('family_doctor') }}
+					</div>
+							
+					<div class="input-group buffer">
+						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+					</div>
+				</div>
+				
+				<!-- Right side of form -->
+				<div class="col col-md-6 col-lg-6">	
+					<div class="input-group">
+						<span class="input-group-addon">Full Name:</span>
+						{{ Form::text('name'}}
+						{{ $errors->first('name') }}
+					</div>
+						
+					<div class="input-group buffer">
+						<span class="input-group-addon">Sex:</span>
+						{{ Form::text('sex'}}
+						{{ $errors->first('sex') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Address:</span>
+						{{ Form::text('address'}}
+						{{ $errors->first('address') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Phone Number:</span>
+						{{ Form::text('home_phone'}}
+						{{ $errors->first('home_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Mobile Phone Number:</span>
+						{{ Form::text('mobile_phone'}}
+						{{ $errors->first('mobile_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contact Phone:</span>
+						{{ Form::text('emergency_phone'}}
+						{{ $errors->first('emergency_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Allergies:</span>
+						{{ Form::text('allergies'}}
+						{{ $errors->first('allergies') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Preferred Language:</span>
+						{{ Form::text('preferred_language'}}
+						{{ $errors->first('preferred_language') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Ethnic Background:</span>
+						{{ Form::text('ethnic_background'}}
+						{{ $errors->first('ethnic_background') }}
+					</div>
+				</div>
+			{{Form::close}}
+		</div>
+	</div>
 @stop
