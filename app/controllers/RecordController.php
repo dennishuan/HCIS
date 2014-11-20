@@ -28,6 +28,7 @@ class RecordController extends \BaseController {
     */
     public function index()
     {
+	
         //If the URL includes query string 'search'
         //and store the corresponding value in $keyword
         if($keyword = Input::get('search')){

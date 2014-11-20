@@ -43,6 +43,11 @@ class UserController extends \BaseController {
             //Show a list of all the user
             $users = $this->user->paginate(20);
 
+            if (Request::wantsJson())
+            {
+                return $this->user->all()->toJson();
+            }
+
             return View::make('user.index', ['users' => $users, 'keyword' => null]);
         }
     }
@@ -188,6 +193,18 @@ class UserController extends \BaseController {
 
         // Redirect to /user/?search={$keyword}
         return Redirect::to($url);
+    }
+
+    public function ajax(){
+        $input = Input::all();
+
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $users){
+                $this->destroy($users['id']);
+            }
+        }
+
     }
 
 }

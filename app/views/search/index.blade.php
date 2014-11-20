@@ -15,12 +15,11 @@
   <div class="tab-content">
   
 	<!-- Record Tab -->
-	<!-- Incomplete, what would a doctor search for in records -->
     <div id="record" class="tab-pane fade in active container">
 		<h3>Search for Record</h3>
         <div class="row">
-			{{ Form::open(['route' => 'search.store', 'method' => 'POST']) }}
-				<input name="model" type="hidden" value="facility">
+			{{ Form::Open(['route' => 'search.store', 'method' => 'POST'])}}
+				<input name="model" type="hidden" value="record">
 				<!--Left side of form-->
 				<div class="col col-md-6 col-lg-6">
 					<div class="input-group">
@@ -130,7 +129,7 @@
 		<h3>Search for Patient</h3>
         <div class="row">
 			{{ Form::open(['route' => 'search.store', 'method' => 'POST']) }}
-				<input name="model" type="hidden" value="facility">
+				<input name="model" type="hidden" value="patient">
 				<!--Left side of form-->
 				<div class="col col-md-6 col-lg-6">
 				

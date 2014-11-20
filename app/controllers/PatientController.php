@@ -29,18 +29,28 @@ class PatientController extends \BaseController {
     public function index()
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $patients = $this->patient->where('phn', 'LIKE', '%'.$keyword.'%')->paginate(20);
+        $input = Input::all();
+
+        if(array_key_exists('search', $input) && $input['search'] === 'true'){
+            // get the rest of query string.
+            $qs = array_except($input, ['search']);
+
+            $patients = $this->patient->search($qs)->paginate(20);
 
             //Return the $patient for view to paginate.
+            $keyword = null;
+            if(array_key_exists('keyword', $qs)){
+                $keyword = $qs['keyword'];
+            }
             return View::make('patient.index', ['patients' => $patients, 'keyword' => $keyword]);
         }else{
             //Show a list of all the patient
-            $patients = $this->patient->paginate(50);
+            $patients = $this->patient->paginate(20);
+
+            if (Request::wantsJson())
+            {
+                return $this->patient->all()->toJson();
+            }
 
             return View::make('patient.index', ['patients' => $patients, 'keyword' => null]);
         }
