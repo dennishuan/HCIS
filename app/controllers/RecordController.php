@@ -216,7 +216,6 @@ class RecordController extends \BaseController {
                 $this->destroy($records['id']);
             }
         }
-        return "successfully deleted";
     }
 
 }

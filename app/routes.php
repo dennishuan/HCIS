@@ -1,5 +1,8 @@
 <?php
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,7 +16,15 @@
 
 //Listen to what SQL statement is being executed
 //Event::listen('illuminate.query', function($sql){
-//    var_dump($sql);
+//    if(Request::ajax()){
+//        // Logs SQL query in /app/logs/ajax.log for SQL queries done by ajax.
+//        $log = new Logger('name');
+//        $log->pushHandler(new StreamHandler(storage_path().'/logs/ajax.log', Logger::INFO));
+//
+//        $log->addInfo($sql);
+//    }else{
+//        var_dump($sql);
+//    }
 //});
 
 
@@ -27,9 +38,9 @@
 *******************/
 Route::when('*', ['before' => 'csrf'], array('post', 'put', 'delete'));
 
-/****************************************************
-*                     TEST                          *
-*remove this and TestTokenController when deploying.*
+/*****************************************************
+*                       TEST                         *
+* remove this and TestTokenController when deploying.*
 * /testtoken/token
 * /testtoken/no-token
 * /testtoken/bad-token
