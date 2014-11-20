@@ -1,59 +1,43 @@
+
+
 @extends('layouts.master')
 
 @section('content')
 
-    <!--Search bar-->
-    {{Form::open(['route'=>'record.search'])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Personal Health Number', 'size'  => '25']) }}
-        {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('record.create', 'Create', [], ['class' => 'btn btn-info']) }}
-    {{Form::close()}}
+<!--Button-->
+<div id="toolbar" class="btn-group btn-default">
+  <button class="btn btn-default" id="create">
+    <i class="glyphicon glyphicon-file"></i> <span>New</span>
+  </button>
+  <button class="btn btn-default" id="show">
+    <i class="glyphicon glyphicon-new-window"></i> <span>Show</span>
+  </button>
+  <button class="btn btn-default" id="edit">
+    <i class="glyphicon glyphicon-edit"></i> <span>Edit</span>
+  </button>
+  <button class="btn btn-default" id="delete">
+    <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+  </button>
 
-    <!--Table-->
-    <table class="table table-hover table-condensed">
-        <thead>
-            <tr>
-                <th>Subjective</th>
-                <th>Objective</th>
-                <th>Assessment</th>
-                <th>Prescription</th>
-                <th>Remarks</th>
-                <th>Plan</th>
-                <th>Full Name</th>
-                <th>Preferred Name</th>
-                <th>Sex</th>
-                <th>Date of Birth</th>
-                <th>action</th>
-            </tr>
-        </thead>
+</div>
 
-        <tbody>
-            @foreach($records as $record)
-            <tr>
-                <td>{{ $record->subjective }}</td>
-                <td>{{ $record->objective }}</td>
-                <td>{{ $record->assessment }}</td>
-                <td>{{ $record->prescription }}</td>
-                <td>{{ $record->remarks }}</td>
-                <td>{{ $record->plan }}</td>
-                <td>{{ $record->name }}</td>
-                <td>{{ $record->preferred_name }}</td>
-                <td>{{ $record->sex }}</td>
-                <td>{{ $record->date_of_birth }}</td>
-                <td>{{ link_to_route('record.show', 'Details', [$record->id], ['class' => 'btn btn-info']) }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div>
-        <!-- Pagination bar -->
-        <!---------------------------------------------------------------
-            appends() to maintian other part of the query string
-            Else the links() will not include the rest of query string.
-            Just copy the whole thing and change the variable if you do
-            not understand what I am talking about.
-        ----------------------------------------------------------------->
-        {{ $records->appends(Request::except('page'))->links() }}
-    </div>
+
+<!--Table-->
+<div id="list">
+  <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-columns="true" data-toolbar="#toolbar">
+    <thead>
+      <tr>
+        <th data-field="state" data-checkbox="true"></th>
+        <th data-field="patient.phn" data-sortable="true">Personal Health #</th>
+        <th data-field="patient.name" data-sortable="true">Full Name</th>
+        <th data-field="patient.preferred_name" data-sortable="true">Preferred Name</th>
+        <th data-field="reg_datetime" data-sortable="true">Registration</th>
+        <th data-field="admit_datetime" data-sortable="true">Admittance</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<input id="token" type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 @stop

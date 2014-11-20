@@ -31,17 +31,35 @@ class RecordController extends \BaseController {
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
                 $qs = array_except($input, ['search']);
+                $result = [];
 
                 //Search and filter out the data.
-                $records =$this->record->search($qs)->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $records =$this->record->search($qs)->select([ 'patient_id','id', 'reg_datetime', 'admit_datetime'])->with(['patient' => function($query){
+                    $query->select('id', 'phn', 'name', 'preferred_name');
+                }])->get()->toArray();
 
-                return $records;
+                foreach ($records as $record)
+                {
+                    $result[] = array_dot($record);
+                }
+
+                return Response::json($result);
             }
             else{
                 //Show a list of all the record
-                $records = $this->record->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $result = [];
 
-                return $records;
+                $records = $this->record->select([ 'patient_id','id', 'reg_datetime', 'admit_datetime'])->with(['patient' => function($query){
+                    $query->select('id', 'phn', 'name', 'preferred_name');
+                }])->get()->toArray();
+
+                foreach ($records as $record)
+                {
+                    $result[] = array_dot($record);
+                }
+
+
+                return Response::json($result);
             }
         }
 
