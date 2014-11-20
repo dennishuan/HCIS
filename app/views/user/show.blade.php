@@ -15,26 +15,26 @@
 
 @section('content')
 	<div id="User" class="tab-pane fade in active container">
-		<h3>User</h3>
+		<h1>{{$user->name}}</h1>
 		<div class="row">
-			{{Form::open}}
+			{{ Form::open(['route' => 'user.store', 'method' => 'POST']) }}
 			
 			<!-- Left side of form -->
 				<div class="col col-md-6 col-lg-6">
 					<fieldset disabled>
 						<div class="input-group">
 							<span class="input-group-addon">Username:</span>
-							{{ Form::text('username', $user->username }}
+							{{ Form::text('username', $user->username, ['class' => 'form-control']) }}
 						</div>
 						
 						<div class="input-group buffer">
 							<span class="input-group-addon">Name:</span>
-							{{ Form::text('name', $user->name }}
+							{{ Form::text('name', $user->name, ['class' => 'form-control']) }}
 						</div>
 						
 						<div class="input-group buffer">
 							<span class="input-group-addon">Phone Number:</span>
-							{{ Form::text('phone', $user->phone }}
+							{{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
 						</div>
 					</fieldset>
 					
@@ -56,16 +56,16 @@
 					<fieldset disabled>
 						<div class="input-group">
 							<span class="input-group-addon">Type:</span>
-							{{ Form::text('type', $user->type }}
+							{{ Form::text('type', $user->type, ['class' => 'form-control']) }}
 						</div>
 						
 						<div class="input-group buffer">
 							<span class="input-group-addon">Email:</span>
-							{{ Form::text('email', $user->email }}
+							{{ Form::text('email', $user->email, ['class' => 'form-control']) }}
 						</div>
 					</fieldset>
 				</div>
-			{{Form::close}}
+			{{ Form::close()}}
 		</div>
 	</div>
 @stop

@@ -10,74 +10,66 @@
 				<div class="col col-md-6 col-lg-6">
 					<div class="input-group">
 						<span class="input-group-addon">Personal Health Number:</span>
-						{{ Form::text('phn'}}
+						{{ Form::text('phn', null, ['class' => 'form-control']) }}
 						{{ $errors->first('phn') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Preferred Name:</span>
-						{{ Form::text('preferred_name'}}
+						{{ Form::text('preferred_name', null, ['class' => 'form-control']) }}
 						{{ $errors->first('preferred_name') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Postal Code:</span>
-						{{ Form::text('postal_code'}}
+						{{ Form::text('postal_code', null, ['class' => 'form-control']) }}
 						{{ $errors->first('postal_code') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Date of Birth:</span>
-						{{ Form::text('date_of_birth'}}
+						{{ Form::text('date_of_birth', null, ['class' => 'form-control']) }}
 						{{ $errors->first('date_of_birth') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Work Phone Number:</span>
-						{{ Form::text('work_phone'}}
+						{{ Form::text('work_phone', null, ['class' => 'form-control']) }}
 						{{ $errors->first('work_phone') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Emergency Contact Name:</span>
-						{{ Form::text('emergency_name'}}
+						{{ Form::text('emergency_name', null, ['class' => 'form-control']) }}
 						{{ $errors->first('emergency_name') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Emergency Contact Relationship:</span>
-						{{ Form::text('emergency_relationship'}}
+						{{ Form::text('emergency_relationship', null, ['class' => 'form-control']) }}
 						{{ $errors->first('emergency_relationship') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Permanent Resident:</span>
-						{{ Form::text('permanent_resident'}}
+						{{ Form::text('permanent_resident', null, ['class' => 'form-control']) }}
 						{{ $errors->first('permanent_resident') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Other Language:</span>
-						{{ Form::text('other_language'}}
+						{{ Form::text('other_language', null, ['class' => 'form-control']) }}
 						{{ $errors->first('other_language') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Family Doctor:</span>
-						{{ Form::text('family_doctor'}}
+						{{ Form::text('family_doctor', null, ['class' => 'form-control']) }}
 						{{ $errors->first('family_doctor') }}
 					</div>
 							
 					<div class="input-group buffer">
-						<nav>
-							{{ link_to_route('user.index', 'Index', [], ['class' => 'btn btn-info']) }}
-							|
-							{{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
-							|
-							{{ Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-								{{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-							{{ Form::close() }}
-						</nav>
+						{{ Form::submit('Create Patient', ['class' => 'btn btn-info'])}}
 					</div>
 				</div>
 				
@@ -85,59 +77,59 @@
 				<div class="col col-md-6 col-lg-6">	
 					<div class="input-group">
 						<span class="input-group-addon">Full Name:</span>
-						{{ Form::text('name'}}
+						{{ Form::text('name', null, ['class' => 'form-control']) }}
 						{{ $errors->first('name') }}
 					</div>
 						
 					<div class="input-group buffer">
 						<span class="input-group-addon">Sex:</span>
-						{{ Form::text('sex'}}
+						{{ Form::text('sex', null, ['class' => 'form-control']) }}
 						{{ $errors->first('sex') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Address:</span>
-						{{ Form::text('address'}}
+						{{ Form::text('address', null, ['class' => 'form-control']) }}
 						{{ $errors->first('address') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Phone Number:</span>
-						{{ Form::text('home_phone'}}
+						{{ Form::text('home_phone', null, ['class' => 'form-control']) }}
 						{{ $errors->first('home_phone') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Mobile Phone Number:</span>
-						{{ Form::text('mobile_phone'}}
+						{{ Form::text('mobile_phone', null, ['class' => 'form-control']) }}
 						{{ $errors->first('mobile_phone') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Emergency Contact Phone:</span>
-						{{ Form::text('emergency_phone'}}
+						{{ Form::text('emergency_phone', null, ['class' => 'form-control']) }}
 						{{ $errors->first('emergency_phone') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Allergies:</span>
-						{{ Form::text('allergies'}}
+						{{ Form::text('allergies', null, ['class' => 'form-control']) }}
 						{{ $errors->first('allergies') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Preferred Language:</span>
-						{{ Form::text('preferred_language'}}
+						{{ Form::text('preferred_language', null, ['class' => 'form-control']) }}
 						{{ $errors->first('preferred_language') }}
 					</div>
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Ethnic Background:</span>
-						{{ Form::text('ethnic_background'}}
+						{{ Form::text('ethnic_background', null, ['class' => 'form-control']) }}
 						{{ $errors->first('ethnic_background') }}
 					</div>
 				</div>
-			{{Form::close}}
+			{{ Form::close() }}
 		</div>
 	</div>
 @stop
