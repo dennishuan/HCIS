@@ -22,20 +22,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     protected $hidden = array('password', 'remember_token');
-
-
+    
     //Enable mass assignment for the fields.
-    protected $fillable = ['username', 'password', 'email', 'name', 'phone'];
+    protected $fillable = ['username', 'password', 'password_confirmation', 'type', 'email', 'name', 'phone'];
 
-    public static $rules = [
-        'username' => 'required',
-        'password' => 'required',
-        'email' => 'required',
-        'name' => 'required',
-        'phone' => 'required',
-    ];
-
-
+    
+    protected $id = null;
+    
     public function search($qs){
         // Init result then start to filter it down.
         $result = $this;
@@ -66,8 +59,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function isValid()
     {
         //Valid the input.
-        $validation = Validator::make($this->attributes, static::$rules);
-
+        $this->id = Auth::id();
+        $rules = array('username' => 'required|alpha_num|unique:users,username,' . $this->id . '|max:255',
+                        'password' => 'required|confirmed|max:255',
+                        'password_confirmation' => 'required|same:password|max:255',
+                        'type' => 'required|in:admin,doctor,nurse',
+                        'name' => 'required|alpha_spaces|max:255',
+                        'phone' => 'required|between:10,15',
+                        'email' => 'required|email|unique:users,email,' . $this->id . '|max:255',);
+        
+        $validation = Validator::make($this->attributes, $rules);
+        
         if($validation->passes())
         {
             return true;
@@ -81,7 +83,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function facility()
     {
-        return $this->belongsToMany('Facility', 'facilities_users');
+           $this->belongsToMany('Facility', 'facilities_users');
     }
 
     public function record()

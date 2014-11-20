@@ -8,16 +8,17 @@ class Facility extends \Eloquent {
     */
     protected $table = 'facilities';
 
-    protected $fillable = ['abbrev', 'name', 'phone', 'fax', 'address', 'postal_code'];
+    protected $fillable = ['abbrev', 'name', 'type', 'phone', 'fax', 'address', 'postal_code'];
 
 
     public static $rules = [
-        'abbrev' => 'required',
-        'name' => 'required',
-        'phone' => 'required',
-        'fax' => 'required',
-        'address' => 'required',
-        'postal_code' => 'required'
+        'abbrev' => 'required|alpha|min:6|max:6',
+        'name' => 'required|alpha_spaces|max:255',
+        'type' => 'required|in:clinic,hospital',
+        'phone' => 'required|between:10,15',
+        'fax' => 'required|between:10,15',
+        'address' => 'required|max:255',
+        'postal_code' => 'required|min:6|max:6'
     ];
 
     public function search($qs){

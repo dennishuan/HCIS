@@ -89,7 +89,15 @@ return array(
 			'rule-name' => 'custom-message',
 		),
 	),
-
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Rules
+    |--------------------------------------------------------------------------
+    |
+    | Custom rules created in app/validators.php
+    |
+    */
+    "alpha_spaces"     => "The :attribute may only contain letters and spaces.",
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Attributes
