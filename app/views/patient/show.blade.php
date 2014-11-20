@@ -58,6 +58,8 @@
 							<span class="input-group-addon">Family Doctor:</span>
 							{{ Form::text('family_doctor', $patient->family_doctor, ['class' => 'form-control']) }}
 						</div>
+						
+						
 		
 					</fieldset>
 					
