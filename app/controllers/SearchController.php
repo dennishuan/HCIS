@@ -23,7 +23,7 @@ class SearchController extends \BaseController {
                     $qs = ['search' => 'true'] + $qs;
                 }
 
-                $url = qs_url('user', $qs);
+                $url = qs_url('record', $qs);
 
                 return Redirect::to($url);
             }
@@ -36,7 +36,7 @@ class SearchController extends \BaseController {
                     $qs = ['search' => 'true'] + $qs;
                 }
 
-                $url = qs_url('user', $qs);
+                $url = qs_url('patient', $qs);
 
                 return Redirect::to($url);
             }
@@ -62,7 +62,7 @@ class SearchController extends \BaseController {
                     $qs = ['search' => 'true'] + $qs;
                 }
 
-                $url = qs_url('user', $qs);
+                $url = qs_url('facility', $qs);
 
                 return Redirect::to($url);
             }
