@@ -16,6 +16,27 @@
 //    var_dump($sql);
 //});
 
+/********************
+*   Require HTTPS   *
+********************/
+//Route::when('*', ['before' => 'ssl']);
+
+/*******************
+*   Require CSRF   *
+*******************/
+Route::when('*', ['before' => 'csrf'], array('post', 'put', 'delete'));
+
+/****************************************************
+*                     TEST                          *
+*remove this and TestTokenController when deploying.*
+* /testtoken/token
+* /testtoken/no-token
+* /testtoken/bad-token
+****************************************************/
+Route::controller('testtoken', 'TestTokenController');
+
+
+//Home
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
   return View::make('home');
 }]);
@@ -23,14 +44,9 @@ Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
 
 //login
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);
-Route::post('login', ['before' => 'csrf', 'as' => 'login.store', 'uses' => 'LoginController@store']);
-Route::delete('logout', ['before' => 'csrf', 'as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
+Route::post('login', ['as' => 'login.store', 'uses' => 'LoginController@store']);
+Route::delete('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@destroy']);
 
-//Search
-Route::group(['before' => 'auth'], function(){
-    Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
-    Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
-});
 
 /*******************************
 *   Require Auth

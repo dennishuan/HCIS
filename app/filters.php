@@ -21,6 +21,14 @@ Route::filter('nurse', function()
     }
 });
 
+Route::filter('ssl', function()
+{
+    if( ! Request::secure())
+    {
+        return Redirect::secure(Request::path());
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters

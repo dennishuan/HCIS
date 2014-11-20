@@ -8,7 +8,7 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
     {{ HTML::style('css/bootstrap-table.css') }}
-    {{ HTML::style('css/bootstrap-table-filter.css') }}
+
     <meta charset="utf-8">
     <style>
       body { padding-top: 70px; }
@@ -76,25 +76,25 @@
       <div class="container">
         <!--- Flash messages -->
         @if (Session::get('flash_message_success'))
-        <div class="alert alert-success fade in" role="alert">
+        <div class="alert alert-success alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
           <span id="flash_message_sucess">{{ Session::get('flash_message_success') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_info'))
-        <div class="alert alert-info fade in" role="alert">
+        <div class="alert alert-info alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
           <span id="flash_message_info">{{ Session::get('flash_message_info') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_warning'))
-        <div class="alert alert-warning fade in" role="alert">
+        <div class="alert alert-warning alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
           <span id="flash_message_warning">{{ Session::get('flash_message_warning') }}</span>
         </div>
         @endif
         @if (Session::get('flash_message_danger'))
-        <div class="alert alert-danger fade in" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
           <span id="flash_message_danger">{{ Session::get('flash_message_danger') }}</span>
         </div>
@@ -110,15 +110,8 @@
     {{ HTML::script('js/jquery.min.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('js/bootstrap-table.js') }}
-    {{ HTML::script('js/bootstrap-table-filter.js') }}
-    {{ HTML::script('js/list.min.js') }}
 
     {{ HTML::script('js/table.js') }}
-
-    <script>
-      //Auto close alert after a set time.
-      window.setTimeout(function() { $(".alert").alert('close'); }, 4000);
-    </script>
   </body>
 </html>
 

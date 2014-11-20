@@ -27,29 +27,25 @@ class UserController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
-        if(array_key_exists('search', $input) && $input['search'] === 'true'){
-            // get the rest of query string.
-            $qs = array_except($input, ['search']);
+        if (Request::ajax()){
+            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+                // get the rest of query string.
+                $qs = array_except($input, ['search']);
 
-            $users = $this->user->search($qs);
+                //Search and filter out the data.
+                $users =$this->user->search($qs)->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
-            if (Request::wantsJson())
-            {
-                return $users->get()->toJson();
+                return $users;
             }
+            else{
+                //Show a list of all the user
+                $users = $this->user->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
-            return View::make('user.index');
-        }else{
-            //Show a list of all the user
-            $users = $this->user;
-
-            if (Request::wantsJson())
-            {
-                return $users->get()->toJson();
+                return $users;
             }
-
-            return View::make('user.index');
         }
+
+        return View::make('user.index');
     }
 
 
@@ -76,24 +72,13 @@ class UserController extends \BaseController {
         $input = Input::all();
 
         //Validation
-        if( ! $this->user->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('user.index')]);
-            }
-
+        if( ! $this->user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
         $this->user->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('user stored', 201, ['Location'=>route('user.show', ['user' => $this->user->id])]);
-        }
-
-        return Redirect::route('user.index');
+        return Redirect::route('user.index')->with('flash_message_success', 'New entry have been created');
     }
 
 
@@ -107,12 +92,6 @@ class UserController extends \BaseController {
     {
         //
         $user = $this->user->findOrFail($id);
-
-        //JSON API
-        if (Request::wantsJson())
-        {
-            return $user->toJson();
-        }
 
         return View::make('user.show', ['user' => $user]);
     }
@@ -146,24 +125,13 @@ class UserController extends \BaseController {
 
         $user = $this->user->findOrFail($id);
 
-        if(! $user->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('user.index')]);
-            }
-
+        if(! $user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($user->errors);
         }
 
         $user->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('user edited', 202, ['Location'=>route('user.show', ['user' => $id])]);
-        }
-
-        return Redirect::route('user.show', $id);
+        return Redirect::route('user.show', $id)->with('flash_message_success', 'The entry has been updated.');
     }
 
 
@@ -176,13 +144,9 @@ class UserController extends \BaseController {
     public function destroy($id)
     {
         //
-        $user = $this->user->findOrFail($id)->delete();
+        $this->user->findOrFail($id)->delete();
 
-        if(Request::isJson()){
-            return Response::make('user deleted', 202, ['Location'=>route('user.index')]);
-        }
-
-        return Redirect::route('user.index');
+        return Redirect::route('user.index')->with('flash_message_info', 'The entry has been deleted.');
     }
 
     public function search(){
@@ -192,7 +156,7 @@ class UserController extends \BaseController {
         $url = qs_url('user', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /user/?search={$keyword}
-        return Redirect::to($url);
+        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
     }
 
     public function ajax(){
@@ -204,7 +168,7 @@ class UserController extends \BaseController {
                 $this->destroy($users['id']);
             }
         }
-
+        return "successfully deleted";
     }
 
 }

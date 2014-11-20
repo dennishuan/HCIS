@@ -35,7 +35,7 @@
   </table>
 </div>
 
-
+<input id="token" type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 @stop
 
