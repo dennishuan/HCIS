@@ -3,9 +3,9 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function(ModelNotFoundException $e)
-{
-    return Response::make('Not Found', 404);
-});
+           {
+               return Response::make('Not Found', 404);
+           });
 
 class FacilityUserController extends \BaseController {
 
@@ -30,21 +30,27 @@ class FacilityUserController extends \BaseController {
     public function index($id)
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $users = $this->facility->findOrFail($id)->user()->where('username', 'LIKE', '%'.$keyword.'%')->paginate(20);
+        $input = Input::all();
 
-            //Return the $facility for view to paginate.
-            return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => $keyword]);
-        }else{
-            //Show a list of all the facility
-            $users = $this->facility->findOrFail($id)->user()->paginate(20);
+        if (Request::ajax()){
+            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+                // get the rest of query string.
+                $qs = array_except($input, ['search']);
 
-            return View::make('facility.user.index', ['id' => $id, 'users' => $users, 'keyword' => null]);
+                //Search and filter out the data.
+                $users = $this->facility->findOrFail($id)->user()->search($qs)->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $users;
+            }
+            else{
+                //Show a list of all the user
+                $users = $this->facility->findOrFail($id)->user()(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $users;
+            }
         }
+
+        return View::make('facility.user.index');
     }
 
 
@@ -71,24 +77,13 @@ class FacilityUserController extends \BaseController {
         $input = Input::all();
 
         //Validation
-        if( ! $this->user->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['id' => $id])]);
-            }
-
+        if( ! $this->user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
 
         $this->user->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('User stored', 201, ['Location'=>route('facility.user.show', ['id' => $id, 'user_id' => $this->user->id])]);
-        }
-
-        return Redirect::route('facility.user.index', ['id' => $id]);
+        return Redirect::route('facility.user.index', ['id' => $id])->with('flash_message_success', 'New entry have been created');
     }
 
 
@@ -101,12 +96,6 @@ class FacilityUserController extends \BaseController {
     public function show($id, $user_id)
     {
         $user = $this->user->findOrFail($user_id);
-
-        //JSON API
-        if (Request::wantsJson())
-        {
-            return $user->toJson();
-        }
 
         return View::make('facility.user.show', ['id' => $id, 'user' => $user]);
     }
@@ -142,22 +131,12 @@ class FacilityUserController extends \BaseController {
 
         if(! $user->fill($input)->isValid())
         {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->user->errors, 400, ['Location'=>route('facility.user.index', ['id' => $id])]);
-            }
-
             return Redirect::back()->withInput()->withErrors($user->errors);
         }
 
         $user->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('User edited', 202, ['Location'=>route('facility.user.show', ['id' => $id, 'user' => $id])]);
-        }
-
-        return Redirect::route('facility.user.show', ['id' => $id, 'user_id' => $user_id]);
+        return Redirect::route('facility.user.show', ['id' => $id, 'user_id' => $user_id])->with('flash_message_success', 'The entry has been updated.');
     }
 
 
@@ -172,30 +151,28 @@ class FacilityUserController extends \BaseController {
         //
         $user = $this->user->findOrFail($user_id)->delete();
 
-        if(Request::isJson()){
-            return Response::make('Facility deleted', 202, ['Location'=>route('facility.user.index', ['id' => $id])]);
-        }
-
-        return Redirect::route('facility.user.index', ['id' => $id]);
+        return Redirect::route('facility.user.index', ['id' => $id])->with('flash_message_info', 'The entry has been deleted.');
     }
 
     public function search($id){
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        /**
-        * qs_url() is a custom function.
-        * qs_url($path = null, $qs = array(), $secure = null)
-        * $path is a string of URL path
-        * $qs is a array of strings of querys
-        * $secure is boolean on whether to use https or http
-        * qs_url(user, ['email' => 'sample@example.com', 'search' => 'something'])
-        * will result in
-        * /user?email=sample@example.com&search=something
-        */
-        $url = qs_url(route('facility.user.index', $id), ['search' => $keyword]);
+        $url = qs_url(route('facility.user.index', $id), ['search' => 'true', 'search' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
         return Redirect::to($url);
+    }
+
+    public function ajax(){
+        $input = Input::all();
+
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $users){
+                $this->destroy($users['id']);
+            }
+        }
+        return "successfully deleted";
     }
 }

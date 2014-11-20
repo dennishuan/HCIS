@@ -3,9 +3,9 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function(ModelNotFoundException $e)
-{
-    return Response::make('Not Found', 404);
-});
+           {
+               return Response::make('Not Found', 404);
+           });
 
 class PatientRecordController extends \BaseController {
 
@@ -30,21 +30,27 @@ class PatientRecordController extends \BaseController {
     public function index($id)
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $records = $this->patient->findOrFail($id)->record()->where('name', 'LIKE', '%'.$keyword.'%')->paginate(20);
+        $input = Input::all();
 
-            //Return the $patient for view to paginate.
-            return View::make('patient.record.index', ['id' => $id, 'records' => $records, 'keyword' => $keyword]);
-        }else{
-            //Show a list of all the patient
-            $records = $this->patient->findOrFail($id)->record()->paginate(20);
+        if (Request::ajax()){
+            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+                // get the rest of query string.
+                $qs = array_except($input, ['search']);
 
-            return View::make('patient.record.index', ['id' => $id, 'records' => $records, 'keyword' => null]);
+                //Search and filter out the data.
+                $records = $this->patient->findOrFail($id)->record()->search($qs)->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $records;
+            }
+            else{
+                //Show a list of all the record
+                $records = $this->patient->findOrFail($id)->record()(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $records;
+            }
         }
+
+        return View::make('patient.record.index');
     }
 
 
@@ -71,24 +77,13 @@ class PatientRecordController extends \BaseController {
         $input = Input::all();
 
         //Validation
-        if( ! $this->record->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('patient.record.index', ['id' => $id])]);
-            }
-
+        if( ! $this->record->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->record->errors);
         }
 
         $this->record->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('Record stored', 201, ['Location'=>route('patient.record.show', ['id' => $id, 'record_id' => $this->record->id])]);
-        }
-
-        return Redirect::route('patient.record.index', ['id' => $id]);
+        return Redirect::route('patient.record.index', ['id' => $id])->with('flash_message_success', 'New entry have been created');
     }
 
 
@@ -101,12 +96,6 @@ class PatientRecordController extends \BaseController {
     public function show($id, $record_id)
     {
         $record = $this->record->findOrFail($record_id);
-
-        //JSON API
-        if (Request::wantsJson())
-        {
-            return $record->toJson();
-        }
 
         return View::make('patient.record.show', ['id' => $id, 'record' => $record]);
     }
@@ -142,22 +131,12 @@ class PatientRecordController extends \BaseController {
 
         if(! $record->fill($input)->isValid())
         {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('patient.record.index', ['id' => $id])]);
-            }
-
             return Redirect::back()->withInput()->withErrors($record->errors);
         }
 
         $record->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('Record edited', 202, ['Location'=>route('patient.record.show', ['id' => $id, 'record' => $id])]);
-        }
-
-        return Redirect::route('patient.record.show', ['id' => $id, 'record_id' => $record_id]);
+        return Redirect::route('patient.record.show', ['id' => $id, 'record_id' => $record_id])->with('flash_message_success', 'The entry has been updated.');
     }
 
 
@@ -172,30 +151,28 @@ class PatientRecordController extends \BaseController {
         //
         $record = $this->record->findOrFail($record_id)->delete();
 
-        if(Request::isJson()){
-            return Response::make('Patient deleted', 202, ['Location'=>route('patient.record.index', ['id' => $id])]);
-        }
-
-        return Redirect::route('patient.record.index', ['id' => $id]);
+        return Redirect::route('patient.record.index', ['id' => $id])->with('flash_message_info', 'The entry has been deleted.');
     }
 
     public function search($id){
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        /**
-        * qs_url() is a custom function.
-        * qs_url($path = null, $qs = array(), $secure = null)
-        * $path is a string of URL path
-        * $qs is a array of strings of querys
-        * $secure is boolean on whether to use https or http
-        * qs_url(record, ['email' => 'sample@example.com', 'search' => 'something'])
-        * will result in
-        * /record?email=sample@example.com&search=something
-        */
-        $url = qs_url(route('patient.record.index', $id), ['search' => $keyword]);
+        $url = qs_url(route('patient.record.index', $id), ['search' => 'true', 'search' => $keyword]);
 
         // Redirect to /patient/?search={$keyword}
         return Redirect::to($url);
+    }
+
+    public function ajax(){
+        $input = Input::all();
+
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $records){
+                $this->destroy($records['id']);
+            }
+        }
+        return "successfully deleted";
     }
 }
