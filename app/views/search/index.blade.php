@@ -22,7 +22,13 @@
         <input name="model" type="hidden" value="record">
         <!-- Left side of form -->
         <div class="col col-md-6 col-lg-6">
+
           <div class="input-group">
+            <span class="input-group-addon">Doctor:</span>
+            {{ Form::text('user', null, ['class' => 'form-control']) }}
+          </div>
+
+          <div class="input-group buffer">
             <span class="input-group-addon">Legal Name:</span>
             {{ Form::text('name', null, ['class' => 'form-control']) }}
           </div>
@@ -30,7 +36,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Sex:</span>
             <select class="form-control" name="sex">
-              <option value="">All</option>
+              <option value=""></option>
               <option value="female">Female</option>
               <option value="male">Male</option>
             </select>
@@ -75,6 +81,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Priority:</span>
             <select class="form-control" name="priority">
+              <option value=""></option>
               <option value="6">6</option> <!-- Clinic -->
               <option value="5">5</option>
               <option value="4">4</option>
@@ -101,8 +108,12 @@
 
         <!-- Right side of form -->
         <div class="col col-md-6 col-lg-6">
-
           <div class="input-group">
+            <span class="input-group-addon">Facility Name or Abbrev.:</span>
+            {{ Form::text('facility' , null, ['class' => 'form-control'] ) }}
+          </div>
+
+          <div class="input-group buffer">
             <span class="input-group-addon">Personal Health Number:</span>
             {{ Form::text('phn', null, ['class' => 'form-control']) }}
           </div>
@@ -145,7 +156,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Permanent Resident:</span>
             <select class="form-control" name="permanent_resident">
-              <option value="">All</option>
+              <option value=""></option>
               <option value="1">Yes</option>
               <option value="0">No</option>
             </select>
@@ -249,7 +260,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Sex:</span>
             <select class="form-control" name="sex">
-              <option value="">All</option>
+              <option value=""></option>
               <option value="female">Female</option>
               <option value="male">Male</option>
             </select>
@@ -283,7 +294,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Permanent Resident:</span>
             <select class="form-control" name="permanent_resident">
-              <option value="">All</option>
+              <option value=""></option>
               <option value="1">Yes</option>
               <option value="0">No</option>
             </select>
@@ -346,7 +357,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
             <select class="form-control" name="type">
-              <option value="">All</option>
+              <option value=""></option>
               @if (Auth::user() != null && Auth::user()->isAdmin())
               <option value="admin">Admin</option>
               @endif
@@ -386,7 +397,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
             <select class="form-control" name="type">
-              <option value="">All</option>
+              <option value=""></option>
               <option value="hospital">Hopstial</option>
               <option value="clinic">Clinic</option>
             </select>

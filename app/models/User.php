@@ -22,20 +22,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      * @var array
      */
     protected $hidden = array('password', 'remember_token');
-    
+
     //Enable mass assignment for the fields.
     protected $fillable = ['username', 'password', 'password_confirmation', 'type', 'email', 'name', 'phone'];
 
-    
+
     protected $id = null;
-    
+
     public function search($qs){
         // Init result then start to filter it down.
         $result = $this;
 
-        if(array_key_exists('keyword', $qs)){
-            $result = $result->where('username', 'LIKE', '%'.$qs['keyword'].'%');
-        }
         if(array_key_exists('username', $qs)){
             $result = $result->where('username', 'LIKE', '%'.$qs['username'].'%');
         }
@@ -67,9 +64,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
                         'name' => 'required|alpha_spaces|max:255',
                         'phone' => 'required|between:10,15',
                         'email' => 'required|email|unique:users,email,' . $this->id . '|max:255',);
-        
+
         $validation = Validator::make($this->attributes, $rules);
-        
+
         if($validation->passes())
         {
             return true;

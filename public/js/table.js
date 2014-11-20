@@ -2,9 +2,9 @@ $(function () {
   console.log( "Table loaded" );
 
   $('#table').bootstrapTable()
-  //      .on('all.bs.table', function (e, name, args) {
-  //        console.log('Event:', name, ', data:', args);
-  //      })
+  .on('all.bs.table', function (e, name, args) {
+    console.log('Event:', name, ', data:', args);
+  })
   //    .on('click-row.bs.table', function (e, row, $element) {
   //        var path = $(location).attr('pathname');
   //

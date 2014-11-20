@@ -27,6 +27,22 @@ class RecordController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
+//        $qs = array_except($input, ['search']);
+//                $result = [];
+//
+//                //Search and filter out the data.
+//                $records =$this->record->search($qs)->select(['patient_id', 'user_id', 'facility_id', 'id', 'reg_datetime', 'admit_datetime'])
+//                    ->with(['patient' => function($query){
+//                        $query->select('id', 'phn', 'name', 'preferred_name');
+//                    }])
+//                    ->with(['user' => function($query){
+//                        $query->select('id', 'name');
+//                    }])
+//                    ->with(['facility' => function($query){
+//                        $query->select('id', 'name', 'abbrev');
+//                    }])->get()->toArray();
+
+
         if (Request::ajax()){
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
@@ -34,9 +50,17 @@ class RecordController extends \BaseController {
                 $result = [];
 
                 //Search and filter out the data.
-                $records =$this->record->search($qs)->select([ 'patient_id','id', 'reg_datetime', 'admit_datetime'])->with(['patient' => function($query){
-                    $query->select('id', 'phn', 'name', 'preferred_name');
-                }])->get()->toArray();
+                $records =$this->record->search($qs)->select(['patient_id', 'user_id', 'facility_id', 'id', 'reg_datetime', 'admit_datetime'])
+                    ->with(['patient' => function($query){
+                        $query->select('id', 'phn', 'name', 'preferred_name');
+                    }])
+                    ->with(['user' => function($query){
+                        $query->select('id', 'name');
+                    }])
+                    ->with(['facility' => function($query){
+                        $query->select('id', 'name');
+                    }])->get()->toArray();
+
 
                 foreach ($records as $record)
                 {
@@ -49,15 +73,21 @@ class RecordController extends \BaseController {
                 //Show a list of all the record
                 $result = [];
 
-                $records = $this->record->select([ 'patient_id','id', 'reg_datetime', 'admit_datetime'])->with(['patient' => function($query){
-                    $query->select('id', 'phn', 'name', 'preferred_name');
-                }])->get()->toArray();
+                $records = $this->record->select(['patient_id', 'user_id', 'facility_id', 'id', 'reg_datetime', 'admit_datetime'])
+                    ->with(['patient' => function($query){
+                        $query->select('id', 'phn', 'name', 'preferred_name');
+                    }])
+                    ->with(['user' => function($query){
+                        $query->select('id', 'name');
+                    }])
+                    ->with(['facility' => function($query){
+                        $query->select('id', 'name');
+                    }])->get()->toArray();
 
                 foreach ($records as $record)
                 {
                     $result[] = array_dot($record);
                 }
-
 
                 return Response::json($result);
             }

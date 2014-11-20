@@ -31,6 +31,8 @@
         <th data-field="patient.phn" data-sortable="true">Personal Health #</th>
         <th data-field="patient.name" data-sortable="true">Full Name</th>
         <th data-field="patient.preferred_name" data-sortable="true">Preferred Name</th>
+        <th data-field="user.name" data-sortable="true">Doctor</th>
+        <th data-field="facility.name" data-sortable="true">Facility</th>
         <th data-field="reg_datetime" data-sortable="true">Registration</th>
         <th data-field="admit_datetime" data-sortable="true">Admittance</th>
       </tr>
