@@ -2,11 +2,9 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-App::error(function(ModelNotFoundException $e)
-{
+App::error(function(ModelNotFoundException $e){
     return Response::make('Not Found', 404);
 });
-
 
 class RecordController extends \BaseController {
 
@@ -16,10 +14,8 @@ class RecordController extends \BaseController {
 
     public function __construct(Record $record)
     {
-        //Store the model at the time of construct.
         $this->record = $record;
     }
-
 
     /**
     * Display a listing of the resource.
@@ -29,22 +25,27 @@ class RecordController extends \BaseController {
     public function index()
     {
         //If the URL includes query string 'search'
-        //and store the corresponding value in $keyword
-        if($keyword = Input::get('search')){
-            //Search for the keyword in database
-            //Then paginate the result
-            //Note paginate replace function such as all() or get()
-            $records = $this->record->where('subjective', 'LIKE', '%'.$keyword.'%')->paginate(20);
-            // Need to add objective and assessment. not sure how that will look.
+        $input = Input::all();
 
-            //Return the $record for view to paginate.
-            return View::make('record.index', ['records' => $records, 'keyword' => $keyword]);
-        }else{
-            //Show a list of all the record
-            $records = $this->record->paginate(20);
+        if (Request::ajax()){
+            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+                // get the rest of query string.
+                $qs = array_except($input, ['search']);
 
-            return View::make('record.index', ['records' => $records, 'keyword' => null]);
+                //Search and filter out the data.
+                $records =$this->record->search($qs)->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $records;
+            }
+            else{
+                //Show a list of all the record
+                $records = $this->record->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+                return $records;
+            }
         }
+
+        return View::make('record.index');
     }
 
 
@@ -71,24 +72,13 @@ class RecordController extends \BaseController {
         $input = Input::all();
 
         //Validation
-        if( ! $this->record->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('record.index')]);
-            }
-
+        if( ! $this->record->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->record->errors);
         }
 
         $this->record->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('Record stored', 201, ['Location'=>route('record.show', ['record' => $this->record->id])]);
-        }
-
-        return Redirect::route('record.index');
+        return Redirect::route('record.index')->with('flash_message_success', 'New entry have been created');
     }
 
 
@@ -102,12 +92,6 @@ class RecordController extends \BaseController {
     {
         //
         $record = $this->record->findOrFail($id);
-
-        //JSON API
-        if (Request::wantsJson())
-        {
-            return $record->toJson();
-        }
 
         return View::make('record.show', ['record' => $record]);
     }
@@ -141,24 +125,13 @@ class RecordController extends \BaseController {
 
         $record = $this->record->findOrFail($id);
 
-        if(! $record->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->record->errors, 400, ['Location'=>route('record.index')]);
-            }
-
+        if(! $record->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($record->errors);
         }
 
         $record->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('Record edited', 202, ['Location'=>route('record.show', ['record' => $id])]);
-        }
-
-        return Redirect::route('record.show', $id);
+        return Redirect::route('record.show', $id)->with('flash_message_success', 'The entry has been updated.');
     }
 
 
@@ -171,34 +144,31 @@ class RecordController extends \BaseController {
     public function destroy($id)
     {
         //
-        $record = $this->record->findOrFail($id)->delete();
+        $this->record->findOrFail($id)->delete();
 
-        if(Request::isJson()){
-            return Response::make('Record deleted', 202, ['Location'=>route('record.index')]);
-        }
-
-        return Redirect::route('record.index');
+        return Redirect::route('record.index')->with('flash_message_info', 'The entry has been deleted.');
     }
 
     public function search(){
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
-        /**
-        * qs_url() is a custom function.
-        * qs_url($path = null, $qs = array(), $secure = null)
-        * $path is a string of URL path
-        * $qs is a array of strings of querys
-        * $secure is boolean on whether to use https or http
-        * qs_url(user, ['email' => 'sample@example.com', 'search' => 'something'])
-        * will result in
-        * /user?email=sample@example.com&search=something
-        */
-        $url = qs_url('record', ['search' => $keyword]);
+        $url = qs_url('record', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /record/?search={$keyword}
-        return Redirect::to($url);
+        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
     }
 
+    public function ajax(){
+        $input = Input::all();
+
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $records){
+                $this->destroy($records['id']);
+            }
+        }
+        return "successfully deleted";
+    }
 
 }

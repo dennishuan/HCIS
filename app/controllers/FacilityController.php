@@ -27,24 +27,25 @@ class FacilityController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
-        if(array_key_exists('search', $input) && $input['search'] === 'true'){
-            // get the rest of query string.
-            $qs = array_except($input, ['search']);
+        if (Request::ajax()){
+            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+                // get the rest of query string.
+                $qs = array_except($input, ['search']);
 
-            $facilities = $this->facility->search($qs)->paginate(20);
+                //Search and filter out the data.
+                $facilities =$this->facility->search($qs)->select(['id', 'facilityname', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
-            //Return the $facility for view to paginate.
-            $keyword = null;
-            if(array_key_exists('keyword', $qs)){
-                $keyword = $qs['keyword'];
+                return $facilities;
             }
-            return View::make('facility.index', ['facilities' => $facilities, 'keyword' => $keyword]);
-        }else{
-            //Show a list of all the facility
-            $facilities = $this->facility->paginate(20);
+            else{
+                //Show a list of all the facility
+                $facilities = $this->facility->select(['id', 'facilityname', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
-            return View::make('facility.index', ['facilities' => $facilities, 'keyword' => null]);
+                return $facilities;
+            }
         }
+
+        return View::make('facility.index');
     }
 
 
@@ -71,24 +72,13 @@ class FacilityController extends \BaseController {
         $input = Input::all();
 
         //Validation
-        if( ! $this->facility->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->facility->errors, 400, ['Location'=>route('facility.index')]);
-            }
-
+        if( ! $this->facility->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->facility->errors);
         }
 
         $this->facility->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('facility stored', 201, ['Location'=>route('facility.show', ['facility' => $this->facility->id])]);
-        }
-
-        return Redirect::route('facility.index');
+        return Redirect::route('facility.index')->with('flash_message_success', 'New entry have been created');
     }
 
 
@@ -102,12 +92,6 @@ class FacilityController extends \BaseController {
     {
         //
         $facility = $this->facility->findOrFail($id);
-
-        //JSON API
-        if (Request::wantsJson())
-        {
-            return $facility->toJson();
-        }
 
         return View::make('facility.show', ['facility' => $facility]);
     }
@@ -141,24 +125,13 @@ class FacilityController extends \BaseController {
 
         $facility = $this->facility->findOrFail($id);
 
-        if(! $facility->fill($input)->isValid())
-        {
-            //For Json API
-            if(Request::isJson()){
-                return Response::make($this->facility->errors, 400, ['Location'=>route('facility.index')]);
-            }
-
+        if(! $facility->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($facility->errors);
         }
 
         $facility->save();
 
-        //For Json API
-        if(Request::isJson()){
-            return Response::make('facility edited', 202, ['Location'=>route('facility.show', ['facility' => $id])]);
-        }
-
-        return Redirect::route('facility.show', $id);
+        return Redirect::route('facility.show', $id)->with('flash_message_success', 'The entry has been updated.');
     }
 
 
@@ -171,13 +144,9 @@ class FacilityController extends \BaseController {
     public function destroy($id)
     {
         //
-        $facility = $this->facility->findOrFail($id)->delete();
+        $this->facility->findOrFail($id)->delete();
 
-        if(Request::isJson()){
-            return Response::make('facility deleted', 202, ['Location'=>route('facility.index')]);
-        }
-
-        return Redirect::route('facility.index');
+        return Redirect::route('facility.index')->with('flash_message_info', 'The entry has been deleted.');
     }
 
     public function search(){
@@ -187,7 +156,19 @@ class FacilityController extends \BaseController {
         $url = qs_url('facility', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
-        return Redirect::to($url);
+        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
+    }
+
+    public function ajax(){
+        $input = Input::all();
+
+        //For mass delete request
+        if ($input['action'] === 'delete'){
+            foreach ($input['input'] as $facilities){
+                $this->destroy($facilities['id']);
+            }
+        }
+        return "successfully deleted";
     }
 
 }
