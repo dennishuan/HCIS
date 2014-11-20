@@ -15,7 +15,7 @@
 					
 					<div class="input-group buffer">
 						<span class="input-group-addon">Sex:</span>
-						{{ Form::text('sex', null ['class' => 'form-control']) }}
+						{{ Form::text('sex', null, ['class' => 'form-control']) }}
 						{{ $errors->first('sex') }}
 					</div>
 					
@@ -85,7 +85,7 @@
 				
 					<div class="input-group">
 						<span class="input-group-addon">Personal Health Number:</span>
-						{{ Form::text('phn', nulln, ['class' => 'form-control']) }}
+						{{ Form::text('phn', null, ['class' => 'form-control']) }}
 						{{ $errors->first('phn') }}
 					</div>
 					
@@ -218,7 +218,7 @@
 				<!-- Buttons -->
 				<div class="col col-md-6 col-lg-6">
 					<div class="input-group buffer">
-						{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
 					</div>
 				</div>
 			{{ Form::close() }}
