@@ -33,13 +33,13 @@ class PatientController extends \BaseController {
                 $qs = array_except($input, ['search']);
 
                 //Search and filter out the data.
-                $patients =$this->patient->search($qs)->select(['id', 'patientname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $patients =$this->patient->search($qs)->select(['id', 'phn', 'name', 'preferred_name', 'sex', 'date_of_birth'])->get()->toJson();
 
                 return $patients;
             }
             else{
                 //Show a list of all the patient
-                $patients = $this->patient->select(['id', 'patientname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $patients = $this->patient->select(['id', 'phn', 'name', 'preferred_name', 'sex', 'date_of_birth'])->get()->toJson();
 
                 return $patients;
             }
