@@ -1,128 +1,227 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1> Create New Record</h1>
-
-    {{ Form::open(['route' => ['patient.record.store', $id]]) }}
-
-        <div>
-            <dt>{{ Form::label('notes', 'Notes: ') }}</dt>
-            <dd><div>{{ Form::text('notes' ) }}
-                {{ $errors->first('notes') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('name', 'Full Name: ') }}</dt>
-            <dd><div>{{ Form::input('text', 'name') }}
-                {{ $errors->first('name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('preferred_name', 'Preferred Name: ') }}</dt>
-            <dd><div>{{ Form::input('text', 'preferred_name') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('sex', 'Sex: ') }}</dt>
-            <dd><div>{{ Form::text('sex' ) }}
-                {{ $errors->first('sex') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('date_of_birth', 'Date of Birth: ') }}</dt>
-            <dd><div>{{ Form::text('date_of_birth' ) }}
-                {{ $errors->first('date_of_birth') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('address', 'Address: ') }}</dt>
-            <dd><div>{{ Form::text('address' ) }}
-                {{ $errors->first('address') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('postal_code', 'Postal Code: ') }}</dt>
-            <dd><div>{{ Form::text('postal_code' ) }}
-                {{ $errors->first('postal_code') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('home_phone', 'Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('home_phone' ) }}
-                {{ $errors->first('home_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('work_phone', 'Work phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('work_phone' ) }}
-                {{ $errors->first('work_phone') }}</div></dd>
-        </div>
-
-
-        <div>
-            <dt>{{ Form::label('mobile_phone', 'Mobile Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('mobile_phone' ) }}
-                {{ $errors->first('mobile_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_name', 'Emergency Contact Name: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_name' ) }}
-                {{ $errors->first('emergency_name') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_phone', 'Emergency Contact Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_phone' ) }}
-                {{ $errors->first('emergency_phone') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('emergency_relationship', 'Emergency Contact Relationship: ') }}</dt>
-            <dd><div>{{ Form::text('emergency_relationship' ) }}
-                {{ $errors->first('emergency_relationship') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('allergies', 'Allergies: ') }}</dt>
-            <dd><div>{{ Form::text('allergies' ) }}
-                {{ $errors->first('allergies') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('permanent_resident', 'Permanent Resident: ') }}</dt>
-            <dd><div>{{ Form::text('permanent_resident' ) }}
-                {{ $errors->first('permanent_resident') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('preferred_language', 'Preferred Language: ') }}</dt>
-            <dd><div>{{ Form::text('preferred_language' ) }}
-                {{ $errors->first('preferred_language') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('other_language', 'Other Language: ') }}</dt>
-            <dd><div>{{ Form::text('other_language' ) }}
-                {{ $errors->first('other_language') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('ethnic_background', 'Ethnic Background: ') }}</dt>
-            <dd><div>{{ Form::text('ethnic_background' ) }}
-                {{ $errors->first('ethnic_background') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('family_doctor', 'Family Doctor: ') }}</dt>
-            <dd><div>{{ Form::text('family_doctor' ) }}
-                {{ $errors->first('family_doctor') }}</div></dd>
-        </div>
-
-        <div>
-            {{ Form::submit('Create Record', ['class' => 'btn btn-info'])}}
-        </div>
-
-    {{ Form::close() }}
+	<div id="Patient" class="tab-pane fade in active container">
+		<h1>Create Record</h1>
+		<div class="row">
+		{{ Form::open(['route' => 'record.store']) }}
+			<!-- Left side of form -->
+				<div class="col col-md-6 col-lg-6">
+					<div class="input-group">
+						<span class="input-group-addon">Legal Name:</span>
+						{{ Form::text('name', null, ['class' => 'form-control']) }}
+						{{ $errors->first('name') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Sex:</span>
+						{{ Form::text('sex', null, ['class' => 'form-control']) }}
+						{{ $errors->first('sex') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Address:</span>
+						{{ Form::text('address', null, ['class' => 'form-control']) }}
+						{{ $errors->first('address') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Home Phone:</span>
+						{{ Form::text('home_phone', null, ['class' => 'form-control']) }}
+						{{ $errors->first('home_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Mobile Phone:</span>
+						{{ Form::text('mobile_phone', null, ['class' => 'form-control']) }}
+						{{ $errors->first('mobile_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contact Phone:</span>
+						{{ Form::text('emergency_phone', null, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Allergies:</span>
+						{{ Form::text('allergies', null, ['class' => 'form-control']) }}
+						{{ $errors->first('allergies') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Preferred Language:</span>
+						{{ Form::text('preferred_language', null, ['class' => 'form-control']) }}
+						{{ $errors->first('preferred_language') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Ethnic Background:</span>
+						{{ Form::text('ethnic_background', null, ['class' => 'form-control']) }}
+						{{ $errors->first('ethnic_background') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Priority:</span>
+						{{ Form::text('priority', null, ['class' => 'form-control']) }}
+						{{ $errors->first('priority') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Admittance Date:</span>
+						{{ Form::text('admit_datetime', null, ['class' => 'form-control']) }}
+						{{ $errors->first('admit_datetime') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Arrival Mode:</span>
+						{{ Form::text('arrival_mode', null, ['class' => 'form-control']) }}
+						{{ $errors->first('arrival_mode') }}
+					</div>
+				</div>
+				
+				<!-- Right side of form -->
+				<div class="col col-md-6 col-lg-6">	
+				
+					<div class="input-group">
+						<span class="input-group-addon">Personal Health Number:</span>
+						{{ Form::text('phn', null, ['class' => 'form-control']) }}
+						{{ $errors->first('phn') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Preferred Name:</span>
+						{{ Form::text('preferred_name', null, ['class' => 'form-control']) }}
+						{{ $errors->first('preferred_name') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Date of Birth:</span>
+						{{ Form::text('date_of_birth', null, ['class' => 'form-control']) }}
+						{{ $errors->first('date_of_birth') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Postal Code:</span>
+						{{ Form::text('postal_code', null, ['class' => 'form-control']) }}
+						{{ $errors->first('phn') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Work Phone:</span>
+						{{ Form::text('work_phone', null, ['class' => 'form-control']) }}
+						{{ $errors->first('work_phone') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contact Name:</span>
+						{{ Form::text('emergency_name', null, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_name') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Emergency Contract Relationship:</span>
+						{{ Form::text('emergency_relationship', null, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_relationship') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Permanent Resident:</span>
+						{{ Form::text('permanent_resident', null, ['class' => 'form-control']) }}
+						{{ $errors->first('permanent_resident') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Preferred Language:</span>
+						{{ Form::text('preferred_language', null, ['class' => 'form-control']) }}
+						{{ $errors->first('preferred_language') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Doctor:</span>
+						{{ Form::text('family_doctor', null, ['class' => 'form-control']) }}
+						{{ $errors->first('family_doctor') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Registration Date:</span>
+						{{ Form::text('reg_datetime', null, ['class' => 'form-control']) }}
+						{{ $errors->first('reg_datetime') }}
+					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Chief Complaint Code:</span>
+						{{ Form::text('chief_compl_code', null, ['class' => 'form-control']) }}
+						{{ $errors->first('chief_compl_code') }}
+					</div>
+				</div>
+				
+				<!-- Text Fields -->
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="stated_complaint">Stated Complaint</label>
+					</div>
+					<textarea class="form-control" rows="3" id="stated_complaint" placeholder="Stated Complaint"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="chief_complaint">Chief Complaint</label>
+					</div>
+					<textarea class="form-control" rows="3" id="chief_complaint" placeholder="Chief Complaint"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="subjective">Subjective</label>
+					</div>
+					<textarea class="form-control" rows="3" id="subjective" placeholder="Subjective"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="objective">Objective</label>
+					</div>
+					<textarea class="form-control" rows="3" id="objective" placeholder="Objective"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="assessment">Assessment</label>
+					</div>
+					<textarea class="form-control" rows="3" id="assessment" placeholder="Assessment"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="prescription">Prescription</label>
+					</div>
+					<textarea class="form-control" rows="3" id="prescription" placeholder="Prescription"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="remarks">Remarks</label>
+					</div>
+					<textarea class="form-control" rows="3" id="remarks" placeholder="Remarks"></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="plan">Plan</label>
+					</div>
+					<textarea class="form-control" rows="3" id="plan" placeholder="Plan"></textarea>
+				</div>
+				
+				
+				<!-- Buttons -->
+				<div class="col col-md-6 col-lg-6">
+					<div class="input-group buffer">
+						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+					</div>
+				</div>
+			{{ Form::close() }}
+		</div>
+	</div>
 @stop

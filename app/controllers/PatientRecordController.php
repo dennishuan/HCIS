@@ -32,6 +32,11 @@ class PatientRecordController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
+        //Show a list of all the record
+        $records = $this->patient->findOrFail($id)->record()->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+
+        return $records;
+
         if (Request::ajax()){
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
@@ -44,7 +49,7 @@ class PatientRecordController extends \BaseController {
             }
             else{
                 //Show a list of all the record
-                $records = $this->patient->findOrFail($id)->record()(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $records = $this->patient->findOrFail($id)->record()->select(['id', 'recordname', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
                 return $records;
             }

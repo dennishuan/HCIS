@@ -1,76 +1,224 @@
 @extends('layouts.master')
 
 @section('content')
-
-    <h1>Record:</h1>
-
-    <dl>
-        <dt>Notes</dt>
-        <dd><div>{{ $record->notes }}</div></dd>
-
-        <dt>Full Name:</dt>
-        <dd><div>{{ $record->name }}</div></dd>
-
-        <dt>Preferred Name:</dt>
-        <dd><div>{{ $record->preferred_name }}</div></dd>
-
-        <dt>Sex:</dt>
-        <dd><div>{{ $record->sex }}</div></dd>
-
-        <dt>Date of Birth:</dt>
-        <dd><div>{{ $record->date_of_birth }}</div></dd>
-
-        <dt>Address:</dt>
-        <dd><div>{{ $record->address }}</div></dd>
-
-        <dt>Postal Code:</dt>
-        <dd><div>{{ $record->postal_code }}</div></dd>
-
-        <dt>Home Phone:</dt>
-        <dd><div>{{ $record->home_phone }}</div></dd>
-
-        <dt>Work Phone:</dt>
-        <dd><div>{{ $record->work_phone }}</div></dd>
-
-        <dt>Mobile Phone:</dt>
-        <dd><div>{{ $record->mobile_phone }}</div></dd>
-
-        <dt>Emergency Contact Name:</dt>
-        <dd><div>{{ $record->emergency_name }}</div></dd>
-
-        <dt>Emergency Contact Phone Number:</dt>
-        <dd><div>{{ $record->emergency_phone }}</div></dd>
-
-        <dt>Emergency Contact Relationship:</dt>
-        <dd><div>{{ $record->emergency_relationship }}</div></dd>
-
-        <dt>Allergies:</dt>
-        <dd><div>{{ $record->allergies }}</div></dd>
-
-        <dt>Permanent Resident:</dt>
-        <dd><div>{{ $record->permanent_resident }}</div></dd>
-
-        <dt>Preferred Language:</dt>
-        <dd><div>{{ $record->preferred_language }}</div></dd>
-
-        <dt>Other Language:</dt>
-        <dd><div>{{ $record->other_language }}</div></dd>
-
-        <dt>Ethnic Background:</dt>
-        <dd><div>{{ $record->ethnic_background }}</div></dd>
-
-        <dt>Family Doctor:</dt>
-        <dd><div>{{ $record->family_doctor }}</div></dd>
-    </dl>
-
-    <nav>
-        {{ link_to_route('patient.record.index', 'Index', [$id], ['class' => 'btn btn-info']) }}
-        |
-        {{ link_to_route('patient.record.edit', 'Edit', [$id, $record->id], ['class' => 'btn btn-info']) }}
-        |
-        {{ Form::open(['route' => ['patient.record.destroy', $id, $record->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-        {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-        {{ Form::close() }}
-    </nav>
-
+	<div id="PatientRecord" class="tab-pane fade in active container">
+		<h1> {{$record->patient->name}}'s Record </h1>
+		<div class="row">
+			{{ Form::open(['route' => 'record.store', 'method' => 'POST']) }}
+			
+			<!-- Left side of form -->
+				<div class="col col-md-6 col-lg-6">
+					<fieldset disabled>
+						<div class="input-group">
+							<span class="input-group-addon">Legal Name:</span>
+							{{ Form::text('name', $record->patient->name, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Sex:</span>
+							{{ Form::text('sex', $record->patient->sex, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Address:</span>
+							{{ Form::text('address', $record->patient->address, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Home Phone:</span>
+							{{ Form::text('home_phone', $record->patient->home_phone, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Mobile Phone:</span>
+							{{ Form::text('mobile_phone', $record->patient->mobile_phone, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Emergency Contact Phone:</span>
+							{{ Form::text('emergency_phone', $record->patient->emergency_phone, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Allergies:</span>
+							{{ Form::text('allergies', $record->patient->allergies, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Preferred Language:</span>
+							{{ Form::text('preferred_language', $record->patient->preferred_language, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Ethnic Background:</span>
+							{{ Form::text('ethnic_background', $record->patient->ethnic_background, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Priority:</span>
+							{{ Form::text('priority', $record->priority, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Admittance Date:</span>
+							{{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Arrival Mode:</span>
+							{{ Form::text('arrival_mode', $record->arrival_mode, ['class' => 'form-control']) }}
+						</div>
+					</fieldset>
+				</div>
+				
+				<!-- Right side of form -->
+				<div class="col col-md-6 col-lg-6">	
+					<fieldset disabled>
+					
+						<div class="input-group">
+							<span class="input-group-addon">Personal Health Number:</span>
+							{{ Form::text('phn', $record->patient->phn, ['class' => 'form-control']) }}
+						</div>
+					
+						<div class="input-group buffer">
+							<span class="input-group-addon">Preferred Name:</span>
+							{{ Form::text('preferred_name', $record->patient->preferred_name, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Date of Birth:</span>
+							{{ Form::text('date_of_birth', $record->patient->date_of_birth, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Postal Code:</span>
+							{{ Form::text('postal_code', $record->patient->postal_code, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Work Phone:</span>
+							{{ Form::text('work_phone', $record->patient->work_phone, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Emergency Contact Name:</span>
+							{{ Form::text('emergency_name', $record->patient->emergency_name, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Emergency Contract Relationship:</span>
+							{{ Form::text('emergency_relationship', $record->patient->emergency_relationship, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Permanent Resident:</span>
+							{{ Form::text('permanent_resident', $record->patient->permanent_resident, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Preferred Language:</span>
+							{{ Form::text('preferred_language', $record->patient->preferred_language, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Doctor:</span>
+							{{ Form::text('family_doctor', $record->patient->family_doctor, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Registration Date:</span>
+							{{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control']) }}
+						</div>
+						
+						<div class="input-group buffer">
+							<span class="input-group-addon">Chief Complaint Code:</span>
+							{{ Form::text('chief_compl_code', $record->chief_compl_code, ['class' => 'form-control']) }}
+						</div>
+					</fieldset>
+				</div>
+				
+				<!-- Text Fields -->
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="stated_complaint">Stated Complaint</label>
+					</div>
+					<textarea class="form-control" rows="3" id="stated_complaint" placeholder="Stated Complaint"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="chief_complaint">Chief Complaint</label>
+					</div>
+					<textarea class="form-control" rows="3" id="chief_complaint" placeholder="Chief Complaint"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="subjective">Subjective</label>
+					</div>
+					<textarea class="form-control" rows="3" id="subjective" placeholder="Subjective"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="objective">Objective</label>
+					</div>
+					<textarea class="form-control" rows="3" id="objective" placeholder="Objective"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="assessment">Assessment</label>
+					</div>
+					<textarea class="form-control" rows="3" id="assessment" placeholder="Assessment"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="prescription">Prescription</label>
+					</div>
+					<textarea class="form-control" rows="3" id="prescription" placeholder="Prescription"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="remarks">Remarks</label>
+					</div>
+					<textarea class="form-control" rows="3" id="remarks" placeholder="Remarks"
+					disabled></textarea>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<div class="input-group buffer">
+						<label for="plan">Plan</label>
+					</div>
+					<textarea class="form-control" rows="3" id="plan" placeholder="Plan"
+					disabled></textarea>
+				</div>
+				
+				
+				<!-- Buttons -->
+				<div class="col col-md-6 col-lg-6">
+					<div class="input-group buffer">
+						<nav>
+							{{ link_to_route('record.index', 'Index', [], ['class' => 'btn btn-info']) }}
+							|
+							{{ link_to_route('record.edit', 'Edit', [$record->id], ['class' => 'btn btn-info']) }}
+							|
+							{{ Form::open(['route' => ['record.destroy', $record->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+								{{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+							{{ Form::close() }}
+						</nav>
+					</div>
+				</div>
+			{{ Form::close() }}
+		</div>
+	</div>
 @stop

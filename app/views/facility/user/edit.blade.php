@@ -1,49 +1,69 @@
 @extends('layouts.master')
 
+
 @section('content')
-    <h1> Edit User</h1>
 
-    {{ Form::model($user, ['method'=>'PUT', 'route'=>['facility.user.update', $id, $user->id]]) }}
+  <div id="User" class="tab-pane fade in active container">
+    <h1>Edit: {{ $user->name }}</h1>
+    <div class="row">
+      {{ Form::model($user, ['method'=>'PUT', 'route'=>['user.update', $user->id]]) }}
 
-        <div>
-            <dt>{{ Form::label('username', 'Username: ') }}</dt>
-            <dd><div>{{ Form::text('username' ) }}
-                {{ $errors->first('username') }}</div></dd>
+      <!-- Left side of form -->
+        <div class="col col-md-6 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">Username:</span>
+            {{ Form::text('username', $user->username, ['class' => 'form-control']) }}
+            {{ $errors->first('username')}}
+          </div>
+
+          <div class="input-group buffer">
+            <span class="input-group-addon">Name:</span>
+            {{ Form::text('name', $user->name, ['class' => 'form-control'])}}
+            {{ $errors->first('name')}}
+          </div>
+
+          <div class="input-group buffer">
+            <span class="input-group-addon">Phone Number:</span>
+            {{ Form::text('phone', $user->phone, ['class' => 'form-control'])}}
+            {{ $errors->first('phone')}}
+          </div>
+
+          <div class="input-group buffer">
+            {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+          </div>
         </div>
 
-        <div>
-            <dt>{{ Form::label('password', 'Password: ') }}</dt>
-            <dd><div>{{ Form::password('password') }}
-                {{ $errors->first('password') }}</div></dd>
-       </div>
+        <!-- Right side of form -->
+        <div class="col col-md-6 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">Password:</span>
+            {{ Form::password('password', ['class' => 'form-control'])}}
+            {{ $errors->first('password')}}
+          </div>
+            
+          <div class="input-group buffer">
+            <span class="input-group-addon">Confirm Password:</span>
+            {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
+            {{ $errors->first('password')}}
+          </div>
+            
+          <div class="input-group buffer">
+            <span class="input-group-addon">Type:</span>
+            {{ Form::select('type', array(' ' => ' ', 'admin' => 'admin', 'doctor' => 'doctor', 'nurse' => 'nurse'), 
+               $user->type, ['class' => 'form-control'])}}
+            {{ $errors->first('type')}}
+          </div>
 
-        <div>
-            <dt>{{ Form::label('type', 'Type: ') }}</dt>
-            <dd><div>{{ Form::input('enum', 'Type') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('name', 'Name: ') }}</dt>
-            <dd><div>{{ Form::text('name' ) }}
-                {{ $errors->first('name') }}</div></dd>
+          <div class="input-group buffer">
+            <span class="input-group-addon">Email:</span>
+            {{ Form::text('email', $user->email, ['class' => 'form-control'])}}
+            {{ $errors->first('email')}}
+          </div>
         </div>
+      {{ Form::close()}}
+    </div>
+  </div>
 
-        <div>
-            <dt>{{ Form::label('email', 'Email: ') }}</dt>
-            <dd><div>{{ Form::text('email' ) }}
-                {{ $errors->first('email') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('phone', 'Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('phone' ) }}
-                {{ $errors->first('phone') }}</div></dd>
-        </div>
-
-        <div>
-            {{ Form::submit('Edit User', ['class' => 'btn btn-info'])}}
-        </div>
-
-    {{ Form::close() }}
 @stop
+
+
