@@ -18,7 +18,7 @@ class Patient extends Eloquent{
     {
         //Valid the input.
         $this->id = Auth::id();
-        $rules = array('phn' => 'required|unique:patients,phn' . $id . '|numeric|size:9999999999',
+        $rules = array('phn' => 'required|unique:patients,phn' . $this->id . '|numeric|size:9999999999',
                        'name' => 'required|alpha_spaces|max:255',
                        'preferred_name' => 'required|alpha_spaces|max:255',
                        'sex' => 'required|in:female,male',
@@ -28,7 +28,7 @@ class Patient extends Eloquent{
                        'home_phone' => 'between:10,15',
                        'work_phone' => 'between:10,15',
                        'mobile_phone' => 'between:10,15',
-                       'email' => 'email|unique:users,email' . $id . '|max:255',
+                       'email' => 'email|unique:users,email' . $this->id . '|max:255',
                        'emergency_name' => 'alpha_spaces',
                        'emergency_phone' => 'between:10,15',
                        'emergency_relationship' => 'alpha',

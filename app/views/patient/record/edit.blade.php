@@ -25,7 +25,7 @@
 
         <div>
             <dt>{{ Form::label('sex', 'Sex: ') }}</dt>
-            <dd><div>{{ Form::text('sex' ) }}
+            <dd><div>{{ Form::select('sex', array(' ' => ' ', 'male' => 'male', 'female' => 'female'), $patient->sex) }}
                 {{ $errors->first('sex') }}</div></dd>
         </div>
 

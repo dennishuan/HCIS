@@ -98,6 +98,7 @@ return array(
     |
     */
     "alpha_spaces"     => "The :attribute may only contain letters and spaces.",
+    /*"valid_phone"      => "Must be a valid phone number.",*/
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Attributes
