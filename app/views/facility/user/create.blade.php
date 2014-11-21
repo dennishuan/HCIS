@@ -1,49 +1,60 @@
 @extends('layouts.master')
 
+
 @section('content')
-    <h1> Create New User</h1>
+  <div id="User" class="tab-pane fade in active container">
+    <h1>Create User</h1>
+    <div class="row">
+      {{ Form::open(['route' => 'user.store']) }}
 
-    {{ Form::open(['route' => ['facility.user.store', $id]]) }}
+      <!-- Left side of form -->
+        <div class="col col-md-6 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">Username:</span>
+            {{ Form::text('username', null, ['class' => 'form-control'])}}
+            {{ $errors->first('username')}}
+          </div>
 
-        <div>
-            <dt>{{ Form::label('username', 'Username: ') }}</dt>
-            <dd><div>{{ Form::text('username' ) }}
-                {{ $errors->first('username') }}</div></dd>
-        </div>
+          <div class="input-group buffer">
+            <span class="input-group-addon">Name:</span>
+            {{ Form::text('name', null, ['class' => 'form-control'])}}
+            {{ $errors->first('name')}}
+          </div>
 
-        <div>
-            <dt>{{ Form::label('password', 'Password: ') }}</dt>
-            <dd><div>{{ Form::password('password') }}
-                {{ $errors->first('password') }}</div></dd>
-       </div>
+          <div class="input-group buffer">
+            <span class="input-group-addon">Phone Number:</span>
+            {{ Form::text('phone', null, ['class' => 'form-control'])}}
+            {{ $errors->first('phone')}}
+          </div>
 
-        <div>
-            <dt>{{ Form::label('type', 'Type: ') }}</dt>
-            <dd><div>{{ Form::input('enum', 'Type') }}
-                {{ $errors->first('preferred_name') }}</div></dd>
-       </div>
-
-        <div>
-            <dt>{{ Form::label('name', 'Name: ') }}</dt>
-            <dd><div>{{ Form::text('name' ) }}
-                {{ $errors->first('name') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('email', 'Email: ') }}</dt>
-            <dd><div>{{ Form::text('email' ) }}
-                {{ $errors->first('email') }}</div></dd>
-        </div>
-
-        <div>
-            <dt>{{ Form::label('phone', 'Phone Number: ') }}</dt>
-            <dd><div>{{ Form::text('phone' ) }}
-                {{ $errors->first('phone') }}</div></dd>
-        </div>
-
-        <div>
+          <div class="input-group buffer">
             {{ Form::submit('Create User', ['class' => 'btn btn-info'])}}
+          </div>
         </div>
 
-    {{ Form::close() }}
+        <!-- Right side of form -->
+        <div class="col col-md-6 col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">Password:</span>
+            {{ Form::password('password', ['class' => 'form-control'])}}
+            {{ $errors->first('password')}}
+          </div>
+
+          <!--NOTE: Type is text not dropdown menu, fix if need be-->
+          <div class="input-group buffer">
+            <span class="input-group-addon">Type:</span>
+            {{ Form::text('type', null, ['class' => 'form-control'])}}
+            {{ $errors->first('type')}}
+          </div>
+
+          <div class="input-group buffer">
+            <span class="input-group-addon">Email:</span>
+            {{ Form::text('email', null, ['class' => 'form-control'])}}
+            {{ $errors->first('email')}}
+          </div>
+        </div>
+      {{ Form::close()}}
+    </div>
+  </div>
 @stop
+

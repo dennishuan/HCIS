@@ -1,48 +1,45 @@
+
+
 @extends('layouts.master')
 
 @section('content')
 
-    <!--Search bar-->
-    {{Form::open(['route'=>['patient.record.search', $id]])}}
-        {{Form::text('keyword', $keyword, ['placeholder' => 'Notes', 'size' => '25']) }}
-        {{Form::submit('Search', ['class' => 'btn'])}}
-        {{ link_to_route('patient.record.create', 'Create', [$id], ['class' => 'btn btn-info']) }}
-    {{Form::close()}}
+<!--Button-->
+<div id="toolbar" class="btn-group btn-default">
+  <button class="btn btn-default" id="create">
+    <i class="glyphicon glyphicon-file"></i> <span>New</span>
+  </button>
+  <button class="btn btn-default" id="show">
+    <i class="glyphicon glyphicon-new-window"></i> <span>Show</span>
+  </button>
+  <button class="btn btn-default" id="edit">
+    <i class="glyphicon glyphicon-edit"></i> <span>Edit</span>
+  </button>
+  <button class="btn btn-default" id="delete">
+    <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+  </button>
 
-    <!--Table-->
-    <table class="table table-hover table-condensed">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>id</th>
-                <th>record_id</th>
-                <th>notes</th>
-                <th>action</th>
-            </tr>
-        </thead>
+</div>
 
-        <tbody>
-            @foreach($records as $record)
-            <tr>
-                <td>{{ $record->id }}</td>
-                <td>{{ $record->id }}</td>
-                <td>{{ $record->record_id }}</td>
-                <td>{{ $record->notes }}</td>
 
-                <td>{{ link_to_route('patient.record.show', 'Details', [$id, $record->id], ['class' => 'btn btn-info']) }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div>
-        <!-- Pagination bar -->
-        <!---------------------------------------------------------------
-            appends() to maintian other part of the query string
-            Else the links() will not include the rest of query string.
-            Just copy the whole thing and change the variable if you do
-            not understand what I am talking about.
-        ----------------------------------------------------------------->
-        {{ $records->appends(Request::except('page'))->links() }}
-    </div>
+<!--Table-->
+<div id="list">
+  <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-columns="true" data-toolbar="#toolbar">
+    <thead>
+      <tr>
+        <th data-field="state" data-checkbox="true"></th>
+        <th data-field="patient.phn" data-sortable="true">Personal Health #</th>
+        <th data-field="patient.name" data-sortable="true">Full Name</th>
+        <th data-field="patient.preferred_name" data-sortable="true">Preferred Name</th>
+        <th data-field="user.name" data-sortable="true">Doctor</th>
+        <th data-field="facility.name" data-sortable="true">Facility</th>
+        <th data-field="reg_datetime" data-sortable="true">Registration</th>
+        <th data-field="admit_datetime" data-sortable="true">Admittance</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<input id="token" type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 @stop

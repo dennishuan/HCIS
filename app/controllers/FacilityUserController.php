@@ -32,6 +32,7 @@ class FacilityUserController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
+
         if (Request::ajax()){
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
@@ -44,7 +45,7 @@ class FacilityUserController extends \BaseController {
             }
             else{
                 //Show a list of all the user
-                $users = $this->facility->findOrFail($id)->user()(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+                $users = $this->facility->findOrFail($id)->user()->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
                 return $users;
             }
