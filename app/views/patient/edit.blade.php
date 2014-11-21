@@ -38,35 +38,34 @@
 						{{ $errors->first('work_phone') }}
 					</div>
 					
+                    <div class="input-group buffer">
+						<span class="input-group-addon">Email:</span>
+						{{ Form::text('email', $patient->email, ['class' => 'form-control']) }}
+						{{ $errors->first('email') }}
+					</div>
+                    
 					<div class="input-group buffer">
-						<span class="input-group-addon">Emergency Contact Name:</span>
-						{{ Form::text('emergency_name', $patient->emergency_name, ['class' => 'form-control']) }}
-						{{ $errors->first('emergency_name') }}
+						<span class="input-group-addon">Emergency Contact Phone:</span>
+						{{ Form::text('emergency_phone', $patient->emergency_phone, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_phone') }}
+					</div>
+                    
+					<div class="input-group buffer">
+						<span class="input-group-addon">Allergies:</span>
+						{{ Form::text('allergies', $patient->allergies, ['class' => 'form-control']) }}
+						{{ $errors->first('allergies') }}
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Emergency Contact Relationship:</span>
-						{{ Form::text('emergency_relationship', $patient->emergency_relationship, ['class' => 'form-control']) }}
-						{{ $errors->first('emergency_relationship') }}
+						<span class="input-group-addon">Preferred Language:</span>
+						{{ Form::text('preferred_language', $patient->preferred_language, ['class' => 'form-control']) }}
+						{{ $errors->first('preferred_language') }}
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Permanent Resident:</span>
-						{{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'), 
-                           $patient->permanent_resident, ['class' => 'form-control'])}}
-						{{ $errors->first('permanent_resident') }}
-					</div>
-					
-					<div class="input-group buffer">
-						<span class="input-group-addon">Other Language:</span>
-						{{ Form::text('other_language', $patient->other_language, ['class' => 'form-control']) }}
-						{{ $errors->first('other_language') }}
-					</div>
-					
-					<div class="input-group buffer">
-						<span class="input-group-addon">Family Doctor:</span>
-						{{ Form::text('family_doctor', $patient->family_doctor, ['class' => 'form-control']) }}
-						{{ $errors->first('family_doctor') }}
+						<span class="input-group-addon">Ethnic Background:</span>
+						{{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control']) }}
+						{{ $errors->first('ethnic_background') }}
 					</div>
 							
 					<div class="input-group buffer">
@@ -108,28 +107,36 @@
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Emergency Contact Phone:</span>
-						{{ Form::text('emergency_phone', $patient->emergency_phone, ['class' => 'form-control']) }}
-						{{ $errors->first('emergency_phone') }}
+						<span class="input-group-addon">Emergency Contact Name:</span>
+						{{ Form::text('emergency_name', $patient->emergency_name, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_name') }}
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Allergies:</span>
-						{{ Form::text('allergies', $patient->allergies, ['class' => 'form-control']) }}
-						{{ $errors->first('allergies') }}
+						<span class="input-group-addon">Emergency Contact Relationship:</span>
+						{{ Form::text('emergency_relationship', $patient->emergency_relationship, ['class' => 'form-control']) }}
+						{{ $errors->first('emergency_relationship') }}
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Preferred Language:</span>
-						{{ Form::text('preferred_language', $patient->preferred_language, ['class' => 'form-control']) }}
-						{{ $errors->first('preferred_language') }}
+						<span class="input-group-addon">Permanent Resident:</span>
+						{{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'), 
+                           $patient->permanent_resident, ['class' => 'form-control'])}}
+						{{ $errors->first('permanent_resident') }}
 					</div>
 					
 					<div class="input-group buffer">
-						<span class="input-group-addon">Ethnic Background:</span>
-						{{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control']) }}
-						{{ $errors->first('ethnic_background') }}
+						<span class="input-group-addon">Other Language:</span>
+						{{ Form::text('other_language', $patient->other_language, ['class' => 'form-control']) }}
+						{{ $errors->first('other_language') }}
 					</div>
+					
+					<div class="input-group buffer">
+						<span class="input-group-addon">Family Doctor:</span>
+						{{ Form::text('family_doctor', $patient->family_doctor, ['class' => 'form-control']) }}
+						{{ $errors->first('family_doctor') }}
+					</div>
+                    
 				</div>
 			{{ Form::close() }}
 		</div>

@@ -221,7 +221,7 @@
 				<!-- Buttons -->
 				<div class="col col-md-6 col-lg-6">
 					<div class="input-group buffer">
-						{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+						{{ Form::submit('Create Record', ['class' => 'btn btn-info'])}}
 					</div>
 				</div>
 			{{ Form::close() }}

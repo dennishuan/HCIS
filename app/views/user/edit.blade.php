@@ -49,7 +49,7 @@
             
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
-            {{ Form::select('type', array(' ' => ' ', 'admin' => 'admin', 'doctor' => 'doctor', 'nurse' => 'nurse'), 
+            {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'), 
                $user->type, ['class' => 'form-control'])}}
             {{ $errors->first('type')}}
           </div>

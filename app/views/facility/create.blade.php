@@ -44,6 +44,9 @@
             <span class="input-group-addon">Phone Number:</span>
             {{ Form::text('phone', null, ['class' => 'form-control']) }}
             {{ $errors->first('phone') }}
+            <span class="input-group-addon">Fax Number:</span>
+            {{ Form::text('fax', null, ['class' => 'form-control']) }}
+            {{ $errors->first('fax')}}
           </div>
 
           <div class="input-group buffer">
