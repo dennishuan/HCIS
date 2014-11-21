@@ -10,14 +10,17 @@ class Record extends \Eloquent {
 
     protected $fillable = ['stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'remarks', 'plan'];
 
-    public static $rules = [
+    ppublic static $rules = [
+        'priority' => 'required|in:1,2,3,4,5,6',
+        'reg_datetime' => 'required|date|timezone',
+        'admit_datetime' => 'required|date|timezone',
+        'chief_compl' => 'required',
+        'chief_compl_code' => 'required',
         'stated_compl' => 'required',
         'subjective' => 'required',
         'objective' => 'required',
         'assessment' => 'required',
-        'prescription' => 'required',
-        'remarks' => 'required',
-        'plan' => 'required'
+
     ];
 
     public function search($qs)
