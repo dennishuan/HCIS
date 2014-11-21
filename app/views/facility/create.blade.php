@@ -14,10 +14,10 @@
             {{ $errors->first('name') }}
           </div>
 
-          <!-- NOTE TYPE IS NOT AN ENUM -->
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
-            {{ Form::text('type', null, ['class' => 'form-control']) }}
+            {{ Form::select('type', array(' ' => ' ', 'hospital' => 'Hospital', 'clinic' => 'Clinic'), 
+               ' ', ['class' => 'form-control']) }}
             {{ $errors->first('type') }}
           </div>
 

@@ -40,10 +40,10 @@
             {{ $errors->first('password')}}
           </div>
 
-          <!--NOTE: Type is text not dropdown menu, fix if need be-->
           <div class="input-group buffer">
             <span class="input-group-addon">Type:</span>
-            {{ Form::text('type', null, ['class' => 'form-control'])}}
+            {{ Form::select('type', array(' ' => ' ', 'admin' => 'admin', 'doctor' => 'doctor', 'nurse' => 'nurse'), 
+               ' ', ['class' => 'form-control'])}}
             {{ $errors->first('type')}}
           </div>
 

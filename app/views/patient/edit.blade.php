@@ -84,7 +84,7 @@
 						
 					<div class="input-group buffer">
 						<span class="input-group-addon">Sex:</span>
-						{{ Form::select('sex', array(' ' => ' ', 'male' => 'male', 'female' => 'female'), 
+						{{ Form::select('sex', array(' ' => ' ', 'male' => 'Male', 'female' => 'Female'), 
                            $patient->sex, ['class' => 'form-control'])}}
 						{{ $errors->first('sex') }}
 					</div>
