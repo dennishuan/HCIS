@@ -44,7 +44,7 @@
           <div class="input-group buffer">
             <span class="input-group-addon">Confirm Password:</span>
             {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
-            {{ $errors->first('password')}}
+            <!--{{ $errors->first('password')}}-->
           </div>
             
           <div class="input-group buffer">

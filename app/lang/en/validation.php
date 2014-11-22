@@ -97,8 +97,9 @@ return array(
     | Custom rules created in app/validators.php
     |
     */
-    "alpha_spaces"     => "The :attribute may only contain letters and spaces.",
-    /*"valid_phone"      => "Must be a valid phone number.",*/
+    "alpha_spaces"     => "The :attribute may only contain letters, spaces, '.' and '-'.",
+    "valid_phone"      => "Must be a valid phone number.",
+    "date_time"        => "Must be of format yyyy/mm/dd hh/mm/ss.",
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Attributes
