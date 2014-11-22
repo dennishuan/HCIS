@@ -26,9 +26,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     //Enable mass assignment for the fields.
     protected $fillable = ['username', 'password', 'password_confirmation', 'type', 'email', 'name', 'phone'];
 
-
-    protected $id = null;
-
     public function search($qs){
         // Init result then start to filter it down.
         $result = $this;
@@ -56,14 +53,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function isValid()
     {
         //Valid the input.
-        $this->id = Auth::id();
-        $rules = array('username' => 'required|alpha_num|max:255|unique:users,username,' . $this->id,
+        
+        $rules = array('username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
                         'password' => 'required|confirmed|max:255',
                         'password_confirmation' => 'required|same:password|max:255',
                         'type' => 'required|in:admin,doctor,nurse',
                         'name' => 'required|alpha_spaces|max:255',
                         'phone' => 'required|between:10,15',
-                        'email' => 'required|email|unique:users,email,' . $this->id . '|max:255');
+                        'email' => 'required|email|unique:users,email,' . $this->attributes['id'] . '|max:255');
 
         $validation = Validator::make($this->attributes, $rules);
 
