@@ -22,7 +22,7 @@
 
 <!--Table-->
 <div id="list">
-  <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-columns="true" data-toolbar="#toolbar">
+  <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-columns="true" data-toolbar="#toolbar" data-click-to-select="true">
     <thead>
       <tr>
         <th data-field="state" data-checkbox="true"></th>

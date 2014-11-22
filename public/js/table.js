@@ -5,16 +5,16 @@ $(function () {
   .on('all.bs.table', function (e, name, args) {
     console.log('Event:', name, ', data:', args);
   })
-  //    .on('click-row.bs.table', function (e, row, $element) {
-  //        var path = $(location).attr('pathname');
-  //
-  //        window.location.href = path + '/' + row.id;
-  //    });
+  .on('dbl-click-row.bs.table', function (e, row, $element) {
+    var path = $(location).attr('pathname');
+
+    window.open(path + '/' + row.id);
+  });
 
   $('#create').click(function () {
     var path = $(location).attr('pathname') + '/create';
 
-    window.location.href = path;
+    window.open(path);
   });
 
   $('#show').click(function (){
