@@ -12,8 +12,8 @@ class Record extends \Eloquent {
 
     public static $rules = [
         'priority' => 'required|in:1,2,3,4,5,6',
-        'reg_datetime' => 'required|date|timezone',
-        'admit_datetime' => 'required|date|timezone',
+        'reg_datetime' => 'required|date|date_time',
+        'admit_datetime' => 'required|date|date_time',
         'chief_compl' => 'required',
         'chief_compl_code' => 'required',
         'stated_compl' => 'required',
