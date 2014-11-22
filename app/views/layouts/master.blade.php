@@ -15,6 +15,7 @@
     <style>
       body { padding-top: 70px; }
       .buffer { margin-top:20px; }
+      .red {color: red;}
     </style>
   </head>
 
