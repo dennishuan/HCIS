@@ -54,34 +54,11 @@
       </div>
       {{ $errors->first('type')}}
 
-<<<<<<< HEAD
-        <!-- Right side of form -->
-        <div class="col col-md-6 col-lg-6">
-          <div class="input-group">
-            <span class="input-group-addon">Password:</span>
-            {{ Form::password('password', ['class' => 'form-control'])}}
-            {{ $errors->first('password')}}
-          </div>
-            
-          <div class="input-group buffer">
-            <span class="input-group-addon">Confirm Password:</span>
-            {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
-            <!--{{ $errors->first('password')}}-->
-          </div>
-            
-          <div class="input-group buffer">
-            <span class="input-group-addon">Type:</span>
-            {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'), 
-               $user->type, ['class' => 'form-control'])}}
-            {{ $errors->first('type')}}
-          </div>
-=======
       <div class="input-group buffer">
         <span class="input-group-addon">Email:</span>
         {{ Form::text('email', $user->email, ['class' => 'form-control'])}}
       </div>
       {{ $errors->first('email')}}
->>>>>>> 511f25b7d3f14a74c4c10df472cba8936b5ce010
 
     </div>
     {{ Form::close()}}
