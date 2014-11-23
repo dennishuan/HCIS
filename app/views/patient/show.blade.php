@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
+	<div> <!-- Link to file export --->
+	{{ link_to_route('export', 'export', ['id'=>$patient->id]) }}
+	</div>	
+
 	<div id="Patient" class="tab-pane fade in active container">
 		<h1>{{$patient->preferred_name}}</h1>
 		<div class="row">
