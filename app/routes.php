@@ -19,6 +19,7 @@ Route::get('files', 'FileController@index');
 
 Route::post('loadfile', 'FileController@create');
 
+Route::any('patient/*/export', ['as'=>'export', 'uses' =>'FileController@store']);
 
 Route::get('image', function()
 {

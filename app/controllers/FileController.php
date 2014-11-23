@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Filesystem\Filesystem;
 
 class FileController extends \BaseController {
 
@@ -42,7 +43,13 @@ class FileController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+	 $id = Input::get('id');
+	 $patient = Patient::find($id);	 
+	 $file = new Filesystem();
+	 $file->put("output.json", $patient); 
+	return ($patient);
+
+	//
 	}
 
 
