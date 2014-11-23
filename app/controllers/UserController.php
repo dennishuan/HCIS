@@ -134,7 +134,7 @@ class UserController extends \BaseController {
         return Redirect::route('user.show', $id)->with('flash_message_success', 'The entry has been updated.');
     }
 
-
+    
     /**
     * Remove the specified resource from storage.
     *

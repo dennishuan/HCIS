@@ -16,7 +16,7 @@ $(function () {
 
     window.open(path);
   });
-
+  
   $('#show').click(function (){
     var path = $(location).attr('pathname');
 
