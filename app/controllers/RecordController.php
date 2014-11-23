@@ -107,6 +107,21 @@ class RecordController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->record->errors)->with('flash_message_danger', 'Invalid input');
         }
 
+        //Store the id of abbrev, username, phn
+        $patient_id = Patient::where('phn', $this->record['phn'])->first()->id;
+        $facility_id = Facility::where('abbrev', $this->record['abbrev'])->first()->id;
+        $user_id = User::where('username', $this->record['username'])->first()->id;
+
+        //Delete fields before save
+        unset($this->record['username']);
+        unset($this->record['abbrev']);
+        unset($this->record['phn']);
+
+        //Set the all the foreign key id value.
+        $this->record->patient_id = $patient_id;
+        $this->record->facility_id = $facility_id;
+        $this->record->user_id = $user_id;
+
         $this->record->save();
 
         return Redirect::route('record.index')->with('flash_message_success', 'New entry have been created');
@@ -154,11 +169,17 @@ class RecordController extends \BaseController {
         //Get input then update
         $input = Input::all();
 
+
         $record = $this->record->findOrFail($id);
 
         if(! $record->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($record->errors)->with('flash_message_danger', 'Invalid input');
         }
+
+        //Delete fields before save
+        unset($record['username']);
+        unset($record['abbrev']);
+        unset($record['phn']);
 
         $record->save();
 

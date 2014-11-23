@@ -55,6 +55,12 @@
         </div>
 
         <div class="input-group buffer">
+          <span class="input-group-addon">Facility Abbrev.:</span>
+          {{ Form::text('ethnic_background', $record->facility->abbrev, ['class' => 'form-control']) }}
+        </div>
+
+
+        <div class="input-group buffer">
           <span class="input-group-addon">Priority:</span>
           {{ Form::text('priority', $record->priority, ['class' => 'form-control']) }}
         </div>
@@ -126,6 +132,11 @@
         </div>
 
         <div class="input-group buffer">
+          <span class="input-group-addon">Facility:</span>
+          {{ Form::text('family_doctor', $record->facility->name, ['class' => 'form-control']) }}
+        </div>
+
+        <div class="input-group buffer">
           <span class="input-group-addon">Registration Date:</span>
           {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control']) }}
         </div>
@@ -143,13 +154,13 @@
       <fieldset disabled>
         <div class="input-group buffer">
           <span class="input-group-addon">Stated Complaint:</span>
-          {{ Form::textarea('stated_complaint', $record->stated_complaint, ['class' => 'form-control', 'rows' => '3']) }}
+          {{ Form::textarea('stated_compl', $record->stated_compl, ['class' => 'form-control', 'rows' => '3']) }}
         </div>
 
 
         <div class="input-group buffer">
           <span class="input-group-addon">Cheif Complaint:</span>
-          {{ Form::textarea('chief_complaint', $record->chief_complaint, ['class' => 'form-control', 'rows' => '3']) }}
+          {{ Form::textarea('chief_compl', $record->chief_compl, ['class' => 'form-control', 'rows' => '3']) }}
         </div>
 
 

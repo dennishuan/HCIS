@@ -8,9 +8,12 @@ class Record extends \Eloquent {
     */
     protected $table = 'records';
 
-    protected $fillable = ['stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'remarks', 'plan'];
+    protected $fillable = ['priority', 'reg_datetime', 'admit_datetime', 'chief_compl', 'chief_compl_code', 'stated_compl', 'subjective', 'objective', 'assessment', 'prescription', 'arrival_mode', 'remarks', 'plan', 'phn', 'abbrev', 'username'];
 
     public static $rules = [
+        'phn' => 'required|exists:patients,phn',
+        'abbrev' => 'required|exists:facilities,abbrev',
+        'username' => 'required|exists:users,username,type,doctor',
         'priority' => 'required|in:1,2,3,4,5,6',
         'reg_datetime' => 'required|date|date_time',
         'admit_datetime' => 'required|date|date_time',
@@ -21,6 +24,21 @@ class Record extends \Eloquent {
         'objective' => 'required',
         'assessment' => 'required',
     ];
+
+    public function isValid()
+    {
+        //Valid the input.
+        $validation = Validator::make($this->attributes, static::$rules);
+
+        if($validation->passes())
+        {
+            return true;
+        }
+
+        $this->errors = $validation->messages();
+
+        return false;
+    }
 
     public function search($qs)
     {
@@ -120,22 +138,6 @@ class Record extends \Eloquent {
             $result = $result->where('chief_compl_code', 'LIKE', '%'.$qs['chief_compl_code'].'%');
         }
         return $result;
-    }
-
-
-    public function isValid()
-    {
-        //Valid the input.
-        $validation = Validator::make($this->attributes, static::$rules);
-
-        if($validation->passes())
-        {
-            return true;
-        }
-
-        $this->errors = $validation->messages();
-
-        return false;
     }
 
     public function user()

@@ -23,7 +23,7 @@ class RecordTableSeeder extends Seeder {
                 Record::create([
                     'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
                     'facility_id' => $facility->id,
-                    'user_id' => User::orderByRaw("RAND()")->first()->id,
+                    'user_id' => User::where('type', 'doctor')->orderByRaw("RAND()")->first()->id,
 
                     'priority' => '6',
                     'reg_datetime' => $faker->datetime,
