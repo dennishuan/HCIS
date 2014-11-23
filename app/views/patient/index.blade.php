@@ -16,7 +16,9 @@
   <button class="btn btn-default" id="delete" data-toggle="modal" data-target="#confirmModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
-  
+
+<!-- Link to file upload --->
+<div> {{ link_to('addfile', 'UploadPatient') }}</div>  
   
 </div>
 <!--Confirmation Modal-->
@@ -36,13 +38,6 @@
    </div>
   </div>
 </div>
-
-<script>
- $('#modal').on('show', function() {
-      var id = $(this).data('delete'),
-          removeBtn = $(this).find('.danger');
-	  removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
-</script>
 
 
 <!--Table-->
