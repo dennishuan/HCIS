@@ -36,8 +36,10 @@ $(function () {
       window.open(path + '/' + input[i].id + '/edit');
     }
   });
+ 
 
-  $('#delete').click(function () {
+
+ $('#delete').click(function () {
     var path = $(location).attr('pathname');
     var path = path + '/ajax';
     var token = {

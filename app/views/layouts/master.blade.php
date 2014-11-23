@@ -110,7 +110,7 @@
     {{ HTML::script('js/jquery.min.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('js/bootstrap-table.js') }}
-
+  
     {{ HTML::script('js/table.js') }}
     {{ HTML::script('js/active.js') }}
   </body>

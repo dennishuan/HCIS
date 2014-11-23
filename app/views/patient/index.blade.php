@@ -13,11 +13,36 @@
   <button class="btn btn-default" id="edit">
     <i class="glyphicon glyphicon-edit"></i> <span>Edit</span>
   </button>
-  <button class="btn btn-default" id="delete">
+  <button class="btn btn-default" id="delete" data-toggle="modal" data-target="#confirmModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
-
+  
+  
 </div>
+<!--Confirmation Modal-->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+	<h1>Are you sure?</h1>
+	</div>
+     <div class="modal-body">
+
+     </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	<a href="#" class="btn btn-danger danger">Delete</a>
+     </div>
+   </div>
+  </div>
+</div>
+
+<script>
+ $('#modal').on('show', function() {
+      var id = $(this).data('delete'),
+          removeBtn = $(this).find('.danger');
+	  removeBtn.attr('href', removeBtn.attr('href').replace(/(&|\?)ref=\d*/, '$1ref=' + id));
+</script>
 
 
 <!--Table-->
