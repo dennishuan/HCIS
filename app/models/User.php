@@ -53,15 +53,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function isValid()
     {
         //Valid the input.
+        $id = null;
 
-        $rules = array('username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
-                       'password' => 'required|max:225|confirmed',
-                       'type' => 'required|in:admin,doctor,nurse',
-                       'name' => 'required|alpha_spaces|max:255',
-                       'phone' => 'required|between:10,15',
-                       'email' => 'required|email|unique:users,email,' . $this->attributes['id'] . '|max:255');
+        if(array_key_exists('id', $this->attributes)){
+            $id = $this->attributes['id'];
+        }
 
-
+        $rules = array(
+            'email' => 'required|email|unique:users,email,' . $id . '|max:255',
+            'password' => 'required|max:225|confirmed',
+            'type' => 'required|in:admin,doctor,nurse',
+            'name' => 'required|alpha_spaces|max:255',
+            'phone' => 'required|between:10,15',
+            'username' => 'required|alpha_num|unique:users,username,' . $id . '|max:255',
+        );
 
         $validation = Validator::make($this->attributes, $rules);
 
@@ -82,7 +87,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function facility()
     {
-           $this->belongsToMany('Facility', 'facilities_users');
+        $this->belongsToMany('Facility', 'facilities_users');
     }
 
     public function record()

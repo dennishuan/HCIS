@@ -27,22 +27,6 @@ class RecordController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
-//        $qs = array_except($input, ['search']);
-//                $result = [];
-//
-//                //Search and filter out the data.
-//                $records =$this->record->search($qs)->select(['patient_id', 'user_id', 'facility_id', 'id', 'reg_datetime', 'admit_datetime'])
-//                    ->with(['patient' => function($query){
-//                        $query->select('id', 'phn', 'name', 'preferred_name');
-//                    }])
-//                    ->with(['user' => function($query){
-//                        $query->select('id', 'name');
-//                    }])
-//                    ->with(['facility' => function($query){
-//                        $query->select('id', 'name', 'abbrev');
-//                    }])->get()->toArray();
-
-
         if (Request::ajax()){
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
@@ -60,7 +44,6 @@ class RecordController extends \BaseController {
                     ->with(['facility' => function($query){
                         $query->select('id', 'name');
                     }])->get()->toArray();
-
 
                 foreach ($records as $record)
                 {
@@ -121,7 +104,7 @@ class RecordController extends \BaseController {
 
         //Validation
         if( ! $this->record->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->record->errors);
+            return Redirect::back()->withInput()->withErrors($this->record->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $this->record->save();
@@ -174,7 +157,7 @@ class RecordController extends \BaseController {
         $record = $this->record->findOrFail($id);
 
         if(! $record->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($record->errors);
+            return Redirect::back()->withInput()->withErrors($record->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $record->save();

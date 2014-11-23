@@ -73,14 +73,14 @@ class UserController extends \BaseController {
 
         //Validation
         if( ! $this->user->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->user->errors);
+            return Redirect::back()->withInput()->withErrors($this->user->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         // Hash the password
-        $user->password = Hash::make($user->password);
+        $this->user->password = Hash::make($this->user->password);
 
         // Deleted the password_confirmation before save
-        unset($user['password_confirmation']);
+        unset($this->user['password_confirmation']);
 
         $this->user->save();
 
@@ -131,8 +131,6 @@ class UserController extends \BaseController {
 
         $user = $this->user->findOrFail($id);
 
-
-
         //Check for access
         if (!Auth::user()->isAdmin()){
             $credentials = ['username' => $user->username, 'password' => $input['current_password']];
@@ -143,7 +141,7 @@ class UserController extends \BaseController {
         }
 
         if(! $user->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($user->errors);
+            return Redirect::back()->withInput()->withErrors($user->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         // Hash the password

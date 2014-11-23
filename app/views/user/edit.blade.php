@@ -78,7 +78,6 @@
             <span class="input-group-addon">Confirm Password:</span>
             {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
           </div>
-          {{ $errors->first('password_confirmation')}}
       @endif
     </div>
     {{ Form::close()}}

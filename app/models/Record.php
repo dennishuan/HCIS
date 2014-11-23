@@ -20,7 +20,6 @@ class Record extends \Eloquent {
         'subjective' => 'required',
         'objective' => 'required',
         'assessment' => 'required',
-
     ];
 
     public function search($qs)

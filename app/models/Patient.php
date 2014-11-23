@@ -59,25 +59,25 @@ class Patient extends Eloquent{
         if(array_key_exists('emergency_relationship', $qs)){
             $result = $result->where('emergency_relationship', 'LIKE', '%'.$qs['emergency_relationship'].'%');
         }
-if(array_key_exists('allergies', $qs)){
+        if(array_key_exists('allergies', $qs)){
             $result = $result->where('allergies', 'LIKE', '%'.$qs['allergies'].'%');
         }
-if(array_key_exists('permanent_resident', $qs)){
+        if(array_key_exists('permanent_resident', $qs)){
             $result = $result->where('permanent_resident', 'LIKE', '%'.$qs['permanent_resident'].'%');
         }
-if(array_key_exists('medical_history', $qs)){
+        if(array_key_exists('medical_history', $qs)){
             $result = $result->where('medical_history', 'LIKE', '%'.$qs['medical_history'].'%');
         }
-if(array_key_exists('preferred_language', $qs)){
+        if(array_key_exists('preferred_language', $qs)){
             $result = $result->where('preferred_language', 'LIKE', '%'.$qs['preferred_language'].'%');
         }
-if(array_key_exists('other_language', $qs)){
+        if(array_key_exists('other_language', $qs)){
             $result = $result->where('other_language', 'LIKE', '%'.$qs['other_language'].'%');
         }
-if(array_key_exists('ethnic_background', $qs)){
+        if(array_key_exists('ethnic_background', $qs)){
             $result = $result->where('ethnic_background', 'LIKE', '%'.$qs['ethnic_background'].'%');
         }
-if(array_key_exists('family_doctor', $qs)){
+        if(array_key_exists('family_doctor', $qs)){
             $result = $result->where('family_doctor', 'LIKE', '%'.$qs['family_doctor'].'%');
         }
 
@@ -89,7 +89,13 @@ if(array_key_exists('family_doctor', $qs)){
     public function isValid()
     {
         //Valid the input.
-        $rules = array('phn' => 'required|unique:patients,phn,' . $this->attributes['id'] . '|numeric|digits:10',
+        $id = null;
+
+        if(array_key_exists('id', $this->attributes)){
+            $id = $this->attributes['id'];
+        }
+
+        $rules = array('phn' => 'required|unique:patients,phn,' . $id . '|numeric|digits:10',
                        'name' => 'required|alpha_spaces|max:255',
                        'preferred_name' => 'required|alpha_spaces|max:255',
                        'sex' => 'required|in:female,male',
@@ -99,7 +105,7 @@ if(array_key_exists('family_doctor', $qs)){
                        'home_phone' => 'between:10,15|valid_phone',
                        'work_phone' => 'between:10,15|valid_phone',
                        'mobile_phone' => 'between:10,15|valid_phone',
-                       'email' => 'email|unique:patients,email,' . $this->attributes['id'] . '|max:255',
+                       'email' => 'email|unique:patients,email,' . $id . '|max:255',
                        'emergency_name' => 'alpha_spaces',
                        'emergency_phone' => 'between:10,15|valid_phone',
                        'emergency_relationship' => 'alpha',
@@ -109,7 +115,10 @@ if(array_key_exists('family_doctor', $qs)){
                        'preferred_language' => 'required|alpha|max:255',
                        'other_language' => 'alpha|max:255',
                        'ethnic_background' => 'required|alpha|max:255',
-                       'family_doctor' => 'alpha_spaces',);
+                       'family_doctor' => 'alpha_spaces',
+                      );
+
+
         $validation = Validator::make($this->attributes, $rules);
 
         if($validation->passes())

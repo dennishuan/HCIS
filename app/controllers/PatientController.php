@@ -73,7 +73,7 @@ class PatientController extends \BaseController {
 
         //Validation
         if( ! $this->patient->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->patient->errors);
+            return Redirect::back()->withInput()->withErrors($this->patient->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $this->patient->save();
@@ -126,7 +126,7 @@ class PatientController extends \BaseController {
         $patient = $this->patient->findOrFail($id);
 
         if(! $patient->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($patient->errors);
+            return Redirect::back()->withInput()->withErrors($patient->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $patient->save();

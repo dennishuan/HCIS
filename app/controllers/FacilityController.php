@@ -73,7 +73,7 @@ class FacilityController extends \BaseController {
 
         //Validation
         if( ! $this->facility->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->facility->errors);
+            return Redirect::back()->withInput()->withErrors($this->facility->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $this->facility->save();
@@ -126,7 +126,7 @@ class FacilityController extends \BaseController {
         $facility = $this->facility->findOrFail($id);
 
         if(! $facility->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($facility->errors);
+            return Redirect::back()->withInput()->withErrors($facility->errors)->with('flash_message_danger', 'Invalid input');
         }
 
         $facility->save();
