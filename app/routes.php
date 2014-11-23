@@ -101,7 +101,12 @@ Route::group(['before' => 'auth'], function(){
     Route::resource('user', 'UserController');
 });
 
+   //files
+   Route::get('addfile', 'FileController@index');
 
+   Route::post('loadfile', 'FileController@create');
+
+   Route::any('patient/*/export', ['as'=>'export', 'uses'=>'FileController@store']); 
 
 
 
