@@ -68,15 +68,40 @@ class PatientController extends \BaseController {
     */
     public function store()
     {
+		/*
         //Redirect back to the index after storing.
         $input = Input::all();
 
         //Validation
         if( ! $this->patient->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->patient->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($this->patient->errors);
         }
+		*/
+		
+		$patient = new Patient;
+		$patient->phn = Input::get('phn');
+		$patient->name = Input::get('name');
+		$patient->preferred_name = Input::get('preferred_name');
+		$patient->postal_code = Input::get('postal_code');
+		$patient->address = Input::get('address');
+		$patient->date_of_birth = Input::get('date_of_birth');
+		$patient->home_phone = Input::get('home_phone');
+		$patient->work_phone = Input::get('work_phone');
+		$patient->mobile_phone = Input::get('mobile_phone');
+		$patient->email = Input::get('email');
+		$patient->emergency_name = Input::get('emergency_name');
+		$patient->emergency_phone = Input::get('emergency_phone');
+		$patient->emergency_relationship = Input::get('emergency_relationship');
+		$patient->allergies = Input::get('allergies');
+		$patient->permanent_resident = Input::get('permanent_resident');
+		$patient->preferred_language = Input::get('preferred_language');
+		$patient->other_language = Input::get('other_language');
+		$patient->ethnic_background = Input::get('ethnic_background');
+		$patient->family_doctor = Input::get('family_doctor');
+		$patient->medical_history = Input::get('medical_history');
+		$patient->save();
 
-        $this->patient->save();
+        //$this->patient->save();
 
         return Redirect::route('patient.index')->with('flash_message_success', 'New entry have been created');
     }
@@ -126,7 +151,7 @@ class PatientController extends \BaseController {
         $patient = $this->patient->findOrFail($id);
 
         if(! $patient->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($patient->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($patient->errors);
         }
 
         $patient->save();

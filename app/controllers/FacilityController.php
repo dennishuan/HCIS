@@ -68,15 +68,26 @@ class FacilityController extends \BaseController {
     */
     public function store()
     {
+		/*
         //Redirect back to the index after storing.
         $input = Input::all();
 
         //Validation
         if( ! $this->facility->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->facility->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($this->facility->errors);
         }
 
         $this->facility->save();
+		*/
+		$facility = new Facility;
+		$facility->abbrev = Input::get('abbrev');
+		$facility->name = Input::get('name');
+		$facility->type = Input::get('type');
+		$facility->fax = Input::get('fax');
+		$facility->address = Input::get('address');
+		$facility->phone = Input::get('phone');
+		$facility->postal_code = Input::get('postal_code');
+		$facility->save();
 
         return Redirect::route('facility.index')->with('flash_message_success', 'New entry have been created');
     }
@@ -126,7 +137,7 @@ class FacilityController extends \BaseController {
         $facility = $this->facility->findOrFail($id);
 
         if(! $facility->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($facility->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($facility->errors);
         }
 
         $facility->save();

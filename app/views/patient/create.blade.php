@@ -67,10 +67,6 @@
         {{ Form::text('ethnic_background', null, ['class' => 'form-control']) }}
       </div>
       {{ $errors->first('ethnic_background') }}
-
-      <div class="input-group buffer">
-        {{ Form::submit('Create Patient', ['class' => 'btn btn-info'])}}
-      </div>
     </div>
 
     <!-- Right side of form -->
@@ -95,7 +91,7 @@
       {{ $errors->first('address') }}
 
       <div class="input-group buffer">
-        <span class="input-group-addon">Phone Number:</span>
+        <span class="input-group-addon">Home Phone Number:</span>
         {{ Form::text('home_phone', null, ['class' => 'form-control']) }}
       </div>
       {{ $errors->first('home_phone') }}
@@ -136,8 +132,20 @@
         {{ Form::text('family_doctor', null, ['class' => 'form-control']) }}
       </div>
       {{ $errors->first('family_doctor') }}
-
     </div>
+	
+	<div class="col col-md-12 col-lg-12">
+		<div class="input-group buffer">
+				<span class="input-group-addon">Medical History:</span>
+				{{ Form::textarea('medical_history', null,['class' => 'form-control', 'rows' => '3']) }}
+		</div>
+	</div>
+	
+	<div class="col col-md-6 col-lg-6">
+		<div class="input-group buffer">
+			{{ Form::submit('Create Patient', ['class' => 'btn btn-info'])}}
+		</div>
+	</div>
     {{ Form::close() }}
   </div>
 </div>

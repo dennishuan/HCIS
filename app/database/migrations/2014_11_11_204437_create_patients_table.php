@@ -33,7 +33,7 @@ class CreatePatientsTable extends Migration {
             $table->string('emergency_relationship', 100)->nullable(); // relationship with the patient
             $table->string('allergies', 255)->nullable();
             $table->boolean('permanent_resident'); // yes = 1; o/w no
-            $table->text('medical_history');
+            $table->text('medical_history')->nullable();
             $table->string('preferred_language', 255); // primary language
             $table->string('other_language', 255); // secondary preferred language
             $table->string('ethnic_background', 255);

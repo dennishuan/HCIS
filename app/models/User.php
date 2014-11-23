@@ -24,7 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     protected $hidden = array('password', 'remember_token');
 
     //Enable mass assignment for the fields.
-    protected $fillable = ['username', 'type', 'email', 'name', 'phone', 'password', 'password_confirmation'];
+    protected $fillable = ['username', 'type', 'email', 'name', 'phone'];
 
     public function search($qs){
         // Init result then start to filter it down.
@@ -49,25 +49,51 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $result;
     }
 
+	/*
+	public static $rules = [
+		'username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
+		'password' => 'confirmed|max:255',
+		'password_confirmation' => 'same:password|max:255',
+		'type' => 'required|in:admin,doctor,nurse',
+		'name' => 'required|alpha_spaces|max:255',
+		'phone' => 'required|between:10,15',
+		'email' => 'required|email|unique:users,email,' . $this->attributes['id'] . '|max:255');
+	];
+	*/
 
     public function isValid()
     {
+	/*
         //Valid the input.
-        $id = null;
 
-        if(array_key_exists('id', $this->attributes)){
-            $id = $this->attributes['id'];
+        $rules = array('username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
+                       'password' => 'confirmed|max:255',
+                       'password_confirmation' => 'same:password|max:255',
+                       'type' => 'required|in:admin,doctor,nurse',
+                       'name' => 'required|alpha_spaces|max:255',
+                       'phone' => 'required|between:10,15',
+                       'email' => 'required|email|unique:users,email,' . $this->attributes['id'] . '|max:255');
+
+        
+        
+        $validation = Validator::make($this->attributes, $rules);
+
+        if($validation->passes())
+        {
+            return true;
         }
 
-        $rules = array(
-            'email' => 'required|email|unique:users,email,' . $id . '|max:255',
-            'password' => 'required|max:225|confirmed',
-            'type' => 'required|in:admin,doctor,nurse',
-            'name' => 'required|alpha_spaces|max:255',
-            'phone' => 'required|between:10,15',
-            'username' => 'required|alpha_num|unique:users,username,' . $id . '|max:255',
-        );
+        $this->errors = $validation->messages();
 
+        return false;
+		*/
+    }
+
+    public function checkPassword()
+    {
+        $rules = array('currentpassword' => 'required|max:255',
+                      );
+        
         $validation = Validator::make($this->attributes, $rules);
 
         if($validation->passes())
@@ -79,15 +105,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return false;
     }
-
-    public function checkPassword($current_password)
-    {
-        return $this->password == $current_password;
-    }
-
     public function facility()
     {
-        $this->belongsToMany('Facility', 'facilities_users');
+           $this->belongsToMany('Facility', 'facilities_users');
     }
 
     public function record()

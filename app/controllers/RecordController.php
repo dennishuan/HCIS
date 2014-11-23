@@ -27,6 +27,22 @@ class RecordController extends \BaseController {
         //If the URL includes query string 'search'
         $input = Input::all();
 
+//        $qs = array_except($input, ['search']);
+//                $result = [];
+//
+//                //Search and filter out the data.
+//                $records =$this->record->search($qs)->select(['patient_id', 'user_id', 'facility_id', 'id', 'reg_datetime', 'admit_datetime'])
+//                    ->with(['patient' => function($query){
+//                        $query->select('id', 'phn', 'name', 'preferred_name');
+//                    }])
+//                    ->with(['user' => function($query){
+//                        $query->select('id', 'name');
+//                    }])
+//                    ->with(['facility' => function($query){
+//                        $query->select('id', 'name', 'abbrev');
+//                    }])->get()->toArray();
+
+
         if (Request::ajax()){
             if (array_key_exists('search', $input) && $input['search'] === 'true'){
                 // get the rest of query string.
@@ -44,6 +60,7 @@ class RecordController extends \BaseController {
                     ->with(['facility' => function($query){
                         $query->select('id', 'name');
                     }])->get()->toArray();
+
 
                 foreach ($records as $record)
                 {
@@ -104,23 +121,8 @@ class RecordController extends \BaseController {
 
         //Validation
         if( ! $this->record->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->record->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($this->record->errors);
         }
-
-        //Store the id of abbrev, username, phn
-        $patient_id = Patient::where('phn', $this->record['phn'])->first()->id;
-        $facility_id = Facility::where('abbrev', $this->record['abbrev'])->first()->id;
-        $user_id = User::where('username', $this->record['username'])->first()->id;
-
-        //Delete fields before save
-        unset($this->record['username']);
-        unset($this->record['abbrev']);
-        unset($this->record['phn']);
-
-        //Set the all the foreign key id value.
-        $this->record->patient_id = $patient_id;
-        $this->record->facility_id = $facility_id;
-        $this->record->user_id = $user_id;
 
         $this->record->save();
 
@@ -169,17 +171,11 @@ class RecordController extends \BaseController {
         //Get input then update
         $input = Input::all();
 
-
         $record = $this->record->findOrFail($id);
 
         if(! $record->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($record->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($record->errors);
         }
-
-        //Delete fields before save
-        unset($record['username']);
-        unset($record['abbrev']);
-        unset($record['phn']);
 
         $record->save();
 

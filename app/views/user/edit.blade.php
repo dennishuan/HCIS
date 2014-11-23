@@ -27,11 +27,11 @@
         {{ Form::text('phone', $user->phone, ['class' => 'form-control'])}}
       </div>
       {{ $errors->first('phone')}}
-
+      
       @if(Auth::user()->getId($user->id))
           <div class="input-group buffer">
             <span class="input-group-addon">Current Password:</span>
-            {{ Form::password('current_password', ['class' => 'form-control'])}}
+            {{ Form::password('currentpassword', ['class' => 'form-control'])}}
           </div>
           {{ $errors->first('password')}}
       @endif
@@ -42,14 +42,14 @@
     </div>
 
     <!-- Right side of form -->
-    <div class="col col-md-6 col-lg-6">
-      @if(Auth::user() != null && Auth::user()->isAdmin())
+    <div class="col col-md-6 col-lg-6">  
+      @if(Auth::user() != null && Auth::user()->isAdmin()) 
           <div class="input-group">
             <span class="input-group-addon">Type:</span>
             {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
             $user->type, ['class' => 'form-control'])}}
           </div>
-          {{ $errors->first('type')}}
+          {{ $errors->first('type')}}     
       @else
         <fieldset disabled>
               <div class="input-group">
@@ -66,7 +66,7 @@
         {{ Form::text('email', $user->email, ['class' => 'form-control'])}}
       </div>
       {{ $errors->first('email')}}
-
+        
       @if(Auth::user()->getId($user->id) || Auth::user()->isAdmin())
           <div class="input-group buffer">
             <span class="input-group-addon">New Password:</span>
@@ -78,6 +78,7 @@
             <span class="input-group-addon">Confirm Password:</span>
             {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
           </div>
+          {{ $errors->first('password')}}
       @endif
     </div>
     {{ Form::close()}}

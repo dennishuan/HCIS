@@ -69,20 +69,24 @@ class UserController extends \BaseController {
     public function store()
     {
         //Redirect back to the index after storing.
+		/*
         $input = Input::all();
 
         //Validation
         if( ! $this->user->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($this->user->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($this->user->errors);
         }
-
-        // Hash the password
-        $this->user->password = Hash::make($this->user->password);
-
-        // Deleted the password_confirmation before save
-        unset($this->user['password_confirmation']);
-
+		/*
         $this->user->save();
+		*/
+		$user = new User;
+		$user->username = Input::get('username');
+		$user->password = Hash::make(Input::get('password'));
+		$user->type = Input::get('type');
+		$user->email = Input::get('email');
+		$user->name = Input::get('name');
+		$user->phone = Input::get('phone');
+		$user->save();
 
         return Redirect::route('user.index')->with('flash_message_success', 'New entry have been created');
     }
@@ -131,31 +135,16 @@ class UserController extends \BaseController {
 
         $user = $this->user->findOrFail($id);
 
-        //Check for access
-        if (!Auth::user()->isAdmin()){
-            $credentials = ['username' => $user->username, 'password' => $input['current_password']];
-            if (! Auth::validate($credentials))
-            {
-                return Redirect::back()->with('flash_message_danger', 'Invalid current password.');
-            }
-        }
-
         if(! $user->fill($input)->isValid()){
-            return Redirect::back()->withInput()->withErrors($user->errors)->with('flash_message_danger', 'Invalid input');
+            return Redirect::back()->withInput()->withErrors($user->errors);
         }
-
-        // Hash the password
-        $user->password = Hash::make($user->password);
-
-        // Deleted the password_confirmation before save
-        unset($user['password_confirmation']);
 
         $user->save();
 
         return Redirect::route('user.show', $id)->with('flash_message_success', 'The entry has been updated.');
     }
 
-
+    
     /**
     * Remove the specified resource from storage.
     *

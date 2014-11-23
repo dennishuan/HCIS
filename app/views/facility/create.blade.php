@@ -23,9 +23,9 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('phone', null, ['class' => 'form-control']) }}
+        {{ Form::text('address', null, ['class' => 'form-control']) }}
       </div>
-      {{ $errors->first('phone') }}
+      {{ $errors->first('address') }}
 
       <div class="input-group buffer">
         {{ Form::submit('Create Facility')}}

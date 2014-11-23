@@ -41,11 +41,6 @@
       {{ $errors->first('password')}}
 
       <div class="input-group buffer">
-        <span class="input-group-addon">Confirm Password:</span>
-        {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
-      </div>
-
-      <div class="input-group buffer">
         <span class="input-group-addon">Type:</span>
         {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
         ' ', ['class' => 'form-control'])}}

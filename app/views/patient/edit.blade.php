@@ -67,10 +67,6 @@
         {{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control']) }}
       </div>
       {{ $errors->first('ethnic_background') }}
-
-      <div class="input-group buffer">
-        {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
-      </div>
     </div>
 
     <!-- Right side of form -->
@@ -138,6 +134,19 @@
       {{ $errors->first('family_doctor') }}
 
     </div>
+	
+	<div class="col col-md-12 col-lg-12">
+		<div class="input-group buffer">
+				<span class="input-group-addon">Medical History:</span>
+				{{ Form::textarea('medical_history', $patient->medical_history, ['class' => 'form-control', 'rows' => '3']) }}
+		</div>
+	</div>
+	
+	<div class="col col-md-6 col-lg-6">
+		<div class="input-group buffer">
+			{{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
+		</div>
+	</div>
     {{ Form::close() }}
   </div>
 </div>

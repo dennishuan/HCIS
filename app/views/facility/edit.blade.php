@@ -22,9 +22,9 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('phone', $facility->phone, ['class' => 'form-control']) }}
+        {{ Form::text('address', $facility->address, ['class' => 'form-control']) }}
       </div>
-      {{ $errors->first('phone')}}
+      {{ $errors->first('address')}}
 
       <div class="input-group buffer">
         {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}

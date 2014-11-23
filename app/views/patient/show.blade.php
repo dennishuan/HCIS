@@ -62,18 +62,6 @@
 						
 		
 					</fieldset>
-					
-					<div class="input-group buffer">
-						<nav>
-							{{ link_to_route('patient.index', 'Index', [], ['class' => 'btn btn-info']) }}
-							|
-							{{ link_to_route('patient.edit', 'Edit', [$patient->id], ['class' => 'btn btn-info']) }}
-							|
-							{{ Form::open(['route' => ['patient.destroy', $patient->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-								{{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-							{{ Form::close() }}
-						</nav>
-					</div>
 				</div>
 				
 				<!-- Right side of form -->
@@ -124,6 +112,29 @@
 							{{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control']) }}
 						</div>
 					</fieldset>
+				</div>
+				
+				<div class="col col-md-12 col-lg-12">
+					<fieldset disabled>
+						<div class="input-group buffer">
+								<span class="input-group-addon">Medical History:</span>
+								{{ Form::textarea('medical_history', $patient->medical_history, ['class' => 'form-control', 'rows' => '3']) }}
+						</div>
+					</fieldset>
+				</div>
+				
+				<div class="col col-md-6 col-lg-6">
+					<div class="input-group buffer">
+						<nav>
+							{{ link_to_route('patient.index', 'Index', [], ['class' => 'btn btn-info']) }}
+							|
+							{{ link_to_route('patient.edit', 'Edit', [$patient->id], ['class' => 'btn btn-info']) }}
+							|
+							{{ Form::open(['route' => ['patient.destroy', $patient->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+								{{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+							{{ Form::close() }}
+						</nav>
+					</div>
 				</div>
 			{{ Form::close()}}
 		</div>
