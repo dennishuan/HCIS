@@ -61,7 +61,7 @@ class PatientController extends \BaseController {
 	 */
 	public function show($patientname)
 	{
-	  $patient = Patient::whereName($patientname)->first();
+	  $patient = Patient::whereFirst_name($patientname)->first();
 
 	  return View::make('patient.show', ['patient' => $patient]);
 	  

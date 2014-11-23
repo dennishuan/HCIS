@@ -2,6 +2,14 @@
 
 @section('content')
 
+<h2>{{ link_to('image', 'AddImage') }}<h2>
+
+<div> {{ link_to('files', 'Addfile') }}</div>
+
+<div> {{ link_to('patient', 'viewPatients') }}</div>
+
+
+
 <table class="table table-hover">
     <thead>
         <tr>

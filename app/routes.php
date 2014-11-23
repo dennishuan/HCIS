@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,6 +13,47 @@
 */
 
 Route::resource('patient', 'PatientController');
+
+
+Route::get('files', 'FileController@index');
+
+Route::post('loadfile', 'FileController@create');
+
+
+Route::get('image', function()
+{
+        $patients = DB::table('patients')->take(10)->get();
+        return View::make('image', ['patients' => $patients]);
+});
+
+Route::post('upload', function()
+{
+	$image = Input::file('image');
+	
+	$filename = $image->getClientOriginalName();
+	
+	$path = public_path('img/'. $filename);
+	
+	$photo = new Photo();
+	$photo->ref = Input::get('ref');
+	$photo->image = $path;
+	if(Image::make($image->getRealPath())->resize('280','200')->save($path) && $photo->save())
+	{
+		
+		return Redirect::to('picture')->with('num', $photo->ref);
+	}
+	
+});
+
+Route::get('picture', function()
+{
+	$num = Session::get('num');
+	$photo = Photo::where('ref', '=', $num)->first();
+	$patient = Patient::where('phn', '=', $num)->first();
+	return View::make('picture', ['patient' => $patient, 'photo' => $photo]);
+});
+
+
 
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {

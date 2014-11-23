@@ -1,5 +1,6 @@
 @extends('layouts.default')
 
+
 @section('content')
 
         
@@ -15,10 +16,16 @@
 
 
         <div>
-                {{ Form::label('name', 'name: ') }}
-                {{ Form::text('name') }}
-		{{ $errors->first('name') }} 
+                {{ Form::label('first_name', 'first name: ') }}
+                {{ Form::text('first_name') }}
+		{{ $errors->first('first_name') }} 
         </div>
+
+	<div>
+		{{ Form::label('last_name', 'last name: ') }}
+		{{ Form::text('last_name') }}
+		{{ $errors->first('last_name') }}
+	</div>
 
 	 <div>
         	{{ Form::label('sex', 'sex: ') }}

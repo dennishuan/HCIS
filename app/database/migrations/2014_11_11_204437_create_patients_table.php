@@ -18,7 +18,8 @@ class CreatePatientsTable extends Migration {
             $table->increments('id');
 
             $table->string('phn', 10)->unique();
-            $table->string('name');
+            $table->string('first_name');
+	    $table->string('last_name');
             $table->boolean('sex');
             $table->date('date_of_birth');
             $table->string('address');
