@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <div id="Facility" class="tab-pane fade in active container">
   <h1>Edit: {{ $facility->name }}</h1>
   <div class="row">

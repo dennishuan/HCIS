@@ -116,13 +116,16 @@ class RecordController extends \BaseController {
     */
     public function store()
     {
+	
         //Redirect back to the index after storing.
         $input = Input::all();
 
+		/*
         //Validation
         if( ! $this->record->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->record->errors);
         }
+		*/
 
         $this->record->save();
 

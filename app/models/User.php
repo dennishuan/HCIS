@@ -48,22 +48,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
         return $result;
     }
-
-	/*
-	public static $rules = [
-		'username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
-		'password' => 'confirmed|max:255',
-		'password_confirmation' => 'same:password|max:255',
-		'type' => 'required|in:admin,doctor,nurse',
-		'name' => 'required|alpha_spaces|max:255',
-		'phone' => 'required|between:10,15',
-		'email' => 'required|email|unique:users,email,' . $this->attributes['id'] . '|max:255');
-	];
-	*/
+	
 
     public function isValid()
     {
-	/*
+	
         //Valid the input.
 
         $rules = array('username' => 'required|alpha_num|unique:users,username,' . $this->attributes['id'] . '|max:255',
@@ -86,7 +75,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $this->errors = $validation->messages();
 
         return false;
-		*/
+		
     }
 
     public function checkPassword()
