@@ -116,11 +116,17 @@
           {{ Form::text('emergency_relationship', $record->patient->emergency_relationship, ['class' => 'form-control']) }}
         </div>
 
-        <div class="input-group buffer">
-          <span class="input-group-addon">Permanent Resident:</span>
-          {{ Form::text('permanent_resident', $record->patient->permanent_resident, ['class' => 'form-control']) }}
-        </div>
-
+        @if($record->patient->permanent_resident == '1')
+            <div class="input-group buffer">
+              <span class="input-group-addon">Permanent Resident:</span>
+              {{ Form::text('permanent_resident', 'Yes', ['class' => 'form-control']) }}
+            </div>
+        @else
+            <div class="input-group buffer">
+              <span class="input-group-addon">Permanent Resident:</span>
+              {{ Form::text('permanent_resident', 'No', ['class' => 'form-control']) }}
+            </div>
+        @endif
         <div class="input-group buffer">
           <span class="input-group-addon">Preferred Language:</span>
           {{ Form::text('preferred_language', $record->patient->preferred_language, ['class' => 'form-control']) }}

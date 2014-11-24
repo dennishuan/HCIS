@@ -44,10 +44,17 @@
           {{ Form::text('emergency_relationship', $patient->emergency_relationship, ['class' => 'form-control']) }}
         </div>
 
-        <div class="input-group buffer">
-          <span class="input-group-addon">Permanent Resident:</span>
-          {{ Form::text('permanent_resident', $patient->permanent_resident, ['class' => 'form-control'])}}
-        </div>
+        @if($patient->permanent_resident == '1')
+            <div class="input-group buffer">
+              <span class="input-group-addon">Permanent Resident:</span>
+              {{ Form::text('permanent_resident', 'Yes', ['class' => 'form-control']) }}
+            </div>
+        @else
+            <div class="input-group buffer">
+              <span class="input-group-addon">Permanent Resident:</span>
+              {{ Form::text('permanent_resident', 'No', ['class' => 'form-control']) }}
+            </div>
+        @endif
 
         <div class="input-group buffer">
           <span class="input-group-addon">Other Language:</span>
