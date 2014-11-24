@@ -77,7 +77,6 @@ class UserController extends \BaseController {
         if( ! $this->user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->user->errors)->with('flash_message_danger', 'Invalid input');
         }
-        dd($this->user);
 
         // Hash the password
         $this->user->password = Hash::make($this->user->password);
