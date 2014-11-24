@@ -36,7 +36,8 @@ use Monolog\Handler\StreamHandler;
 /*******************
 *   Require CSRF   *
 *******************/
-Route::when('*', ['before' => 'csrf'], array('post', 'put', 'delete'));
+Route::when('*', ['before' => 'csrf'], ['post', 'put', 'delete']);
+
 
 /*****************************************************
 *                       TEST                         *
@@ -52,11 +53,6 @@ Route::controller('testtoken', 'TestTokenController');
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
     return View::make('home');
 }]);
-
-//Search
-Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
-Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
-
 
 //login
 Route::get('login', ['as' => 'login.create', 'uses' => 'LoginController@create']);

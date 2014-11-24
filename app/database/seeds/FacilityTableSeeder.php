@@ -17,6 +17,7 @@ class FacilityTableSeeder extends Seeder {
                 'name' => $faker->company,
                 'type' => $faker->randomElement($type),
                 'phone' => $faker->numerify('##########x####'),
+                'fax' => $faker->numerify('##########x####'),
                 'address' => $faker->address,
                 'postal_code' => strtoupper ($faker->bothify('#?##?#'))
             ]);

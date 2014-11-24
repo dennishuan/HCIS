@@ -14,6 +14,8 @@ class UserController extends \BaseController {
 
     public function __construct(User $user)
     {
+        $this->beforeFilter('admin', ['only' => ['create', 'store', 'destroy', 'ajax']]);
+        $this->beforeFilter('owner', ['only' => ['edit', 'update']]);
         $this->user = $user;
     }
 
@@ -75,6 +77,7 @@ class UserController extends \BaseController {
         if( ! $this->user->fill($input)->isValid()){
             return Redirect::back()->withInput()->withErrors($this->user->errors)->with('flash_message_danger', 'Invalid input');
         }
+        dd($this->user);
 
         // Hash the password
         $this->user->password = Hash::make($this->user->password);
@@ -128,6 +131,12 @@ class UserController extends \BaseController {
     {
         //Get input then update
         $input = Input::all();
+
+        // Filter out the field that certain roles can't mass assgin.
+        if(!Auth::user()->isAdmin())
+        {
+            unset($input['type']);
+        }
 
         $user = $this->user->findOrFail($id);
 

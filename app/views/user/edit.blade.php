@@ -33,7 +33,7 @@
             <span class="input-group-addon">Current Password:</span>
             {{ Form::password('current_password', ['class' => 'form-control'])}}
           </div>
-          {{ $errors->first('password')}}
+          {{ $errors->first('current_password')}}
       @endif
 
       <div class="input-group buffer">

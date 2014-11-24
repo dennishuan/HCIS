@@ -14,6 +14,7 @@ class FacilityController extends \BaseController {
 
     public function __construct(Facility $facility)
     {
+        $this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'ajax']]);
         $this->facility = $facility;
     }
 

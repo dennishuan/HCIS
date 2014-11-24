@@ -207,9 +207,11 @@
           {{ link_to_route('record.index', 'Index', [], ['class' => 'btn btn-info']) }}
           |
           {{ link_to_route('record.edit', 'Edit', [$record->id], ['class' => 'btn btn-info']) }}
+          @if (Auth::user() != null && Auth::user()->isAdmin())
           |
           {{ Form::open(['route' => ['record.destroy', $record->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
           {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+          @endif
           {{ Form::close() }}
         </nav>
       </div>

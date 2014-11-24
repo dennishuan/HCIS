@@ -14,6 +14,7 @@ class PatientController extends \BaseController {
 
     public function __construct(Patient $patient)
     {
+        $this->beforeFilter('admin', ['only' => ['destroy', 'ajax']]);
         $this->patient = $patient;
     }
 

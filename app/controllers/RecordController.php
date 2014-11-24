@@ -14,6 +14,7 @@ class RecordController extends \BaseController {
 
     public function __construct(Record $record)
     {
+        $this->beforeFilter('admin', ['only' => ['destroy', 'ajax']]);
         $this->record = $record;
     }
 
