@@ -29,10 +29,10 @@
       <div class="input-group buffer">
         <nav>
           {{ link_to_route('facility.index', 'Index', [], ['class' => 'btn btn-info']) }}
-          |
-          {{ link_to_route('facility.edit', 'Edit', [$facility->id], ['class' => 'btn btn-info']) }}
 
           @if (Auth::user() != null && Auth::user()->isAdmin())
+          |
+          {{ link_to_route('facility.edit', 'Edit', [$facility->id], ['class' => 'btn btn-info']) }}
           |
           {{ Form::open(['route' => ['facility.destroy', $facility->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
           {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}

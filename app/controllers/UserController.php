@@ -14,6 +14,8 @@ class UserController extends \BaseController {
 
     public function __construct(User $user)
     {
+        $this->beforeFilter('admin', ['only' => ['create', 'store', 'destroy', 'ajax']]);
+        $this->beforeFilter('owner', ['only' => ['edit', 'update']]);
         $this->user = $user;
     }
 
@@ -128,6 +130,12 @@ class UserController extends \BaseController {
     {
         //Get input then update
         $input = Input::all();
+
+        // Filter out the field that certain roles can't mass assgin.
+        if(!Auth::user()->isAdmin())
+        {
+            unset($input['type']);
+        }
 
         $user = $this->user->findOrFail($id);
 

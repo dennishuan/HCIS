@@ -1,28 +1,40 @@
 <?php
 
-Route::filter('admin', function()
-{
+Route::filter('admin', function(){
     if (! Auth::user()->isAdmin()){
-        return Response::make('Unauthorized', 401);
+        return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be Admin.');
     }
 });
 
-Route::filter('doctor', function()
-{
-    if (! Auth::user()->isDoctor()){
-        return Response::make('Unauthorized', 401);
+Route::filter('doctor', function(){
+    if (! Auth::user()->isAdmin()){
+        if (! Auth::user()->isDoctor()){
+            return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be doctor.');
+        }
     }
 });
 
-Route::filter('nurse', function()
-{
-    if (! Auth::user()->isNurse()){
-        return Response::make('Unauthorized', 401);
+Route::filter('nurse', function(){
+    if (! Auth::user()->isAdmin()){
+        if (! Auth::user()->isDoctor()){
+            if (! Auth::user()->isNurse()){
+                return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be nurse.');
+            }
+        }
     }
 });
 
-Route::filter('ssl', function()
-{
+Route::filter('owner', function($route){
+    $id = $route->getParameter('user');
+
+    if (! Auth::user()->isAdmin()){
+        if (!( Auth::user()->id == $id)){
+            return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be the owner.');
+        }
+    }
+});
+
+Route::filter('ssl', function(){
     if( ! Request::secure())
     {
         return Redirect::secure(Request::path());
@@ -41,15 +53,15 @@ Route::filter('ssl', function()
 */
 
 App::before(function($request)
-{
-    //
-});
+            {
+                //
+            });
 
 
 App::after(function($request, $response)
-{
-    //
-});
+           {
+               //
+           });
 
 /*
 |--------------------------------------------------------------------------
@@ -63,25 +75,25 @@ App::after(function($request, $response)
 */
 
 Route::filter('auth', function()
-{
-    if (Auth::guest())
-    {
-        if (Request::ajax())
-        {
-            return Response::make('Unauthorized', 401);
-        }
-        else
-        {
-            return Redirect::guest('login')->with('flash_message_warning', 'Login required');
-        }
-    }
-});
+              {
+                  if (Auth::guest())
+                  {
+                      if (Request::ajax())
+                      {
+                          return Response::make('Unauthorized', 401);
+                      }
+                      else
+                      {
+                          return Redirect::guest('login')->with('flash_message_warning', 'Login required');
+                      }
+                  }
+              });
 
 
 Route::filter('auth.basic', function()
-{
-    return Auth::basic();
-});
+              {
+                  return Auth::basic();
+              });
 
 /*
 |--------------------------------------------------------------------------
@@ -95,9 +107,9 @@ Route::filter('auth.basic', function()
 */
 
 Route::filter('guest', function()
-{
-    if (Auth::check()) return Redirect::to('/');
-});
+              {
+                  if (Auth::check()) return Redirect::to('/');
+              });
 
 /*
 |--------------------------------------------------------------------------
@@ -111,9 +123,9 @@ Route::filter('guest', function()
 */
 
 Route::filter('csrf', function()
-{
-    if (Session::token() != Input::get('_token'))
-    {
-        throw new Illuminate\Session\TokenMismatchException;
-    }
-});
+              {
+                  if (Session::token() != Input::get('_token'))
+                  {
+                      throw new Illuminate\Session\TokenMismatchException;
+                  }
+              });
