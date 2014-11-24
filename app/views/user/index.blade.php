@@ -23,19 +23,22 @@
 
 <!--Button-->
 <div id="toolbar" class="btn-group btn-default">
+  @if (Auth::user() != null && Auth::user()->isAdmin())
   <button class="btn btn-default" id="create">
     <i class="glyphicon glyphicon-file"></i> <span>New</span>
   </button>
+  @endif
   <button class="btn btn-default" id="show">
     <i class="glyphicon glyphicon-new-window"></i> <span>Show</span>
   </button>
   <button class="btn btn-default" id="edit">
     <i class="glyphicon glyphicon-edit"></i> <span>Edit</span>
   </button>
+  @if (Auth::user() != null && Auth::user()->isAdmin())
   <button class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
-
+  @endif
 </div>
 
 <!--Table-->
