@@ -53,6 +53,9 @@
         <div class="input-group buffer">
           <span class="input-group-addon">Phone Number:</span>
           {{ Form::text('phone', $facility->phone, ['class' => 'form-control']) }}
+
+          <span class="input-group-addon">Fax Number:</span>
+          {{ Form::text('fax', $facility->fax, ['class' => 'form-control']) }}
         </div>
 
         <div class="input-group buffer">
