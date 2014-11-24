@@ -10,17 +10,6 @@ class Facility extends \Eloquent {
 
     protected $fillable = ['abbrev', 'name', 'type', 'phone', 'fax', 'address', 'postal_code'];
 
-
-    public static $rules = [
-        'abbrev' => 'required|alpha|min:6|max:6',
-        'name' => 'required|alpha_spaces|max:255',
-        'type' => 'required|in:clinic,hospital',
-        'phone' => 'required|between:10,15|valid_phone',
-        'fax' => 'required|between:10,15|valid_phone',
-        'address' => 'required|max:255',
-        'postal_code' => 'required|min:6|max:6'
-    ];
-
     public function search($qs){
         // Init result then start to filter it down.
         $result = $this;
@@ -54,7 +43,23 @@ class Facility extends \Eloquent {
     public function isValid()
     {
         //Valid the input.
-        $validation = Validator::make($this->attributes, static::$rules);
+         $id = null;
+
+        if(array_key_exists('id', $this->attributes)){
+            $id = $this->attributes['id'];
+        }
+
+        $rules = array(
+            'abbrev' => 'required|alpha|min:6|max:6|unique:facilities,abbrev,' . $id,
+            'name' => 'required|alpha_spaces|max:255|unique:facilities,name,' . $id,
+            'type' => 'required|in:clinic,hospital',
+            'phone' => 'required|between:10,15|valid_phone|unique:facilities,phone,' . $id,
+            'fax' => 'required|between:10,15|valid_phone|unique:facilities,fax,' . $id,
+            'address' => 'required|max:255|unique:facilities,address,' . $id,
+            'postal_code' => 'required|min:6|max:6|unique:facilities,postal_code,' . $id,
+        );
+        
+        $validation = Validator::make($this->attributes, $rules);
 
         if($validation->passes())
         {

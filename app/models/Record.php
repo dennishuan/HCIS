@@ -141,6 +141,11 @@ class Record extends \Eloquent {
         return $result;
     }
 
+    public function isClinic()
+    {
+        return ($this->$patient->attributes['type'] === 'clinic');
+    }
+    
     public function user()
     {
         return $this->belongsTo('User');

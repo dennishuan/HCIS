@@ -13,14 +13,12 @@
           {{ Form::text('abbrev', $record->facility->abbrev, ['class' => 'form-control', 'readOnly' => 'true']) }}
         </div>
         {{ $errors->first('abbrev') }}
-
       <div class="input-group buffer">
         <span class="input-group-addon">Priority:</span>
         {{ Form::select('priority', array(' '=>' ','1'=>'1','2'=>'2','3'=>'3','4'=>'4',
         '5'=>'5','6'=>'6'), $record->patient->priority ,['class' => 'form-control']) }}
       </div>
       {{ $errors->first('priority') }}
-
       <div class="input-group buffer">
         <span class="input-group-addon">Admittance Date:</span>
         {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control']) }}
