@@ -36,8 +36,10 @@
           |
           {{ Form::open(['route' => ['facility.destroy', $facility->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
           {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+           @endif
+
           {{ Form::close() }}
-          @endif
+
         </nav>
       </div>
     </div>
