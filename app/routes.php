@@ -69,7 +69,6 @@ Route::group(['before' => 'auth'], function(){
 	Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
 
 	//patient
-	Route::post('patient/{patient}/upload', ['as' => 'patient.upload', 'uses' => 'PatientController@upload']);
 	Route::post('patient/ajax', ['as' => 'patient.ajax', 'uses' => 'PatientController@ajax']);
 	Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
 	Route::resource('patient', 'PatientController');
@@ -93,13 +92,16 @@ Route::group(['before' => 'auth'], function(){
 	Route::resource('facility.user', 'FacilityUserController');
 
 	//user
-	Route::post('user/{user}/upload', ['as' => 'user.upload', 'uses' => 'UserController@upload']);
 	Route::post('user/ajax', ['as' => 'user.ajax', 'uses' => 'UserController@ajax']);
 	Route::post('user/search', ['as' => 'user.search', 'uses' => 'UserController@search']);
 	Route::resource('user', 'UserController');
 
 	//File
-	Route::get('files/profile/{file}', ['uses' => 'FileController@profile']);
+	Route::post('user/{user}/upload', ['as' => 'user.upload', 'uses' => 'UserController@upload']);
+	Route::post('patient/{patient}/upload', ['as' => 'patient.upload', 'uses' => 'PatientController@upload']);
+	Route::post('record/{record}/upload', ['as' => 'record.upload', 'uses' => 'RecordController@upload']);
+	Route::get('files/profile/{file}', ['uses' => 'FilesController@profile']);
+	Route::get('files/record/{file}', ['uses' => 'FilesController@record']);
 });
 
 
