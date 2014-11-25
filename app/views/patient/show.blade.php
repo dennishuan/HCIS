@@ -45,15 +45,15 @@
         </div>
 
         @if($patient->permanent_resident == '1')
-            <div class="input-group buffer">
-              <span class="input-group-addon">Permanent Resident:</span>
-              {{ Form::text('permanent_resident', 'Yes', ['class' => 'form-control']) }}
-            </div>
+        <div class="input-group buffer">
+          <span class="input-group-addon">Permanent Resident:</span>
+          {{ Form::text('permanent_resident', 'Yes', ['class' => 'form-control']) }}
+        </div>
         @else
-            <div class="input-group buffer">
-              <span class="input-group-addon">Permanent Resident:</span>
-              {{ Form::text('permanent_resident', 'No', ['class' => 'form-control']) }}
-            </div>
+        <div class="input-group buffer">
+          <span class="input-group-addon">Permanent Resident:</span>
+          {{ Form::text('permanent_resident', 'No', ['class' => 'form-control']) }}
+        </div>
         @endif
 
         <div class="input-group buffer">
@@ -65,24 +65,7 @@
           <span class="input-group-addon">Family Doctor:</span>
           {{ Form::text('family_doctor', $patient->family_doctor, ['class' => 'form-control']) }}
         </div>
-
-
-
       </fieldset>
-
-      <div class="input-group buffer">
-        <nav>
-          {{ link_to_route('patient.index', 'Index', [], ['class' => 'btn btn-info']) }}
-          |
-          {{ link_to_route('patient.edit', 'Edit', [$patient->id], ['class' => 'btn btn-info']) }}
-          @if (Auth::user() != null && Auth::user()->isAdmin())
-          |
-          {{ Form::open(['route' => ['patient.destroy', $patient->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-          {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-          @endif
-          {{ Form::close() }}
-        </nav>
-      </div>
     </div>
 
     <!-- Right side of form -->
@@ -135,6 +118,24 @@
       </fieldset>
     </div>
     {{ Form::close()}}
+
+    <div class="col col-md-12 col-lg-12">
+      <div class="input-group buffer">
+        <nav>
+          {{ link_to_route('patient.index', 'Index', [], ['class' => 'btn btn-info']) }}
+          |
+          {{ link_to_route('patient.edit', 'Edit', [$patient->id], ['class' => 'btn btn-info']) }}
+          @if (Auth::user() != null && Auth::user()->isAdmin())
+          |
+          {{ Form::open(['route' => ['patient.destroy', $patient->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+          {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+          @endif
+          {{ Form::close() }}
+        </nav>
+      </div>
+    </div>
+
+
   </div>
 </div>
 @stop

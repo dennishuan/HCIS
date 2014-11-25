@@ -25,23 +25,6 @@
           {{ Form::text('address', $facility->address, ['class' => 'form-control']) }}
         </div>
       </fieldset>
-
-      <div class="input-group buffer">
-        <nav>
-          {{ link_to_route('facility.index', 'Index', [], ['class' => 'btn btn-info']) }}
-
-          @if (Auth::user() != null && Auth::user()->isAdmin())
-          |
-          {{ link_to_route('facility.edit', 'Edit', [$facility->id], ['class' => 'btn btn-info']) }}
-          |
-          {{ Form::open(['route' => ['facility.destroy', $facility->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-          {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-           @endif
-
-          {{ Form::close() }}
-
-        </nav>
-      </div>
     </div>
 
     <!-- Right side of form -->
@@ -67,6 +50,25 @@
       </fieldset>
     </div>
     {{ Form::close() }}
+
+    <div class="col col-md-12 col-lg-12">
+      <div class="input-group buffer">
+        <nav>
+          {{ link_to_route('facility.index', 'Index', [], ['class' => 'btn btn-info']) }}
+
+          @if (Auth::user() != null && Auth::user()->isAdmin())
+          |
+          {{ link_to_route('facility.edit', 'Edit', [$facility->id], ['class' => 'btn btn-info']) }}
+          |
+          {{ Form::open(['route' => ['facility.destroy', $facility->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
+          {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+          {{ Form::close() }}
+          @endif
+
+        </nav>
+      </div>
+    </div>
+
   </div>
 </div>
 @stop
