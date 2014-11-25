@@ -69,6 +69,7 @@ Route::group(['before' => 'auth'], function(){
   Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
 
   //patient
+  Route::post('patient/{patient}/upload', ['as' => 'patient.upload', 'uses' => 'PatientController@upload']);
   Route::post('patient/ajax', ['as' => 'patient.ajax', 'uses' => 'PatientController@ajax']);
   Route::post('patient/search', ['as' => 'patient.search', 'uses' => 'PatientController@search']);
   Route::resource('patient', 'PatientController');

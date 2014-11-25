@@ -5,9 +5,14 @@
   <h1>{{$patient->preferred_name}}</h1>
   <div class="row">
     {{ Form::open(['route' => 'patient.store', 'method' => 'POST']) }}
+     <div class="col col-md-12 col-lg-12">
+      <div>
+        {{ HTML::image($patient->image) }}
+      </div>
+    </div>
 
     <!-- Left side of form -->
-    <div class="col col-md-6 col-lg-6">
+    <div class="col col-md-6 col-lg-6 buffer">
       <fieldset disabled>
         <div class="input-group">
           <span class="input-group-addon">Personal Health Number:</span>
@@ -69,7 +74,7 @@
     </div>
 
     <!-- Right side of form -->
-    <div class="col col-md-6 col-lg-6">
+    <div class="col col-md-6 col-lg-6 buffer">
       <fieldset disabled>
         <div class="input-group">
           <span class="input-group-addon">Full Name:</span>
@@ -133,6 +138,14 @@
           {{ Form::close() }}
         </nav>
       </div>
+    </div>
+
+    <!--Upload-->
+    <div class="col col-md-12 col-lg-12 buffer">
+      <h4>Profile Picture Upload:</h4>
+      {{ Form::open(['route' => ['patient.upload', $patient->id], 'enctype' => 'multipart/form-data']) }}
+      <input id="profile" type="file" name="file">
+      {{ Form::close() }}
     </div>
 
 
