@@ -74,25 +74,11 @@ class UserController extends \BaseController {
 
 		$input = Input::all();
 
+
 		//Validation
 		if( ! $this->user->fill($input)->isValid()){
 			return Redirect::back()->withInput()->withErrors($this->user->errors)->with('flash_message_danger', 'Invalid input');
 		}
-
-		// Store the profile image.
-		$extension = $input['image']->getClientOriginalExtension();
-		$filename = sha1(time().time()).".".$extension;
-
-		$path = storage_path('img/profile/'. $filename);
-
-		$upload_success= Image::make($input['image']->getRealPath())->resize('280','200')->save($path);
-		if( ! $upload_success)
-		{
-			return Redirect::back()->with('flash_message_danger', 'Upload Error.');
-		}
-
-		//Store the path to the image field.
-		$this->user->image = 'img/profile/'. $filename;
 
 		// Hash the password
 		$this->user->password = Hash::make($this->user->password);
@@ -147,6 +133,7 @@ class UserController extends \BaseController {
 		//Get input then update
 		$input = Input::all();
 
+
 		// Filter out the field that certain roles can't mass assgin.
 		if(!Auth::user()->isAdmin())
 		{
@@ -167,23 +154,6 @@ class UserController extends \BaseController {
 		if(! $user->fill($input)->isValid()){
 			return Redirect::back()->withInput()->withErrors($user->errors)->with('flash_message_danger', 'Invalid input');
 		}
-
-		// Store the profile image.
-		$extension = $input['image']->getClientOriginalExtension();
-		$filename = sha1(time().time()).".".$extension;
-
-		$path = storage_path('img/profile/'. $filename);
-
-		dd($path);
-
-		$upload_success= Image::make($input['image']->getRealPath())->resize('280','200')->save($path);
-		if( ! $upload_success)
-		{
-			return Redirect::back()->with('flash_message_danger', 'Upload Error.');
-		}
-
-		//Store the path to the image field.
-		$this->user->image = 'img/profile/'. $filename;
 
 		// Hash the password
 		$user->password = Hash::make($user->password);
@@ -231,6 +201,45 @@ class UserController extends \BaseController {
 			}
 		}
 		return "successfully deleted";
+	}
+
+	public function upload($id){
+		$user = $this->user->findOrFail($id);
+
+		$image = Input::file('file');
+
+		if( ! isset($image)){
+			return Redirect::back()->with('flash_message_danger', 'Image Required.');
+		}
+
+		// Validate it is a image.
+		$rule = ['image' => 'image'];
+		$validation = Validator::make(['image'=>$image], $rule);
+		if( ! $validation->passes())
+		{
+			return Redirect::back()->with('flash_message_danger', 'Not an image.');
+		}
+
+		// Store the profile image.
+		$extension = $image->getClientOriginalExtension();
+		$filename = sha1(time().time()).".".$extension;
+
+		$path = storage_path('img/profile/'. $filename);
+
+		$upload_success= Image::make($image->getRealPath())->resize('280','200')->save($path);
+
+		if( ! $upload_success)
+		{
+			return Redirect::back()->with('flash_message_danger', 'Upload Error.');
+		}
+
+		//Store the path to the image field.
+
+		$user->image = 'img/profile/'. $filename;
+
+		$user->save();
+
+		return Redirect::back()->with('flash_message_success', 'Upload done.');
 	}
 
 }

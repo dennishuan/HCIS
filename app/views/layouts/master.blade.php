@@ -10,6 +10,7 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-theme.min.css') }}
     {{ HTML::style('css/bootstrap-table.css') }}
+    {{ HTML::style('css/fileinput.min.css') }}
 
     <meta charset="utf-8">
     <style>
@@ -110,7 +111,10 @@
     {{ HTML::script('js/jquery.min.js') }}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('js/bootstrap-table.js') }}
+    {{ HTML::script('js/fileinput.min.js') }}
 
+
+    {{ HTML::script('js/upload.js') }}
     {{ HTML::script('js/table.js') }}
     {{ HTML::script('js/active.js') }}
   </body>

@@ -16,7 +16,7 @@ $(function () {
 
     window.open(path);
   });
-  
+
   $('#show').click(function (){
     var path = $(location).attr('pathname');
 
@@ -48,10 +48,12 @@ $(function () {
 
     console.log( input );
 
-    $.post(path, {_token: $('#token').attr('value'), action: 'delete', input: input}, function (data, status) {
-      console.log( data );
-      console.log( status );
+    $.post(path, {_token: $('#token').attr('value'), action: 'delete', input: input})
+    .done(function () {
       $('#table').bootstrapTable('refresh', {silent: true});
+    })
+    .fail(function() {
+      alert("Fail to Delete");
     });
   });
 });

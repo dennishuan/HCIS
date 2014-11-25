@@ -24,7 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 	//Enable mass assignment for the fields.
-	protected $fillable = ['username', 'type', 'email', 'name', 'phone', 'password', 'password_confirmation', 'image'];
+	protected $fillable = ['username', 'type', 'email', 'name', 'phone', 'password', 'password_confirmation'];
 
 	public function search($qs){
 		// Init result then start to filter it down.
@@ -60,7 +60,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		}
 
 		$rules = array(
-			'image' => 'image',
 			'email' => 'required|email|unique:users,email,' . $id . '|max:255',
 			'password' => 'max:225|confirmed',
 			'type' => 'required|in:admin,doctor,nurse',

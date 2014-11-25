@@ -37,12 +37,6 @@
       @endif
 
       <div class="input-group buffer">
-        <span>Profile Picture:</span>
-        {{ Form::file('image')}}
-      </div>
-      {{ $errors->first('image')}}
-
-      <div class="input-group buffer">
         {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
       </div>
     </div>
