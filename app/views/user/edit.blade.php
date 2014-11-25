@@ -29,12 +29,18 @@
       {{ $errors->first('phone')}}
 
       @if(Auth::user()->getId($user->id))
-          <div class="input-group buffer">
-            <span class="input-group-addon">Current Password:</span>
-            {{ Form::password('current_password', ['class' => 'form-control'])}}
-          </div>
-          {{ $errors->first('current_password')}}
+      <div class="input-group buffer">
+        <span class="input-group-addon">Current Password:</span>
+        {{ Form::password('current_password', ['class' => 'form-control'])}}
+      </div>
+      {{ $errors->first('current_password')}}
       @endif
+
+      <div class="input-group buffer">
+        <span>Profile Picture:</span>
+        {{ Form::file('image')}}
+      </div>
+      {{ $errors->first('image')}}
 
       <div class="input-group buffer">
         {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
@@ -44,21 +50,21 @@
     <!-- Right side of form -->
     <div class="col col-md-6 col-lg-6">
       @if(Auth::user() != null && Auth::user()->isAdmin())
-          <div class="input-group">
-            <span class="input-group-addon">Type:</span>
-            {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
-            $user->type, ['class' => 'form-control'])}}
-          </div>
-          {{ $errors->first('type')}}
+      <div class="input-group">
+        <span class="input-group-addon">Type:</span>
+        {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
+        $user->type, ['class' => 'form-control'])}}
+      </div>
+      {{ $errors->first('type')}}
       @else
-        <fieldset disabled>
-              <div class="input-group">
-                <span class="input-group-addon">Type:</span>
-                {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
-                $user->type, ['class' => 'form-control'])}}
-              </div>
-              {{ $errors->first('type')}}
-        </fieldset>
+      <fieldset disabled>
+        <div class="input-group">
+          <span class="input-group-addon">Type:</span>
+          {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
+          $user->type, ['class' => 'form-control'])}}
+        </div>
+        {{ $errors->first('type')}}
+      </fieldset>
       @endif
 
       <div class="input-group buffer">
@@ -68,16 +74,16 @@
       {{ $errors->first('email')}}
 
       @if(Auth::user()->getId($user->id) || Auth::user()->isAdmin())
-          <div class="input-group buffer">
-            <span class="input-group-addon">New Password:</span>
-            {{ Form::password('password', ['class' => 'form-control'])}}
-          </div>
-          {{ $errors->first('password')}}
+      <div class="input-group buffer">
+        <span class="input-group-addon">New Password:</span>
+        {{ Form::password('password', ['class' => 'form-control'])}}
+      </div>
+      {{ $errors->first('password')}}
 
-          <div class="input-group buffer">
-            <span class="input-group-addon">Confirm Password:</span>
-            {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
-          </div>
+      <div class="input-group buffer">
+        <span class="input-group-addon">Confirm Password:</span>
+        {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
+      </div>
       @endif
     </div>
     {{ Form::close()}}

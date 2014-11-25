@@ -5,6 +5,7 @@
 <div id="User" class="tab-pane fade in active container">
   <h1>{{$user->name}}</h1>
   <div class="row">
+
     {{ Form::open(['route' => 'user.store', 'method' => 'POST']) }}
 
     <!-- Left side of form -->
