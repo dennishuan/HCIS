@@ -10,8 +10,12 @@
 
     <!-- Left side of form -->
     <div class="col col-md-6 col-lg-6">
+      <div>
+        {{ HTML::image($user->image) }}
+      </div>
+
       <fieldset disabled>
-        <div class="input-group">
+        <div class="input-group buffer">
           <span class="input-group-addon">Username:</span>
           {{ Form::text('username', $user->username, ['class' => 'form-control']) }}
         </div>
