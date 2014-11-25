@@ -224,7 +224,7 @@ class UserController extends \BaseController {
 		$extension = $image->getClientOriginalExtension();
 		$filename = sha1(time().time()).".".$extension;
 
-		$path = storage_path('img/profile/'. $filename);
+		$path = storage_path('files/profile/'. $filename);
 
 		$upload_success= Image::make($image->getRealPath())->resize('640','600')->save($path);
 
@@ -235,7 +235,7 @@ class UserController extends \BaseController {
 
 		//Store the path to the image field.
 
-		$user->image = 'img/profile/'. $filename;
+		$user->image = 'files/profile/'. $filename;
 
 		$user->save();
 

@@ -4,12 +4,18 @@
 <div id="Patient" class="tab-pane fade in active container">
   <h1>{{$patient->preferred_name}}</h1>
   <div class="row">
-    {{ Form::open(['route' => 'patient.store', 'method' => 'POST']) }}
+
     <div class="col col-md-12 col-lg-12">
       <div class="text-center">
+        @if($patient->image == null)
+        {{ HTML::image('files/profile/standard.png') }}
+        @else
         {{ HTML::image($patient->image) }}
+        @endif
       </div>
     </div>
+    {{ Form::open(['route' => 'patient.store', 'method' => 'POST']) }}
+
 
     <!-- Left side of form -->
     <div class="col col-md-6 col-lg-6 buffer">

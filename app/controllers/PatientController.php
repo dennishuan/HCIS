@@ -201,7 +201,7 @@ class PatientController extends \BaseController {
 		$extension = $image->getClientOriginalExtension();
 		$filename = sha1(time().time()).".".$extension;
 
-		$path = storage_path('img/profile/'. $filename);
+		$path = storage_path('files/profile/'. $filename);
 
 		$upload_success= Image::make($image->getRealPath())->resize('640','600')->save($path);
 
@@ -212,7 +212,7 @@ class PatientController extends \BaseController {
 
 		//Store the path to the image field.
 
-		$patient->image = 'img/profile/'. $filename;
+		$patient->image = 'files/profile/'. $filename;
 
 		$patient->save();
 
