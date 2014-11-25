@@ -226,7 +226,7 @@ class UserController extends \BaseController {
 
 		$path = storage_path('img/profile/'. $filename);
 
-		$upload_success= Image::make($image->getRealPath())->resize('280','200')->save($path);
+		$upload_success= Image::make($image->getRealPath())->resize('640','600')->save($path);
 
 		if( ! $upload_success)
 		{

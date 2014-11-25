@@ -178,8 +178,15 @@ class PatientController extends \BaseController {
 
 		$image = Input::file('file');
 
+		// If image exists
 		if( ! isset($image)){
 			return Redirect::back()->with('flash_message_danger', 'Image Required.');
+		}
+
+		// If image is over 50kb
+		if( $image->getSize() > 50000)
+		{
+			return Redirect::back()->with('flash_message_danger', '50kb maxium for profile picture.');
 		}
 
 		// Validate it is a image.
@@ -196,7 +203,7 @@ class PatientController extends \BaseController {
 
 		$path = storage_path('img/profile/'. $filename);
 
-		$upload_success= Image::make($image->getRealPath())->resize('280','200')->save($path);
+		$upload_success= Image::make($image->getRealPath())->resize('640','600')->save($path);
 
 		if( ! $upload_success)
 		{

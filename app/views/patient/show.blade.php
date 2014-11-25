@@ -5,8 +5,8 @@
   <h1>{{$patient->preferred_name}}</h1>
   <div class="row">
     {{ Form::open(['route' => 'patient.store', 'method' => 'POST']) }}
-     <div class="col col-md-12 col-lg-12">
-      <div>
+    <div class="col col-md-12 col-lg-12">
+      <div class="text-center">
         {{ HTML::image($patient->image) }}
       </div>
     </div>
