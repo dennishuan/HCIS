@@ -227,6 +227,7 @@
   <!--Upload-->
   <div class="col col-md-12 col-lg-12 buffer">
     <h4>File upload:</h4>
+    <p>hold down ctrl to select multiple files</p>
     {{ Form::open(['route' => ['record.upload', $record->id], 'enctype' => 'multipart/form-data']) }}
     <input id="record" type="file" name="file[]" multiple="true">
     {{ Form::close() }}
