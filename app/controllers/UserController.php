@@ -83,7 +83,7 @@ class UserController extends \BaseController {
 		$extension = $input['image']->getClientOriginalExtension();
 		$filename = sha1(time().time()).".".$extension;
 
-		$path = public_path('img/profile/'. $filename);
+		$path = storage_path('img/profile/'. $filename);
 
 		$upload_success= Image::make($input['image']->getRealPath())->resize('280','200')->save($path);
 		if( ! $upload_success)
@@ -92,7 +92,7 @@ class UserController extends \BaseController {
 		}
 
 		//Store the path to the image field.
-		$this->user->image = $path;
+		$this->user->image = 'img/profile/'. $filename;
 
 		// Hash the password
 		$this->user->password = Hash::make($this->user->password);
@@ -172,7 +172,9 @@ class UserController extends \BaseController {
 		$extension = $input['image']->getClientOriginalExtension();
 		$filename = sha1(time().time()).".".$extension;
 
-		$path = public_path('img/profile/'. $filename);
+		$path = storage_path('img/profile/'. $filename);
+
+		dd($path);
 
 		$upload_success= Image::make($input['image']->getRealPath())->resize('280','200')->save($path);
 		if( ! $upload_success)
@@ -181,7 +183,7 @@ class UserController extends \BaseController {
 		}
 
 		//Store the path to the image field.
-		$this->user->image = $path;
+		$this->user->image = 'img/profile/'. $filename;
 
 		// Hash the password
 		$user->password = Hash::make($user->password);

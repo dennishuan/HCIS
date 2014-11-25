@@ -96,7 +96,7 @@ Route::group(['before' => 'auth'], function(){
 	Route::post('user/search', ['as' => 'user.search', 'uses' => 'UserController@search']);
 	Route::resource('user', 'UserController');
 
-	Route::get('public/img/profile/{file}', ['uses' => 'FileController@profile']);
+	Route::get('img/profile/{file}', ['uses' => 'FileController@profile']);
 });
 
 
