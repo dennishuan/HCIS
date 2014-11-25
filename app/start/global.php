@@ -1,5 +1,13 @@
 <?php
 
+function displayFilename($path){
+  $pos = stripos($path, '-');
+  if ($pos !== false) {
+    return substr($path, $pos+1);
+  }
+  return 'Error, filename not found.';
+}
+
 /**
  * Generate a querystring url for the application.
  *
