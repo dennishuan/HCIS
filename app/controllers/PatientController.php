@@ -194,7 +194,7 @@ class PatientController extends \BaseController {
 		$validation = Validator::make(['image'=>$image], $rule);
 		if( ! $validation->passes())
 		{
-			return Redirect::back()->with('flash_message_danger', 'Not an image.');
+			return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
 		}
 
 		// Store the profile image.

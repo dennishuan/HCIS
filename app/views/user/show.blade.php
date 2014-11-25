@@ -77,6 +77,7 @@
       <h4>Profile Picture Upload:</h4>
       {{ Form::open(['route' => ['user.upload', $user->id], 'enctype' => 'multipart/form-data']) }}
       <input id="profile" type="file" name="file">
+      {{ $errors->first('image') }}
       {{ Form::close() }}
     </div>
 
