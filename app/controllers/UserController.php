@@ -35,13 +35,13 @@ class UserController extends \BaseController {
 				$qs = array_except($input, ['search']);
 
 				//Search and filter out the data.
-				$users =$this->user->search($qs)->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+				$users =$this->user->where('username', '<>', 'IMPORT')->search($qs)->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
 				return $users;
 			}
 			else{
 				//Show a list of all the user
-				$users = $this->user->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+				$users = $this->user->where('username', '<>', 'IMPORT')->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
 				return $users;
 			}
