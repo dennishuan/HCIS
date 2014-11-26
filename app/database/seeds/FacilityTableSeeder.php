@@ -33,7 +33,7 @@ class FacilityTableSeeder extends Seeder {
 			'postal_code' => 'IMPORT',
 		]);
 
-		FAcility::where('name', 'IMPORT')->update(['id' => 0]);
+		Facility::where('name', 'IMPORT')->update(['id' => 0]);
 	}
 
 }

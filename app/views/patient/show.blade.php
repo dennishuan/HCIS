@@ -154,8 +154,6 @@
       {{ $errors->first('image') }}
       {{ Form::close() }}
     </div>
-
-
   </div>
 </div>
 @stop

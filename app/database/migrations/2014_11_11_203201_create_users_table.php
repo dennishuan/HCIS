@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email', 255);
 			$table->string('phone', 15);
 			$table->string('image')->nullable();
+			$table->string('last_session')->nullable();
 
 			// For remember me option.
 			$table->string('remember_token')->nullable();
