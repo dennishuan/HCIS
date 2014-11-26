@@ -229,7 +229,7 @@
       <h4>File upload:</h4>
       <p>hold down ctrl to select multiple files</p>
       {{ Form::open(['route' => ['record.upload', $record->id], 'enctype' => 'multipart/form-data']) }}
-      <input id="record" type="file" name="file[]" multiple="true">
+      <input id="recordFile" type="file" name="file[]" multiple="true">
       {{ $errors->first('path') }}
       {{ $errors->first('file') }}
       {{ Form::close() }}

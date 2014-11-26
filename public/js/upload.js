@@ -14,7 +14,7 @@ $(function () {
 
   });
 
-  $("#record").fileinput({
+  $("#recordFile").fileinput({
     maxFileCount: 0,
   });
 
