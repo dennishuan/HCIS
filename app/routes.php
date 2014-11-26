@@ -106,6 +106,8 @@ Route::group(['before' => 'auth'], function(){
 
    Route::post('loadfile', 'FileController@create');
 
+   Route::get('exportall', 'FileController@export');
+
    Route::any('patient/*/export', ['as'=>'export', 'uses'=>'FileController@store']); 
 
 
