@@ -59,9 +59,9 @@ class PatientController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($patientname)
+	public function show($phn)
 	{
-	  $patient = Patient::whereFirst_name($patientname)->first();
+	  $patient = Patient::wherephn($phn)->first();
 
 	  return View::make('patient.show', ['patient' => $patient]);
 	  
@@ -94,21 +94,18 @@ class PatientController extends \BaseController {
 	 */
 	public function update()
 	{
-
-         if ( ! Patient::isValid(Input::all()))
+	 $input = Input::all();
+         if ( ! Patient::isValid($input))
          {
              return Redirect::back()->withInput()->withErrors(Patient::$errors);
          }
 
-         //$input = Input::all(); //these are from store---how to update??
-         //$patient = new Patient();
-         //$patient->fill($input)->save();
-        // return Redirect::route('patient.index');
-	// $patien = GETTHEPATIENT
-	// $patient->fill($input)->isValid()
-	// $patient->save();	
-		return('update');
-		//
+
+         $patient = Patient::where('phn','=',$input['phn'])->first();
+         $patient->fill($input)->update();
+
+	 return Redirect::route('patient.show', ['phn' => $patient->phn]);
+
 	}
 
 
@@ -118,9 +115,12 @@ class PatientController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function delete()
 	{
-		//
+	 $id = Input::all();
+	 $patient = Patient::find($id)->first();
+	 $patient->delete();
+	 return('success');	//
 	}
 
 

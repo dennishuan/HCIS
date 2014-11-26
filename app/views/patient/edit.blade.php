@@ -3,19 +3,27 @@
 @section('content')
 
         <h3>Edit User</h3>
-	
+	<p>Note: Must Create New Patient to change Health Number</p>
 		
-        {{ Form::model($patient, ['route' => 'patient.update']) }}
+        {{ Form::model($patient, ['method'=>'PUT','route' => ['patient.update', $patient->id]]) }}
 	   <div>
-                {{ Form::label('phn', 'HealthNumber: ') }}
-                {{ Form::text('phn' ) }}
-		{{ $errors->first('phn') }}
+                HealthNumber: {{ $patient->phn }}
+           </div>
+
+	   <div>
+		{{ Form::hidden('phn') }}
 	   </div>
 
 	   <div>
-		{{ Form::label('name', 'Name: ') }}
-		{{ Form::input('text', 'name') }}
-		{{ $errors->first('name') }}
+		{{ Form::label('first_name', 'First Name: ') }}
+		{{ Form::input('text', 'first_name') }}
+		{{ $errors->first('first_name') }}
+	   </div>
+
+	   <div>
+		{{ Form::label('last_name', 'Last Name: ') }}
+		{{ Form::input('text', 'last_name') }}
+		{{ $errors->first('last_name') }}
 	   </div>
 
            <div>
@@ -25,9 +33,9 @@
            </div>
 
            <div>
-                {{ Form::label('birth_date', 'Birthdate: ') }}
-                {{ Form::text('birthdate' ) }}
-                {{ $errors->first('birthdate') }}
+                {{ Form::label('date_of_birth', 'Birthdate: ') }}
+                {{ Form::text('date_of_birth' ) }}
+                {{ $errors->first('date_of_birth') }}
            </div>
 
            <div>

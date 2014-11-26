@@ -48,7 +48,7 @@
 
         <div>
                 {{ Form::label('postal_code', 'postalcode: ') }}
-                {{ Form::text('note') }}
+                {{ Form::text('postal_code') }}
 		{{ $errors->first('postal_code') }}
         </div>
 

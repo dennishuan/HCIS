@@ -1,3 +1,5 @@
+
+
 <?php
 
 
@@ -14,53 +16,60 @@
 
 Route::resource('patient', 'PatientController');
 
+Route::resource('file', 'FileController');
 
-Route::get('files', 'FileController@index');
+Route::resource('photo', 'PhotoController');
 
-Route::post('loadfile', 'FileController@create');
+Route::resource('appoint', 'AppointController');
 
-Route::any('patient/*/export', ['as'=>'export', 'uses' =>'FileController@store']);
+Route::get('patient/file/exportall', 'FileController@exportall');
 
-Route::get('image', function()
-{
-        $patients = DB::table('patients')->take(10)->get();
-        return View::make('image', ['patients' => $patients]);
-});
+Route::post('loadfile', 'FileController@upload');
 
-Route::post('upload', function()
-{
-	$image = Input::file('image');
-	
-	$filename = $image->getClientOriginalName();
-	
-	$path = public_path('img/'. $filename);
-	
-	$photo = new Photo();
-	$photo->ref = Input::get('ref');
-	$photo->image = $path;
-	if(Image::make($image->getRealPath())->resize('280','200')->save($path) && $photo->save())
-	{
-		
-		return Redirect::to('picture')->with('num', $photo->ref);
-	}
-	
-});
+Route::any('patient/*/export', ['as'=>'export', 'uses' =>'FileController@export']);
 
-Route::get('picture', function()
-{
-	$num = Session::get('num');
-	$photo = Photo::where('ref', '=', $num)->first();
-	$patient = Patient::where('phn', '=', $num)->first();
-	return View::make('picture', ['patient' => $patient, 'photo' => $photo]);
-});
+Route::any('patient/*/delete', ['as'=>'delete', 'uses'=>'PatientController@delete']);
+
+Route::post('upload', 'PhotoController@upload');
+
+//Route::get('image', function()
+//{
+//        $patients = DB::table('patients')->take(10)->get();
+//        return View::make('picture.index', ['patients' => $patients]);
+//});
+
+//Route::post('upload', function()
+//{
+//	$image = Input::file('image');
+
+//	$filename = $image->getClientOriginalName();
+
+//	$path = public_path('img/'. $filename);
+
+//	$photo = new Photo();
+//	$photo->ref = Input::get('ref');
+//	$photo->image = $path;
+//	if(Image::make($image->getRealPath())->resize('280','200')->save($path) && $photo->save())
+//	{
+
+//		return Redirect::to('picture')->with('num', $photo->ref);
+//	}
+
+//});
+
+//Route::get('picture', function()
+//{
+//	$num = Session::get('num');
+//	$photo = Photo::where('ref', '=', $num)->first();
+//	$patient = Patient::where('phn', '=', $num)->first();
+//	return View::make('picture', ['patient' => $patient, 'photo' => $photo]);
+//});
 
 
 
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function()
 {
-    $patients = DB::table('patients')->paginate(20);
-
-    return View::make('home', ['patients' => $patients]);
+    return View::make('home');
 }]);
 
 Route::get('login', ['as' => 'login.create', function()

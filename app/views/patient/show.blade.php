@@ -5,11 +5,11 @@
 	<h2>This is a Patient</h2>
 
 	<div>
-	{{ link_to_route('export', 'export', ['id' => $patient->id]) }}
-	</div>
-
-	<div>
-	{{ link_to_action('PatientController@edit', 'edit', array($patient->id)); }}
+	{{ link_to_route('export', 'export', ['id' => $patient->id], ['class'=>'btn btn btn-default']) }}
+	{{ link_to_action('PatientController@edit', 'edit', array($patient->id), ['class'=>'btn btn btn-default']) }}
+	{{ link_to_action('PhotoController@index', 'addPicture', ['id' => $patient->id], ['class'=>'btn btn btn-default']) }}
+	{{ link_to_action('AppointController@index', 'makeAppointment', [$patient->id], ['class'=>'btn btn btn-default']) }}
+	{{ link_to_route('delete', 'delete', ['id' => $patient->id], ['class'=>'btn btn btn-default']) }}
 	</div>
 
 	<p>

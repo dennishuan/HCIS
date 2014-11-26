@@ -7,7 +7,8 @@
     "require": {
         "laravel/framework": "4.2.*",
         "fzaninotto/faker": "1.5.*@dev",
-	"intervention/image":"2.*"
+	"intervention/image":"2.*",
+	"gloudemans/calendar": "dev-master"
     },
     "require-dev": {
         "way/generators": "~2.0"

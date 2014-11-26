@@ -1,0 +1,17 @@
+@extends('layouts/default')
+
+@section('content')
+
+<h2>{{ link_to('image', 'AddImage') }}<h2>
+
+<div> {{ link_to('files', 'Addfile') }}</div>
+
+<div> {{ link_to('patient', 'viewPatients') }}</div>
+
+<div> {{ link_to('appoint', 'makeappointment') }}</div>
+
+{ Form::open(['route' => 'login.destroy']) }}
+{{ Form::submit('Logout') }}
+{{ Form::close() }}
+
+@stop

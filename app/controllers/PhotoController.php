@@ -9,10 +9,37 @@ class PhotoController extends \BaseController {
 	 */
 	public function index()
 	{
+	 $id = Input::get('id');
+	 $patient = Patient::find($id);
+	 return View::make('photo.index', ['patient' => $patient]);
 		//
 	}
 
 
+	public function upload()
+	{
+	 if(Input::hasFile('image'))
+	 {	  
+
+	  $image = Input::file('image');
+
+	  $filename = $image->getClientOriginalName();
+
+	  $path = public_path('img/'.$filename);
+
+	  $photo = new Photo();
+	  $photo->ref = Input::get('ref');
+	  $photo->image = $path;
+	  if(Image::make($image->getRealPath())->resize('280','200')->save($path) && $photo->save())
+	   {
+		return View::make('photo.show');
+	   }
+		
+	  return('error with upload');
+	 }
+
+	 return Redirect::back()->withErrors('Please select an Image');
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -20,6 +47,7 @@ class PhotoController extends \BaseController {
 	 */
 	public function create()
 	{
+	 
 		//
 	}
 
