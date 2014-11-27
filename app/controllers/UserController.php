@@ -138,28 +138,15 @@ class UserController extends \BaseController {
 		if(!Auth::user()->isAdmin())
 		{
 			unset($input['type']);
+			unset($input['password']);
 		}
 
 		$user = $this->user->findOrFail($id);
 
-		//Check for access
-		if (!Auth::user()->isAdmin()){
-			$credentials = ['username' => $user->username, 'password' => $input['current_password']];
-			if (! Auth::validate($credentials))
-			{
-				return Redirect::back()->with('flash_message_danger', 'Invalid current password.');
-			}
-		}
-
 		if(! $user->fill($input)->isValid()){
+			dd($user->errors);
 			return Redirect::back()->withInput()->withErrors($user->errors)->with('flash_message_danger', 'Invalid input');
 		}
-
-		// Hash the password
-		$user->password = Hash::make($user->password);
-
-		// Deleted the password_confirmation before save
-		unset($user['password_confirmation']);
 
 		$user->save();
 
@@ -247,6 +234,46 @@ class UserController extends \BaseController {
 		$user->save();
 
 		return Redirect::back()->with('flash_message_success', 'Upload done.');
+	}
+
+	public function password($id)
+	{
+		//
+		$user = $this->user->findOrFail($id);
+
+		return View::make('user.password', ['user'=>$user]);
+	}
+
+	public function updatePassword($id)
+	{
+		//Get input then update
+		$input = Input::all();
+
+		$user = $this->user->findOrFail($id);
+
+		//Validate the input
+		$rule = ['password' => 'required|max:225|confirmed'];
+		$validation = Validator::make($input, $rule);
+		if( ! $validation->passes())
+		{
+			return Redirect::back()->with('flash_message_danger', 'Input error')->withErrors($validation);
+		}
+
+		//Check for access
+		if (!Auth::user()->isAdmin()){
+			$credentials = ['username' => $user->username, 'password' => $input['current_password']];
+			if (! Auth::validate($credentials))
+			{
+				return Redirect::back()->with('flash_message_danger', 'Invalid current password.');
+			}
+		}
+
+		// Hash the password and save
+		$user->password = Hash::make($input['password']);
+
+		$user->save();
+
+		return Redirect::route('user.show', $id)->with('flash_message_success', 'The password has been updated.');
 	}
 
 }

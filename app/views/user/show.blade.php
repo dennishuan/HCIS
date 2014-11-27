@@ -61,6 +61,8 @@
           {{ link_to_route('user.index', 'Index', [], ['class' => 'btn btn-info']) }}
           |
           {{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
+          |
+          {{ link_to_route('user.password', 'Change Password', [$user->id], ['class' => 'btn btn-info']) }}
 
           @if (Auth::user() != null && Auth::user()->isAdmin())
           |

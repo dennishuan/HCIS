@@ -28,14 +28,6 @@
       </div>
       {{ $errors->first('phone')}}
 
-      @if(Auth::user()->getId($user->id))
-      <div class="input-group buffer">
-        <span class="input-group-addon">Current Password:</span>
-        {{ Form::password('current_password', ['class' => 'form-control', 'required'])}}
-      </div>
-      {{ $errors->first('current_password')}}
-      @endif
-
       <div class="input-group buffer">
         {{ Form::submit('Make Changes', ['class' => 'btn btn-info'])}}
       </div>
@@ -66,19 +58,6 @@
         {{ Form::text('email', $user->email, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('email')}}
-
-      @if(Auth::user()->getId($user->id) || Auth::user()->isAdmin())
-      <div class="input-group buffer">
-        <span class="input-group-addon">New Password:</span>
-        {{ Form::password('password', ['class' => 'form-control', 'required'])}}
-      </div>
-      {{ $errors->first('password')}}
-
-      <div class="input-group buffer">
-        <span class="input-group-addon">Confirm Password:</span>
-        {{ Form::password('password_confirmation', ['class' => 'form-control', 'required'])}}
-      </div>
-      @endif
     </div>
     {{ Form::close()}}
   </div>
