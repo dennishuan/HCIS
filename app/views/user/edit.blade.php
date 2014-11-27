@@ -38,7 +38,7 @@
       @if(Auth::user() != null && Auth::user()->isAdmin())
       <div class="input-group">
         <span class="input-group-addon">Type:</span>
-        {{ Form::select('type', array('admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
+        {{ Form::select('type', array('Admin' => 'Admin', 'Doctor' => 'Doctor', 'Nurse' => 'Nurse'),
         $user->type, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('type')}}
@@ -46,8 +46,7 @@
       <fieldset disabled>
         <div class="input-group">
           <span class="input-group-addon">Type:</span>
-          {{ Form::select('type', array('admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
-          $user->type, ['class' => 'form-control', 'required'])}}
+          {{ Form::text('type', $user->type, ['class' => 'form-control', 'required'])}}
         </div>
         {{ $errors->first('type')}}
       </fieldset>

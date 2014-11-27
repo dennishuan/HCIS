@@ -12,7 +12,7 @@ class RecordTableSeeder extends Seeder {
 
         $patients = Patient::all();
         $facilities = Facility::all();
-        $users = User::where('type', 'doctor');
+        $users = User::where('type', 'Doctor');
 
         foreach(range(1, 300) as $index)
         {
@@ -23,7 +23,7 @@ class RecordTableSeeder extends Seeder {
                 Record::create([
                     'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
                     'facility_id' => $facility->id,
-                    'user_id' => User::where('type', 'doctor')->orderByRaw("RAND()")->first()->id,
+                    'user_id' => User::where('type', 'Doctor')->orderByRaw("RAND()")->first()->id,
 
                     'priority' => '6',
                     'reg_datetime' => $faker->datetime,

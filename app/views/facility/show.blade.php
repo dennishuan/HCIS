@@ -14,17 +14,10 @@
           {{ Form::text('name', $facility->name, ['class' => 'form-control']) }}
         </div>
         
-        @if($facility->type == 'hospital')
         <div class="input-group buffer">
           <span class="input-group-addon">Type:</span>
-          {{ Form::text('type', 'Hospital', ['class' => 'form-control']) }}
+          {{ Form::text('type', $facility->type, ['class' => 'form-control']) }}
         </div>
-        @else
-        <div class="input-group buffer">
-          <span class="input-group-addon">Type:</span>
-          {{ Form::text('type', 'Clinic', ['class' => 'form-control']) }}
-        </div>
-        @endif
           
         <div class="input-group buffer">
           <span class="input-group-addon">Address:</span>

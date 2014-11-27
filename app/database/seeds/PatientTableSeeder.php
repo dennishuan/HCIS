@@ -10,7 +10,9 @@ class PatientTableSeeder extends Seeder {
 	{
 		$faker = Faker::create('en_CA');
 
-		$sex = ['female', 'male'];
+		$sex = ['Female', 'Male'];
+        
+        $permanent_resident = ['Yes', 'No'];
 
 		foreach(range(1, 100) as $index)
 		{
@@ -30,7 +32,7 @@ class PatientTableSeeder extends Seeder {
 				'emergency_phone' => $faker->numerify('##########'),
 				'emergency_relationship' => $faker->word,
 				'allergies' => $faker->word,
-				'permanent_resident' => $faker->boolean,
+				'permanent_resident' => $faker->randomElement($permanent_resident),
 				'medical_history' => $faker->text,
 				'preferred_language' => $faker->word,
 				'other_language' => $faker->word,

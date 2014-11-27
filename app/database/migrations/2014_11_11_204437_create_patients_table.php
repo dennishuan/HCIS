@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration {
 			$table->string('phn', 10)->unique(); // string = varchar
 			$table->string('name', 255); // full name as stated in care card
 			$table->string('preferred_name', 255); // preferred name
-			$table->enum('sex', ['female', 'male']); // male = 1, o/w female
+			$table->enum('sex', ['Female', 'Male']);
 			$table->date('date_of_birth');
 			$table->string('address', 255); // full address
 			$table->string('postal_code', 6); // no spaces
@@ -32,7 +32,7 @@ class CreatePatientsTable extends Migration {
 			$table->string('emergency_phone', 15)->nullable(); // emergency contact number
 			$table->string('emergency_relationship', 100)->nullable(); // relationship with the patient
 			$table->string('allergies', 255)->nullable();
-			$table->boolean('permanent_resident'); // yes = 1; o/w no
+			$table->enum('permanent_resident', ['Yes', 'No']);
 			$table->text('medical_history');
 			$table->string('preferred_language', 255); // primary language
 			$table->string('other_language', 255); // secondary preferred language

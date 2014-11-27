@@ -20,7 +20,7 @@ class CreateFacilitiesTable extends Migration {
 
             $table->string('abbrev', 6);
             $table->string('name', 255);
-            $table->enum('type', ['hospital','clinic']);
+            $table->enum('type', ['Hospital','Clinic']);
             $table->string('phone', 15);
             $table->string('fax', 15);
             $table->string('address');

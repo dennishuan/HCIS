@@ -4,7 +4,7 @@ class FacilityUserTableSeeder extends Seeder {
 
     public function run()
     {
-        $users = User::where('type', 'doctor')->orWhere('type', 'nurse')->get();
+        $users = User::where('type', 'Doctor')->orWhere('type', 'Nurse')->get();
 
         foreach($users as $user)
         {

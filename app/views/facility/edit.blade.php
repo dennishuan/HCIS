@@ -15,7 +15,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Type:</span>
-        {{ Form::select('type', array(' ' => ' ', 'hospital' => 'Hospital', 'clinic' => 'Clinic'),
+        {{ Form::select('type', array(' ' => ' ', 'Hospital' => 'Hospital', 'Clinic' => 'Clinic'),
         $facility->type, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('type')}}

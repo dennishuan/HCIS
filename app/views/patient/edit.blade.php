@@ -83,7 +83,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Sex:</span>
-        {{ Form::select('sex', array(' ' => ' ', 'male' => 'Male', 'female' => 'Female'),
+        {{ Form::select('sex', array(' ' => ' ', 'Male' => 'Male', 'Female' => 'Female'),
         $patient->sex, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('sex') }}
@@ -120,7 +120,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Permanent Resident:</span>
-        {{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'),
+        {{ Form::select('permanent_resident', array(' ' => ' ', 'Yes' => 'Yes', 'No' => 'No'),
         $patient->permanent_resident, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('permanent_resident') }}
