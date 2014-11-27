@@ -15,7 +15,7 @@ class UserController extends \BaseController {
 	public function __construct(User $user)
 	{
 		$this->beforeFilter('admin', ['only' => ['create', 'store', 'destroy', 'ajax']]);
-		$this->beforeFilter('owner', ['only' => ['edit', 'update', 'upload']]);
+		$this->beforeFilter('owner', ['only' => ['edit', 'update', 'upload', 'password']]);
 		$this->user = $user;
 	}
 
@@ -261,7 +261,17 @@ class UserController extends \BaseController {
 
 		//Check for access
 		if (!Auth::user()->isAdmin()){
+			//Owner
 			$credentials = ['username' => $user->username, 'password' => $input['current_password']];
+			if (! Auth::validate($credentials))
+			{
+				return Redirect::back()->with('flash_message_danger', 'Invalid current password.');
+			}
+		}
+		else
+		{
+			//Admin
+			$credentials = ['username' => Auth::user()->username, 'password' => $input['current_password']];
 			if (! Auth::validate($credentials))
 			{
 				return Redirect::back()->with('flash_message_danger', 'Invalid current password.');

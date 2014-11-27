@@ -59,12 +59,11 @@
       <div class="input-group buffer">
         <nav>
           {{ link_to_route('user.index', 'Index', [], ['class' => 'btn btn-info']) }}
+          @if (Auth::user() != null && Auth::user()->isAdmin())
           |
           {{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
           |
           {{ link_to_route('user.password', 'Change Password', [$user->id], ['class' => 'btn btn-info']) }}
-
-          @if (Auth::user() != null && Auth::user()->isAdmin())
           |
           {{ Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
           {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
