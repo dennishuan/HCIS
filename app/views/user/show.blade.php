@@ -42,10 +42,22 @@
     <!-- Right side of form -->
     <div class="col col-md-6 col-lg-6 buffer">
       <fieldset disabled>
+        @if($user->type == 'admin')
         <div class="input-group">
           <span class="input-group-addon">Type:</span>
-          {{ Form::text('type', $user->type, ['class' => 'form-control']) }}
+          {{ Form::text('type', 'Admin', ['class' => 'form-control']) }}
         </div>
+        @elseif($user->type == 'doctor')
+        <div class="input-group">
+          <span class="input-group-addon">Type:</span>
+          {{ Form::text('type', 'Doctor', ['class' => 'form-control']) }}
+        </div>
+        @else
+         <div class="input-group">
+          <span class="input-group-addon">Type:</span>
+          {{ Form::text('type', 'Nurse', ['class' => 'form-control']) }}
+        </div> 
+        @endif
 
         <div class="input-group buffer">
           <span class="input-group-addon">Email:</span>

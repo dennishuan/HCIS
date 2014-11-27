@@ -13,13 +13,19 @@
           <span class="input-group-addon">Facility Name:</span>
           {{ Form::text('name', $facility->name, ['class' => 'form-control']) }}
         </div>
-
-        <!-- NOTE TYPE IS NOT AN ENUM -->
+        
+        @if($facility->type == 'hospital')
         <div class="input-group buffer">
           <span class="input-group-addon">Type:</span>
-          {{ Form::text('type', $facility->type, ['class' => 'form-control']) }}
+          {{ Form::text('type', 'Hospital', ['class' => 'form-control']) }}
         </div>
-
+        @else
+        <div class="input-group buffer">
+          <span class="input-group-addon">Type:</span>
+          {{ Form::text('type', 'Clinic', ['class' => 'form-control']) }}
+        </div>
+        @endif
+          
         <div class="input-group buffer">
           <span class="input-group-addon">Address:</span>
           {{ Form::text('address', $facility->address, ['class' => 'form-control']) }}
