@@ -12,26 +12,26 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Username:</span>
-        {{ Form::text('username', $user->username, ['class' => 'form-control']) }}
+        {{ Form::text('username', $user->username, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('username')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Name:</span>
-        {{ Form::text('name', $user->name, ['class' => 'form-control'])}}
+        {{ Form::text('name', $user->name, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('name')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Phone Number:</span>
-        {{ Form::text('phone', $user->phone, ['class' => 'form-control'])}}
+        {{ Form::text('phone', $user->phone, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('phone')}}
 
       @if(Auth::user()->getId($user->id))
       <div class="input-group buffer">
         <span class="input-group-addon">Current Password:</span>
-        {{ Form::password('current_password', ['class' => 'form-control'])}}
+        {{ Form::password('current_password', ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('current_password')}}
       @endif
@@ -46,16 +46,16 @@
       @if(Auth::user() != null && Auth::user()->isAdmin())
       <div class="input-group">
         <span class="input-group-addon">Type:</span>
-        {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
-        $user->type, ['class' => 'form-control'])}}
+        {{ Form::select('type', array('admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
+        $user->type, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('type')}}
       @else
       <fieldset disabled>
         <div class="input-group">
           <span class="input-group-addon">Type:</span>
-          {{ Form::select('type', array(' ' => ' ', 'admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
-          $user->type, ['class' => 'form-control'])}}
+          {{ Form::select('type', array('admin' => 'Admin', 'doctor' => 'Doctor', 'nurse' => 'Nurse'),
+          $user->type, ['class' => 'form-control', 'required'])}}
         </div>
         {{ $errors->first('type')}}
       </fieldset>
@@ -63,20 +63,20 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Email:</span>
-        {{ Form::text('email', $user->email, ['class' => 'form-control'])}}
+        {{ Form::text('email', $user->email, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('email')}}
 
       @if(Auth::user()->getId($user->id) || Auth::user()->isAdmin())
       <div class="input-group buffer">
         <span class="input-group-addon">New Password:</span>
-        {{ Form::password('password', ['class' => 'form-control'])}}
+        {{ Form::password('password', ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('password')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Confirm Password:</span>
-        {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
+        {{ Form::password('password_confirmation', ['class' => 'form-control', 'required'])}}
       </div>
       @endif
     </div>

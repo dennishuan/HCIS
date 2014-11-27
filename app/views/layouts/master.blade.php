@@ -17,6 +17,11 @@
       body { padding-top: 70px; }
       .buffer { margin-top:20px; }
       .red {color: red;}
+      input:invalid,
+      input:out-of-range {
+        border-color:hsl(0, 50%, 50%);
+        background:hsl(0, 50%, 90%);
+      }
     </style>
   </head>
 
