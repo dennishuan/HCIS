@@ -56,7 +56,7 @@ class FilesController extends \BaseController {
 	//variable record export for input(bytype, typename) NOTWORKING
 	public function exportRec()
 	{
-		$input :: Input::all();
+		$input = Input::all();
 		$records = Record::where($input[1], '=', $input[2]);
 		$file = new FileSystem();
 		$file->put("output.json", $patients);
