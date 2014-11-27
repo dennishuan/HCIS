@@ -71,7 +71,7 @@ class Record extends \Eloquent {
 				$patient = $patient->where('name', 'LIKE', '%'.$qs['name'].'%');
 			}
 			if(array_key_exists('sex', $qs)){
-				$patient = $patient->where('sex', 'LIKE', '%'.$qs['sex'].'%');
+				$patient = $patient->where('sex', $qs['sex']);
 			}
 			if(array_key_exists('preferred_name', $qs)){
 				$patient = $patient->where('preferred_name', 'LIKE', '%'.$qs['preferred_name'].'%');
