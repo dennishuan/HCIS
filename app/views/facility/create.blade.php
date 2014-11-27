@@ -10,20 +10,20 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Facility Name:</span>
-        {{ Form::text('name', null, ['class' => 'form-control']) }}
+        {{ Form::text('name', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('name') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Type:</span>
         {{ Form::select('type', array(' ' => ' ', 'hospital' => 'Hospital', 'clinic' => 'Clinic'),
-        ' ', ['class' => 'form-control']) }}
+        ' ', ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('type') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('address', null, ['class' => 'form-control']) }}
+        {{ Form::text('address', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('address') }}
 
@@ -36,16 +36,16 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Facility Abbrev.:</span>
-        {{ Form::text('abbrev', null, ['class' => 'form-control']) }}
+        {{ Form::text('abbrev', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('abbrev') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Phone Number:</span>
-        {{ Form::text('phone', null, ['class' => 'form-control']) }}
+        {{ Form::text('phone', null, ['class' => 'form-control', 'required']) }}
 
         <span class="input-group-addon">Fax Number:</span>
-        {{ Form::text('fax', null, ['class' => 'form-control']) }}
+        {{ Form::text('fax', null, ['class' => 'form-control'], 'required') }}
 
       </div>
       {{ $errors->first('phone') }}
@@ -53,7 +53,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Postal Code:</span>
-        {{ Form::text('postal_code', null, ['class' => 'form-control']) }}
+        {{ Form::text('postal_code', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('postal_code') }}
     </div>

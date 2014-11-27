@@ -16,12 +16,12 @@
       <div class="input-group buffer">
         <span class="input-group-addon">Priority:</span>
         {{ Form::select('priority', array(' '=>' ','1'=>'1','2'=>'2','3'=>'3','4'=>'4',
-        '5'=>'5','6'=>'6'), $record->patient->priority ,['class' => 'form-control']) }}
+        '5'=>'5','6'=>'6'), $record->patient->priority ,['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('priority') }}
       <div class="input-group buffer">
         <span class="input-group-addon">Admittance Date:</span>
-        {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control']) }}
+        {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('admit_datetime') }}
 
@@ -49,14 +49,14 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Registration Date:</span>
-        {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control']) }}
+        {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('reg_datetime') }}
 
 
       <div class="input-group buffer">
         <span class="input-group-addon">Chief Complaint Code:</span>
-        {{ Form::text('chief_compl_code', $record->chief_compl_code, ['class' => 'form-control']) }}
+        {{ Form::text('chief_compl_code', $record->chief_compl_code, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('chief_compl_code') }}
 
@@ -66,49 +66,49 @@
     <div class="col col-md-12 col-lg-12">
       <div class="input-group buffer">
         <span class="input-group-addon">Stated Complaint:</span>
-        {{ Form::textarea('stated_compl', $record->stated_complaint, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('stated_compl', $record->stated_complaint, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('stated_compl') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Cheif Complaint:</span>
-        {{ Form::textarea('chief_compl', $record->chief_complaint, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('chief_compl', $record->chief_complaint, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('chief_compl') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Subjective:</span>
-        {{ Form::textarea('subjective', $record->subjective, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('subjective', $record->subjective, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('subjective') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Objective:</span>
-        {{ Form::textarea('objective', $record->objective, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('objective', $record->objective, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('objective') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Assessment:</span>
-        {{ Form::textarea('assessment', $record->assessment, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('assessment', $record->assessment, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('assessment') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Prescription:</span>
-        {{ Form::textarea('prescription', $record->prescription, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('prescription', $record->prescription, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('prescription') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Remarks:</span>
-        {{ Form::textarea('remarks', $record->remarks, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('remarks', $record->remarks, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('remarks') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Plan:</span>
-        {{ Form::textarea('plan', $record->plan, ['class' => 'form-control', 'rows' => '3']) }}
+        {{ Form::textarea('plan', $record->plan, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('plan') }}
     </div>

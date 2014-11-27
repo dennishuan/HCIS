@@ -10,25 +10,25 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Personal Health Number:</span>
-        {{ Form::text('phn', null, ['class' => 'form-control']) }}
+        {{ Form::text('phn', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('phn') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Preferred Name:</span>
-        {{ Form::text('preferred_name', null, ['class' => 'form-control']) }}
+        {{ Form::text('preferred_name', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('preferred_name') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Postal Code:</span>
-        {{ Form::text('postal_code', null, ['class' => 'form-control']) }}
+        {{ Form::text('postal_code', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('postal_code') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Date of Birth:</span>
-        {{ Form::text('date_of_birth', null, ['class' => 'form-control']) }}
+        {{ Form::text('date_of_birth', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('date_of_birth') }}
 
@@ -58,13 +58,13 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Preferred Language:</span>
-        {{ Form::text('preferred_language', null, ['class' => 'form-control']) }}
+        {{ Form::text('preferred_language', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('preferred_language') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Ethnic Background:</span>
-        {{ Form::text('ethnic_background', null, ['class' => 'form-control']) }}
+        {{ Form::text('ethnic_background', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('ethnic_background') }}
 
@@ -77,20 +77,20 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Full Name:</span>
-        {{ Form::text('name', null, ['class' => 'form-control']) }}
+        {{ Form::text('name', null, ['class' => 'form-control'], 'required') }}
       </div>
       {{ $errors->first('name') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Sex:</span>
         {{ Form::select('sex', array(' ' => ' ', 'male' => 'Male', 'female' => 'Female'),
-        ' ', ['class' => 'form-control'])}}
+        ' ', ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('sex') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('address', null, ['class' => 'form-control']) }}
+        {{ Form::text('address', null, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('address') }}
 
@@ -121,7 +121,7 @@
       <div class="input-group buffer">
         <span class="input-group-addon">Permanent Resident:</span>
         {{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'),
-        ' ', ['class' => 'form-control'])}}
+        ' ', ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('permanent_resident') }}
 

@@ -9,20 +9,20 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Facility Name:</span>
-        {{ Form::text('name', $facility->name, ['class' => 'form-control']) }}
+        {{ Form::text('name', $facility->name, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('name')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Type:</span>
         {{ Form::select('type', array(' ' => ' ', 'hospital' => 'Hospital', 'clinic' => 'Clinic'),
-        $facility->type, ['class' => 'form-control']) }}
+        $facility->type, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('type')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('address', $facility->address, ['class' => 'form-control']) }}
+        {{ Form::text('address', $facility->address, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('address')}}
 
@@ -35,16 +35,16 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Facility Abbrev.:</span>
-        {{ Form::text('abbrev', $facility->abbrev, ['class' => 'form-control']) }}
+        {{ Form::text('abbrev', $facility->abbrev, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('abbrev')}}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Phone Number:</span>
-        {{ Form::text('phone', $facility->phone, ['class' => 'form-control']) }}
+        {{ Form::text('phone', $facility->phone, ['class' => 'form-control', 'required']) }}
 
         <span class="input-group-addon">Fax Number:</span>
-        {{ Form::text('fax', $facility->fax, ['class' => 'form-control']) }}
+        {{ Form::text('fax', $facility->fax, ['class' => 'form-control', 'required']) }}
 
       </div>
       {{ $errors->first('phone')}}
@@ -52,7 +52,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Postal Code:</span>
-        {{ Form::text('postal_code', $facility->postal_code, ['class' => 'form-control']) }}
+        {{ Form::text('postal_code', $facility->postal_code, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('postal_code')}}
     </div>

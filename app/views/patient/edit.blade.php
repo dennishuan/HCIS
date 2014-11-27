@@ -10,25 +10,25 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Personal Health Number:</span>
-        {{ Form::text('phn', $patient->phn, ['class' => 'form-control']) }}
+        {{ Form::text('phn', $patient->phn, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('phn') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Preferred Name:</span>
-        {{ Form::text('preferred_name', $patient->preferred_name, ['class' => 'form-control']) }}
+        {{ Form::text('preferred_name', $patient->preferred_name, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('preferred_name') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Postal Code:</span>
-        {{ Form::text('postal_code', $patient->postal_code, ['class' => 'form-control']) }}
+        {{ Form::text('postal_code', $patient->postal_code, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('postal_code') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Date of Birth:</span>
-        {{ Form::text('date_of_birth', $patient->date_of_birth, ['class' => 'form-control']) }}
+        {{ Form::text('date_of_birth', $patient->date_of_birth, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('date_of_birth') }}
 
@@ -58,13 +58,13 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Preferred Language:</span>
-        {{ Form::text('preferred_language', $patient->preferred_language, ['class' => 'form-control']) }}
+        {{ Form::text('preferred_language', $patient->preferred_language, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('preferred_language') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Ethnic Background:</span>
-        {{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control']) }}
+        {{ Form::text('ethnic_background', $patient->ethnic_background, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('ethnic_background') }}
 
@@ -77,20 +77,20 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Full Name:</span>
-        {{ Form::text('name', $patient->name, ['class' => 'form-control']) }}
+        {{ Form::text('name', $patient->name, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('name') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Sex:</span>
         {{ Form::select('sex', array(' ' => ' ', 'male' => 'Male', 'female' => 'Female'),
-        $patient->sex, ['class' => 'form-control'])}}
+        $patient->sex, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('sex') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Address:</span>
-        {{ Form::text('address', $patient->address, ['class' => 'form-control']) }}
+        {{ Form::text('address', $patient->address, ['class' => 'form-control', 'required']) }}
       </div>
       {{ $errors->first('address') }}
 
@@ -121,7 +121,7 @@
       <div class="input-group buffer">
         <span class="input-group-addon">Permanent Resident:</span>
         {{ Form::select('permanent_resident', array(' ' => ' ', '1' => 'Yes', '0' => 'No'),
-        $patient->permanent_resident, ['class' => 'form-control'])}}
+        $patient->permanent_resident, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('permanent_resident') }}
 

@@ -55,7 +55,7 @@
 
       <div class="input-group buffer">
         <span class="input-group-addon">Email:</span>
-        {{ Form::text('email', $user->email, ['class' => 'form-control', 'required'])}}
+        {{ Form::email('email', $user->email, ['class' => 'form-control', 'required'])}}
       </div>
       {{ $errors->first('email')}}
     </div>
