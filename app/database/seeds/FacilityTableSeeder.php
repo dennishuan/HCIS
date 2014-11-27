@@ -19,7 +19,7 @@ class FacilityTableSeeder extends Seeder {
 				'phone' => $faker->numerify('##########x####'),
 				'fax' => $faker->numerify('##########x####'),
 				'address' => $faker->address,
-				'postal_code' => strtoupper ($faker->bothify('#?##?#'))
+				'postal_code' => strtoupper ($faker->bothify('?#?#?#'))
 			]);
 		}
 
