@@ -22,6 +22,47 @@
   </div>
 </div>
 
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">                                                   $
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="uploadModalLabel">Upload Patient Files</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+		<label for = "file" class = "col-lg-2 control-label">File:</label>
+		<div class = "col-lg-10">
+			<input type = "text" class = "form-control" id = "data" placeholder = "???">
+		</div>
+	  </div>
+      </div>	
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="upload">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">                                                   $
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="exportModalLabel">Confirm Export</h4>
+      </div>
+      <div class="modal-body">
+          <p>Do you want to export patient profiles?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="export">confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--Button-->
 <div id="toolbar" class="btn-group btn-default">
   <button class="btn btn-default" id="create">
@@ -36,6 +77,12 @@
   @if (Auth::user() != null && Auth::user()->isAdmin())
   <button class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
+  </button>
+  <button class="btn btn-default" data-toggle="modal" data-target="#uploadModal">
+    <i class="glyphicon glyphicon-upload"></i> <span>Upload</span>
+  </button>
+  <button class="btn btn-default" data-toggle="modal" data-target="#exportModal">
+    <i class="glyphicon glyphicon-download"></i> <span>Export</span>
   </button>
   @endif
 

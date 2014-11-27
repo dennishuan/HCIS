@@ -37,6 +37,11 @@ $(function () {
     }
   });
 
+  $('#upload').click(function () {
+    var path = $(location).attr('pathname') + '/upload';
+    window.open(path);
+  });
+
   $('#delete').click(function () {
     var path = $(location).attr('pathname');
     var path = path + '/ajax';
