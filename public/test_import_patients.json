@@ -1,0 +1,35 @@
+{
+	"patient1":{
+     		"phn": "0000100010",
+     		"name": "McTest",
+     		"preferred_name": "alphfoobar",
+     		"sex": "male",
+     		"date_of_birth": "2001-01-02",
+     		"address": "imanaddress",
+     		"postal_code": "V7K1M9",
+     		"home_phone": "6040000000",
+     		"family_doctor": "DrDingle"
+		},
+	"patient2":{
+     		"phn": "1111000111",
+     		"name": "Jonjonjon",
+     		"preferred_name": "htims",
+     		"sex": "female",
+     		"date_of_birth": "1842-10-02",
+     		"address": "jingledingle",
+     		"postal_code": "V7j1f9",
+     		"home_phone": "6044444444",
+     		"family_doctor": "satan"
+		},
+	"patient3":{
+     		"phn": "1203456123",
+     		"name": "whyme",
+     		"preferred_name": "barf",
+     		"sex": "male",
+     		"date_of_birth": "3248-01-11",
+     		"address": "jupiter",
+     		"postal_code": "f7s1e9",
+     		"home_phone": "6047773456",
+     		"family_doctor": "dongding"
+		}
+}

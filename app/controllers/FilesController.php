@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Filesystem\Filesystem;
 
 class FilesController extends \BaseController {
 
@@ -11,56 +12,66 @@ class FilesController extends \BaseController {
 	}
 
 
+	public function upPat(){ //display file input form REPLACE WITH MODAL
+
+		return View::make('filep');
+	}
+
+	public function upRec(){ //same as uppat
+
+		return View::make('filer');
+	}
+
+	
 	//upload multiple patient json must be perfect/no validation
 	public function uploadPat()
 	{
 		if(Input::hasFile('file'))
 		{
-			$data = json_decode(file_get_contents(Input::file('file')), true);
-			foreach ($data as $values)
-			{
-				$patient = new Patient();
-				$patient->fill($values)->save();
-			}
+		  $data = json_decode(file_get_contents(Input::file('file')), true);
+		  foreach ($data as $values)
+		  {
+			$patient = new Patient();
+			$patient->fill($values)->save();
+		  }
 
-			return Redirect::to('patient')->with('flash_message_success', 'files successfully uploaded');
-		}
-		return Redirect::back()->withErrors('Please select a File');
+		  return Redirect::to('patient')->with('flash_message_success', 'files successfully uploaded');
+		 }
+		 return Redirect::back()->withErrors('Please select a File');
 	}
 
-
+	//upload multiple records
 	public function uploadRec()
 	{
 		if(Input::hasFile('file'))
 		{
-			$data = json_decode(file_get_contents(Input::file('file')), true);
-			foreach ($data as $values)
-			{
-				$record = new Record();
-				$patient->fill($values)->save();
-			}
-			return Redirect::to('record')->with('flash_message_success','files successfully uploaded');
+		  $data = json_decode(file_get_contents(Input::file('file')), true);
+		  foreach ($data as $values)
+		  {
+			$record = new Record();
+			$record->fill($values)->save();
+		  }
+		 return Redirect::to('record')->with('flash_message_success','files successfully uploaded');
 		}
 		return Redirect::back()->withErrors('Please select a File');
 	}
 
-	//export all patients currently to output.jon in public
+	//export all patients currently to patients.jon in public
 	public function exportPat()
 	{
 		$patients = Patient::all();
 		$file = new FileSystem();
-		$file->put("output.json", $patients);
-		return Redirect::to('patients')->with('flash_message_success', 'patients exported to public folder');
+		$file->put("patients.json", $patients);
+		return Redirect::action('PatientController@index')->with('flash_message_success', 'patients exported to public folder');
 	}
 
-	//variable record export for input(bytype, typename) NOTWORKING
+	//export all records to records.json
 	public function exportRec()
 	{
-		$input = Input::all();
-		$records = Record::where($input[1], '=', $input[2]);
+		$records = Record::all();
 		$file = new FileSystem();
-		$file->put("output.json", $patients);
-		return Redirect::to('record')->with('flash_message_success', 'records s exported to public folde');
+		$file->put("records.json", $records);
+		return Redirect::action('RecordController@index')->with('flash_message_success', 'records exported to public folder');
 	}
 
 

@@ -99,11 +99,12 @@ Route::group(['before' => 'auth'], function(){
 	Route::resource('user', 'UserController');
 
 	//File
-	Route::post('user/{user}/upload', ['as' => 'user.upload', 'uses' => 'UserController@upload']);
-	Route::post('patient/{patient}/upload', ['as' => 'patient.upload', 'uses' => 'PatientController@upload']);
-	Route::post('record/{record}/upload', ['as' => 'record.upload', 'uses' => 'RecordController@upload']);
-	Route::get('files/profile/{file}', ['uses' => 'FilesController@profile']);
-	Route::get('files/record/{file}', ['uses' => 'FilesController@record']);
+	Route::get('patient/file/upPat', ['as'=>'file/upPat','uses'=>'FilesController@upPat']);
+	Route::get('patient/file/exportPat',['as'=>'file/exportPat', 'uses'=>'FilesController@exportPat']);
+	Route::post('uploadPat', 'FilesController@uploadPat');
+	Route::get('record/file/upRec', ['as'=>'file/upRec','uses'=>'FilesController@upRec']);
+	Route::get('record/file/exportRec',['as'=>'file/exportRec','uses'=>'FilesController@exportRec']);
+	Route::post('uploadRec','FilesController@uploadRec');
 
 });
 

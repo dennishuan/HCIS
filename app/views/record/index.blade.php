@@ -4,6 +4,11 @@
 
 @section('content')
 
+<div>
+{{ link_to_route('file/upRec', 'UPLOADRECORDS', null, ['class' => 'btn btn-default']) }}
+{{ link_to_route('file/exportRec', 'EXPORTRECORDS', null, ['class' => 'btn btn-default']) }}
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
