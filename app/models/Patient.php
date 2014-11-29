@@ -98,7 +98,7 @@ class Patient extends Eloquent{
 		$rules = array('phn' => 'required|unique:patients,phn,' . $id . '|numeric|digits:10',
 					   'name' => 'required|alpha_spaces|max:255',
 					   'preferred_name' => 'required|alpha_spaces|max:255',
-					   'sex' => 'required|in:female,male',
+					   'sex' => 'required|in:Female,Male',
 					   'date_of_birth' => 'required|date',
 					   'address' => 'required|max:255',
 					   'postal_code' => 'required|min:6|max:6',
