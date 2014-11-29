@@ -18,7 +18,9 @@
   </button>
 
 <!-- Link to file upload --->
-<div> {{ link_to('addfile', 'UploadPatient') }}</div>  
+<div> {{ link_to('addfile', 'UploadPatient') }}</div> 
+
+<div> {{ link_to('exportall', 'ExportAll') }}</div> 
   
 </div>
 <!--Confirmation Modal-->

@@ -20,14 +20,18 @@ class FileController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create() //basic import of single patient
+	public function create() // import of multi patient
 	{
 	 if(Input::hasFile('file'))
 	 {
 	  $data = json_decode(file_get_contents(Input::file('file')), true);
-	  $patient = new Patient();
-	  $patient->fill($data)->save();
-	  return View::make('file.show')->with('patient',$patient);
+	  foreach ($data as $values)
+	   {
+	 	$patient = new Patient();
+	  	$patient->fill($values)->save();
+		
+	   }
+	   return Redirect::to('patient');
 	 }
 	
 	 return Redirect::back()->withErrors('Please select a File');
@@ -48,6 +52,14 @@ class FileController extends \BaseController {
 	 $file->put("output.json", $patient);
 	 return ($patient);
 		//
+	}
+
+	public function export()
+	{
+	 $patients = Patient::all();
+	 $file = new Filesystem();
+	 $file->put("output.json", $patients);
+	 return Redirect::to('patient');
 	}
 
 
