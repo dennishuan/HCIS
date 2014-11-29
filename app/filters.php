@@ -89,7 +89,7 @@ Route::filter('auth', function(){
 
 	if(Session::getId() != Auth::user()->last_session){
 		Auth::logout();
-		return Redirect::guest('login')->with('flash_message_warning', 'Only single session allowed');
+		return Redirect::guest('login')->with('flash_message_warning', 'Session timeout');
 	}
 });
 

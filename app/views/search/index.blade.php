@@ -102,7 +102,7 @@
           </div>
 
           <div class="input-group buffer">
-            {{ Form::submit('Search for User', ['class' => 'btn btn-info'])}}
+            {{ Form::submit('Search for Record', ['class' => 'btn btn-info'])}}
           </div>
         </div>
 
