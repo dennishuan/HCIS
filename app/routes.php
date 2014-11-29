@@ -39,16 +39,6 @@ use Monolog\Handler\StreamHandler;
 Route::when('*', ['before' => 'csrf'], ['post', 'put', 'delete']);
 
 
-/*****************************************************
-*                       TEST                         *
-* remove this and TestTokenController when deploying.*
-* /testtoken/token
-* /testtoken/no-token
-* /testtoken/bad-token
-****************************************************/
-Route::controller('testtoken', 'TestTokenController');
-
-
 //Home
 Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
     return View::make('home');
