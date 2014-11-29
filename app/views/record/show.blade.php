@@ -66,8 +66,8 @@
         </div>
 
         <div class="input-group buffer">
-          <span class="input-group-addon">Admittance Date:</span>
-          {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control']) }}
+          <span class="input-group-addon">Registration Date:</span>
+          {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control']) }}
         </div>
 
         <div class="input-group buffer">
@@ -137,8 +137,8 @@
         </div>
 
         <div class="input-group buffer">
-          <span class="input-group-addon">Registration Date:</span>
-          {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control']) }}
+          <span class="input-group-addon">Admittance Date:</span>
+          {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control']) }}
         </div>
 
         <div class="input-group buffer">
