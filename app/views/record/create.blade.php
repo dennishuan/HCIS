@@ -21,10 +21,10 @@
       {{ $errors->first('priority') }}
 
       <div class="input-group buffer">
-        <span class="input-group-addon">Admittance Date:</span>
-        {{ Form::text('admit_datetime', null, ['class' => 'form-control', 'required']) }}
+        <span class="input-group-addon">Registration Date:</span>
+        {{ Form::text('reg_datetime', null, ['class' => 'form-control', 'required']) }}
       </div>
-      {{ $errors->first('admit_datetime') }}
+      {{ $errors->first('reg_datetime') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Arrival Mode:</span>
@@ -49,10 +49,10 @@
       {{ $errors->first('username') }}
 
       <div class="input-group buffer">
-        <span class="input-group-addon">Registration Date:</span>
-        {{ Form::text('reg_datetime', null, ['class' => 'form-control', 'required']) }}
+        <span class="input-group-addon">Admittance Date:</span>
+        {{ Form::text('admit_datetime', null, ['class' => 'form-control', 'required']) }}
       </div>
-      {{ $errors->first('reg_datetime') }}
+      {{ $errors->first('admit_datetime') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Chief Complaint Code:</span>
@@ -63,19 +63,18 @@
     </div>
 
     <!-- Text Fields -->
-
-    <div class="col col-md-12 col-lg-12">
-      <div class="input-group buffer">
-        <span class="input-group-addon">Stated Complaint:</span>
-        {{ Form::textarea('stated_compl', null, ['class' => 'form-control', 'rows' => '3', 'required']) }}
-      </div>
-      {{ $errors->first('stated_compl') }}
-
-      <div class="input-group buffer">
+    <div class="input-group buffer">
         <span class="input-group-addon">Chief Complaint:</span>
         {{ Form::textarea('chief_compl', null, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('chief_compl') }}
+      
+    <div class="col col-md-12 col-lg-12">
+      <div class="input-group buffer">
+        <span class="input-group-addon">Stated Complaint:</span>
+        {{ Form::textarea('stated_compl', null, ['class' => 'form-control', 'rows' => '3', 'required'   ]) }}
+      </div>
+      {{ $errors->first('stated_compl') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Subjective:</span>

@@ -20,10 +20,10 @@
       </div>
       {{ $errors->first('priority') }}
       <div class="input-group buffer">
-        <span class="input-group-addon">Admittance Date:</span>
-        {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control', 'required']) }}
+        <span class="input-group-addon">Registratioin Date:</span>
+        {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control', 'required']) }}
       </div>
-      {{ $errors->first('admit_datetime') }}
+      {{ $errors->first('reg_datetime') }}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Arrival Mode:</span>
@@ -37,44 +37,46 @@
         <div class="input-group">
           <span class="input-group-addon">Personal Health Number:</span>
           {{ Form::text('phn', $record->patient->phn, ['class' => 'form-control', 'readOnly' => 'true']) }}
-        </div>
-        {{ $errors->first('phn') }}
+    </div>
+    {{ $errors->first('phn') }}
 
 
-        <div class="input-group buffer">
+    <div class="input-group buffer">
           <span class="input-group-addon">Doctor:</span>
           {{ Form::text('username', $record->user->username, ['class' => 'form-control', 'readOnly' => 'true']) }}
-        </div>
+    </div>
         {{ $errors->first('username') }}
 
-      <div class="input-group buffer">
-        <span class="input-group-addon">Registration Date:</span>
-        {{ Form::text('reg_datetime', $record->reg_datetime, ['class' => 'form-control', 'required']) }}
-      </div>
-      {{ $errors->first('reg_datetime') }}
+    <div class="input-group buffer">
+        <span class="input-group-addon">Admittance Date:</span>
+        {{ Form::text('admit_datetime', $record->admit_datetime, ['class' => 'form-control', 'required']) }}
+    </div>
+      {{ $errors->first('admit_datetime') }}
 
-
-      <div class="input-group buffer">
-        <span class="input-group-addon">Chief Complaint Code:</span>
+    <div class="input-group buffer">
+    <span class="input-group-addon">Chief Complaint Code:</span>
         {{ Form::text('chief_compl_code', $record->chief_compl_code, ['class' => 'form-control', 'required']) }}
-      </div>
+    </div>
       {{ $errors->first('chief_compl_code') }}
 
     </div>
 
     <!-- Text Fields -->
     <div class="col col-md-12 col-lg-12">
-      <div class="input-group buffer">
+        
+    <div class="input-group buffer">
+        <span class="input-group-addon">Chief Complaint:</span>
+        {{ Form::textarea('chief_compl', $record->chief_complaint, ['class' => 'form-control', 'rows' => '3', 'required']) }}
+    </div>
+      {{ $errors->first('chief_compl') }}
+        
+    <div class="input-group buffer">
         <span class="input-group-addon">Stated Complaint:</span>
         {{ Form::textarea('stated_compl', $record->stated_complaint, ['class' => 'form-control', 'rows' => '3', 'required']) }}
-      </div>
-      {{ $errors->first('stated_compl') }}
+    </div>
+    {{ $errors->first('stated_compl') }}
 
-      <div class="input-group buffer">
-        <span class="input-group-addon">Cheif Complaint:</span>
-        {{ Form::textarea('chief_compl', $record->chief_complaint, ['class' => 'form-control', 'rows' => '3', 'required']) }}
-      </div>
-      {{ $errors->first('chief_compl') }}
+
 
       <div class="input-group buffer">
         <span class="input-group-addon">Subjective:</span>
