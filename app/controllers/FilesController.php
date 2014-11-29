@@ -64,7 +64,14 @@ class FilesController extends \BaseController {
         $filename = sha1(time().time()).".json";
         $path = storage_path('files/export/'. $filename);
         $file->put($path, $patients);
-        return Response::download($path);
+        
+        // Check if file exist
+        if (File::exists($path)){
+            return Response::download($path);
+        }
+        else{
+            return Redirect::action('PatientController@index')->with('flash_message_danger', 'Export file failed to generate.');
+        }
     }
 
     //export all records to records.json
@@ -75,7 +82,14 @@ class FilesController extends \BaseController {
         $filename = sha1(time().time()).".json";
         $path = storage_path('files/export/'. $filename);
         $file->put($path, $records);
-        return Response::download($path);
+        
+        // Check if file exist
+        if (File::exists($path)){
+            return Response::download($path);
+        }
+        else{
+            return Redirect::action('RecordController@index')->with('flash_message_danger', 'Export file failed to generate.');
+        }
     }
 
 
