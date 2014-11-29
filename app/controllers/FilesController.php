@@ -61,8 +61,10 @@ class FilesController extends \BaseController {
     {
         $patients = Patient::all();
         $file = new FileSystem();
-        $file->put("patients.json", $patients);
-        return Redirect::action('PatientController@index')->with('flash_message_success', 'patients exported to public folder');
+        $filename = sha1(time().time()).".json";
+        $path = storage_path('files/export/'. $filename);
+        $file->put($path, $patients);
+        return Response::download($path);
     }
 
     //export all records to records.json
@@ -70,8 +72,10 @@ class FilesController extends \BaseController {
     {
         $records = Record::all();
         $file = new FileSystem();
-        $file->put("records.json", $records);
-        return Redirect::action('RecordController@index')->with('flash_message_success', 'records exported to public folder');
+        $filename = sha1(time().time()).".json";
+        $path = storage_path('files/export/'. $filename);
+        $file->put($path, $records);
+        return Response::download($path);
     }
 
 

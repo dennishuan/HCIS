@@ -4,8 +4,8 @@
 @section('content')
 
 <div>
-{{ link_to_route('file/upPat', 'UPLOADPATIENTS', null, ['class' => 'btn btn-default']) }}
-{{ link_to_route('file/exportPat', 'EXPORTPATIENTS', null, ['class' => 'btn btn-default']) }}
+  {{ link_to_route('file/upPat', 'UPLOADPATIENTS', null, ['class' => 'btn btn-default']) }}
+  {{ link_to_route('file/exportPat', 'EXPORTPATIENTS', null, ['class' => 'btn btn-default']) }}
 </div>
 
 <!-- Modal -->
@@ -17,7 +17,7 @@
         <h4 class="modal-title" id="deleteModalLabel">Confirm Deletion</h4>
       </div>
       <div class="modal-body">
-          <p>Do you want to delete the selected entry?</p>
+        <p>Do you want to delete the selected entry?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
@@ -35,12 +35,12 @@
         <h4 class="modal-title" id="uploadModalLabel">Upload Patient Files</h4>
       </div>
       <div class="modal-body">
-          <div class="form-group">
-		<label for = "file" class = "col-lg-2 control-label">File:</label>
-		<div class = "col-lg-10">
-			<input type = "text" class = "form-control" id = "data" placeholder = "???">
-		</div>
-	  </div>
+        <div class="form-group">
+          <label for = "file" class = "col-lg-2 control-label">File:</label>
+          <div class = "col-lg-10">
+            <input type = "text" class = "form-control" id = "data" placeholder = "???">
+          </div>
+        </div>
       </div>	
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -58,7 +58,7 @@
         <h4 class="modal-title" id="exportModalLabel">Confirm Export</h4>
       </div>
       <div class="modal-body">
-          <p>Do you want to export patient profiles?</p>
+        <p>Do you want to export patient profiles?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
