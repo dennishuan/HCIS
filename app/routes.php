@@ -94,7 +94,7 @@ Route::group(['before' => 'auth'], function(){
     Route::post('record/{record}/upload', ['as' => 'record.upload', 'uses' => 'RecordController@upload']);
     Route::get('files/profile/{file}', ['uses' => 'FilesController@profile']);
     Route::get('files/record/{file}', ['uses' => 'FilesController@record']);
-    
+
     //Export
     Route::get('patient/file/upPat', ['as'=>'file/upPat','uses'=>'FilesController@upPat']);
     Route::get('patient/file/exportPat',['as'=>'file/exportPat', 'uses'=>'FilesController@exportPat']);
@@ -102,7 +102,6 @@ Route::group(['before' => 'auth'], function(){
     Route::get('record/file/upRec', ['as'=>'file/upRec','uses'=>'FilesController@upRec']);
     Route::get('record/file/exportRec',['as'=>'file/exportRec','uses'=>'FilesController@exportRec']);
     Route::post('uploadRec','FilesController@uploadRec');
-
 });
 
 

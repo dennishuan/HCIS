@@ -81,7 +81,7 @@ class UserController extends \BaseController {
 		}
 
 		// Hash the password
-		$this->user->password = Hash::make($this->user->password);
+		$this->user->password = Hash::make($input['password']);
 
 		// Deleted the password_confirmation before save
 		unset($this->user['password_confirmation']);

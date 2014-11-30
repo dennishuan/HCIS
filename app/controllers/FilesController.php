@@ -26,6 +26,7 @@ class FilesController extends \BaseController {
     //upload multiple patient json must be perfect/no validation
     public function uploadPat()
     {
+
         if(Input::hasFile('file'))
         {
             $data = json_decode(file_get_contents(Input::file('file')), true);
@@ -43,7 +44,8 @@ class FilesController extends \BaseController {
     //upload multiple records
     public function uploadRec()
     {
-        if(Input::hasFile('file'))
+       /*
+       if(Input::hasFile('file'))
         {
             $data = json_decode(file_get_contents(Input::file('file')), true);
             foreach ($data as $values)
@@ -56,9 +58,43 @@ class FilesController extends \BaseController {
         return Redirect::back()->withErrors('Please select a File');
     }
 
+*/
+      	//Redirect back to the index after storing.
+	$records = json_decode(file_get_contents(Input::file('file')), true);
+	/*Validation							                if( ! $this->record->fill($input)->isValid()){
+	    return Redirect::back()->withInput()->withErrors($this->record->errors)->with('flash_message_danger', 'Invalid input');
+	    }
+    	*/
+
+		
+	foreach($records as $fields)
+	{
+	$patient_id = Patient::where('phn', $fields['phn'])->first()->id;
+	$facility_id = Facility::where('abbrev', $fields['abbrev'])->first()->id;
+	$user_id = User::where('username', $fields['username'])->first()->id;
+	
+	
+	$record = new Record();
+	$record->fill($fields);
+	unset($record['phn']);
+	unset($record['abbrev']);
+	unset($record['username']);
+	$record->patient_id = $patient_id;
+	$record->facility_id = $facility_id;
+	$record->user_id = $user_id;
+	
+	$record->save();
+	}
+
+	return Redirect::route('record.index')->with('flash_message_success', 'New entry have been created');
+
+}
+
+
+
     //export all patients currently to patients.jon in public
-    public function exportPat()
-    {
+    public function exportPat(){
+    
         $patients = Patient::all();
         $file = new FileSystem();
         $filename = sha1(time().time()).".json";
