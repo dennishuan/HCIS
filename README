@@ -1,0 +1,28 @@
+Health Care Information System (HCIS) by "It HURTS when I PHP"(mx6)
+
+Abstract:
+Emergency departments (ED) and medical clinics in Metro Vancouver experience increasing number of visits and ED admissions. Integrating a web-based information system to unify patients' data from their general practitioners (GP), and their medical doctors (MD) is vital to maximize health care resources and services. Our project focuses on patients' data and their medical records in MySQL database management system (DBMS) to help with diagnosing, and efficiently performing treatments. Furthermore, our information system can provide data to health authorities to help better understand the growth in visits based on demographics, and provide better health services conducted from their statistical and decision analyses. Some analyses include: lower queue time in ED (which is known to be over two hours from Fraser Health hospitals).
+
+Features:
+Our web-based information system features database access control for three types of users: admins, doctors (GP and MD), and registered nurses. Features include:
+1. Enable administrative access with different views for each type of users.
+2. Allow real-time validation (both server side and client side).
+3. Importing comma separated value (csv) files from their local file system. These files will be saved into the database.
+4. Exporting records and patient tables as a csv Excel file for the admins (i.e. health authorities) to use the data for statistical and decision analysis.
+5. Enable users to create, edit, and delete data. Some users may not have full access to deleting data.
+6. Uploading profile images and files (e.g. X-Ray images, and completed blood tests forms) to help identify patients, and users, as well as providing better health services without incurring additional costs to patients.
+7. Connect to server securely using HASH encryptions.
+8. Search efficiently and comprehensively to find patients, users, facility, and medical records.
+9. Provide simple UI to reduce the time to train users to become familiar with the technology
+10. Includes exact medical fields as Fraser Health* hospitals and common medical fields from medical clinics** in Metro Vancouver. 
+* Eric did a research project for Fraser Health Authority in Summer 2014. No sensitive information was used.
+** Eric visited several medical clinics to have his physical injury checked. (It does HURT when I PHP)
+
+Fully Functional:
+11. Users:
+    a. Admins are allowed to import, export, create, edit, and delete users.
+    b. Doctors are allowed to create, edit, and delete records. Additionally, they are allowed to create, edit, and delete patients, as well as their respective facility.
+    c. Nurses are allowed to create, and edit records
+- Search: Allows users to efficiently search for users, facility, medical records, or patients with at least one field filled. The layout of the search page is very similar to the pharmacy search UI.
+
+
