@@ -110,7 +110,7 @@ class Patient extends Eloquent{
 					   'emergency_phone' => 'between:10,15|valid_phone',
 					   'emergency_relationship' => 'alpha',
 					   'allergies' => 'max:255',
-					   'permanent_resident' => 'required',
+					   'permanent_resident' => 'required|in:Yes,No',
 					   'medical_history' => 'max:255',
 					   'preferred_language' => 'required|alpha|max:255',
 					   'other_language' => 'alpha|max:255',
