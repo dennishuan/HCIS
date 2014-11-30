@@ -1,6 +1,27 @@
 @extends('layouts.master')
 
 @section('content')
+
+<!-- Modal Dialog -->
+<div class="modal fade" id="confirm_Delete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		            <h4 class="modal-title">Delete Parmanently</h4>
+         </div>
+        <div class="modal-body">
+         <p>Are you sure about this ?</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirm">Delete</button>
+        </div>
+     </div>
+   </div>
+</div>
+
+
 <div id="Patient" class="tab-pane fade in active container">
   <h1>Showing Patient: {{$patient->preferred_name}}</h1>
   <div class="row">
@@ -139,8 +160,10 @@
           @if (Auth::user() != null && Auth::user()->isAdmin())
           |
           {{ Form::open(['route' => ['patient.destroy', $patient->id], 'method' => 'DELETE', 'style' => 'display:inline; margin:0px; padding:0px;']) }}
-          {{ Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-          @endif
+        
+	 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirm_Delete" data-title="Delete Patient" data-message="Are you sure you want to delete this Patient?">Delete</button>
+
+	 @endif
           {{ Form::close() }}
         </nav>
       </div>
@@ -156,4 +179,5 @@
     </div>
   </div>
 </div>
+
 @stop
