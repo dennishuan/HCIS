@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="Facility" class="tab-pane fade in active container">
-  <h1>Create Facility</h1>
+  <h1>Creating Facility</h1>
   <div class="row">
     {{ Form::open(['route' => 'facility.store']) }}
 
@@ -28,7 +28,7 @@
       {{ $errors->first('address') }}
 
       <div class="input-group buffer">
-        {{ Form::submit('Create Facility')}}
+        {{ Form::submit('Create Facility', ['class' => 'btn btn-info'])}}
       </div>
     </div>
 
@@ -45,7 +45,7 @@
         {{ Form::text('phone', null, ['class' => 'form-control', 'required']) }}
 
         <span class="input-group-addon">Fax Number:</span>
-        {{ Form::text('fax', null, ['class' => 'form-control'], 'required') }}
+        {{ Form::text('fax', null, ['class' => 'form-control', 'required']) }}
 
       </div>
       {{ $errors->first('phone') }}

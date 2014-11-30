@@ -3,7 +3,7 @@
 
 @section('content')
 <div id="User" class="tab-pane fade in active container">
-  <h1>{{$user->name}}</h1>
+  <h1>Showing User: {{$user->name}}</h1>
   <div class="row">
 
     <div class="col col-md-12 col-lg-12">

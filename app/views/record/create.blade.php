@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="Patient" class="tab-pane fade in active container">
-  <h1>Create Record</h1>
+  <h1>Creating Record</h1>
   <div class="row">
     {{ Form::open(['route' => 'record.store']) }}
     <!-- Left side of form -->
@@ -63,13 +63,14 @@
     </div>
 
     <!-- Text Fields -->
+  <div class="col col-md-12 col-lg-12">    
     <div class="input-group buffer">
         <span class="input-group-addon">Chief Complaint:</span>
         {{ Form::textarea('chief_compl', null, ['class' => 'form-control', 'rows' => '3', 'required']) }}
       </div>
       {{ $errors->first('chief_compl') }}
       
-    <div class="col col-md-12 col-lg-12">
+    
       <div class="input-group buffer">
         <span class="input-group-addon">Stated Complaint:</span>
         {{ Form::textarea('stated_compl', null, ['class' => 'form-control', 'rows' => '3', 'required'   ]) }}

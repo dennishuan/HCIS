@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="PatientRecord" class="tab-pane fade in active container">
-  <h1> {{$record->patient->name}}'s Record </h1>
+  <h1>Showing Record: {{$record->patient->name}}</h1>
   <div class="row">
     {{ Form::open(['route' => 'record.store', 'method' => 'POST']) }}
 

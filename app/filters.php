@@ -9,7 +9,7 @@ Route::filter('admin', function(){
 Route::filter('doctor', function(){
 	if (! Auth::user()->isAdmin()){
 		if (! Auth::user()->isDoctor()){
-			return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be doctor.');
+			return Redirect::route('home')->with('flash_message_warning', 'Unauthorized, must be doctor.');
 		}
 	}
 });
@@ -18,7 +18,7 @@ Route::filter('nurse', function(){
 	if (! Auth::user()->isAdmin()){
 		if (! Auth::user()->isDoctor()){
 			if (! Auth::user()->isNurse()){
-				return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be nurse.');
+				return Redirect::route('home')->with('flash_message_warning', 'Unauthorized, must be nurse.');
 			}
 		}
 	}
@@ -29,7 +29,7 @@ Route::filter('owner', function($route){
 
 	if (! Auth::user()->isAdmin()){
 		if (!( Auth::user()->id == $id)){
-			return Redirect::route('home')->with('flash_message_warning', 'Unautherized, must be the owner.');
+			return Redirect::route('home')->with('flash_message_warning', 'Unauthorized, must be the owner.');
 		}
 	}
 });

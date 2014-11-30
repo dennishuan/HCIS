@@ -3,7 +3,7 @@
 
 @section('content')
 <div id="User" class="tab-pane fade in active container">
-  <h1>Create User</h1>
+  <h1>Creating User</h1>
   <div class="row">
     {{ Form::open(['route' => 'user.store']) }}
 

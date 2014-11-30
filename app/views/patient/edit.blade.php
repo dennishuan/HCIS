@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="Patient" class="tab-pane fade in active container">
-  <h1>Edit: {{ $patient->preferred_name }}</h1>
+  <h1>Editing Patient: {{ $patient->preferred_name }}</h1>
   <div class="row">
     {{ Form::model($patient, ['method'=>'PUT', 'route'=>['patient.update', $patient->id]]) }}
 
