@@ -18,16 +18,4 @@
   </ul>
   {{ Form::close() }}
 
-  <p>username: admin</p>
-
-  <p>password: admin</p>
-
-  <p>username: doctor</p>
-
-  <p>password: doctor</p>
-
-  <p>username: nurse</p>
-
-  <p>password: nurse</p>
-
 @stop
