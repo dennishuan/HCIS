@@ -56,6 +56,7 @@ $(function () {
     $.post(path, {_token: $('#token').attr('value'), action: 'delete', input: input})
     .done(function () {
       $('#table').bootstrapTable('refresh', {silent: true});
+      alert("Entry Deleted");
     })
     .fail(function() {
       alert("Fail to Delete");

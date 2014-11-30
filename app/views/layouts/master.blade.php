@@ -122,6 +122,12 @@
     {{ HTML::script('js/upload.js') }}
     {{ HTML::script('js/table.js') }}
     {{ HTML::script('js/active.js') }}
+
+    <script>
+      //Auto close alert after a set time.
+      window.setTimeout(function() { $(".alert").alert('close'); }, 4000);
+    </script>
+
   </body>
 </html>
 
