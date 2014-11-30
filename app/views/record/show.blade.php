@@ -225,7 +225,7 @@ rmDeleteLabel" aria-hidden="true">
     <div class="col col-md-6 col-lg-6">
       <div class="input-group buffer">
         <nav>
-          {{ link_to_route('record.index', 'Index', [], ['class' => 'btn btn-info']) }}
+          {{ link_to_route('record.index', 'Back', [], ['class' => 'btn btn-info']) }}
           |
           {{ link_to_route('record.edit', 'Edit', [$record->id], ['class' => 'btn btn-info']) }}
           @if (Auth::user() != null && Auth::user()->isAdmin())
