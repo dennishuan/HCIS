@@ -37,8 +37,8 @@
             <span class="input-group-addon">Sex:</span>
             <select class="form-control" name="sex">
               <option value=""></option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
             </select>
           </div>
 
@@ -157,8 +157,8 @@
             <span class="input-group-addon">Permanent Resident:</span>
             <select class="form-control" name="permanent_resident">
               <option value=""></option>
-              <option value="1">Yes</option>
-              <option value="0">No</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
           </div>
 
@@ -359,10 +359,10 @@
             <select class="form-control" name="type">
               <option value=""></option>
               @if (Auth::user() != null && Auth::user()->isAdmin())
-              <option value="admin">Admin</option>
+              <option value="Admin">Admin</option>
               @endif
-              <option value="doctor">Doctor</option>
-              <option value="nurse">Nurse</option>
+              <option value="Doctor">Doctor</option>
+              <option value="Nurse">Nurse</option>
             </select>
           </div>
         </div>
@@ -398,8 +398,8 @@
             <span class="input-group-addon">Type:</span>
             <select class="form-control" name="type">
               <option value=""></option>
-              <option value="hospital">Hopstial</option>
-              <option value="clinic">Clinic</option>
+              <option value="Hospital">Hopsital</option>
+              <option value="Clinic">Clinic</option>
             </select>
           </div>
 
