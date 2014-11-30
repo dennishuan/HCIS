@@ -261,8 +261,8 @@
             <span class="input-group-addon">Sex:</span>
             <select class="form-control" name="sex">
               <option value=""></option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
             </select>
           </div>
 
@@ -398,7 +398,7 @@
             <span class="input-group-addon">Type:</span>
             <select class="form-control" name="type">
               <option value=""></option>
-              <option value="Hospital">Hopsital</option>
+              <option value="Hospital">Hospital</option>
               <option value="Clinic">Clinic</option>
             </select>
           </div>
