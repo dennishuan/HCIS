@@ -22,7 +22,7 @@ Doctor: doctor/doctor
 Nurse: nurse/nurse
 
 Technology used:
-Framework: Laravel 4.2, JQuery, Bootstrap
+Framework: Laravel 4.2
 DBMS: MySQL
 Bundles/Packages: CSS Bootstrap, JQuery/Java Script
     
@@ -34,7 +34,7 @@ Fully Functional Features:
     1.4 Protecting routes.
     1.5 CSRF tokens to prevent cross site request forgery.
 2 Users
-    2.1 All users can search and use all search fields.
+    2.1 All users can search and input in all search fields.
     2.2 Admins
         2.2.1 Allow to import, export files.
         2.2.2 Allow to create, edit, delete, and view users, facility, patient, and records.
