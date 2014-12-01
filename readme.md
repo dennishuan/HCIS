@@ -47,7 +47,7 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
   1. Real-time validation. Data is validated via HTML5 on client and the server validates the data again.
   2. Validates each field when creating or editing records, patients, users, facility, and search.
   3. Required fields are highlighted in red.
-  4. Validates if fields are filled and if valid email address in the email field. Additionally validates the length of the required input.
+  4. Validates if fields are filled and if valid email address in the email field. Additionally validates the minimum and maximum length of the field.
 4. Search
   1. Allow users to search for users, facility, medical records, or patients with at least one field filled. 
   2. Designed to be simple and similar to pharmacy search UI screen.
@@ -76,8 +76,8 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
 11. Error Exception Handling
   1. Returns 404 error page if page not found.
   
-### Non-functional features 
-- Selecting more than one selection and clicking on 'show' in tables will only display the first selection.
+### Not-fully functional features 
+- Importing a csv without seconds will not pass validation.
 
 ### References
   >[1] Fee is set by BCMA. Full details can be found on page 4 in https://www.doctorsofbc.ca/sites/default/files/fee_guide_uploads/medical_legal.pdf
