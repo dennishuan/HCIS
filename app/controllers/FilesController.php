@@ -76,12 +76,12 @@ class FilesController extends \BaseController {
     //export all patients currently to patients.jon in public
     public function exportPat(){
     
-        $patient = Patient::find(55);
-	//foreach($patients as $patient)
-	//{
+        $patients = Patient::all();
+	foreach($patients as $patient)
+	{
 	$pid = $patient->id;
 	$newpat[$pid] = $patient;
-	//}
+	}
 	$newpat = json_encode($newpat);
         $file = new FileSystem();
         $filename = sha1(time().time()).".json";

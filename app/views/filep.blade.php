@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Please Select Import File</h1>
+	<h1>Please Select Patient Import File</h1>
 
 	<div>
 	{{ Form::open(array('url'=>'uploadPat', 'files'=>true)) }}

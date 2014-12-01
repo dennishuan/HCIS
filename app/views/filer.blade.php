@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <h1>Please Select Import File</h1>
+        <h1>Please Select Record Import File</h1>
 
         <div>
         {{ Form::open(array('url'=>'uploadRec', 'files'=>true)) }}
