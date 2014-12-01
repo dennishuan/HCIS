@@ -8,7 +8,7 @@ class RecordTableSeeder extends Seeder {
     {
         $faker = Faker::create('en_CA');
 
-        $priority = ['1', '2', '3', '4', '5', '6'];
+        $priority = ['1', '2', '3', '4', '5'];
 
         $patients = Patient::all();
         $facilities = Facility::all();
@@ -18,6 +18,12 @@ class RecordTableSeeder extends Seeder {
         {
             $facility = Facility::orderByRaw("RAND()")->first();
 
+            if($facility->type == 'Hospital'){
+                $temp = $faker->randomElement($priority);
+            }
+            else{
+                $temp = '6';
+            }
 
             if($facility->type === 'clinic'){
                 Record::create([
@@ -45,7 +51,8 @@ class RecordTableSeeder extends Seeder {
                     'facility_id' => $facility->id,
                     'user_id' => User::orderByRaw("RAND()")->first()->id,
 
-                    'priority' => $faker->randomElement($priority),
+                    'priority' => $temp,
+
                     'reg_datetime' => $faker->datetime,
                     'admit_datetime' => $faker->datetime,
                     'stated_compl' => $faker->text,
