@@ -47,6 +47,16 @@ $(function () {
     window.open(path);
    });
 
+  $('#exportRec').click(function () {
+      var path = $(location).attr('pathname') + '/file/exportRec';
+          window.location.replace(path);
+	    });
+
+  $('#uploadRec').click(function () {
+   var path = $(location).attr('pathname') + '/file/upRec';
+   window.open(path);
+   });
+
 
   $('#delete').click(function () {
     var path = $(location).attr('pathname');
