@@ -50,11 +50,13 @@ Fully Functional Features:
     3.1 Real-time validation. Data is validated via HTML5 on client and the server validates the data again.
     3.2 Validates each field when creating or editing records, patients, users, facility, and search.
     3.3 Required fields are highlighted in red.
-    3.4 Validates if fields are filled and if valid email address in the email field.
+    3.4 Validates if fields are filled and if valid email address in the email field. Additionally validates the length of the
+        required input.
 4 Search
     4.1 Allow users to search for users, facility, medical records, or patients with at least one field filled. 
     4.2 Designed to be simple and similar to pharmacy search UI screen.
     4.3 Search efficiently and comprehensively to find patients, users, facility, and medical records.
+    4.4 Intended to not be case sensitive.
 5 Tables
     5.1 Sort by categories by clicking on column headers.
     5.2 Refresh table button beside the search bar.
@@ -83,12 +85,11 @@ Fully Functional Features:
         missing data to providing better health services.
     9.3 Coded in the Blade.php files in hcis/app/views.
 10 Relational Database
-    10.1 Business logics
+    10.1 Business logics.
     10.2 Data is seeded by Laravel.
 11 Error Exception Handling
     11.1 Returns 404 error page if page not found.
     
-
 Non-functional features:
 12 Selecting more than one selection and clicking on 'show' in tables will only display the first selection.
 
