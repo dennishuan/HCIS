@@ -10,7 +10,7 @@ Furthermore, our information system can provide data to health authorities to he
 Some analyses include: to reduce the time to queue in ED which is known to be few hours in Fraser Health hospitals; and to reduce the costly fee[1] on patients from transferring their records from one practitioner to another.
 
 
-## Login Information (userid/password) [case sensitive]:
+## Login Information (userid/password) [case sensitive]
 - Admin: admin/admin
 - Doctor: doctor/doctor
 - Nurse: nurse/nurse
@@ -22,7 +22,7 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
 - Bundles/Packages: CSS Bootstrap, JQuery/Java Script
 
     
-## Fully Functional Features
+## Fully Operational Features
 1. Security
   1. Passwords are stored using HASH & AES encryptions.
   2. Authenticating users upon login and logout.
@@ -78,9 +78,9 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
 ## Non-functional features 
 - Selecting more than one selection and clicking on 'show' in tables will only display the first selection.
 
-## Referenecs
+## References
   >[1] Fee is set by BCMA. Full details can be found on page 4 in https://www.doctorsofbc.ca/sites/default/files/fee_guide_uploads/medical_legal.pdf
   
   >[2] Eric did a research project for Fraser Health Authority in Summer 2014.
   
-  >[3] Acquired from several medical clinics including SFU Health Services in Maggie Benston Centre in Burnaby campus.
+  >[3] Acquired from several medical clinics including SFU Health Services in Maggie Benston Centre.
