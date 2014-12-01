@@ -254,8 +254,11 @@ rmDeleteLabel" aria-hidden="true">
     <!--Download-->
     <div class="col col-md-12 col-lg-12 buffer">
       <h4>Files:</h4>
+      @if ($record->files()->get()->isEmpty())
+      <p>Empty. No file is associated with this record</p>
+      @endif
       @foreach ($record->files()->get() as $file)
-      <p><a herf="{{ asset($file->path) }}"> {{ displayFilename($file->path) }}</a></p>
+      <p><a href="{{ asset($file->path) }}"> {{ displayFilename($file->path) }}</a></p>
       @endforeach
     </div>
 
