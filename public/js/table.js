@@ -37,10 +37,16 @@ $(function () {
     }
   });
 
-  $('#upload').click(function () {
-    var path = $(location).attr('pathname') + '/upload';
-    window.open(path);
+  $('#exportPat').click(function () {
+    var path = $(location).attr('pathname') + '/file/exportPat';
+    window.location.replace(path);
   });
+
+  $('#uploadPat').click(function () {
+    var path = $(location).attr('pathname') + '/file/upPat';
+    window.open(path);
+   });
+
 
   $('#delete').click(function () {
     var path = $(location).attr('pathname');

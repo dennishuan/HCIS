@@ -3,11 +3,6 @@
 
 @section('content')
 
-<div>
-  {{ link_to_route('upPat', 'UPLOADPATIENTS', null, ['class' => 'btn btn-default']) }}
-  {{ link_to_route('exportPat', 'EXPORTPATIENTS', null, ['class' => 'btn btn-default']) }}
-</div>
-
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -27,6 +22,24 @@
   </div>
 </div>
 
+<div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	 <h4 class="modal-title" id="exportModalLabel">Confirm Export</h4>
+	</div>
+	<div class="modal-body">
+	     <p>Do you want to Export all Patients?</p>
+	</div>
+	<div class="modal-footer">
+	 <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+	 <button type="button" class="btn btn-primary" data-dismiss="modal" id="exportPat">Confirm</button>
+	</div>
+   </div>
+  </div>
+</div>
+
  
 <!--Button-->
 <div id="toolbar" class="btn-group btn-default">
@@ -43,10 +56,10 @@
   <button class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
-  <button class="btn btn-default">
+  <button class="btn btn-default" id="uploadPat">
     <i class="glyphicon glyphicon-upload"></i> <span>Upload</span>
   </button>
-  <button class="btn btn-default">
+  <button class="btn btn-default" data-toggle="modal" data-target="#exportModal">
     <i class="glyphicon glyphicon-download"></i> <span>Export</span>
   </button>
  @endif
