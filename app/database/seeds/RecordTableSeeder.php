@@ -8,7 +8,7 @@ class RecordTableSeeder extends Seeder {
     {
         $faker = Faker::create('en_CA');
 
-        $priority = ['1', '2', '3', '4', '5'];
+        $priority = ['1', '2', '3', '4', '5', '6'];
 
         $patients = Patient::all();
         $facilities = Facility::all();
