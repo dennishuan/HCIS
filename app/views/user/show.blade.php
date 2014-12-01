@@ -79,7 +79,7 @@ rmDeleteLabel" aria-hidden="true">
       <div class="input-group buffer">
         <nav>
           {{ link_to_route('user.index', 'Back', [], ['class' => 'btn btn-info']) }}
-          @if (Auth::user() != null && Auth::user()->isAdmin())
+          @if (Auth::user() != null && (Auth::user()->isAdmin() || Auth::user()->id == $user->id))
           |
           {{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
           |
