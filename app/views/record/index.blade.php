@@ -32,7 +32,7 @@
       </div>
       <div class="modal-body">
         
-          <h4>Import Rec (.CSV):</h4>
+          <h4>Import Record (.CSV):</h4>
           {{ Form::open(['route' => 'importRec', 'enctype' => 'multipart/form-data']) }}
           <input id="importRec" type="file" name="file">
           {{ $errors->first('file') }}
