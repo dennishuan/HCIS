@@ -58,7 +58,7 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
   2. Refresh table button beside the search bar.
   3. View by categories button beside the refresh button.
 6. Import/Export
-  1. Import json files to record/patient tables and is stored in the database. Since this is a one-time setup for each facility, this is done by health authorities. This requires a specific format to be consistent for all facilities.
+  1. Import csv files to record/patient tables and is stored in the database. Since this is a one-time setup for each facility, this is done by health authorities. This requires a specific format to be consistent for all facilities.
   2. Export record/patient table to csv file. Health authorities can export data to be used for decisions and statistical analyses to provide better health care services (e.g. reduce queue time in ED, and to understand what are the causes of growth in visits based on demographics). CSV file was chosen because it can be easily opened with Excel, JMP, SAS, and R statistical analysis software.
 7. Upload
   1. Enable users to upload their profile pictures through their profile page (left hand side of the logout button).
