@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Filesystem\Filesystem;
 use SoapBox\Formatter\Formatter;
+use League\Csv\Reader;
 
 class FilesController extends \BaseController {
 
@@ -31,20 +32,29 @@ class FilesController extends \BaseController {
         if(Input::hasFile('file'))
         {
             $file = Input::file('file');
-            
-            $excel = Excel::load($file);
-            
-            $data = $excel->toArray();
+            $path = $file->getRealPath();
 
-            foreach ($data as $values)
-            {
-                $patient = new Patient();
-                $patient->fill($values);
-                unset($patient['id']);
-                if($patient->isvalid())
+
+            $reader = new Reader($path);
+
+            $keys = $reader->fetchOne();
+            $reader->setOffset(1);
+
+            $data = $reader->query();
+
+            foreach ($data as $line_index => $row) {
+                
+                if(count($row) != 21){
+                    continue;
+                }
+                
+                $patient = array_combine($keys , $row);
+                
+                $patients = new Patient;
+                if ($patients->fill($patient)->isValid())
                 {
-                    $patient->save();
-                    $count=$count+1;
+                    $patients->save();
+                    $count++;
                 }
             }
 
@@ -56,10 +66,11 @@ class FilesController extends \BaseController {
     //upload multiple records
     public function uploadRec()
     {
+        $count = 0;
         if(Input::hasFile('file'))
         {
-            $records = json_decode(file_get_contents(Input::file('file')), true);
-            $count = 0;
+            $file = Input::file('file');
+
             foreach($records as $fields)
             {
                 $patient_id = Patient::where('phn', $fields['phn'])->first()->id;

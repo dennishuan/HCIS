@@ -10,7 +10,7 @@
 		"intervention/image":"2.*",
 		"soapbox/laravel-formatter": "2.x",
 		"sonata-project/exporter": "~1.3",
-		"maatwebsite/excel": "1.*"
+		"league/csv": "6.0.1"
 	},
 	"require-dev": {
 		"way/generators": "~2.0",
