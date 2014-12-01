@@ -30,7 +30,12 @@ class FilesController extends \BaseController {
         $count=0;
         if(Input::hasFile('file'))
         {
-            $data = json_decode(file_get_contents(Input::file('file')), true);
+            $file = Input::file('file');
+            
+            $excel = Excel::load($file);
+            
+            $data = $excel->toArray();
+
             foreach ($data as $values)
             {
                 $patient = new Patient();
@@ -82,23 +87,18 @@ class FilesController extends \BaseController {
     }
 
 
-
-
     public function exportPat(){
-
-        $patients = Patient::all()->toArray();
+        // Filter out id and image.
+        $patients = Patient::select(['phn', 'name', 'preferred_name', 'sex', 'date_of_birth', 'address', 'postal_code', 'home_phone', 'work_phone', 'mobile_phone', 'email', 'emergency_name', 'emergency_phone', 'emergency_relationship', 'allergies', 'permanent_resident', 'medical_history', 'preferred_language', 'other_language', 'ethnic_background', 'family_doctor'])->get()->toArray();
 
         $filename = sha1(time().time()).".csv";
         $path = storage_path('files/export/'. $filename);
-
-
 
         $exporter_source = new \Exporter\Source\ArraySourceIterator($patients);
 
         $exporter_writer = new \Exporter\Writer\CsvWriter($path);
 
         \Exporter\Handler::create($exporter_source, $exporter_writer)->export();
-
 
         // Check if file exist
         if (File::exists($path)){
@@ -130,7 +130,6 @@ class FilesController extends \BaseController {
         $filename = sha1(time().time()).".csv";
         $path = storage_path('files/export/'. $filename);
 
-
         $exporter_source = new \Exporter\Source\ArraySourceIterator($records->toArray());
 
         $exporter_writer = new \Exporter\Writer\CsvWriter($path);
@@ -145,6 +144,5 @@ class FilesController extends \BaseController {
             return Redirect::action('RecordController@index')->with('flash_message_danger', 'Export file failed to generate.');
         }
     }
-
 
 }

@@ -18,7 +18,7 @@ class FacilityTableSeeder extends Seeder {
 				'type' => $faker->randomElement($type),
 				'phone' => $faker->numerify('##########x####'),
 				'fax' => $faker->numerify('##########x####'),
-				'address' => $faker->address,
+				'address' => str_replace(PHP_EOL, '', $faker->address),
 				'postal_code' => strtoupper ($faker->bothify('?#?#?#'))
 			]);
 		}

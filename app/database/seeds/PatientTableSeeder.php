@@ -22,7 +22,7 @@ class PatientTableSeeder extends Seeder {
 				'preferred_name' => $faker->name,
 				'sex' => $faker->randomElement($sex),
 				'date_of_birth' => $faker->date,
-				'address' => $faker->address,
+				'address' => str_replace(PHP_EOL, '', $faker->address),
 				'postal_code' => strtoupper ($faker->bothify('?#?#?#')),
 				'home_phone' => $faker->numerify('##########'),
 				'work_phone' => $faker->numerify('##########x####'),
