@@ -34,22 +34,24 @@ class FilesController extends \BaseController {
             $file = Input::file('file');
             $path = $file->getRealPath();
 
-
             $reader = new Reader($path);
 
+            // Get the column names
             $keys = $reader->fetchOne();
             $reader->setOffset(1);
 
+            // Loop over the rest of data.
             $data = $reader->query();
-
             foreach ($data as $line_index => $row) {
-                
+                // Ignore empty rows
                 if(count($row) != 21){
                     continue;
                 }
-                
+
+                // Combine Key with the element
                 $patient = array_combine($keys , $row);
-                
+
+                //Store validation the data
                 $patients = new Patient;
                 if ($patients->fill($patient)->isValid())
                 {
@@ -70,26 +72,71 @@ class FilesController extends \BaseController {
         if(Input::hasFile('file'))
         {
             $file = Input::file('file');
+            $path = $file->getRealPath();
 
-            foreach($records as $fields)
-            {
-                $patient_id = Patient::where('phn', $fields['phn'])->first()->id;
-                $facility_id = Facility::where('abbrev', $fields['abbrev'])->first()->id;
-                $user_id = User::where('username', $fields['username'])->first()->id;
-                $record = new Record();
-                $record->fill($fields);
-                if($record->isValid())
+            $reader = new Reader($path);
+
+            // Get the column names
+            $keys = $reader->fetchOne();
+            $reader->setOffset(1);
+
+            // Loop over the rest of data.
+            $data = $reader->query();
+            foreach ($data as $line_index => $row) {
+                // Ignore empty rows
+                if(count($row) != 18){
+                    continue;
+                }
+
+                // Combine Key with the element
+                $record = array_combine($keys , $row);
+
+                $patient = Patient::where('phn', $record['phn'])->first();
+                $facility = Facility::where('abbrev', $record['abbrev'])->first();
+                $user = User::where('username', $record['username'])->first();
+
+                //If the exist use the id, if not id = 0
+                if (is_null($patient)){
+                    $patient_id = 0;
+                }
+                else{
+                    $patient_id = $patient->id;
+                }
+                if (is_null($facility)){
+                    $facility_id = 0;
+                }
+                else{
+                    $facility_id = $facility->id;
+                }
+                if (is_null($user)){
+                    $user_id = 0;
+                }
+                else{
+                    $user_id = $user->id;
+                }
+
+
+
+                //Store validation the data
+                $records = new Record;
+                if ($records->fill($record)->isValid())
                 {
-                    unset($record['phn']);
-                    unset($record['abbrev']);
-                    unset($record['username']);
-                    $record->patient_id = $patient_id;
-                    $record->facility_id = $facility_id;
-                    $record->user_id = $user_id;
-                    $record->save();
-                    $count = $count+1;
+                    unset($records['phn']);
+                    unset($records['abbrev']);
+                    unset($records['username']);
+
+                    $records->patient_id = $patient_id;
+                    $records->facility_id = $facility_id;
+                    $records->user_id = $user_id;
+
+                    $records->save();
+                    $count++;
+                }
+                else{
+                    dd($records->errors->first());
                 }
             }
+
             return Redirect::route('record.index')->with('flash_message_success', ''.$count.' New entries have been created');
         }
 
