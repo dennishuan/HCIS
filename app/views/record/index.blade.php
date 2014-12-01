@@ -23,6 +23,29 @@
   </div>
 </div>
 
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="exportModalLabel">Import</h4>
+      </div>
+      <div class="modal-body">
+        
+          <h4>Import Rec (.CSV):</h4>
+          {{ Form::open(['route' => 'importRec', 'enctype' => 'multipart/form-data']) }}
+          <input id="importRec" type="file" name="file">
+          {{ $errors->first('file') }}
+          {{ Form::close() }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labell
 edby="exportModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -57,7 +80,7 @@ edby="exportModalLabel" aria-hidden="true">
   <button class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
-  <button class="btn btn-default" id="uploadRec">
+  <button class="btn btn-default" data-toggle="modal" data-target="#importModal">
     <i class="glyphicon glyphicon-upload"></i> <span>Import</span>
   </button>
   <button class="btn btn-default" data-toggle="modal" data-target="#exportModal">

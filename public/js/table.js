@@ -42,21 +42,10 @@ $(function () {
     window.location.replace(path);
   });
 
-  $('#uploadPat').click(function () {
-    var path = $(location).attr('pathname') + '/file/upPat';
-    window.open(path);
-   });
-
   $('#exportRec').click(function () {
-      var path = $(location).attr('pathname') + '/file/exportRec';
-          window.location.replace(path);
-	    });
-
-  $('#uploadRec').click(function () {
-   var path = $(location).attr('pathname') + '/file/upRec';
-   window.open(path);
-   });
-
+    var path = $(location).attr('pathname') + '/file/exportRec';
+    window.location.replace(path);
+  });
 
   $('#delete').click(function () {
     var path = $(location).attr('pathname');

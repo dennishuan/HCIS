@@ -5,6 +5,13 @@ use League\Csv\Reader;
 
 class FilesController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('admin', ['only' => ['uploadPat', 'exportPat', 'uploadRec', 'exportRec']]);
+    }
+
+
+
     public function profile($filename){
         return Response::download(storage_path('files/profile/'. $filename));
     }
@@ -12,18 +19,6 @@ class FilesController extends \BaseController {
     public function record($filename){
         return Response::download(storage_path('files/record/'. $filename));
     }
-
-
-    public function upPat(){ //display file input form REPLACE WITH MODAL
-
-        return View::make('filep');
-    }
-
-    public function upRec(){ //same as uppat
-
-        return View::make('filer');
-    }
-
 
     //upload multiple patient json must be perfect/no validation
     public function uploadPat()
@@ -33,6 +28,14 @@ class FilesController extends \BaseController {
         {
             $file = Input::file('file');
             $path = $file->getRealPath();
+
+            //Validate the file
+            $rule = ['file' => 'mimes:csv'];
+            $validation = Validator::make(['image'=>$file], $rule);
+            if( ! $validation->passes())
+            {
+                return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
+            }
 
             $reader = new Reader($path);
 
@@ -73,6 +76,14 @@ class FilesController extends \BaseController {
         {
             $file = Input::file('file');
             $path = $file->getRealPath();
+
+            //Validate the file
+            $rule = ['file' => 'mimes:csv'];
+            $validation = Validator::make(['image'=>$file], $rule);
+            if( ! $validation->passes())
+            {
+                return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
+            }
 
             $reader = new Reader($path);
 
