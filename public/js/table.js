@@ -8,7 +8,7 @@ $(function () {
   .on('dbl-click-row.bs.table', function (e, row, $element) {
     var path = $(location).attr('pathname');
 
-    window.open(path + '/' + row.id);
+    window.location.href=(path + '/' + row.id);
   });
 
   $('#create').click(function () {

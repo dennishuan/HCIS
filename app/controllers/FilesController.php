@@ -137,10 +137,7 @@ class FilesController extends \BaseController {
         else{
             return Redirect::action('RecordController@index')->with('flash_message_danger', 'Export file failed to generate.');
         }
-	
-	
     }
-
 
 
 }
