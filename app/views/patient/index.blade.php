@@ -57,7 +57,7 @@
     <i class="glyphicon glyphicon-trash"></i> <span>Delete</span>
   </button>
   <button class="btn btn-default" id="uploadPat">
-    <i class="glyphicon glyphicon-upload"></i> <span>Upload</span>
+    <i class="glyphicon glyphicon-upload"></i> <span>Import</span>
   </button>
   <button class="btn btn-default" data-toggle="modal" data-target="#exportModal">
     <i class="glyphicon glyphicon-download"></i> <span>Export</span>
