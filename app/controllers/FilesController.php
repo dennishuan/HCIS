@@ -33,10 +33,12 @@ class FilesController extends \BaseController {
             foreach ($data as $values)
             {
                 $patient = new Patient();
-                if($patient->fill($values)->isvalid())
+		$patient->fill($values);
+		unset($patient['id']);
+                if($patient->isvalid())
 		{
-		  $patient->save();
-		  $count=$count+1;
+		 $patient->save();
+		 $count=$count+1;
 		}
             }
 
