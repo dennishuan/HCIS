@@ -44,36 +44,15 @@ class FilesController extends \BaseController {
     //upload multiple records
     public function uploadRec()
     {
-       /*
        if(Input::hasFile('file'))
         {
-            $data = json_decode(file_get_contents(Input::file('file')), true);
-            foreach ($data as $values)
-            {
-                $record = new Record();
-                $record->fill($values)->save();
-            }
-            return Redirect::to('record')->with('flash_message_success','files successfully uploaded');
-        }
-        return Redirect::back()->withErrors('Please select a File');
-    }
+        $records = json_decode(file_get_contents(Input::file('file')), true);
 
-*/
-      	//Redirect back to the index after storing.
-	$records = json_decode(file_get_contents(Input::file('file')), true);
-	/*Validation							                if( ! $this->record->fill($input)->isValid()){
-	    return Redirect::back()->withInput()->withErrors($this->record->errors)->with('flash_message_danger', 'Invalid input');
-	    }
-    	*/
-
-		
 	foreach($records as $fields)
 	{
 	$patient_id = Patient::where('phn', $fields['phn'])->first()->id;
 	$facility_id = Facility::where('abbrev', $fields['abbrev'])->first()->id;
 	$user_id = User::where('username', $fields['username'])->first()->id;
-	
-	
 	$record = new Record();
 	$record->fill($fields);
 	unset($record['phn']);
@@ -82,11 +61,13 @@ class FilesController extends \BaseController {
 	$record->patient_id = $patient_id;
 	$record->facility_id = $facility_id;
 	$record->user_id = $user_id;
-	
-	$record->save();
+        $record->save();
 	}
 
 	return Redirect::route('record.index')->with('flash_message_success', 'New entry have been created');
+	}
+
+        return Redirect::back()->withErrors('Please select a File');
 
 }
 
@@ -95,11 +76,17 @@ class FilesController extends \BaseController {
     //export all patients currently to patients.jon in public
     public function exportPat(){
     
-        $patients = Patient::all();
+        $patient = Patient::find(55);
+	//foreach($patients as $patient)
+	//{
+	$pid = $patient->id;
+	$newpat[$pid] = $patient;
+	//}
+	$newpat = json_encode($newpat);
         $file = new FileSystem();
         $filename = sha1(time().time()).".json";
         $path = storage_path('files/export/'. $filename);
-        $file->put($path, $patients);
+        $file->put($path, $newpat);
         
         // Check if file exist
         if (File::exists($path)){
@@ -113,11 +100,30 @@ class FilesController extends \BaseController {
     //export all records to records.json
     public function exportRec()
     {
-        $records = Record::all();
-        $file = new FileSystem();
+        $records = Record::where('patient_id', '55')->get();
+	foreach($records as $record)
+	{
+	$rid = $record->id;	
+        $phn = Patient::where('id', $record['patient_id'])->first()->phn;
+	$username = User::where('id', $record['user_id'])->first()->username;
+	$abbrev = Facility::where('id', $record['facility_id'])->first()->abbrev;
+	unset($record['patient_id']);
+	unset($record['facility_id']);
+	unset($record['user_id']);
+	unset($record['id']);
+	$record->phn = $phn;
+	$record->abbrev = $abbrev;
+	$record->username = $username;
+	$newrec[$rid] = $record;
+	}
+
+	$newrec = json_encode($newrec);	
+	
+	
+	$file = new FileSystem();
         $filename = sha1(time().time()).".json";
         $path = storage_path('files/export/'. $filename);
-        $file->put($path, $records);
+        $file->put($path, $newrec);
         
         // Check if file exist
         if (File::exists($path)){
@@ -126,6 +132,8 @@ class FilesController extends \BaseController {
         else{
             return Redirect::action('RecordController@index')->with('flash_message_danger', 'Export file failed to generate.');
         }
+	
+	
     }
 
 

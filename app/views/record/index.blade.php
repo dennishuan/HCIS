@@ -5,8 +5,8 @@
 @section('content')
 
 <div>
-{{ link_to_route('file/upRec', 'UPLOADRECORDS', null, ['class' => 'btn btn-default']) }}
-{{ link_to_route('file/exportRec', 'EXPORTRECORDS', null, ['class' => 'btn btn-default']) }}
+{{ link_to_route('upRec', 'UPLOADRECORDS', null, ['class' => 'btn btn-default']) }}
+{{ link_to_route('exportRec', 'EXPORTRECORDS', null, ['class' => 'btn btn-default']) }}
 </div>
 
 <!-- Modal -->
@@ -55,7 +55,7 @@
     <thead>
       <tr>
         <th data-field="state" data-checkbox="true"></th>
-        <th data-field="patient.phn" data-sortable="true">Personal Health #</th>
+        <th data-field="patient.phn" data-sortable="true">Personal Health Number</th>
         <th data-field="patient.name" data-sortable="true">Full Name</th>
         <th data-field="patient.preferred_name" data-sortable="true">Preferred Name</th>
         <th data-field="user.name" data-sortable="true">Doctor</th>

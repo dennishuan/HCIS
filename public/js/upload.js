@@ -32,6 +32,6 @@ $(function () {
          $('#confirm_Delete').find('.modal-footer #confirm').on('click', function(){
              $(this).data('form').submit();
            });
-
+	 
 
 });
