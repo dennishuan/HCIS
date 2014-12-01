@@ -89,7 +89,7 @@ Route::filter('auth', function(){
 
 	if(Session::getId() != Auth::user()->last_session){
 		Auth::logout();
-		return Redirect::guest('login')->with('flash_message_warning', 'Session timeout');
+		return Redirect::guest('login')->with('flash_message_warning', 'Session timeout or multiple concurrent session');
 	}
 });
 
