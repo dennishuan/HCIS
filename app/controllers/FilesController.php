@@ -97,25 +97,26 @@ class FilesController extends \BaseController {
 
                 //If the exist use the id, if not id = 0
                 if (is_null($patient)){
-                    $patient_id = 0;
+                    //Record must have a patient.
+                    continue;
                 }
                 else{
                     $patient_id = $patient->id;
                 }
                 if (is_null($facility)){
                     $facility_id = 0;
+                    $record['abbrev'] = 'IMPORT';
                 }
                 else{
                     $facility_id = $facility->id;
                 }
                 if (is_null($user)){
                     $user_id = 0;
+                    $record['username'] = 'IMPORT';
                 }
                 else{
                     $user_id = $user->id;
                 }
-
-
 
                 //Store validation the data
                 $records = new Record;
@@ -133,7 +134,7 @@ class FilesController extends \BaseController {
                     $count++;
                 }
                 else{
-                    dd($records->errors->first());
+                    return Redirect::back()->with('flash_message_danger', 'Record of ' . $records->phn . ': ' . $records->errors->first());
                 }
             }
 
