@@ -26,17 +26,21 @@ class FilesController extends \BaseController {
     //upload multiple patient json must be perfect/no validation
     public function uploadPat()
     {
-
+    	$count=0;
         if(Input::hasFile('file'))
         {
             $data = json_decode(file_get_contents(Input::file('file')), true);
             foreach ($data as $values)
             {
                 $patient = new Patient();
-                $patient->fill($values)->save();
+                if($patient->fill($values)->isvalid())
+		{
+		  $patient->save();
+		  $count=$count+1;
+		}
             }
 
-            return Redirect::to('patient')->with('flash_message_success', 'files successfully uploaded');
+            return Redirect::to('patient')->with('flash_message_success', ''.$count.' files successfully uploaded');
         }
         return Redirect::back()->withErrors('Please select a File');
     }
@@ -47,7 +51,7 @@ class FilesController extends \BaseController {
        if(Input::hasFile('file'))
         {
         $records = json_decode(file_get_contents(Input::file('file')), true);
-
+	$count = 0;
 	foreach($records as $fields)
 	{
 	$patient_id = Patient::where('phn', $fields['phn'])->first()->id;
@@ -55,25 +59,28 @@ class FilesController extends \BaseController {
 	$user_id = User::where('username', $fields['username'])->first()->id;
 	$record = new Record();
 	$record->fill($fields);
-	unset($record['phn']);
-	unset($record['abbrev']);
-	unset($record['username']);
-	$record->patient_id = $patient_id;
-	$record->facility_id = $facility_id;
-	$record->user_id = $user_id;
-        $record->save();
+	if($record->isValid())
+	{
+	 unset($record['phn']);
+	 unset($record['abbrev']);
+	 unset($record['username']);
+	 $record->patient_id = $patient_id;
+	 $record->facility_id = $facility_id;
+	 $record->user_id = $user_id;
+	 $record->save();
+	 $count = $count+1;
 	}
-
-	return Redirect::route('record.index')->with('flash_message_success', 'New entry have been created');
+	}
+	return Redirect::route('record.index')->with('flash_message_success', ''.$count.' New entries have been created');
 	}
 
         return Redirect::back()->withErrors('Please select a File');
-
+	
 }
 
 
 
-    //export all patients currently to patients.jon in public
+    
     public function exportPat(){
     
         $patients = Patient::all();
@@ -97,10 +104,10 @@ class FilesController extends \BaseController {
         }
     }
 
-    //export all records to records.json
+    
     public function exportRec()
     {
-        $records = Record::where('patient_id', '55')->get();
+        $records = Record::all();
 	foreach($records as $record)
 	{
 	$rid = $record->id;	
