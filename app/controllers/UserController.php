@@ -35,7 +35,7 @@ class UserController extends \BaseController {
 				$qs = array_except($input, ['search']);
 
 				//Search and filter out the data.
-				$users =$this->user->where('username', '<>', 'IMPORT')->search($qs)->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
+				$users =$this->user->search($qs)->where('username', '<>', 'IMPORT')->select(['id', 'username', 'type', 'name', 'email', 'phone'])->get()->toJson();
 
 				return $users;
 			}
@@ -81,7 +81,7 @@ class UserController extends \BaseController {
 		}
 
 		// Hash the password
-		$this->user->password = Hash::make($this->user->password);
+		$this->user->password = Hash::make($input['password']);
 
 		// Deleted the password_confirmation before save
 		unset($this->user['password_confirmation']);

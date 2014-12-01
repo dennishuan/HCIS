@@ -50,7 +50,7 @@ class Facility extends \Eloquent {
         }
 
         $rules = array(
-            'abbrev' => 'required|alpha|min:6|max:6|unique:facilities,abbrev,' . $id,
+            'abbrev' => 'required|alpha|min:3|max:6|unique:facilities,abbrev,' . $id,
             'name' => 'required|alpha_spaces|max:255|unique:facilities,name,' . $id,
             'type' => 'required|in:Clinic,Hospital',
             'phone' => 'required|between:10,15|valid_phone|unique:facilities,phone,' . $id,
