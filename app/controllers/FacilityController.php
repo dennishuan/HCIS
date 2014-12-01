@@ -34,7 +34,7 @@ class FacilityController extends \BaseController {
 				$qs = array_except($input, ['search']);
 
 				//Search and filter out the data.
-				$facilities =$this->facility->where('name', '<>', 'IMPORT')->search($qs)->select(['id', 'abbrev', 'type', 'name', 'phone', 'address', 'postal_code'])->get()->toJson();
+				$facilities =$this->facility->search($qs)->where('name', '<>', 'IMPORT')->select(['id', 'abbrev', 'type', 'name', 'phone', 'address', 'postal_code'])->get()->toJson();
 
 				return $facilities;
 			}

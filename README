@@ -1,5 +1,7 @@
+<<<<<<< HEAD
 -----------------------------------------------------------------------
 CMPT 470 Final Project Implementation
+>>>>>>> 1602577fd6fa6527562a498d17d0a73a31de1d69
 
 Health Care Information System (HCIS) by "It HURTS when I PHP"(mx6)
 Jeffrey Fung, Dennis Huan, Andrew Liaw, James Taylor, and Eric Yuen
@@ -27,12 +29,16 @@ DBMS: MySQL
 Bundles/Packages: CSS Bootstrap, JQuery/Java Script
     
 Fully Functional Features:
-1 Security
-    1.1 Passwords are stored using HASH & AES encryptions.
-    1.2 Authenticating users upon login and logout.
-    1.3 Session timeouts.
-    1.4 Protecting routes.
-    1.5 CSRF tokens to prevent cross site request forgery.
+<<<<<<< HEAD
+1 Login
+    1.1 Login information [userid/password] (case sensitive)
+        1.1.1 admin/admin
+        1.1.2 doctor/doctor
+        1.1.3 nurse/nurse
+    1.2 Authentication & Security
+        1.2.1 HASH encryption on password.
+        1.2.2 CSRF tokens to prevent cross site request forgery.
+>>>>>>> 1602577fd6fa6527562a498d17d0a73a31de1d69
 2 Users
     2.1 All users can search and use all search fields.
     2.2 Admins
