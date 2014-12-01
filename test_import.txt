@@ -1,0 +1,88 @@
+#########################################
+#   Template for Patient/Record Import  #
+#########################################
+
+writen by James Taylor email questions to jltaylor@sfu.ca
+
+The import function presumes that the file format is correct and the fields do not violate database constraints (eg unique entries)
+
+Errors of either kind will be handled resulting in rejected import.
+
+Attempted import returns a message confirming "x succesful imports"
+
+where x=0->N (your total submited)
+
+######## TO TEST ######
+
+-Follow the relevant templates described bellow
+
+-Ensure that unique fields are new
+   -either get values from a current entry, delete that entry, then reimport
+   -or use search feature to verify your entry does not already exist
+
+-Ensure required fields exist
+   -use search to get correct values for foreign keys
+
+
+#### Patient Template ####
+
+Note only phn and email unique
+
+{"PATIENT":                       %element placeholder use number or patient1
+	{
+	"phn":"1011110010",                 %required UNIQUE
+	"name":"Sienna Senger",             %required
+	"preferred_name":"MrsD",            %required
+	"sex":"Female",                     %required [Male, Female]
+	"date_of_birth":"1997-12-28",       %required date format
+	"address":"ADDRESSADRESS",          %required anytext
+	"postal_code":"K8B9A8",             %required 6characters
+	"home_phone":"6089392805", 
+	"work_phone":"827623697x9808",
+	"mobile_phone":"5906526343",
+	"email":"ppp@hodkiewicz.net",       %UNIQUE
+	"emergency_name":"Pattie Cremin",
+	"emergency_phone":"8571814336",
+	"emergency_relationship":"illo",
+	"allergies":"labore",
+	"permanent_resident":"No",          %required [Yes, No]
+	"medical_history":"BLAHBLAH",
+	"preferred_language":"et",          %required anytext
+	"other_language":"officia",
+	"ethnic_background":"tempora",      %required anytext
+	"family_doctor":"Hank Bogan"
+	}                                   %add ' , "2":{another entry}
+						for multiple			}
+
+
+
+
+
+### Record Template ###
+
+Note foreign keys phn, abbrev(facility), username must exist
+
+{
+  "record1":{				      %place holder
+     "phn": "4179892271",                     %required exists (patienttable)
+     "abbrev": "xxdszv",		      %required exists (facilitytable) 	     "username": "aiyana75",		      %required exists (usertable)
+     "priority": "1",                         %required 1->6
+     "reg_datetime": "2001-01-02 18:43:04",   %required date-time
+     "admit_datetime": "2001-01-02 20:12:02", %required date-time
+     "chief_compl": "LARFUHLAKFJorfj",	      %required anytext
+     "chief_compl_code": "e4fr",              %required anytext
+     "stated_compl": "kuygfkyug",             %required anytext
+     "arrival_mode": "fDSJVNnOVNCslkcvnmv",
+     "subjective": "FSAFDGAFDGADFVFPAHFFA",   %required anytext
+     "objective": "ALERFUHARIFHPAFHRPAOF",    %required anytext
+     "assessment": "DFHVLAIUHFAIFAOHFAIN",    %required anytext
+     "prescription": "xSLIUGHVLSHSKVHLSKV",
+     "remarks": "APEORIFHGAHFGAROHIFA",
+     "plan": "LSKURHFLSKUHFLSKHGLSS"
+     }                                        % add ' , "..,"{... } 
+}					     for multiple
+
+
+
+
+
