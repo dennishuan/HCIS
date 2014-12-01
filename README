@@ -1,11 +1,18 @@
 -----------------------------------------------------------------------
 CMPT 470 Final Project Implmentation
+
 Health Care Information System (HCIS) by "It HURTS when I PHP"(mx6)
 Jeffrey Fung, Dennis Huan, Andrew Liaw, James Taylor, and Eric Yuen
 -----------------------------------------------------------------------
 
 Abstract:
-Emergency departments (ED) and medical clinics in Metro Vancouver experience increasing number of visits and ED admissions. Integrating a web-based information system to unify patients' data from their general practitioners (GP), and their medical doctors (MD) is vital to maximize health care resources and services. Our project focuses on patients' data and their medical records in MySQL database management system (DBMS) to help with diagnosing, and efficiently performing treatments. Furthermore, our information system can provide data to health authorities to help better understand the growth in visits based on demographics, and provide better health services conducted from their statistical and decision analyses. Some analyses include: lower queue time in ED (which is known to be over two hours from Fraser Health hospitals).
+Emergency departments (ED) and medical clinics in Metro Vancouver experience increasing number of visits and ED admissions.
+Integrating a web-based information system to unify patients' data from their general practitioners (GP), and their medical
+doctors (MD) is vital to maximize health care resources and services. Our project focuses on patients' data and their medical
+records in MySQL database management system (DBMS) to help with diagnosing, and efficiently performing treatments. 
+Furthermore, our information system can provide data to health authorities to help better understand the growth in visits 
+based on demographics, and provide better health services conducted from their statistical and decision analyses. 
+Some analyses include: lower queue time in ED which is known to be over two hours from Fraser Health hospitals.
 
 Fully Functional Features:
 1 Login
@@ -32,7 +39,7 @@ Fully Functional Features:
 3 Validation
         3.1 
 4 Search
-        4.1 Allow users to search for users, facility, medical records, or patients with at least one field                                 filled. 
+        4.1 Allow users to search for users, facility, medical records, or patients with at least one field filled. 
         4.2　Designed to be simple and similar to pharmacy search UI screen.
         4.3 Search efficiently and comprehensively to find patients, users, facility, and medical records.
 5 Tables
@@ -40,16 +47,24 @@ Fully Functional Features:
         5.2 Refresh table button beside the search bar.
         5.3 View by categories button beside the refresh button.
 6 Import/Export
-        6.1 Import csv files to record/patient tables and is stored in the database. Since this is a one time setup for each               facility, this is done by health authorities.
-        6.2 Export record/patient table to csv file. Health authorities can export data to be used for decisiona and                       statistical analyses to provide better health care services (e.g. reduce queue time in ED, and to understand what               are the causes of growth in visits based on demographics). CSV file was chosen because it can be easily imported               to Excel, SAS, and R statistical analysis software.
+        6.1 Import csv files to record/patient tables and is stored in the database. Since this is a one time setup for each
+            facility, this is done by health authorities.
+        6.2 Export record/patient table to csv file. Health authorities can export data to be used for decisions and
+            statistical analyses to provide better health care services (e.g. reduce queue time in ED, and to understand 
+            what are the causes of growth in visits based on demographics). CSV file was chosen because it can be easily
+            opened with Excel, JMP, SAS, and R statistical analysis software.
 7 Upload
         7.1 Enable users to upload their profile pictures through their profile page (left hand side of the logout button).
         7.2 Enable users to choose their image from their file system.
-        7.3 Uploading profile images and files (e.g. X-Ray images, and completed blood tests forms) to help identify                       patients, and users, as well as providing better health services without incurring additional costs to patients.
+        7.3 Uploading profile images and files (e.g. X-Ray images, and completed blood tests forms) to help identify
+            patients, and users, as well as providing better health services without incurring additional fees to patients.
 8 Medical fields
-        8.1 Includes exact medical fields as Fraser Health* hospitals and common medical fields from medical clinics** in                   Metro Vancouver. 
+        8.1 Includes exact medical fields as Fraser Health* hospitals and common medical fields from medical clinics** in
+            Metro Vancouver. 
             * Eric did a research project for Fraser Health Authority in Summer 1.14. No sensitive information was used.
             ** Acquired from several medical clinics including SFU Health Services in Maggie Benston Centre in Burnaby campus.
 9 User Interface
         9.1 Simple UI for users to be quickly familiar with the technology.
+        9.2 Creating new records and patients require most of the fields to be filled. This is vital to reduce the number of
+            missing data to providing better health services.
         
