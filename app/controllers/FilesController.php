@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Filesystem\Filesystem;
+use SoapBox\Formatter\Formatter;
 
 class FilesController extends \BaseController {
 
@@ -85,17 +86,13 @@ class FilesController extends \BaseController {
     
     public function exportPat(){
     
-        $patients = Patient::all();
-	foreach($patients as $patient)
-	{
-	$pid = $patient->id;
-	$newpat[$pid] = $patient;
-	}
-	$newpat = json_encode($newpat);
-        $file = new FileSystem();
-        $filename = sha1(time().time()).".json";
+        $patients = Patient::all()->toJson();
+	$file = new FileSystem();
+        $filename = sha1(time().time()).".csv";
         $path = storage_path('files/export/'. $filename);
-        $file->put($path, $newpat);
+	$formatter = Formatter::make($patients, Formatter::JSON);
+	$csv = $formatter->toJson();
+        $file->put($path, $csv);
         
         // Check if file exist
         if (File::exists($path)){
@@ -126,13 +123,12 @@ class FilesController extends \BaseController {
 	$newrec[$rid] = $record;
 	}
 
-	$newrec = json_encode($newrec);	
-	
-	
 	$file = new FileSystem();
-        $filename = sha1(time().time()).".json";
+        $filename = sha1(time().time()).".csv";
         $path = storage_path('files/export/'. $filename);
-        $file->put($path, $newrec);
+	$formatter = Formatter::make($newrec, Formatter::ARR);
+	$csv = $formatter->toCsv();
+        $file->put($path, $csv);
         
         // Check if file exist
         if (File::exists($path)){
