@@ -37,11 +37,11 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
         2. Allow to create, edit, delete, and view users, facility, patient, and records.
   3. Doctors
         1. Allow to create, edit, and view patients, and records.
-        2. Allow to edit their own profile in users.
+        2. Allow to edit their own profile in users, and view other users.
         3. Allow to view facility.
   4. Nurses
         1. Allow to create, edit, and view patients, and records.
-        2. Allow to edit their own profile in users.
+        2. Allow to edit their own profile in users, and view other users.
         3. Allow to view facility.       
 3. Validation
   1. Real-time validation. Data is validated via HTML5 on client and the server validates the data again.
@@ -59,12 +59,13 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
   3. View by categories button beside the refresh button.
 6. Import/Export
   1. Import CSV files to record/patient tables and is stored in the database. Since this is a one-time setup for each facility, this is done by health authorities. This requires a specific format to be consistent for all facilities.
-  2. Export record/patient table to csv file. Health authorities can export data to be used for decisions and statistical analyses to provide better health care services (e.g. reduce queue time in ED, and to understand what are the causes of growth in visits based on demographics). CSV file was chosen because it can be easily opened with Excel, JMP, SAS, and R statistical analysis software.
+  2. Export record/patient table to csv file. Health authorities can export data to be used for decisions and statistical analyses to provide better health care services (e.g. reduce queue time in ED, and to understand what are the causes of growth in visits based on demographics). CSV file was chosen because it can be easily opened with Excel, JMP, SAS, and R statistical analysis software. Note: Excel will truncated the seconds in datetime on save.
 7. Upload
   1. Enable users to upload their profile pictures through their profile page (left hand side of the logout button).
-  2. Enable users to choose their image from their file system.
-  3. Uploading profile images and files (e.g. X-Ray images, and completed blood tests forms) to help identify patients, and users, as well as providing better health services without incurring additional fees to patients.
-  4. Images are validated prior to upload.
+  2. Enable users to choose their image by uploading a image in the profile page.
+  3. Uploading profile images to a patient.
+  4. Uploading images and files to records. (e.g. X-Ray images, and completed blood tests forms).
+  5. Images are validated prior to upload.
 8. Medical fields
   1. Includes exact medical fields as Fraser Health[1] hospitals and common medical fields from medical clinics[3] in Metro Vancouver. 
 9. User Interface
@@ -76,9 +77,6 @@ Some analyses include: to reduce the time to queue in ED which is known to be fe
 11. Error Exception Handling
   1. Returns 404 error page if page not found.
   
-### Non-functional features 
-- Selecting more than one selection and clicking on 'show' in tables will only display the first selection.
-
 ### References
   >[1] Fee is set by BCMA. Full details can be found on page 4 in https://www.doctorsofbc.ca/sites/default/files/fee_guide_uploads/medical_legal.pdf
   
