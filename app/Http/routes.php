@@ -36,11 +36,11 @@ use Monolog\Handler\StreamHandler;
 /*******************
 *   Require CSRF   *
 *******************/
-Route::when('*', ['before' => 'csrf'], ['post', 'put', 'delete']);
+Route::when('*', ['middleware' => 'csrf'], ['post', 'put', 'delete']);
 
 
 //Home
-Route::get('/', ['as' => 'home', 'before' => 'auth' ,function () {
+Route::get('/', ['as' => 'home', 'middleware' => 'auth' ,function () {
     return View::make('home');
 }]);
 
@@ -53,7 +53,7 @@ Route::delete('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@des
 /*******************************
 *   Require Auth
 *************************************/
-Route::group(['before' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     //Search
     Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
     Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
