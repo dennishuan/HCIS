@@ -1,6 +1,6 @@
 <?php
 
-class Record extends \Eloquent
+class Record extends Model
 {
     /**
     * The database table used by the model.
@@ -47,6 +47,7 @@ class Record extends \Eloquent
         $result = $this;
 
         // User filter
+use Illuminate\Database\Eloquent\Model;
         $result = $result->whereHas('user', function ($user) use ($qs) {
             if (array_key_exists('doctor', $qs)) {
                 $user = $user->where('name', 'LIKE', '%'.$qs['doctor'].'%');

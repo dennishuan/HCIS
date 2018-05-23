@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Facility extends \Eloquent
+class Facility extends Model
 {
     /**
     * The database table used by the model.
