@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function (ModelNotFoundException $e) {
-    return Response::make('Not Found', 404);
+    return response('Not Found', 404);
 });
 
 class PatientController extends Controller
@@ -46,7 +46,7 @@ class PatientController extends Controller
             }
         }
 
-        return View::make('patient.index');
+        return view('patient.index');
     }
 
 
@@ -58,7 +58,7 @@ class PatientController extends Controller
     public function create()
     {
         //Show a form to create new patient.
-        return View::make('patient.create');
+        return view('patient.create');
     }
 
 
@@ -94,7 +94,7 @@ class PatientController extends Controller
         //
         $patient = $this->patient->findOrFail($id);
 
-        return View::make('patient.show', ['patient' => $patient]);
+        return view('patient.show', ['patient' => $patient]);
     }
 
 
@@ -109,7 +109,7 @@ class PatientController extends Controller
         //
         $patient = $this->patient->findOrFail($id);
 
-        return View::make('patient.edit', ['patient'=>$patient]);
+        return view('patient.edit', ['patient'=>$patient]);
     }
 
 
@@ -158,7 +158,7 @@ class PatientController extends Controller
         $url = qs_url('patient', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /patient/?search={$keyword}
-        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
+        return redirect($url)->with('flash_message_success', 'Search completed.');
     }
 
     public function ajax()

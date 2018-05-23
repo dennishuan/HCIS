@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function (ModelNotFoundException $e) {
-    return Response::make('Not Found', 404);
+    return response('Not Found', 404);
 });
 
 class FacilityController extends Controller
@@ -46,7 +46,7 @@ class FacilityController extends Controller
             }
         }
 
-        return View::make('facility.index');
+        return view('facility.index');
     }
 
 
@@ -58,7 +58,7 @@ class FacilityController extends Controller
     public function create()
     {
         //Show a form to create new facility.
-        return View::make('facility.create');
+        return view('facility.create');
     }
 
 
@@ -94,7 +94,7 @@ class FacilityController extends Controller
         //
         $facility = $this->facility->findOrFail($id);
 
-        return View::make('facility.show', ['facility' => $facility]);
+        return view('facility.show', ['facility' => $facility]);
     }
 
 
@@ -109,7 +109,7 @@ class FacilityController extends Controller
         //
         $facility = $this->facility->findOrFail($id);
 
-        return View::make('facility.edit', ['facility'=>$facility]);
+        return view('facility.edit', ['facility'=>$facility]);
     }
 
 
@@ -158,7 +158,7 @@ class FacilityController extends Controller
         $url = qs_url('facility', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /facility/?search={$keyword}
-        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
+        return redirect($url)->with('flash_message_success', 'Search completed.');
     }
 
     public function ajax()

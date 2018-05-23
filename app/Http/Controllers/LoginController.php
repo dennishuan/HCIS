@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function (ModelNotFoundException $e) {
-               return Response::make('Not Found', 404);
+               return response('Not Found', 404);
 });
 
 class LoginController extends Controller
@@ -22,7 +22,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return Redirect::intended();
         }
-        return View::make('login');
+        return view('login');
     }
 
     /**
@@ -49,7 +49,7 @@ class LoginController extends Controller
 
             return Redirect::intended()->with('flash_message_success', 'You have been logged in!');
         } else {
-            return Redirect::to('login')->with('flash_message_danger', 'Invalid credentials')->withInput();
+            return redirect('login')->with('flash_message_danger', 'Invalid credentials')->withInput();
         }
     }
 
@@ -64,6 +64,6 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return Redirect::to('login')->with('flash_message_info', 'You have been logged out!');
+        return redirect('login')->with('flash_message_info', 'You have been logged out!');
     }
 }

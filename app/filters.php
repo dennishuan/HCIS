@@ -74,7 +74,7 @@ App::after(function ($request, $response) {
 Route::filter('auth', function () {
     if (Auth::guest()) {
         if (Request::ajax()) {
-            return Response::make('Unauthorized', 401);
+            return response('Unauthorized', 401);
         } else {
             return Redirect::guest('login')->with('flash_message_warning', 'Login required');
         }
@@ -104,7 +104,7 @@ Route::filter('auth.basic', function () {
 
 Route::filter('guest', function () {
     if (Auth::check()) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 

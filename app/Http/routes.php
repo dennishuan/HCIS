@@ -41,7 +41,7 @@ Route::when('*', ['middleware' => 'csrf'], ['post', 'put', 'delete']);
 
 //Home
 Route::get('/', ['as' => 'home', 'middleware' => 'auth' ,function () {
-    return View::make('home');
+    return view('home');
 }]);
 
 //login

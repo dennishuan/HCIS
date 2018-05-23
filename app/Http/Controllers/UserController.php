@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function (ModelNotFoundException $e) {
-    return Response::make('Not Found', 404);
+    return response('Not Found', 404);
 });
 
 class UserController extends Controller
@@ -47,7 +47,7 @@ class UserController extends Controller
             }
         }
 
-        return View::make('user.index');
+        return view('user.index');
     }
 
 
@@ -59,7 +59,7 @@ class UserController extends Controller
     public function create()
     {
         //Show a form to create new user.
-        return View::make('user.create');
+        return view('user.create');
     }
 
 
@@ -103,7 +103,7 @@ class UserController extends Controller
         //
         $user = $this->user->findOrFail($id);
 
-        return View::make('user.show', ['user' => $user]);
+        return view('user.show', ['user' => $user]);
     }
 
 
@@ -118,7 +118,7 @@ class UserController extends Controller
         //
         $user = $this->user->findOrFail($id);
 
-        return View::make('user.edit', ['user'=>$user]);
+        return view('user.edit', ['user'=>$user]);
     }
 
 
@@ -175,7 +175,7 @@ class UserController extends Controller
         $url = qs_url('user', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /user/?search={$keyword}
-        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
+        return redirect($url)->with('flash_message_success', 'Search completed.');
     }
 
     public function ajax()
@@ -240,7 +240,7 @@ class UserController extends Controller
         //
         $user = $this->user->findOrFail($id);
 
-        return View::make('user.password', ['user'=>$user]);
+        return view('user.password', ['user'=>$user]);
     }
 
     public function updatePassword($id)

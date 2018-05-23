@@ -63,7 +63,7 @@ class FilesController extends Controller
                 }
             }
 
-            return Redirect::to('patient')->with('flash_message_success', ''.$count.' files successfully uploaded');
+            return redirect('patient')->with('flash_message_success', ''.$count.' files successfully uploaded');
         }
         return Redirect::back()->withErrors('Please select a File');
     }

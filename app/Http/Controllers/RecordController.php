@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function (ModelNotFoundException $e) {
-    return Response::make('Not Found', 404);
+    return response('Not Found', 404);
 });
 
 class RecordController extends Controller
@@ -75,7 +75,7 @@ class RecordController extends Controller
             }
         }
 
-        return View::make('record.index');
+        return view('record.index');
     }
 
 
@@ -87,7 +87,7 @@ class RecordController extends Controller
     public function create()
     {
         //Show a form to create new record.
-        return View::make('record.create');
+        return view('record.create');
     }
 
 
@@ -138,7 +138,7 @@ class RecordController extends Controller
         //
         $record = $this->record->findOrFail($id);
 
-        return View::make('record.show', ['record' => $record]);
+        return view('record.show', ['record' => $record]);
     }
 
 
@@ -153,7 +153,7 @@ class RecordController extends Controller
         //
         $record = $this->record->findOrFail($id);
 
-        return View::make('record.edit', ['record'=>$record]);
+        return view('record.edit', ['record'=>$record]);
     }
 
 
@@ -208,7 +208,7 @@ class RecordController extends Controller
         $url = qs_url('record', ['search' => 'true', 'keyword' => $keyword]);
 
         // Redirect to /record/?search={$keyword}
-        return Redirect::to($url)->with('flash_message_success', 'Search completed.');
+        return redirect($url)->with('flash_message_success', 'Search completed.');
     }
 
     public function ajax()

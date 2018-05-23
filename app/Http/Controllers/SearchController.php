@@ -26,7 +26,7 @@ class SearchController extends Controller
 
                 $url = qs_url('record', $qs);
 
-                return Redirect::to($url);
+                return redirect($url);
             }
             // Patient
             if ($input['model'] === 'patient') {
@@ -39,7 +39,7 @@ class SearchController extends Controller
 
                 $url = qs_url('patient', $qs);
 
-                return Redirect::to($url);
+                return redirect($url);
             }
             // User
             if ($input['model'] === 'user') {
@@ -52,7 +52,7 @@ class SearchController extends Controller
 
                 $url = qs_url('user', $qs);
 
-                return Redirect::to($url);
+                return redirect($url);
             }
             // Facility
             if ($input['model'] === 'facility') {
@@ -65,10 +65,10 @@ class SearchController extends Controller
 
                 $url = qs_url('facility', $qs);
 
-                return Redirect::to($url);
+                return redirect($url);
             }
         }
-        return View::make('search.index');
+        return view('search.index');
     }
 
     /**
@@ -91,6 +91,6 @@ class SearchController extends Controller
         $url = qs_url('search', $input);
 
         // Redirect to /search?{query string}
-        return Redirect::to($url);
+        return redirect($url);
     }
 }
