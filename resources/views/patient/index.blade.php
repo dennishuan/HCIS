@@ -32,10 +32,10 @@
       <div class="modal-body">
         
           <h4>Import Patient (.CSV):</h4>
-          {{ Form::open(['route' => 'importPat', 'enctype' => 'multipart/form-data']) }}
+          {!! Form::open(['route' => 'importPat', 'enctype' => 'multipart/form-data']) !!}
           <input id="importPat" type="file" name="file">
-          {{ $errors->first('file') }}
-          {{ Form::close() }}
+          {!! $errors->first('file') !!}
+          {!! Form::close() !!}
 
       </div>
       <div class="modal-footer">

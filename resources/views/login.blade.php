@@ -2,20 +2,20 @@
 
 @section('content')
 
-  {{ Form::open(['route' => 'login.store'])}}
+  {!! Form::open(['route' => 'login.store'])!!}
   <ul>
     <li>
-      {{ Form::label('username', 'Username:') }}
-      {{ Form::text('username') }}
-      {{ $errors->first('username') }}
+      {!! Form::label('username', 'Username:') !!}
+      {!! Form::text('username') !!}
+      {!! $errors->first('username') !!}
     </li>
     <li>
-      {{ Form::label('password', 'Password:') }}
-      {{ Form::password('password') }}
-      {{ $errors->first('password') }}
+      {!! Form::label('password', 'Password:') !!}
+      {!! Form::password('password') !!}
+      {!! $errors->first('password') !!}
     </li>
-    {{ Form::submit('login') }}
+    {!! Form::submit('login') !!}
   </ul>
-  {{ Form::close() }}
+  {!! Form::close() !!}
 
 @stop

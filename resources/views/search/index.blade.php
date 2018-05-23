@@ -18,19 +18,19 @@
     <div id="record" class="tab-pane fade in active container">
       <h3>Search for Record</h3>
       <div class="row">
-        {{ Form::Open(['route' => 'search.store', 'method' => 'POST'])}}
+        {!! Form::Open(['route' => 'search.store', 'method' => 'POST'])!!}
         <input name="model" type="hidden" value="record">
         <!-- Left side of form -->
         <div class="col col-md-6 col-lg-6">
 
           <div class="input-group">
             <span class="input-group-addon">Doctor:</span>
-            {{ Form::text('user', null, ['class' => 'form-control']) }}
+            {!! Form::text('user', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Legal Name:</span>
-            {{ Form::text('name', null, ['class' => 'form-control']) }}
+            {!! Form::text('name', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
@@ -44,37 +44,37 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Address:</span>
-            {{ Form::text('address', null, ['class' => 'form-control']) }}
+            {!! Form::text('address', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Home Phone:</span>
-            {{ Form::text('home_phone', null, ['class' => 'form-control']) }}
+            {!! Form::text('home_phone', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Mobile Phone:</span>
-            {{ Form::text('mobile_phone', null, ['class' => 'form-control']) }}
+            {!! Form::text('mobile_phone', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Contact Phone:</span>
-            {{ Form::text('emergency_phone', null, ['class' => 'form-control']) }}
+            {!! Form::text('emergency_phone', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Contract Relationship:</span>
-            {{ Form::text('emergency_relationship', null, ['class' => 'form-control']) }}
+            {!! Form::text('emergency_relationship', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Preferred Language:</span>
-            {{ Form::text('preferred_language', null, ['class' => 'form-control']) }}
+            {!! Form::text('preferred_language', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Ethnic Background:</span>
-            {{ Form::text('ethnic_background', null, ['class' => 'form-control']) }}
+            {!! Form::text('ethnic_background', null, ['class' => 'form-control']) !!}
           </div>
 
 
@@ -93,16 +93,16 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Admittance Date:</span>
-            {{ Form::text('admit_datetime', null, ['class' => 'form-control']) }}
+            {!! Form::text('admit_datetime', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Arrival Mode:</span>
-            {{ Form::text('arrival_mode', null, ['class' => 'form-control']) }}
+            {!! Form::text('arrival_mode', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
-            {{ Form::submit('Search for Record', ['class' => 'btn btn-info'])}}
+            {!! Form::submit('Search for Record', ['class' => 'btn btn-info'])!!}
           </div>
         </div>
 
@@ -110,47 +110,47 @@
         <div class="col col-md-6 col-lg-6">
           <div class="input-group">
             <span class="input-group-addon">Facility Name or Abbrev.:</span>
-            {{ Form::text('facility' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('facility' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Personal Health Number:</span>
-            {{ Form::text('phn', null, ['class' => 'form-control']) }}
+            {!! Form::text('phn', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Preferred Name:</span>
-            {{ Form::text('preferred_name', null, ['class' => 'form-control']) }}
+            {!! Form::text('preferred_name', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Date of Birth:</span>
-            {{ Form::text('date_of_birth', null, ['class' => 'form-control']) }}
+            {!! Form::text('date_of_birth', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Work Phone:</span>
-            {{ Form::text('work_phone', null, ['class' => 'form-control']) }}
+            {!! Form::text('work_phone', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Postal Code:</span>
-            {{ Form::text('postal_code', null, ['class' => 'form-control']) }}
+            {!! Form::text('postal_code', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Contact Name:</span>
-            {{ Form::text('emergency_name', null, ['class' => 'form-control']) }}
+            {!! Form::text('emergency_name', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Allergies:</span>
-            {{ Form::text('allergies', null, ['class' => 'form-control']) }}
+            {!! Form::text('allergies', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Secondary Language:</span>
-            {{ Form::text('other_language', null, ['class' => 'form-control']) }}
+            {!! Form::text('other_language', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
@@ -164,20 +164,20 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Doctor:</span>
-            {{ Form::text('family_doctor', null, ['class' => 'form-control']) }}
+            {!! Form::text('family_doctor', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Registration Date:</span>
-            {{ Form::text('reg_datetime', null, ['class' => 'form-control']) }}
+            {!! Form::text('reg_datetime', null, ['class' => 'form-control']) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Chief Complaint Code:</span>
-            {{ Form::text('chief_compl_code', null, ['class' => 'form-control']) }}
+            {!! Form::text('chief_compl_code', null, ['class' => 'form-control']) !!}
           </div>
         </div>
-        {{ Form::close()}}
+        {!! Form::close()!!}
       </div>
     </div>
     <!-- End record tab -->
@@ -186,65 +186,65 @@
     <div id="patient" class="tab-pane fade container">
       <h3>Search for Patient</h3>
       <div class="row">
-        {{ Form::open(['route' => 'search.store', 'method' => 'POST']) }}
+        {!! Form::open(['route' => 'search.store', 'method' => 'POST']) !!}
         <input name="model" type="hidden" value="patient">
         <!--Left side of form-->
         <div class="col col-md-6 col-lg-6">
 
           <div class="input-group">
             <span class="input-group-addon">Personal Health Number:</span>
-            {{ Form::text('phn', null, ['class' => 'form-control'] ) }}
+            {!! Form::text('phn', null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Name:</span>
-            {{ Form::text('name' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('name' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Date of Birth:</span>
-            {{ Form::text('date_of_birth' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('date_of_birth' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Postal Code:</span>
-            {{ Form::text('postal_code' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('postal_code' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Work Phone:</span>
-            {{ Form::text('work_phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('work_phone' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Email:</span>
-            {{ Form::text('email' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('email' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Phone:</span>
-            {{ Form::text('emergency_phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('emergency_phone' , null, ['class' => 'form-control'] ) !!}
           </div>
 
 
 
           <div class="input-group buffer">
             <span class="input-group-addon">Medical History:</span>
-            {{ Form::text('medical_history' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('medical_history' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Secondary Language:</span>
-            {{ Form::text('other_language' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('other_language' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Family Doctor:</span>
-            {{ Form::text('family_doctor' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('family_doctor' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
-            {{ Form::submit('Search for Patient', ['class' => 'btn btn-info'])}}
+            {!! Form::submit('Search for Patient', ['class' => 'btn btn-info'])!!}
           </div>
         </div>
         <!-- End left side of form -->
@@ -254,7 +254,7 @@
 
           <div class="input-group">
             <span class="input-group-addon">Preferred Name:</span>
-            {{ Form::text('preffered_name' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('preffered_name' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
@@ -268,27 +268,27 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Address:</span>
-            {{ Form::text('address' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('address' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Home Phone:</span>
-            {{ Form::text('home_phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('home_phone' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Mobile Phone:</span>
-            {{ Form::text('mobile_phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('mobile_phone' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Name:</span>
-            {{ Form::text('emergency_name' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('emergency_name' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Emergency Relationship:</span>
-            {{ Form::text('emergency_relationship' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('emergency_relationship' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
@@ -302,17 +302,17 @@
 
           <div class="input-group buffer">
             <span class="input-group-addon">Preferred Language:</span>
-            {{ Form::text('preferred_lnguage' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('preferred_lnguage' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Ethnic Background:</span>
-            {{ Form::text('ethnic_background' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('ethnic_background' , null, ['class' => 'form-control'] ) !!}
           </div>
 
         </div>
         <!-- End right side of form -->
-        {{ Form::close()}}
+        {!! Form::close()!!}
       </div>
     </div>
     <!-- End patient tab -->
@@ -321,28 +321,28 @@
     <div id="user" class="tab-pane fade container">
       <h3>Search for User</h3>
       <div class="row">
-        {{ Form::open(['route' => 'search.store', 'method' => 'POST']) }}
+        {!! Form::open(['route' => 'search.store', 'method' => 'POST']) !!}
         <input name="model" type="hidden" value="user">
         <div class="col col-md-6 col-lg-6">
 
           <div class="input-group">
             <span class="input-group-addon">Full Name:</span>
-            {{ Form::text('name', null, ['class' => 'form-control'] ) }}
+            {!! Form::text('name', null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Email:</span>
-            {{ Form::text('email' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('email' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Phone:</span>
-            {{ Form::text('phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('phone' , null, ['class' => 'form-control'] ) !!}
 
           </div>
 
           <div class="input-group buffer">
-            {{ Form::submit('Search for User', ['class' => 'btn btn-info'])}}
+            {!! Form::submit('Search for User', ['class' => 'btn btn-info'])!!}
           </div>
 
         </div>
@@ -351,7 +351,7 @@
 
           <div class="input-group">
             <span class="input-group-addon">Username:</span>
-            {{ Form::text('username' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('username' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
@@ -366,7 +366,7 @@
             </select>
           </div>
         </div>
-        {{ Form::close()}}
+        {!! Form::close()!!}
       </div>
     </div>
     <!-- End search user tab -->
@@ -375,23 +375,23 @@
     <div id="facility" class="tab-pane fade container">
       <h3>Search for Facility</h3>
       <div class="row">
-        {{ Form::open(['route' => 'search.store', 'method' => 'POST']) }}
+        {!! Form::open(['route' => 'search.store', 'method' => 'POST']) !!}
         <input name="model" type="hidden" value="facility">
         <!--Left side of form-->
         <div class="col col-md-6 col-lg-6">
           <div class="input-group">
             <span class="input-group-addon">Abbreviation:</span>
-            {{ Form::text('abbrev', null, ['class' => 'form-control'] ) }}
+            {!! Form::text('abbrev', null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Name:</span>
-            {{ Form::text('name' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('name' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Phone:</span>
-            {{ Form::text('phone' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('phone' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
@@ -404,7 +404,7 @@
           </div>
 
           <div class="input-group buffer">
-            {{ Form::submit('Search for Facility', ['class' => 'btn btn-info'])}}
+            {!! Form::submit('Search for Facility', ['class' => 'btn btn-info'])!!}
           </div>
         </div>
         <!-- End left side of form -->
@@ -414,21 +414,21 @@
 
           <div class="input-group">
             <span class="input-group-addon">Fax:</span>
-            {{ Form::text('fax' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('fax' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Address:</span>
-            {{ Form::text('address' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('address' , null, ['class' => 'form-control'] ) !!}
           </div>
 
           <div class="input-group buffer">
             <span class="input-group-addon">Postal Code:</span>
-            {{ Form::text('postal_code' , null, ['class' => 'form-control'] ) }}
+            {!! Form::text('postal_code' , null, ['class' => 'form-control'] ) !!}
           </div>
         </div>
         <!-- End right side of form -->
-        {{ Form::close()}}
+        {!! Form::close()!!}
       </div>
     </div>
     <!-- End facility search -->

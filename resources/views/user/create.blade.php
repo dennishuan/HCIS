@@ -5,30 +5,30 @@
 <div id="User" class="tab-pane fade in active container">
   <h1>Creating User</h1>
   <div class="row">
-    {{ Form::open(['route' => 'user.store']) }}
+    {!! Form::open(['route' => 'user.store']) !!}
 
     <!-- Left side of form -->
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Username:</span>
-        {{ Form::text('username', null, ['class' => 'form-control', 'required'])}}
+        {!! Form::text('username', null, ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('username')}}
+      {!! $errors->first('username')!!}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Name:</span>
-        {{ Form::text('name', null, ['class' => 'form-control', 'required'])}}
+        {!! Form::text('name', null, ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('name')}}
+      {!! $errors->first('name')!!}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Phone Number:</span>
-        {{ Form::text('phone', null, ['class' => 'form-control', 'required'])}}
+        {!! Form::text('phone', null, ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('phone')}}
+      {!! $errors->first('phone')!!}
 
       <div class="input-group buffer">
-        {{ Form::submit('Create User', ['class' => 'btn btn-info'])}}
+        {!! Form::submit('Create User', ['class' => 'btn btn-info'])!!}
       </div>
     </div>
 
@@ -36,30 +36,30 @@
     <div class="col col-md-6 col-lg-6">
       <div class="input-group">
         <span class="input-group-addon">Password:</span>
-        {{ Form::password('password', ['class' => 'form-control', 'required'])}}
+        {!! Form::password('password', ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('password')}}
+      {!! $errors->first('password')!!}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Confirm Password:</span>
-        {{ Form::password('password_confirmation', ['class' => 'form-control', 'required'])}}
+        {!! Form::password('password_confirmation', ['class' => 'form-control', 'required'])!!}
       </div>
 
       <div class="input-group buffer">
         <span class="input-group-addon">Type:</span>
-        {{ Form::select('type', array('Admin' => 'Admin', 'Doctor' => 'Doctor', 'Nurse' => 'Nurse'),
-        ' ', ['class' => 'form-control', 'required'])}}
+        {!! Form::select('type', array('Admin' => 'Admin', 'Doctor' => 'Doctor', 'Nurse' => 'Nurse'),
+        ' ', ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('type')}}
+      {!! $errors->first('type')!!}
 
       <div class="input-group buffer">
         <span class="input-group-addon">Email:</span>
-        {{ Form::email('email', null, ['class' => 'form-control', 'required'])}}
+        {!! Form::email('email', null, ['class' => 'form-control', 'required'])!!}
       </div>
-      {{ $errors->first('email')}}
+      {!! $errors->first('email')!!}
 
     </div>
-    {{ Form::close()}}
+    {!! Form::close()!!}
   </div>
 </div>
 @stop

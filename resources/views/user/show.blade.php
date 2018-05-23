@@ -23,20 +23,20 @@ rmDeleteLabel" aria-hidden="true">
 </div>
 
 <div id="User" class="tab-pane fade in active container">
-  <h1>Showing User: {{$user->name}}</h1>
+  <h1>Showing User: {!!$user->name!!}</h1>
   <div class="row">
 
     <div class="col col-md-12 col-lg-12">
       <div class="text-center">
         @if($user->image == null)
-        {{ HTML::image('files/profile/standard.png') }}
+        {!! HTML::image('files/profile/standard.png') !!}
         @else
-        {{ HTML::image($user->image) }}
+        {!! HTML::image($user->image) !!}
         @endif
       </div>
     </div>
 
-    {{ Form::open(['route' => 'user.store', 'method' => 'POST']) }}
+    {!! Form::open(['route' => 'user.store', 'method' => 'POST']) !!}
 
     <!-- Left side of form -->
     <div class="col col-md-6 col-lg-6 buffer">
@@ -44,17 +44,17 @@ rmDeleteLabel" aria-hidden="true">
       <fieldset disabled>
         <div class="input-group">
           <span class="input-group-addon">Username:</span>
-          {{ Form::text('username', $user->username, ['class' => 'form-control']) }}
+          {!! Form::text('username', $user->username, ['class' => 'form-control']) !!}
         </div>
 
         <div class="input-group buffer">
           <span class="input-group-addon">Name:</span>
-          {{ Form::text('name', $user->name, ['class' => 'form-control']) }}
+          {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
         </div>
 
         <div class="input-group buffer">
           <span class="input-group-addon">Phone Number:</span>
-          {{ Form::text('phone', $user->phone, ['class' => 'form-control']) }}
+          {!! Form::text('phone', $user->phone, ['class' => 'form-control']) !!}
         </div>
       </fieldset>
     </div>
@@ -64,33 +64,33 @@ rmDeleteLabel" aria-hidden="true">
       <fieldset disabled>
        <div class="input-group">
           <span class="input-group-addon">Type:</span>
-          {{ Form::text('type', $user->type, ['class' => 'form-control']) }}
+          {!! Form::text('type', $user->type, ['class' => 'form-control']) !!}
         </div>
 
         <div class="input-group buffer">
           <span class="input-group-addon">Email:</span>
-          {{ Form::text('email', $user->email, ['class' => 'form-control']) }}
+          {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
         </div>
       </fieldset>
     </div>
-    {{ Form::close()}}
+    {!! Form::close()!!}
 
     <div class="col col-md-12 col-lg-12">
       <div class="input-group buffer">
         <nav>
-          {{ link_to_route('user.index', 'Back', [], ['class' => 'btn btn-info']) }}
+          {!! link_to_route('user.index', 'Back', [], ['class' => 'btn btn-info']) !!}
           @if (Auth::user() != null && (Auth::user()->isAdmin() || Auth::user()->id == $user->id))
           |
-          {{ link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) }}
+          {!! link_to_route('user.edit', 'Edit', [$user->id], ['class' => 'btn btn-info']) !!}
           |
-          {{ link_to_route('user.password', 'Change Password', [$user->id], ['class' => 'btn btn-info']) }}
+          {!! link_to_route('user.password', 'Change Password', [$user->id], ['class' => 'btn btn-info']) !!}
           |
-          {{ Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 
-            'style' => 'display:inline; margin:0px; padding:0px;'])}}
+          {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE', 
+            'style' => 'display:inline; margin:0px; padding:0px;'])!!}
 
          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirm_Delete" data-title="Delete User" data-message="Are you sure you want to delete this User?">Delete</button>
 
-          {{ Form::close() }}
+          {!! Form::close() !!}
           @endif
         </nav>
       </div>
@@ -99,10 +99,10 @@ rmDeleteLabel" aria-hidden="true">
     <!--Upload-->
     <div class="col col-md-12 col-lg-12 buffer">
       <h4>Profile Picture Upload:</h4>
-      {{ Form::open(['route' => ['user.upload', $user->id], 'enctype' => 'multipart/form-data']) }}
+      {!! Form::open(['route' => ['user.upload', $user->id], 'enctype' => 'multipart/form-data']) !!}
       <input id="profile" type="file" name="file">
-      {{ $errors->first('image') }}
-      {{ Form::close() }}
+      {!! $errors->first('image') !!}
+      {!! Form::close() !!}
     </div>
 
   </div>

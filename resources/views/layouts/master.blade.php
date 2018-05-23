@@ -7,10 +7,10 @@
     <title> Health Care Information Systems </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{ HTML::style('css/bootstrap.min.css') }}
-    {{ HTML::style('css/bootstrap-theme.min.css') }}
-    {{ HTML::style('css/bootstrap-table.css') }}
-    {{ HTML::style('css/fileinput.min.css') }}
+    {!! HTML::style('css/bootstrap.min.css') !!}
+    {!! HTML::style('css/bootstrap-theme.min.css') !!}
+    {!! HTML::style('css/bootstrap-table.css') !!}
+    {!! HTML::style('css/fileinput.min.css') !!}
 
     <meta charset="utf-8">
     <style>
@@ -38,18 +38,18 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            {{ link_to_route('home', 'HCIS', [], ['class' => 'navbar-brand']) }}
+            {!! link_to_route('home', 'HCIS', [], ['class' => 'navbar-brand']) !!}
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse">
             <!--navbar left--->
             <ul class="nav navbar-nav">
-              <li id="masterRecordTab">{{ link_to_route('record.index', 'Record') }}</li>
-              <li id="masterPatientTab">{{ link_to_route('patient.index', 'Patient') }}</li>
-              <li id="masterUserTab">{{ link_to_route('user.index', 'User') }}</li>
-              <li id="masterFacilityTab">{{ link_to_route('facility.index', 'Facility') }}</li>
-              <li id="masterSearchTab">{{ link_to_route('search.index', 'Search') }}</li>
+              <li id="masterRecordTab">{!! link_to_route('record.index', 'Record') !!}</li>
+              <li id="masterPatientTab">{!! link_to_route('patient.index', 'Patient') !!}</li>
+              <li id="masterUserTab">{!! link_to_route('user.index', 'User') !!}</li>
+              <li id="masterFacilityTab">{!! link_to_route('facility.index', 'Facility') !!}</li>
+              <li id="masterSearchTab">{!! link_to_route('search.index', 'Search') !!}</li>
 
               @if (Auth::user() != null && Auth::user()->isAdmin())
               @endif
@@ -60,12 +60,12 @@
             <ul class="nav navbar-nav navbar-right">
               @if (Auth::check())
               <!--Profile-->
-              <li><p class="navbar-text">Signed in as {{ link_to_route('user.show', Auth::user()->username, [Auth::user()->id]) }}.</p></li>
+              <li><p class="navbar-text">Signed in as {!! link_to_route('user.show', Auth::user()->username, [Auth::user()->id]) !!}.</p></li>
               <!--Logout-->
               <li>
-                {{ Form::open(['route' => 'login.destroy', 'method' => 'DELETE']) }}
-                {{ Form::submit('Logout', ['class' => 'btn btn-default navbar-btn']) }}
-                {{ Form::close() }}
+                {!! Form::open(['route' => 'login.destroy', 'method' => 'DELETE']) !!}
+                {!! Form::submit('Logout', ['class' => 'btn btn-default navbar-btn']) !!}
+                {!! Form::close() !!}
               </li>
               @else
               <p class="navbar-text">Login required.</p>
@@ -84,25 +84,25 @@
         @if (Session::get('flash_message_success'))
         <div class="alert alert-success alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          <span id="flash_message_sucess">{{ Session::get('flash_message_success') }}</span>
+          <span id="flash_message_sucess">{!! Session::get('flash_message_success') !!}</span>
         </div>
         @endif
         @if (Session::get('flash_message_info'))
         <div class="alert alert-info alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          <span id="flash_message_info">{{ Session::get('flash_message_info') }}</span>
+          <span id="flash_message_info">{!! Session::get('flash_message_info') !!}</span>
         </div>
         @endif
         @if (Session::get('flash_message_warning'))
         <div class="alert alert-warning alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          <span id="flash_message_warning">{{ Session::get('flash_message_warning') }}</span>
+          <span id="flash_message_warning">{!! Session::get('flash_message_warning') !!}</span>
         </div>
         @endif
         @if (Session::get('flash_message_danger'))
         <div class="alert alert-danger alert-dismissible" role="alert">
           <button class="close" data-dismiss="alert">×</button>
-          <span id="flash_message_danger">{{ Session::get('flash_message_danger') }}</span>
+          <span id="flash_message_danger">{!! Session::get('flash_message_danger') !!}</span>
         </div>
         @endif
 
@@ -113,15 +113,15 @@
 
     <!-- END HOME -->
 
-    {{ HTML::script('js/jquery.min.js') }}
-    {{ HTML::script('js/bootstrap.min.js') }}
-    {{ HTML::script('js/bootstrap-table.js') }}
-    {{ HTML::script('js/fileinput.min.js') }}
+    {!! HTML::script('js/jquery.min.js') !!}
+    {!! HTML::script('js/bootstrap.min.js') !!}
+    {!! HTML::script('js/bootstrap-table.js') !!}
+    {!! HTML::script('js/fileinput.min.js') !!}
 
 
-    {{ HTML::script('js/upload.js') }}
-    {{ HTML::script('js/table.js') }}
-    {{ HTML::script('js/active.js') }}
+    {!! HTML::script('js/upload.js') !!}
+    {!! HTML::script('js/table.js') !!}
+    {!! HTML::script('js/active.js') !!}
 
     <script>
       //Auto close alert after a set time.
