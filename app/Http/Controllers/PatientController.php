@@ -2,11 +2,12 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-App::error(function(ModelNotFoundException $e){
+App::error(function (ModelNotFoundException $e) {
     return Response::make('Not Found', 404);
 });
 
-class PatientController extends \BaseController {
+class PatientController extends \BaseController
+{
 
 
     protected $patient;
@@ -19,17 +20,17 @@ class PatientController extends \BaseController {
     }
 
     /**
-	* Display a listing of the resource.
-	*
-	* @return Response
-	*/
+    * Display a listing of the resource.
+    *
+    * @return Response
+    */
     public function index()
     {
         //If the URL includes query string 'search'
         $input = Input::all();
 
-        if (Request::ajax()){
-            if (array_key_exists('search', $input) && $input['search'] === 'true'){
+        if (Request::ajax()) {
+            if (array_key_exists('search', $input) && $input['search'] === 'true') {
                 // get the rest of query string.
                 $qs = array_except($input, ['search']);
 
@@ -37,8 +38,7 @@ class PatientController extends \BaseController {
                 $patients =$this->patient->search($qs)->select(['id', 'phn', 'name', 'preferred_name', 'sex', 'date_of_birth'])->get()->toJson();
 
                 return $patients;
-            }
-            else{
+            } else {
                 //Show a list of all the patient
                 $patients = $this->patient->select(['id', 'phn', 'name', 'preferred_name', 'sex', 'date_of_birth'])->get()->toJson();
 
@@ -51,10 +51,10 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Show the form for creating a new resource.
-	*
-	* @return Response
-	*/
+    * Show the form for creating a new resource.
+    *
+    * @return Response
+    */
     public function create()
     {
         //Show a form to create new patient.
@@ -63,17 +63,17 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Store a newly created resource in storage.
-	*
-	* @return Response
-	*/
+    * Store a newly created resource in storage.
+    *
+    * @return Response
+    */
     public function store()
     {
         //Redirect back to the index after storing.
         $input = Input::all();
 
         //Validation
-        if( ! $this->patient->fill($input)->isValid()){
+        if (! $this->patient->fill($input)->isValid()) {
             return Redirect::back()->withInput()->withErrors($this->patient->errors)->with('flash_message_danger', 'Invalid input');
         }
 
@@ -84,11 +84,11 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Display the specified resource.
-	*
-	* @param  int  $id
-	* @return Response
-	*/
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return Response
+    */
     public function show($id)
     {
         //
@@ -99,11 +99,11 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Show the form for editing the specified resource.
-	*
-	* @param  int  $id
-	* @return Response
-	*/
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return Response
+    */
     public function edit($id)
     {
         //
@@ -114,11 +114,11 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Update the specified resource in storage.
-	*
-	* @param  int  $id
-	* @return Response
-	*/
+    * Update the specified resource in storage.
+    *
+    * @param  int  $id
+    * @return Response
+    */
     public function update($id)
     {
         //Get input then update
@@ -126,7 +126,7 @@ class PatientController extends \BaseController {
 
         $patient = $this->patient->findOrFail($id);
 
-        if(! $patient->fill($input)->isValid()){
+        if (! $patient->fill($input)->isValid()) {
             return Redirect::back()->withInput()->withErrors($patient->errors)->with('flash_message_danger', 'Invalid input');
         }
 
@@ -137,11 +137,11 @@ class PatientController extends \BaseController {
 
 
     /**
-	* Remove the specified resource from storage.
-	*
-	* @param  int  $id
-	* @return Response
-	*/
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return Response
+    */
     public function destroy($id)
     {
         //
@@ -150,7 +150,8 @@ class PatientController extends \BaseController {
         return Redirect::route('patient.index')->with('flash_message_info', 'The entry has been deleted.');
     }
 
-    public function search(){
+    public function search()
+    {
         //Makes a URL with query string then redecirts to it.
         $keyword = Input::get('keyword');
 
@@ -160,12 +161,13 @@ class PatientController extends \BaseController {
         return Redirect::to($url)->with('flash_message_success', 'Search completed.');
     }
 
-    public function ajax(){
+    public function ajax()
+    {
         $input = Input::all();
 
         //For mass delete request
-        if ($input['action'] === 'delete'){
-            foreach ($input['input'] as $patients){
+        if ($input['action'] === 'delete') {
+            foreach ($input['input'] as $patients) {
                 $this->destroy($patients['id']);
             }
         }
@@ -173,27 +175,26 @@ class PatientController extends \BaseController {
     }
 
 
-    public function upload($id){
+    public function upload($id)
+    {
         $patient = $this->patient->findOrFail($id);
 
         $image = Input::file('file');
 
         // If image exists
-        if( ! isset($image)){
+        if (! isset($image)) {
             return Redirect::back()->with('flash_message_danger', 'Image Required.');
         }
 
         // If image is over 50kb
-        if( $image->getSize() > 50000)
-        {
+        if ($image->getSize() > 50000) {
             return Redirect::back()->with('flash_message_danger', '50kb maxium for profile picture.');
         }
 
         // Validate it is a image.
         $rule = ['image' => 'image'];
         $validation = Validator::make(['image'=>$image], $rule);
-        if( ! $validation->passes())
-        {
+        if (! $validation->passes()) {
             return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
         }
 
@@ -203,10 +204,9 @@ class PatientController extends \BaseController {
 
         $path = storage_path('files/profile/'. $filename);
 
-        $upload_success= Image::make($image->getRealPath())->resize('640','600')->save($path);
+        $upload_success= Image::make($image->getRealPath())->resize('640', '600')->save($path);
 
-        if( ! $upload_success)
-        {
+        if (! $upload_success) {
             return Redirect::back()->with('flash_message_danger', 'Upload Error.');
         }
 
@@ -218,5 +218,4 @@ class PatientController extends \BaseController {
 
         return Redirect::back()->with('flash_message_success', 'Upload done.');
     }
-
 }

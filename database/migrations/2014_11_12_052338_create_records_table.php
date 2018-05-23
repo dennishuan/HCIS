@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecordsTable extends Migration {
+class CreateRecordsTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,8 +13,7 @@ class CreateRecordsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('records', function(Blueprint $table)
-        {
+        Schema::create('records', function (Blueprint $table) {
             // Default index laravel uses.
             $table->increments('id');
 
@@ -28,7 +28,7 @@ class CreateRecordsTable extends Migration {
             $table->text('stated_compl'); // Patient's stated complaint
             $table->string('chief_compl'); // Category of illness
             $table->string('chief_compl_code', 24); // Code of chief complaints
-            $table->string('arrival_mode', 16)->nullable();  
+            $table->string('arrival_mode', 16)->nullable();
             $table->text('subjective'); // Subject of the patient's visit
             $table->text('objective');  // Objective of the patient's visit
             $table->text('assessment'); // Doctor/Nurse's assessment/examination
@@ -55,5 +55,4 @@ class CreateRecordsTable extends Migration {
     {
         Schema::drop('records');
     }
-
 }

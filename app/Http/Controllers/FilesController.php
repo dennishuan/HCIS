@@ -3,7 +3,8 @@ use Illuminate\Filesystem\Filesystem;
 use SoapBox\Formatter\Formatter;
 use League\Csv\Reader;
 
-class FilesController extends \BaseController {
+class FilesController extends \BaseController
+{
 
     public function __construct()
     {
@@ -12,11 +13,13 @@ class FilesController extends \BaseController {
 
 
 
-    public function profile($filename){
+    public function profile($filename)
+    {
         return Response::download(storage_path('files/profile/'. $filename));
     }
 
-    public function record($filename){
+    public function record($filename)
+    {
         return Response::download(storage_path('files/record/'. $filename));
     }
 
@@ -24,16 +27,14 @@ class FilesController extends \BaseController {
     public function uploadPat()
     {
         $count=0;
-        if(Input::hasFile('file'))
-        {
+        if (Input::hasFile('file')) {
             $file = Input::file('file');
             $path = $file->getRealPath();
 
             //Validate the file
             $rule = ['file' => 'mimes:csv'];
             $validation = Validator::make(['image'=>$file], $rule);
-            if( ! $validation->passes())
-            {
+            if (! $validation->passes()) {
                 return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
             }
 
@@ -47,17 +48,16 @@ class FilesController extends \BaseController {
             $data = $reader->query();
             foreach ($data as $line_index => $row) {
                 // Ignore empty rows
-                if(count($row) != 21){
+                if (count($row) != 21) {
                     continue;
                 }
 
                 // Combine Key with the element
-                $patient = array_combine($keys , $row);
+                $patient = array_combine($keys, $row);
 
                 //Store validation the data
                 $patients = new Patient;
-                if ($patients->fill($patient)->isValid())
-                {
+                if ($patients->fill($patient)->isValid()) {
                     $patients->save();
                     $count++;
                 }
@@ -72,16 +72,14 @@ class FilesController extends \BaseController {
     public function uploadRec()
     {
         $count = 0;
-        if(Input::hasFile('file'))
-        {
+        if (Input::hasFile('file')) {
             $file = Input::file('file');
             $path = $file->getRealPath();
 
             //Validate the file
             $rule = ['file' => 'mimes:csv'];
             $validation = Validator::make(['image'=>$file], $rule);
-            if( ! $validation->passes())
-            {
+            if (! $validation->passes()) {
                 return Redirect::back()->with('flash_message_danger', 'Files mismatch')->withErrors($validation);
             }
 
@@ -95,44 +93,40 @@ class FilesController extends \BaseController {
             $data = $reader->query();
             foreach ($data as $line_index => $row) {
                 // Ignore empty rows
-                if(count($row) != 18){
+                if (count($row) != 18) {
                     continue;
                 }
 
                 // Combine Key with the element
-                $record = array_combine($keys , $row);
+                $record = array_combine($keys, $row);
 
                 $patient = Patient::where('phn', $record['phn'])->first();
                 $facility = Facility::where('abbrev', $record['abbrev'])->first();
                 $user = User::where('username', $record['username'])->first();
 
                 //If the exist use the id, if not id = 0
-                if (is_null($patient)){
+                if (is_null($patient)) {
                     //Record must have a patient.
                     continue;
-                }
-                else{
+                } else {
                     $patient_id = $patient->id;
                 }
-                if (is_null($facility)){
+                if (is_null($facility)) {
                     $facility_id = 0;
                     $record['abbrev'] = 'IMPORT';
-                }
-                else{
+                } else {
                     $facility_id = $facility->id;
                 }
-                if (is_null($user)){
+                if (is_null($user)) {
                     $user_id = 0;
                     $record['username'] = 'IMPORT';
-                }
-                else{
+                } else {
                     $user_id = $user->id;
                 }
 
                 //Store validation the data
                 $records = new Record;
-                if ($records->fill($record)->isValid())
-                {
+                if ($records->fill($record)->isValid()) {
                     unset($records['phn']);
                     unset($records['abbrev']);
                     unset($records['username']);
@@ -143,8 +137,7 @@ class FilesController extends \BaseController {
 
                     $records->save();
                     $count++;
-                }
-                else{
+                } else {
                     return Redirect::back()->with('flash_message_danger', 'Record of ' . $records->phn . ': ' . $records->errors->first());
                 }
             }
@@ -153,11 +146,11 @@ class FilesController extends \BaseController {
         }
 
         return Redirect::back()->withErrors('Please select a File');
-
     }
 
 
-    public function exportPat(){
+    public function exportPat()
+    {
         // Filter out id and image.
         $patients = Patient::select(['phn', 'name', 'preferred_name', 'sex', 'date_of_birth', 'address', 'postal_code', 'home_phone', 'work_phone', 'mobile_phone', 'email', 'emergency_name', 'emergency_phone', 'emergency_relationship', 'allergies', 'permanent_resident', 'medical_history', 'preferred_language', 'other_language', 'ethnic_background', 'family_doctor'])->get()->toArray();
 
@@ -171,10 +164,9 @@ class FilesController extends \BaseController {
         \Exporter\Handler::create($exporter_source, $exporter_writer)->export();
 
         // Check if file exist
-        if (File::exists($path)){
+        if (File::exists($path)) {
             return Response::download($path);
-        }
-        else{
+        } else {
             return Redirect::action('PatientController@index')->with('flash_message_danger', 'Export file failed to generate.');
         }
     }
@@ -183,8 +175,7 @@ class FilesController extends \BaseController {
     public function exportRec()
     {
         $records = Record::all();
-        foreach($records as $record)
-        {
+        foreach ($records as $record) {
             $phn = Patient::where('id', $record['patient_id'])->first()->phn;
             $username = User::where('id', $record['user_id'])->first()->username;
             $abbrev = Facility::where('id', $record['facility_id'])->first()->abbrev;
@@ -207,12 +198,10 @@ class FilesController extends \BaseController {
         \Exporter\Handler::create($exporter_source, $exporter_writer)->export();
 
         // Check if file exist
-        if (File::exists($path)){
+        if (File::exists($path)) {
             return Response::download($path);
-        }
-        else{
+        } else {
             return Redirect::action('RecordController@index')->with('flash_message_danger', 'Export file failed to generate.');
         }
     }
-
 }

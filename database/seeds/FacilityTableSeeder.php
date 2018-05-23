@@ -2,38 +2,37 @@
 
 use Faker\Factory as Faker;
 
-class FacilityTableSeeder extends Seeder {
+class FacilityTableSeeder extends Seeder
+{
 
-	public function run()
-	{
-		$faker = Faker::create('en_CA');
+    public function run()
+    {
+        $faker = Faker::create('en_CA');
 
-		$type = ['Hospital','Clinic'];
+        $type = ['Hospital','Clinic'];
 
-		foreach(range(1, 8) as $index)
-		{
-			Facility::create([
-				'abbrev' => $faker->lexify('??????'),
-				'name' => $faker->company,
-				'type' => $faker->randomElement($type),
-				'phone' => $faker->numerify('##########x####'),
-				'fax' => $faker->numerify('##########x####'),
-				'address' => str_replace(PHP_EOL, '', $faker->address),
-				'postal_code' => strtoupper ($faker->bothify('?#?#?#'))
-			]);
-		}
+        foreach (range(1, 8) as $index) {
+            Facility::create([
+                'abbrev' => $faker->lexify('??????'),
+                'name' => $faker->company,
+                'type' => $faker->randomElement($type),
+                'phone' => $faker->numerify('##########x####'),
+                'fax' => $faker->numerify('##########x####'),
+                'address' => str_replace(PHP_EOL, '', $faker->address),
+                'postal_code' => strtoupper($faker->bothify('?#?#?#'))
+            ]);
+        }
 
-		Facility::create([
-			'abbrev' => 'IMPORT',
-			'name' => 'IMPORT',
-			'type' => 'Hospital',
-			'phone' => '0000000000',
-			'fax' => '0000000000',
-			'address' => 'IMPORT',
-			'postal_code' => 'IMPORT',
-		]);
+        Facility::create([
+            'abbrev' => 'IMPORT',
+            'name' => 'IMPORT',
+            'type' => 'Hospital',
+            'phone' => '0000000000',
+            'fax' => '0000000000',
+            'address' => 'IMPORT',
+            'postal_code' => 'IMPORT',
+        ]);
 
-		Facility::where('name', 'IMPORT')->update(['id' => 0]);
-	}
-
+        Facility::where('name', 'IMPORT')->update(['id' => 0]);
+    }
 }

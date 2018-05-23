@@ -1,13 +1,14 @@
 <?php
 
-class Files extends \Eloquent {
-	protected $fillable = ['path', 'record_id'];
+class Files extends \Eloquent
+{
+    protected $fillable = ['path', 'record_id'];
 
-	protected $table = 'files';
+    protected $table = 'files';
 
 
-	public function record()
-	{
-		return $this->belongsTo('record');
-	}
+    public function record()
+    {
+        return $this->belongsTo('record');
+    }
 }

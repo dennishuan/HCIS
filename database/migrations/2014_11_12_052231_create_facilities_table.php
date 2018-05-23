@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacilitiesTable extends Migration {
+class CreateFacilitiesTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,8 +13,7 @@ class CreateFacilitiesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('facilities', function(Blueprint $table)
-        {
+        Schema::create('facilities', function (Blueprint $table) {
 
             // Default index laravel uses.
             $table->increments('id');
@@ -40,5 +40,4 @@ class CreateFacilitiesTable extends Migration {
     {
         Schema::drop('facilities');
     }
-
 }

@@ -2,7 +2,8 @@
 
 use Faker\Factory as Faker;
 
-class RecordTableSeeder extends Seeder {
+class RecordTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -14,18 +15,16 @@ class RecordTableSeeder extends Seeder {
         $facilities = Facility::all();
         $users = User::where('type', 'Doctor');
 
-        foreach(range(1, 300) as $index)
-        {
+        foreach (range(1, 300) as $index) {
             $facility = Facility::orderByRaw("RAND()")->first();
 
-            if($facility->type == 'Hospital'){
+            if ($facility->type == 'Hospital') {
                 $temp = $faker->randomElement($priority);
-            }
-            else{
+            } else {
                 $temp = '6';
             }
 
-            if($facility->type === 'clinic'){
+            if ($facility->type === 'clinic') {
                 Record::create([
                     'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
                     'facility_id' => $facility->id,
@@ -45,7 +44,7 @@ class RecordTableSeeder extends Seeder {
                     'remarks' => $faker->text,
                     'plan' => $faker->text
                 ]);
-            }else{
+            } else {
                 Record::create([
                     'patient_id' => Patient::orderByRaw("RAND()")->first()->id,
                     'facility_id' => $facility->id,
@@ -66,10 +65,7 @@ class RecordTableSeeder extends Seeder {
                     'remarks' => $faker->text,
                     'plan' => $faker->text
                 ]);
-
             }
-
         }
     }
-
 }

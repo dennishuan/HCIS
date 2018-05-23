@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacilitiesUsersTable extends Migration {
+class CreateFacilitiesUsersTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,8 +13,7 @@ class CreateFacilitiesUsersTable extends Migration {
      */
     public function up()
     {
-        Schema::create('facilities_users', function(Blueprint $table)
-        {
+        Schema::create('facilities_users', function (Blueprint $table) {
             // Many to Many relation bewteen failities and doctors
             // Facilities can have many doctors.
             // Doctors can work at many facilities.
@@ -38,5 +38,4 @@ class CreateFacilitiesUsersTable extends Migration {
     {
         Schema::drop('facilities_users');
     }
-
 }

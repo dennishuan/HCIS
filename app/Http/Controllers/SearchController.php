@@ -1,6 +1,7 @@
 <?php
 
-class SearchController extends \BaseController {
+class SearchController extends \BaseController
+{
 
     /**
      * Display a listing of the resource.
@@ -13,12 +14,12 @@ class SearchController extends \BaseController {
         $input = Input::all();
 
         //Search
-        if(array_key_exists('model', $input)){
+        if (array_key_exists('model', $input)) {
             // Record
-            if($input['model'] === 'record'){
+            if ($input['model'] === 'record') {
                 $qs = array_except($input, ['model']);
                 //Check if query is empty
-                if(!empty($qs)){
+                if (!empty($qs)) {
                     //If not that set search to true
                     $qs = ['search' => 'true'] + $qs;
                 }
@@ -28,10 +29,10 @@ class SearchController extends \BaseController {
                 return Redirect::to($url);
             }
             // Patient
-            if($input['model'] === 'patient'){
+            if ($input['model'] === 'patient') {
                 $qs = array_except($input, ['model']);
                 //Check if query is empty
-                if(!empty($qs)){
+                if (!empty($qs)) {
                     //If not that set search to true
                     $qs = ['search' => 'true'] + $qs;
                 }
@@ -41,10 +42,10 @@ class SearchController extends \BaseController {
                 return Redirect::to($url);
             }
             // User
-            if($input['model'] === 'user'){
+            if ($input['model'] === 'user') {
                 $qs = array_except($input, ['model']);
                 //Check if query is empty
-                if(!empty($qs)){
+                if (!empty($qs)) {
                     //If not that set search to true
                     $qs = ['search' => 'true'] + $qs;
                 }
@@ -54,10 +55,10 @@ class SearchController extends \BaseController {
                 return Redirect::to($url);
             }
             // Facility
-            if($input['model'] === 'facility'){
+            if ($input['model'] === 'facility') {
                 $qs = array_except($input, ['model']);
                 //Check if query is empty
-                if(!empty($qs)){
+                if (!empty($qs)) {
                     //If not that set search to true
                     $qs = ['search' => 'true'] + $qs;
                 }
@@ -83,7 +84,7 @@ class SearchController extends \BaseController {
         // Remove token
         $input = array_except($input, ['_token']);
         // Remove empty input
-        while(($key = array_search('', $input)) !== false) {
+        while (($key = array_search('', $input)) !== false) {
             unset($input[$key]);
         }
 
@@ -92,7 +93,4 @@ class SearchController extends \BaseController {
         // Redirect to /search?{query string}
         return Redirect::to($url);
     }
-
-
 }
-

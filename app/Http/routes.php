@@ -40,7 +40,7 @@ Route::when('*', ['before' => 'csrf'], ['post', 'put', 'delete']);
 
 
 //Home
-Route::get('/', ['as' => 'home', 'before' => 'auth' ,function(){
+Route::get('/', ['as' => 'home', 'before' => 'auth' ,function () {
     return View::make('home');
 }]);
 
@@ -53,7 +53,7 @@ Route::delete('logout', ['as' => 'login.destroy', 'uses' => 'LoginController@des
 /*******************************
 *   Require Auth
 *************************************/
-Route::group(['before' => 'auth'], function(){
+Route::group(['before' => 'auth'], function () {
     //Search
     Route::get('search', ['as' => 'search.index', 'uses' => 'SearchController@index']);
     Route::post('search', ['as' => 'search.store', 'uses' => 'SearchController@store']);
@@ -96,13 +96,8 @@ Route::group(['before' => 'auth'], function(){
     Route::get('files/record/{file}', ['uses' => 'FilesController@record']);
 
     //Export
-    Route::get('patient/file/exportPat',['as'=>'exportPat', 'uses'=>'FilesController@exportPat']);
+    Route::get('patient/file/exportPat', ['as'=>'exportPat', 'uses'=>'FilesController@exportPat']);
     Route::post('uploadPat', ['as'=>'importPat', 'uses'=>'FilesController@uploadPat']);
-    Route::get('record/file/exportRec',['as'=>'exportRec','uses'=>'FilesController@exportRec']);
+    Route::get('record/file/exportRec', ['as'=>'exportRec','uses'=>'FilesController@exportRec']);
     Route::post('uploadRec', ['as'=>'importRec', 'uses'=>'FilesController@uploadRec']);
 });
-
-
-
-
-
