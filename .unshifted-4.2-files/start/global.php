@@ -1,11 +1,12 @@
 <?php
 
-function displayFilename($path){
-  $pos = stripos($path, '-');
-  if ($pos !== false) {
-    return substr($path, $pos+1);
-  }
-  return 'Error, filename not found.';
+function displayFilename($path)
+{
+    $pos = stripos($path, '-');
+    if ($pos !== false) {
+        return substr($path, $pos+1);
+    }
+    return 'Error, filename not found.';
 }
 
 /**
@@ -19,13 +20,12 @@ function displayFilename($path){
  * @param  bool    $secure
  * @return string
  */
-function qs_url($path = null, $qs = array(), $secure = null)
+function qs_url($path = null, $qs = [], $secure = null)
 {
     $url = app('url')->to($path, $secure);
-    if (count($qs)){
-
-        foreach($qs as $key => $value){
-            $qs[$key] = sprintf('%s=%s',$key, urlencode($value));
+    if (count($qs)) {
+        foreach ($qs as $key => $value) {
+            $qs[$key] = sprintf('%s=%s', $key, urlencode($value));
         }
         $url = sprintf('%s?%s', $url, implode('&', $qs));
     }
@@ -43,14 +43,14 @@ function qs_url($path = null, $qs = array(), $secure = null)
 |
 */
 
-ClassLoader::addDirectories(array(
+ClassLoader::addDirectories([
 
     app_path().'/commands',
     app_path().'/controllers',
     app_path().'/models',
     app_path().'/database/seeds',
 
-));
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -78,8 +78,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
+App::error(function (Exception $exception, $code) {
     Log::error($exception);
 });
 
@@ -94,8 +93,7 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
-{
+App::down(function () {
     return Response::make("Be right back!", 503);
 });
 
