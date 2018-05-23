@@ -1,5 +1,9 @@
 <?php
+
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class Files extends Model
 {
@@ -10,6 +14,6 @@ class Files extends Model
 
     public function record()
     {
-        return $this->belongsTo('record');
+        return $this->belongsTo('App\record');
     }
 }

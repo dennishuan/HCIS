@@ -1,7 +1,20 @@
 <?php
+
+namespace App\Http\Controllers;
+
+use App\Facility;
+use App\Patient;
+use App\Record;
+use App\User;
 use Illuminate\Filesystem\Filesystem;
-use SoapBox\Formatter\Formatter;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 use League\Csv\Reader;
+use SoapBox\Formatter\Formatter;
+
 
 class FilesController extends Controller
 {

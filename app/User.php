@@ -1,9 +1,14 @@
 <?php
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Passwords\CanResetPassword;
+
+namespace App;
+
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
@@ -88,12 +93,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function facility()
     {
-        $this->belongsToMany('Facility', 'facilities_users');
+        $this->belongsToMany('App\Facility', 'facilities_users');
     }
 
     public function record()
     {
-        return $this->hasMany('Record');
+        return $this->hasMany('App\Record');
     }
 
 

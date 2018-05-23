@@ -1,6 +1,20 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Facility;
+use App\Files;
+use App\Http\Requests\Request;
+use App\Patient;
+use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+
+
 
 App::error(function (ModelNotFoundException $e) {
     return response('Not Found', 404);

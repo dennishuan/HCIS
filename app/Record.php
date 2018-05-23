@@ -1,5 +1,11 @@
 <?php
 
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
+
+
 class Record extends Model
 {
     /**
@@ -47,7 +53,6 @@ class Record extends Model
         $result = $this;
 
         // User filter
-use Illuminate\Database\Eloquent\Model;
         $result = $result->whereHas('user', function ($user) use ($qs) {
             if (array_key_exists('doctor', $qs)) {
                 $user = $user->where('name', 'LIKE', '%'.$qs['doctor'].'%');
@@ -149,21 +154,21 @@ use Illuminate\Database\Eloquent\Model;
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\User');
     }
 
     public function facility()
     {
-        return $this->belongsTo('Facility');
+        return $this->belongsTo('App\Facility');
     }
 
     public function patient()
     {
-        return $this->belongsTo('Patient');
+        return $this->belongsTo('App\Patient');
     }
 
     public function files()
     {
-        return $this->hasMany('Files');
+        return $this->hasMany('App\Files');
     }
 }

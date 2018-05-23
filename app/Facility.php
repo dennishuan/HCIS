@@ -1,5 +1,10 @@
 <?php
+
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
+
 
 class Facility extends Model
 {
@@ -76,11 +81,11 @@ class Facility extends Model
 
     public function user()
     {
-        return $this->belongsToMany('User', 'facilities_users');
+        return $this->belongsToMany('App\User', 'facilities_users');
     }
 
     public function record()
     {
-        return $this->hasMany('Record');
+        return $this->hasMany('App\Record');
     }
 }

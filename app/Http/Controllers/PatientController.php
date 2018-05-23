@@ -1,6 +1,16 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
+
+
 
 App::error(function (ModelNotFoundException $e) {
     return response('Not Found', 404);

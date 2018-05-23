@@ -1,5 +1,10 @@
 <?php
+
+namespace App;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
+
 
 class Patient extends Model
 {
@@ -135,6 +140,6 @@ class Patient extends Model
 
     public function record()
     {
-        return $this->hasMany('Record');
+        return $this->hasMany('App\Record');
     }
 }
