@@ -97,7 +97,7 @@ class Patient extends Eloquent
             $id = $this->attributes['id'];
         }
 
-        $rules = array('phn' => 'required|unique:patients,phn,' . $id . '|numeric|digits:10',
+        $rules = ['phn' => 'required|unique:patients,phn,' . $id . '|numeric|digits:10',
                        'name' => 'required|alpha_spaces|max:255',
                        'preferred_name' => 'required|alpha_spaces|max:255',
                        'sex' => 'required|in:Female,Male',
@@ -118,7 +118,7 @@ class Patient extends Eloquent
                        'other_language' => 'alpha|max:255',
                        'ethnic_background' => 'required|alpha|max:255',
                        'family_doctor' => 'alpha_spaces',
-                      );
+                      ];
 
 
         $validation = Validator::make($this->attributes, $rules);

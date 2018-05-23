@@ -51,7 +51,7 @@ class Facility extends \Eloquent
             $id = $this->attributes['id'];
         }
 
-        $rules = array(
+        $rules = [
             'abbrev' => 'required|alpha|min:3|max:6|unique:facilities,abbrev,' . $id,
             'name' => 'required|alpha_spaces|max:255|unique:facilities,name,' . $id,
             'type' => 'required|in:Clinic,Hospital',
@@ -59,7 +59,7 @@ class Facility extends \Eloquent
             'fax' => 'required|between:10,15|valid_phone|unique:facilities,fax,' . $id,
             'address' => 'required|max:255|unique:facilities,address,' . $id,
             'postal_code' => 'required|min:6|max:6|unique:facilities,postal_code,' . $id,
-        );
+        ];
         
         $validation = Validator::make($this->attributes, $rules);
 

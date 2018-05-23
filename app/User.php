@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     *
     * @var array
     */
-    protected $hidden = array('password', 'remember_token');
+    protected $hidden = ['password', 'remember_token'];
 
     //Enable mass assignment for the fields.
     protected $fillable = ['username', 'type', 'email', 'name', 'phone'];
@@ -61,13 +61,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface
             $id = $this->attributes['id'];
         }
 
-        $rules = array(
+        $rules = [
             'email' => 'required|email|unique:users,email,' . $id . '|max:255',
             'type' => 'required|in:Admin,Doctor,Nurse',
             'name' => 'required|alpha_spaces|max:255',
             'phone' => 'required|between:10,15',
             'username' => 'required|alpha_num|unique:users,username,' . $id . '|max:255',
-        );
+        ];
 
         $validation = Validator::make($this->attributes, $rules);
 
