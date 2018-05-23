@@ -3,7 +3,7 @@ use Illuminate\Filesystem\Filesystem;
 use SoapBox\Formatter\Formatter;
 use League\Csv\Reader;
 
-class FilesController extends \BaseController
+class FilesController extends Controller
 {
 
     public function __construct()

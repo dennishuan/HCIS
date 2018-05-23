@@ -6,7 +6,7 @@ App::error(function (ModelNotFoundException $e) {
     return Response::make('Not Found', 404);
 });
 
-class UserController extends \BaseController
+class UserController extends Controller
 {
 
 

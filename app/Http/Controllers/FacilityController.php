@@ -6,7 +6,7 @@ App::error(function (ModelNotFoundException $e) {
     return Response::make('Not Found', 404);
 });
 
-class FacilityController extends \BaseController
+class FacilityController extends Controller
 {
 
 

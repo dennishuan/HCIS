@@ -6,7 +6,7 @@ App::error(function (ModelNotFoundException $e) {
     return Response::make('Not Found', 404);
 });
 
-class PatientController extends \BaseController
+class PatientController extends Controller
 {
 
 
