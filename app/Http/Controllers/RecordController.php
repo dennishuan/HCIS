@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
-
-
 App::error(function (ModelNotFoundException $e) {
     return response('Not Found', 404);
 });

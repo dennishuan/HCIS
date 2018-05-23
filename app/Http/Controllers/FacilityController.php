@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
-
 App::error(function (ModelNotFoundException $e) {
     return response('Not Found', 404);
 });

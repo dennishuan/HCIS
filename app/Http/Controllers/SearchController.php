@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 
-
 class SearchController extends Controller
 {
 

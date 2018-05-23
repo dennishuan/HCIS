@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Validator;
 use League\Csv\Reader;
 use SoapBox\Formatter\Formatter;
 
-
 class FilesController extends Controller
 {
 
